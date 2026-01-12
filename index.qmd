@@ -1,0 +1,26 @@
+---
+title: "AERO 689: Introduction to Machine Learning for Aerospace Engineers"
+---
+
+## Course Presentations
+
+| Week | Topic | Presentation |
+|------|-------|--------------|
+| 1 | Introduction & Motivation | [View Slides](week01_introduction_motivation/week01_presentation.html) |
+| 2 | Linear Regression | [View Slides](week02_linear_regression/week02_presentation.html) |
+| 3 | Model Evaluation & Regularization | Coming Soon |
+| 4 | Classification | Coming Soon |
+| 5 | Clustering & PCA | Coming Soon |
+| 6 | Dimensionality Reduction | Coming Soon |
+| 7 | Neural Network Basics | Coming Soon |
+| 8 | Midterm Review | Coming Soon |
+| 9 | Deep Networks & CNNs | Coming Soon |
+| 10 | Sequence Models | Coming Soon |
+| 11 | Physics-Informed Models | Coming Soon |
+| 12 | Robustness & Uncertainty | Coming Soon |
+| 13 | Project Development | Coming Soon |
+| 14 | Final Presentations | Coming Soon |
+
+---
+
+*Dr. Raktim Bhattacharya | Texas A&M University*

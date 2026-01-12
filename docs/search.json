@@ -1,0 +1,1269 @@
+[
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#welcome-to-aero-689",
+    "href": "week01_introduction_motivation/week01_presentation.html#welcome-to-aero-689",
+    "title": "Introduction & Motivation",
+    "section": "Welcome to AERO 689",
+    "text": "Welcome to AERO 689\n\nThe Intersection of Data Science and Aerospace Engineering\nWhere machine learning meets flight dynamics, aerodynamics, and space systems"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#todays-learning-objectives",
+    "href": "week01_introduction_motivation/week01_presentation.html#todays-learning-objectives",
+    "title": "Introduction & Motivation",
+    "section": "Today’s Learning Objectives",
+    "text": "Today’s Learning Objectives\nLO 1: Understand ML in Aerospace\nLO 2: Identify Key Applications\nLO 3: Recognize Unique Challenges\n\nUnderstand the role of ML in modern aerospace engineering\nIdentify key aerospace applications for machine learning\nRecognize the unique challenges of aerospace data and systems\nPreview the course structure and assessment"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-boeing-737-max-crisis",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-boeing-737-max-crisis",
+    "title": "Introduction & Motivation",
+    "section": "The Boeing 737 MAX Crisis",
+    "text": "The Boeing 737 MAX Crisis\nWhere ML (Data-Driven Approach) could have helped.\n\n\n\n346\n\n\nLives Lost\n\n\n2\n\n\nFatal Crashes (2018-2019)\n\n\n\nRoot Cause: MCAS system relied on single sensor input\nThe ML Perspective: How could data-driven approaches have prevented this?"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#what-went-wrong",
+    "href": "week01_introduction_motivation/week01_presentation.html#what-went-wrong",
+    "title": "Introduction & Motivation",
+    "section": "What Went Wrong?",
+    "text": "What Went Wrong?\n\nSingle point of failure: One faulty Angle of Attack (AOA) sensor triggered catastrophic MCAS activation\n\n\nSensor Fault: AOA sensor reported erroneous readings (20° error)\nMCAS Activation: System automatically pushed nose down\nNo Redundancy: Backup sensor data was ignored\nPilot Override Difficulty: System repeatedly reactivated\n\n\n\nMultiple sensor fusion and anomaly detection could have flagged the inconsistency\n\nTechniques from control theory (fault-detection and isolation)\nAdvanced data-driven techniques"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#interactive-question",
+    "href": "week01_introduction_motivation/week01_presentation.html#interactive-question",
+    "title": "Introduction & Motivation",
+    "section": "Interactive Question 🤔",
+    "text": "Interactive Question 🤔\n\nWhat aerospace systems around you could benefit from machine learning?\n\n\n\n\n\n✈️ Flight Systems\n\n\nAutopilot\nNavigation\nFlight control\n\n\n\n\n🔧 Maintenance\n\n\nEngine health\nPredictive maintenance\nStructural monitoring\n\n\n\n\n🌦️ Environment\n\n\nWeather prediction\nTurbulence detection\nIce detection\n\n\n\n\n🛫 Operations\n\n\nAir traffic control\nRoute optimization\nFuel management"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#what-makes-aerospace-different",
+    "href": "week01_introduction_motivation/week01_presentation.html#what-makes-aerospace-different",
+    "title": "Introduction & Motivation",
+    "section": "What Makes Aerospace Different?",
+    "text": "What Makes Aerospace Different?\n\n\nUnique Challenges\n\nSafety-Critical – Lives depend on our algorithms\nPhysics-Informed - Centuries of knowledge\n\nfluid mechanics (e.g., Navier-Stokes equations for airflow)\nanalytical dynamics (e.g., equations of motion for aircraft)\nmaterial science (e.g., fatigue and failure models)\nflight stability theory, orbital mechanics (e.g., satellite trajectories)\npropulsion system modeling, etc.\n\nMulti-Scale – Molecular flows to orbital mechanics\nRegulatory – FAA/NASA certification\nReal-Time – Split-second decisions required\n\n\n\nAerospace Data Characteristics\n\nTime-series: Continuous sensor streams (100+ Hz)\nMulti-dimensional: Pressure, temperature, velocity, position, attitude\nNoisy: Sensor failures, environmental interference\nSparse: Expensive flight tests, limited wind tunnel data\n\n\n\n\n\nBest Practices for Responsible Aerospace ML\n\nCombine physics with learning\nQuantify uncertainty\nValidate beyond training data\nKeep humans informed\nDocument assumptions\nDesign for failure\n\n\nWhat This Course Emphasizes\n\nFocus on interpretable models first\nEmphasize validation and uncertainty\nAvoid ML where physics is sufficient and tractable\nTreat ML as an engineering tool"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#course-structure-your-learning-journey",
+    "href": "week01_introduction_motivation/week01_presentation.html#course-structure-your-learning-journey",
+    "title": "Introduction & Motivation",
+    "section": "Course Structure: Your Learning Journey",
+    "text": "Course Structure: Your Learning Journey\n\n\n\nPhase 1: Foundations\n\nWeeks 1-6\n\nLinear regression\nClassification\nClustering & PCA\nDimensionality reduction\n\n\n\n\nPhase 2: Advanced\n\nWeeks 7-12\n\nNeural networks\nDeep learning & CNNs\nSequence models\nPhysics-informed ML\n\n\n\n\nPhase 3: Application\n\nWeeks 13-14\n\nProject development\nFinal presentations\nReal challenges"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#assessment-strategy",
+    "href": "week01_introduction_motivation/week01_presentation.html#assessment-strategy",
+    "title": "Introduction & Motivation",
+    "section": "Assessment Strategy",
+    "text": "Assessment Strategy\n\nHomework: 30%\nPaper review: 10%\nMidterm: 30%\nFinal Project: 30%"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#live-demo-flight-data-analysis",
+    "href": "week01_introduction_motivation/week01_presentation.html#live-demo-flight-data-analysis",
+    "title": "Introduction & Motivation",
+    "section": "Live Demo: Flight Data Analysis",
+    "text": "Live Demo: Flight Data Analysis\nLet’s Explore (Synthetic) Flight Data\n\nDuration: 2-hour plus flight\nSampling: 1 Hz (typical for commercial aircraft)\nDataset columns: time, altitude (ft), airspeed (knots), angle of attack sensors (aoa_sensor_1, aoa_sensor_2), pitch attitude, elevator position, MCAS system status, pilot input, flight phase, sensor fault indicators, fault severity, flight ID, scenario type\nScenario types: Includes both normal and faulted flights (e.g., sustained AOA fault)\nUse: Enables analysis of flight performance, sensor faults, and control system behavior for machine learning and safety studies"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#demo-load-and-inspect-data",
+    "href": "week01_introduction_motivation/week01_presentation.html#demo-load-and-inspect-data",
+    "title": "Introduction & Motivation",
+    "section": "Demo: Load and Inspect Data",
+    "text": "Demo: Load and Inspect Data\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n # Load flight data - using sustained AOA fault scenario (synthetic transport aircraft data)\nfull_data = pd.read_csv('../../data/transport_aircraft_synthetic_data.csv')\nflight_data = full_data[full_data['scenario_type'] == 'sustained_aoa_fault'].copy()\nprint(f\"Dataset shape: {flight_data.shape}\")\n\n# Display first few rows\nprint(\"\\nFirst 5 rows:\")\nprint(flight_data.head())\n\n# Basic statistics\nprint(\"\\nBasic statistics:\")\nprint(flight_data[['altitude', 'airspeed', 'aoa_sensor_1', 'aoa_sensor_2']].describe())\n\nDataset shape: (9000, 14)\n\nFirst 5 rows:\n          time   altitude   airspeed  aoa_sensor_1  aoa_sensor_2  \\\n9000  0.000000  59.390992  16.629223      0.311481      0.483187   \n9001  1.000111  46.111761  21.286478     -0.443923     -0.123747   \n9002  2.000222  55.298928  24.185278      0.354471      0.611968   \n9003  3.000333  52.451724  22.498386      0.580658      0.892831   \n9004  4.000444  40.315880  19.180119      0.186956      0.326070   \n\n      pitch_attitude  elevator_position  mcas_active  pilot_input  \\\n9000        0.073735           0.062612          0.0     0.233508   \n9001       -0.078668          -0.214703          0.0    -0.165356   \n9002        0.005749           0.061149          0.0    -0.245460   \n9003        0.255690           0.271649          0.0    -0.001012   \n9004        0.038220           0.024430          0.0    -0.051055   \n\n     flight_phase  sensor_fault  fault_severity            flight_id  \\\n9000         taxi           0.0             0.0  sustained_aoa_fault   \n9001         taxi           0.0             0.0  sustained_aoa_fault   \n9002         taxi           0.0             0.0  sustained_aoa_fault   \n9003         taxi           0.0             0.0  sustained_aoa_fault   \n9004         taxi           0.0             0.0  sustained_aoa_fault   \n\n            scenario_type  \n9000  sustained_aoa_fault  \n9001  sustained_aoa_fault  \n9002  sustained_aoa_fault  \n9003  sustained_aoa_fault  \n9004  sustained_aoa_fault  \n\nBasic statistics:\n           altitude     airspeed  aoa_sensor_1  aoa_sensor_2\ncount   9000.000000  9000.000000   9000.000000   9000.000000\nmean   25745.427371   364.915889     22.027131      3.020272\nstd    13430.843207   130.734456      4.490434      1.583290\nmin       13.965779    10.987479     -1.359349     -1.255663\n25%    15122.692339   287.096882     22.130631      2.343682\n50%    34906.213756   440.922451     22.525524      2.732802\n75%    35020.933753   452.240103     23.000121      3.214375\nmax    35343.366206   496.809818     31.172833     11.254712"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#demo-flight-profile-visualization",
+    "href": "week01_introduction_motivation/week01_presentation.html#demo-flight-profile-visualization",
+    "title": "Introduction & Motivation",
+    "section": "Demo: Flight Profile Visualization",
+    "text": "Demo: Flight Profile Visualization\n\nfig, axes = plt.subplots(2, 2, figsize=(14, 9), facecolor='white')\n\n# Altitude profile\naxes[0, 0].plot(flight_data['time']/60, flight_data['altitude'], \n                color='#2E7BB4', linewidth=2)\naxes[0, 0].set_title('Altitude Profile', fontsize=14, fontweight='bold')\naxes[0, 0].set_xlabel('Time (minutes)')\naxes[0, 0].set_ylabel('Altitude (feet)')\naxes[0, 0].grid(True, alpha=0.3)\n\n# Airspeed\naxes[0, 1].plot(flight_data['time']/60, flight_data['airspeed'], \n                color='#4A9FD8', linewidth=2)\naxes[0, 1].set_title('Airspeed Profile', fontsize=14, fontweight='bold')\naxes[0, 1].set_xlabel('Time (minutes)')\naxes[0, 1].set_ylabel('Airspeed (knots)')\naxes[0, 1].grid(True, alpha=0.3)\n\n# AOA sensors comparison\naxes[1, 0].plot(flight_data['time']/60, flight_data['aoa_sensor_1'], \n                label='AOA Sensor 1', color='#C5912E', linewidth=2)\naxes[1, 0].plot(flight_data['time']/60, flight_data['aoa_sensor_2'], \n                label='AOA Sensor 2', color='#E87722', linewidth=2, alpha=0.7)\naxes[1, 0].set_title('Angle of Attack - Dual Sensors', fontsize=14, fontweight='bold')\naxes[1, 0].set_xlabel('Time (minutes)')\naxes[1, 0].set_ylabel('AOA (degrees)')\naxes[1, 0].legend()\naxes[1, 0].grid(True, alpha=0.3)\n\n# Flight phase scatter\nphase_colors = {'takeoff': '#E87722', 'climb': '#4A9FD8', \n                'cruise': '#2E7BB4', 'descent': '#7CB9E8', 'approach': '#C5912E'}\nfor phase in flight_data['flight_phase'].unique():\n    mask = flight_data['flight_phase'] == phase\n    axes[1, 1].scatter(flight_data.loc[mask, 'altitude'], \n                      flight_data.loc[mask, 'airspeed'],\n                      label=phase, alpha=0.6, s=20,\n                      color=phase_colors.get(phase, '#556B7F'))\n\naxes[1, 1].set_title('Flight Envelope', fontsize=14, fontweight='bold')\naxes[1, 1].set_xlabel('Altitude (feet)')\naxes[1, 1].set_ylabel('Airspeed (knots)')\naxes[1, 1].legend()\naxes[1, 1].grid(True, alpha=0.3)\n\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#demo-automatic-phase-detection-with-ml",
+    "href": "week01_introduction_motivation/week01_presentation.html#demo-automatic-phase-detection-with-ml",
+    "title": "Introduction & Motivation",
+    "section": "Demo: Automatic Phase Detection with ML",
+    "text": "Demo: Automatic Phase Detection with ML\n\nfrom sklearn.cluster import KMeans\nfrom sklearn.preprocessing import StandardScaler\n\n# Prepare features for clustering\nfeatures = flight_data[['altitude', 'airspeed', 'pitch_attitude']].values\nscaler = StandardScaler()\nfeatures_scaled = scaler.fit_transform(features)\n\n# Apply K-means clustering\nkmeans = KMeans(n_clusters=5, random_state=42, n_init=10)\npredicted_phases = kmeans.fit_predict(features_scaled)\n\n# Visualize results\nplt.figure(figsize=(4, 2.2))\nscatter = plt.scatter(flight_data['altitude'], flight_data['airspeed'], \n                     c=predicted_phases, cmap='viridis', alpha=0.6, s=30)\nplt.xlabel('Altitude (feet)', fontsize=12)\nplt.ylabel('Airspeed (knots)', fontsize=12)\nplt.title('Automatic Flight Phase Detection using K-Means Clustering', \n          fontsize=14, fontweight='bold')\nplt.colorbar(scatter, label='Detected Phase Cluster')\nplt.grid(True, alpha=0.3)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\nPoint out how ML automatically identifies distinct flight phases without manual labeling. Compare with ground truth phases in the dataset."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#discussion-what-did-we-learn",
+    "href": "week01_introduction_motivation/week01_presentation.html#discussion-what-did-we-learn",
+    "title": "Introduction & Motivation",
+    "section": "Discussion: What Did We Learn?",
+    "text": "Discussion: What Did We Learn?\n\nHow does this ML approach compare to traditional flight phase detection?\n\n\n\n\nTraditional Approach\n\nRule-based thresholds\nFixed altitude/speed boundaries\nRequires domain expertise\nDifficult to adapt\n\n\nML Approach\n\nData-driven patterns\nAdapts to actual flight profiles\nDiscovers subtle patterns\nScales to different aircraft\n\n\n\n\n\nML reveals patterns that might be missed by traditional approaches, but requires validation against physics and operational knowledge"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#aerospace-ml-success-stories",
+    "href": "week01_introduction_motivation/week01_presentation.html#aerospace-ml-success-stories",
+    "title": "Introduction & Motivation",
+    "section": "Aerospace ML Success Stories",
+    "text": "Aerospace ML Success Stories\n\n\n\n🚀 SpaceX: Autonomous Landing\n\nChallenge: Land rocket boosters on floating platforms\nML Approach: Computer vision + trajectory optimization\nResult: 90%+ success rate\nRevolutionized space access costs\n\n\n\n🔧 Rolls-Royce: Engine Health\n\nChallenge: Predict engine failures before they occur\nML Approach: Time-series analysis of 25+ sensors\nResult: Detect 97% of issues automatically – Huge savings!\nPredictive maintenance at scale\n\n\n\n\n\n🪐 NASA: Mars Helicopter\n\nChallenge: Autonomous flight with 2.5-min communication delay\nApproach: Vision-based navigation and classical control (not ML)\nResult: Successful autonomous flight\nFirst powered flight on another planet\n\n\n\n✈️ Airbus: Fuel Optimization\n\nChallenge: Reduce fuel consumption across global fleet\nML Approach: Flight path optimization with weather/traffic\nResult: 3-5% fuel savings\nMillions in cost reduction + emissions"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#more-success-stories",
+    "href": "week01_introduction_motivation/week01_presentation.html#more-success-stories",
+    "title": "Introduction & Motivation",
+    "section": "More Success Stories",
+    "text": "More Success Stories\n\n\n\n🪐 NASA: Mars Helicopter\n\nChallenge: Autonomous flight with 2.5-min communication delay\nApproach: Vision-based navigation and classical control (not ML)\nResult: Successful autonomous flight\nFirst powered flight on another planet\n\n\n\n✈️ Airbus: Fuel Optimization\n\nChallenge: Reduce fuel consumption across global fleet\nML Approach: Flight path optimization with weather/traffic\nResult: 3-5% fuel savings\nMillions in cost reduction + emissions"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#prerequisites-expectations",
+    "href": "week01_introduction_motivation/week01_presentation.html#prerequisites-expectations",
+    "title": "Introduction & Motivation",
+    "section": "Prerequisites & Expectations",
+    "text": "Prerequisites & Expectations\n\n\nWhat You Should Know\nAERO 602, 622, 603:\n\nLinear algebra (matrices, eigenvalues)\nAerospace fundamentals (lift, drag, stability)\nProgramming basics (Python!)\n\n\nWhat You’ll Learn\n\nTheory: Core ML algorithms with mathematical foundations\nImplementation: Hands-on coding with aerospace datasets\nApplication: Solve actual industry problems\nIntegration: Combine ML with physics knowledge"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#group-activity-your-aerospace-ml-challenge",
+    "href": "week01_introduction_motivation/week01_presentation.html#group-activity-your-aerospace-ml-challenge",
+    "title": "Introduction & Motivation",
+    "section": "Group Activity: Your Aerospace ML Challenge",
+    "text": "Group Activity: Your Aerospace ML Challenge\n\nForm groups of 2-3 people. Pick one domain and brainstorm for 5 minutes.\n\n\n\n\nCommercial Aviation\n\nWhat ML opportunities?\n\n\n\nSpace Exploration\n\nWhat data exists?\n\n\n\nDefense/Military\n\nWhat decisions to automate?\n\n\n\nUrban Air Mobility\n\nWhat safety constraints?\n\n\n\nAerodynamic Design\n\nWhat can ML improve?\n\n\n\nSatellite Systems\n\nWhat problems exist?\n\n\nQuestions to Address:\n\nAvailable data?\nDecisions to automate?\nSafety constraints?\nHow could ML help?\n\n\nGive groups 5 minutes. Have 2-3 groups share their ideas. Connect to course topics."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#next-week-linear-regression",
+    "href": "week01_introduction_motivation/week01_presentation.html#next-week-linear-regression",
+    "title": "Introduction & Motivation",
+    "section": "Next Week: Linear Regression",
+    "text": "Next Week: Linear Regression\nThe Drag Prediction Problem\n\n\\[C_D = C_{D_0} + K \\cdot C_L^2\\]\nCan we learn this from data?\n\n\n\nTopics: - Least squares method - Gradient descent - Model validation - Uncertainty quantification\n\nAerospace Application: - Wind tunnel data analysis - Drag coefficient prediction - Performance estimation - Boeing 787 case study"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#homework-1-released-today",
+    "href": "week01_introduction_motivation/week01_presentation.html#homework-1-released-today",
+    "title": "Introduction & Motivation",
+    "section": "Homework 1: Released Today!",
+    "text": "Homework 1: Released Today!\n\nAssignment: Boeing 737 MAX Safety Analysis\nDue: One week from today\nPoints: 100 points\n\nThree Parts:\n\nExploratory Data Analysis (25 pts)\n\nLoad and visualize 737 MAX synthetic data\nCalculate sensor statistics and correlations\nIdentify flight phases\n\nAnomaly Detection (35 pts)\n\nImplement statistical process control\nML-based clustering approach\nPhysics-informed validation\n\nReport & Analysis (40 pts)\n\nTechnical writeup\nCode documentation\nSafety recommendations"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#preparation-for-next-week",
+    "href": "week01_introduction_motivation/week01_presentation.html#preparation-for-next-week",
+    "title": "Introduction & Motivation",
+    "section": "Preparation for Next Week",
+    "text": "Preparation for Next Week\n\n\nTechnical Setup\n\nInstall Python 3.8+\nInstall libraries: numpy, pandas, matplotlib, scikit-learn\nTest Jupyter notebooks\nDownload course datasets\n\n\nReading\n\nBishop Chapter 3 (optional skim)\nReview linear algebra\nBrowse Homework 1 description"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#key-takeaways",
+    "href": "week01_introduction_motivation/week01_presentation.html#key-takeaways",
+    "title": "Introduction & Motivation",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nMachine learning can save lives in aerospace - but only if applied with domain knowledge and rigorous validation\n\n\nSafety First: Aerospace ML must handle failure gracefully\n\nSystems must be robust to faults and uncertainties\nSafety and accountability always come first\n\nPhysics Informed: Combine data with centuries of knowledge\n\nUse physical laws (e.g., conservation of momentum, Navier-Stokes equations) to guide models\nML should complement, not replace, physics-based understanding\n\nResponsibility: Engineers have ethical obligations\n\nEthical responsibility is part of aerospace engineering\nValidation and transparency are essential\nML is powerful but fragile – misuse can have serious consequences"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#questions-discussion",
+    "href": "week01_introduction_motivation/week01_presentation.html#questions-discussion",
+    "title": "Introduction & Motivation",
+    "section": "Questions & Discussion",
+    "text": "Questions & Discussion\nOpen Floor\n\nCourse logistics?\nSpecific interests?\nTechnical concerns?"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#contact-resources",
+    "href": "week01_introduction_motivation/week01_presentation.html#contact-resources",
+    "title": "Introduction & Motivation",
+    "section": "Contact & Resources",
+    "text": "Contact & Resources\n\n\nInstructor\nDr. Raktim Bhattacharya\n\nOffice: 727C HRBB\nEmail: raktim@tamu.edu\nOffice Hours: By appointment\n\n\nTeaching Assistant: TBD\n\n\nCourse Resources\n\nCanvas - All materials & submissions\nGitHub - Code examples & datasets\n\nDiscussion Forum - Peer collaboration\n\n\nWebsite: Available on Canvas\nTextbooks: See syllabus (all available electronically)"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#see-you-next-week",
+    "href": "week01_introduction_motivation/week01_presentation.html#see-you-next-week",
+    "title": "Introduction & Motivation",
+    "section": "See You Next Week!",
+    "text": "See You Next Week!\n\nWeek 2: Linear Regression for Aircraft Performance\nStart working on Homework 1!\nRead the dataset documentation.\nCome prepared with questions.\n\n\nThank students for attention. Remind about homework deadline. Encourage office hour visits. Stay for individual questions."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#automatic-phase-detection-result",
+    "href": "week01_introduction_motivation/week01_presentation.html#automatic-phase-detection-result",
+    "title": "Introduction & Motivation",
+    "section": "Automatic Phase Detection: Result",
+    "text": "Automatic Phase Detection: Result\n{width=200px lightbox} Result: Detect 97% of issues automatically – Huge savings! Predictive maintenance at scale"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#end-of-lecture-1",
+    "href": "week01_introduction_motivation/week01_presentation.html#end-of-lecture-1",
+    "title": "Introduction & Motivation",
+    "section": "End of Lecture #1",
+    "text": "End of Lecture #1\nTo be continued…\nNext class: ML for Flight Phase Detection, Aerospace Case Studies, and Group Activity"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#lecture-2-ml-in-action-case-studies",
+    "href": "week01_introduction_motivation/week01_presentation.html#lecture-2-ml-in-action-case-studies",
+    "title": "Introduction & Motivation",
+    "section": "Lecture #2: ML in Action & Case Studies",
+    "text": "Lecture #2: ML in Action & Case Studies\nWelcome back! In this lecture:\n\nML for automatic flight phase detection\nAerospace ML success stories (SpaceX, Rolls-Royce, Mars Helicopter, Airbus)\nGroup activity and wrap-up"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#no-homework-this-week",
+    "href": "week01_introduction_motivation/week01_presentation.html#no-homework-this-week",
+    "title": "Introduction & Motivation",
+    "section": "No Homework This Week",
+    "text": "No Homework This Week\n\nGet Ready for Coding!\n\nInstall Python 3.8+ on your laptop (see course setup instructions)\nInstall the required libraries: numpy, pandas, matplotlib, scikit-learn\nDownload the course datasets from Canvas or GitHub\nTry running the code examples shown in class (data loading, plotting, basic stats)\n\n\n\nHomework will be assigned after next week’s lectures."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-evolution-of-ml-in-aerospace",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-evolution-of-ml-in-aerospace",
+    "title": "Introduction & Motivation",
+    "section": "The Evolution of ML in Aerospace",
+    "text": "The Evolution of ML in Aerospace\n\n1960s: Early autopilots and control theory\n1970s: Kalman filter revolutionizes navigation\n1980s: NASA experiments with neural networks for fault detection\n2000s: Data-driven methods in engine health monitoring\n2010s–2020s: Deep learning, real-time ML, and autonomous systems (SpaceX, Boeing, Airbus)"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#what-is-machine-learning",
+    "href": "week01_introduction_motivation/week01_presentation.html#what-is-machine-learning",
+    "title": "Introduction & Motivation",
+    "section": "What Is Machine Learning?",
+    "text": "What Is Machine Learning?\nWorking definition:\n\nMachine learning is the study of algorithms that learn mappings from data by solving optimization problems.\n\nKey idea:\n\nLearn a function\nEvaluate its performance\nEnsure it generalizes beyond training data"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#types-of-machine-learning",
+    "href": "week01_introduction_motivation/week01_presentation.html#types-of-machine-learning",
+    "title": "Introduction & Motivation",
+    "section": "Types of Machine Learning",
+    "text": "Types of Machine Learning\nSupervised Learning: Learn from labeled data\n\nRegression (continuous outputs)\nClassification (discrete labels)\n\nUnsupervised Learning: Find patterns in unlabeled data\n\nClustering\nDimensionality reduction\n\nReinforcement Learning: Learn by trial and error\n\nSequential decision making"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#why-is-ml-hard-in-aerospace",
+    "href": "week01_introduction_motivation/week01_presentation.html#why-is-ml-hard-in-aerospace",
+    "title": "Introduction & Motivation",
+    "section": "Why is ML Hard in Aerospace?",
+    "text": "Why is ML Hard in Aerospace?\n\nData is expensive and sparse (flight tests, wind tunnels)\nSafety-critical: mistakes can cost lives\nPhysics-based constraints: not all patterns are physically meaningful\nCertification and regulation (FAA, NASA)\nReal-time and embedded requirements\n\n\nWhy Validation Matters in Aerospace\n\n\nAerospace systems are:\n\nSafety-critical\nOperated outside training data\nSensitive to uncertainty\n\n\nKey questions:\n\nDoes the model generalize?\nHow sensitive is it to noise?\nWhat happens outside the data range?\n\n\n\n\n\nA hybrid approach of physics + data driven machine learning is likely to work better for aerospace systems."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#ethics-and-responsibility-in-aerospace-ml",
+    "href": "week01_introduction_motivation/week01_presentation.html#ethics-and-responsibility-in-aerospace-ml",
+    "title": "Introduction & Motivation",
+    "section": "Ethics and Responsibility in Aerospace ML",
+    "text": "Ethics and Responsibility in Aerospace ML\n\nMachine learning can influence:\n\nControl decisions\nNavigation and guidance\nFault detection and isolation\nAutonomous behavior\n\n\n\nErrors can cost lives, assets, or strategic stability\n\nWould you trust an ML autopilot? Why or why not?\nHow do we ensure safety, transparency, and accountability?\nWhat are the risks of bias or overfitting in safety-critical systems?\n\n\n\nWhat Makes Aerospace ML Different (from consumer ML)?\n\nSmaller datasets\nRare but catastrophic failure modes\nOperation outside training conditions\nStrong coupling with physical systems\n\n\n\n\nEthical responsibility is inseparable from engineering responsibility."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#course-logistics-resources",
+    "href": "week01_introduction_motivation/week01_presentation.html#course-logistics-resources",
+    "title": "Introduction & Motivation",
+    "section": "Course Logistics & Resources",
+    "text": "Course Logistics & Resources\n\n\nHow to Succeed:\n\nParticipate in class\nPractice coding\nAsk questions early\nUse office hours\n\nAssessment Strategy\n\nHomework: 30%\nPaper review: 10%\nMidterm: 30%\nFinal Project: 30%\n\n\nResources:\n\nCanvas\nGitHub\nNASA, AIAA, and textbook links"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#learning-objectives",
+    "href": "week01_introduction_motivation/week01_presentation.html#learning-objectives",
+    "title": "Introduction & Motivation",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nLO 1: Understand ML in Aerospace\n\nExplain the fundamental concepts of machine learning and how they differ from traditional programming in aerospace contexts.\nDescribe the historical evolution and motivation for ML in aerospace engineering.\nRecognize the benefits and limitations of ML for safety-critical aerospace systems.\nDiscuss real-world examples where ML has impacted aerospace (e.g., anomaly detection, predictive maintenance, autonomous operations).\n\n\nLO 2: Identify Key Applications\n\nIdentify major aerospace domains where ML is applied, such as flight dynamics, aerodynamics, navigation, and space systems.\nMatch ML techniques (supervised, unsupervised, reinforcement) to relevant aerospace problems.\nSummarize recent success stories and industry trends in aerospace ML.\n\n\n\nLO 3: Recognize Unique Challenges\n\nUnderstand the unique challenges of aerospace data: sparsity, noise, high dimensionality, and safety requirements.\nExplain the importance of physics-informed ML and regulatory considerations in aerospace.\nAppreciate the ethical responsibilities and safety implications of deploying ML in aerospace systems."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-evolution-of-automation-in-aerospace",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-evolution-of-automation-in-aerospace",
+    "title": "Introduction & Motivation",
+    "section": "The Evolution of Automation in Aerospace",
+    "text": "The Evolution of Automation in Aerospace\n\n1960s: Early autopilots and control theory\n1970s: Kalman filter revolutionizes navigation\n1980s: NASA experiments with neural networks for fault detection\n2000s: Data-driven methods in engine health monitoring\n2010s–2020s: Deep learning, real-time ML, and autonomous systems (SpaceX, Boeing, Airbus)"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-hype-around-mlai",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-hype-around-mlai",
+    "title": "Introduction & Motivation",
+    "section": "The Hype Around ML/AI",
+    "text": "The Hype Around ML/AI\n\n\nWhy is everyone talking about AI?\n\nHeadlines: “AI will revolutionize everything!”\n\nAI is the “magic wand” that will solve everything\n\nStartups and big tech racing to deploy ML/AI\nMedia focus on ChatGPT, self-driving cars, and robots\nMassive investments and job growth in AI/ML\nFear of “AI replacing humans” and ethical debates\n\n\n\n\n\nAI Hype Cycle"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-hype-around-mlai-1",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-hype-around-mlai-1",
+    "title": "Introduction & Motivation",
+    "section": "The Hype Around ML/AI",
+    "text": "The Hype Around ML/AI\n\n\nReality Check\n\nNot every problem needs ML/AI\nMany “AI” products are just automation or statistics\nHype can lead to unrealistic expectations and failures\nResponsible engineers must separate fact from fiction\n\n\nPotential Benefits of AI\n\nAutomates repetitive and complex tasks\nEnables data-driven decision making\nImproves accuracy and efficiency\nUnlocks new capabilities (e.g., perception, prediction)\nAccelerates scientific discovery and innovation\n\n\n\n\n\n\nAI Hype Cycle"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#learning-objectives-1",
+    "href": "week01_introduction_motivation/week01_presentation.html#learning-objectives-1",
+    "title": "Introduction & Motivation",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nLO 1: Understand ML in Aerospace\n\nExplain the fundamental concepts of machine learning and how they differ from traditional programming in aerospace contexts.\nDescribe the historical evolution and motivation for ML in aerospace engineering.\nRecognize the benefits and limitations of ML for safety-critical aerospace systems.\nDiscuss real-world examples where ML has impacted aerospace (e.g., anomaly detection, predictive maintenance, autonomous operations).\n\nLO 2: Identify Key Applications\n\nIdentify major aerospace domains where ML is applied, such as flight dynamics, aerodynamics, navigation, and space systems.\nMatch ML techniques (supervised, unsupervised, reinforcement) to relevant aerospace problems.\nSummarize recent success stories and industry trends in aerospace ML.\n\nLO 3: Recognize Unique Challenges\n\nUnderstand the unique challenges of aerospace data: sparsity, noise, high dimensionality, and safety requirements.\nExplain the importance of physics-informed ML and regulatory considerations in aerospace.\nAppreciate the ethical responsibilities and safety implications of deploying ML in aerospace systems.\n\n:::"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#why-this-course",
+    "href": "week01_introduction_motivation/week01_presentation.html#why-this-course",
+    "title": "Introduction & Motivation",
+    "section": "Why This Course?",
+    "text": "Why This Course?\nModern aerospace systems generate large volumes of data:\n\nFlight-test data\nWind-tunnel experiments\nCFD and simulation databases\nTelemetry and health-monitoring data\n\n\nTraditional physics-based models alone are often:\n\nExpensive\nIncomplete\nUncertain\n\n\nMachine learning provides tools to extract structure from data."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#what-is-machine-learning-contd.",
+    "href": "week01_introduction_motivation/week01_presentation.html#what-is-machine-learning-contd.",
+    "title": "Introduction & Motivation",
+    "section": "What is Machine Learning? (contd.)",
+    "text": "What is Machine Learning? (contd.)\n\n\n\nTraditional Programming:\n\nInput (Data) + Program (Rules) → Output (Prediction)\nE.g.\n\nInput: 1,2,3,4, ….\nProgram: \\(f(x) = 2x+1\\) We code this\nOutput: 3,5,7,9, …\n\n\n\n\nMachine Learning:\n\nInput (Data) + Output (Labels) → Program (Model)\nE.g.\n\nInput: 1,2,3,4, …\nOutput: 3,5,7,9, …\nProgram: ML learns \\(f(x) = 2x+1\\) from the data\n\n\n\n\n\nA Generalized Function Approximation\n\nML can be treated as a function approximation technique\nExcept input/output data can be of any data type\n\nImages\nSounds\netc.\n\nML learns the relationship between input and output data\n\ncan be used to predict/generate outputs from other inputs\nwe may not capture the relation exactly\n\nprediction will have errors!"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#where-machine-learning-fits-in-aerospace",
+    "href": "week01_introduction_motivation/week01_presentation.html#where-machine-learning-fits-in-aerospace",
+    "title": "Introduction & Motivation",
+    "section": "Where Machine Learning Fits in Aerospace",
+    "text": "Where Machine Learning Fits in Aerospace\nMachine learning is used as:\n\nSurrogate modeling\n(fast approximation of expensive simulations)\nResidual modeling\n(physics model + data-driven correction)\nPattern recognition\n(classification, clustering, anomaly detection)\n\n\n\nIt does not replace physics. It complements it."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#what-is-machine-learning-1",
+    "href": "week01_introduction_motivation/week01_presentation.html#what-is-machine-learning-1",
+    "title": "Introduction & Motivation",
+    "section": "What is Machine Learning?",
+    "text": "What is Machine Learning?\n\n\n\nTraditional Programming:\n\nInput (Data) + Program (Rules) → Output (Prediction)\nE.g.\n\nInput: 1,2,3,4, ….\nProgram: \\(f(x) = 2x+1\\) We code this\nOutput: 3,5,7,9, …\n\n\n\n\nMachine Learning:\n\nInput (Data) + Output (Labels) → Program (Model)\nE.g.\n\nInput: 1,2,3,4, …\nOutput: 3,5,7,9, …\nProgram: ML learns \\(f(x) = 2x+1\\) from the data\n\n\n\n\n\nA Generalized Function Approximation\n\nML can be treated as a function approximation technique\nExcept input/output data can be of any data type\n\nImages\nSounds\netc.\n\nML learns the relationship between input and output data\n\ncan be used to predict/generate outputs from other inputs\nwe may not capture the relation exactly\n\nprediction will have errors!"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#what-machine-learning-is-not",
+    "href": "week01_introduction_motivation/week01_presentation.html#what-machine-learning-is-not",
+    "title": "Introduction & Motivation",
+    "section": "What Machine Learning Is NOT",
+    "text": "What Machine Learning Is NOT\n\nMachine learning is not:\n\nMagic\nA substitute for understanding physics\nGuaranteed to extrapolate correctly\nAutomatically safe or robust\n\n\n\nIn aerospace:\n\nValidation is critical\nExtrapolation is dangerous\nGuarantees matter"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#supervised-learning-examples",
+    "href": "week01_introduction_motivation/week01_presentation.html#supervised-learning-examples",
+    "title": "Introduction & Motivation",
+    "section": "Supervised Learning (Examples)",
+    "text": "Supervised Learning (Examples)\nLabeled Inputs → Outputs\nExamples:\n\n(Geometry, Mach number) → Lift coefficient\nSensor measurements → Flight regime\nTelemetry → Fault / no-fault\n\nYou define:\n\nInputs\nOutputs\nPerformance metric"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#unsupervised-learning-examples",
+    "href": "week01_introduction_motivation/week01_presentation.html#unsupervised-learning-examples",
+    "title": "Introduction & Motivation",
+    "section": "Unsupervised Learning (Examples)",
+    "text": "Unsupervised Learning (Examples)\nNo labeled outputs\nExamples:\n\nGrouping flight trajectories\nIdentifying maneuver types\nDiscovering dominant flow structures\n\nGoal:\n\nFind structure in data\nReduce dimensionality"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#reinforcement-learning",
+    "href": "week01_introduction_motivation/week01_presentation.html#reinforcement-learning",
+    "title": "Introduction & Motivation",
+    "section": "Reinforcement Learning",
+    "text": "Reinforcement Learning\nControl as a learning problem:\n\nAgent interacts with a system\nReceives rewards\nLearns a policy – like a controller or guidance algorithm\n\nExamples: - Autopilot tuning - Trajectory optimization\nWe will revisit this later in the course."
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#reinforcement-learning-examples",
+    "href": "week01_introduction_motivation/week01_presentation.html#reinforcement-learning-examples",
+    "title": "Introduction & Motivation",
+    "section": "Reinforcement Learning (Examples)",
+    "text": "Reinforcement Learning (Examples)\nLearns via Interaction\nBasic Idea:\n\nAgent interacts with a system\nReceives rewards\nLearns a policy – like a controller or guidance algorithm\n\nExamples:\n\nAutopilot tuning\nTrajectory optimization"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-machine-learning-pipeline",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-machine-learning-pipeline",
+    "title": "Introduction & Motivation",
+    "section": "The Machine Learning Pipeline",
+    "text": "The Machine Learning Pipeline\n\n\nA typical workflow:\n\nProblem formulation\nData collection\nPreprocessing\nModel selection\nTraining\nValidation and testing\nInterpretation and deployment\n\n\nMost failures occur at:\n\nStep 1 (wrong question)\nStep 6 (poor validation)"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#why-validation-matters-in-aerospace",
+    "href": "week01_introduction_motivation/week01_presentation.html#why-validation-matters-in-aerospace",
+    "title": "Introduction & Motivation",
+    "section": "Why Validation Matters in Aerospace",
+    "text": "Why Validation Matters in Aerospace\nAerospace systems are:\n\nSafety-critical\nOperated outside training data\nSensitive to uncertainty\n\nKey questions:\n\nDoes the model generalize?\nHow sensitive is it to noise?\nWhat happens outside the data range?"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#ethics-and-responsibility-in-aerospace-ml-contd.",
+    "href": "week01_introduction_motivation/week01_presentation.html#ethics-and-responsibility-in-aerospace-ml-contd.",
+    "title": "Introduction & Motivation",
+    "section": "Ethics and Responsibility in Aerospace ML (contd.)",
+    "text": "Ethics and Responsibility in Aerospace ML (contd.)\n\n\nCore Ethical Questions\nWhen deploying ML in aerospace, ask:\n\nCan this system fail safely?\nDo we understand when it will fail?\nWho is accountable for decisions?\nCan humans intervene?\nAre the assumptions documented?\n\n\nData Ethics\n\nData quality and representativeness\nBias in training data\nMissing or censored failure cases\nSimulation vs real-world mismatch\n\nA model trained on biased data -&gt; produces biased decisions\n\n\n\nExample: Biased Flight Data\nIf training data includes:\n\nOnly nominal flight conditions\nFew extreme maneuvers\nLimited environmental variation\n\nThen the model may:\n\nPerform well in tests\nFail catastrophically in edge cases\n\n\n\nModel Transparency and Interpretability\nImportant questions:\n\nCan we explain model outputs?\nDo engineers understand failure modes?\nIs debugging possible?\n\nBlack-box models:\n\nMay be acceptable for analysis\nAre dangerous for closed-loop control"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#the-hype-around-mlai-contd.",
+    "href": "week01_introduction_motivation/week01_presentation.html#the-hype-around-mlai-contd.",
+    "title": "Introduction & Motivation",
+    "section": "The Hype Around ML/AI (contd.)",
+    "text": "The Hype Around ML/AI (contd.)\n\n\nReality Check\n\nNot every problem needs ML/AI\nMany “AI” products are just automation or statistics\nHype can lead to unrealistic expectations and failures\nResponsible engineers must separate fact from fiction\n\n\nPotential Benefits of AI\n\nAutomates repetitive and complex tasks\nEnables data-driven decision making\nImproves accuracy and efficiency\nUnlocks new capabilities (e.g., perception, prediction)\nAccelerates scientific discovery and innovation\n\n\n\n\n\n\nAI Hype Cycle"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#verification-and-validation-vv",
+    "href": "week01_introduction_motivation/week01_presentation.html#verification-and-validation-vv",
+    "title": "Introduction & Motivation",
+    "section": "Verification and Validation (V&V)",
+    "text": "Verification and Validation (V&V)\n\n\n\nTraditional aerospace V&V\n\nAnalytical guarantees\nWorst-case analysis\nStructured testing\n\nML challenges\n\nStatistical performance \\(\\neq\\) safety guarantee\nNo universal stability guarantees\n\n\n\n\nValidation Is Not Optional\nHigh test accuracy does NOT imply:\n\nRobustness\nSafety\nReliability\n\nEthical deployment requires:\n\nStress testing\nUncertainty analysis\nOut-of-distribution evaluation"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#human-in-the-loop-responsibility",
+    "href": "week01_introduction_motivation/week01_presentation.html#human-in-the-loop-responsibility",
+    "title": "Introduction & Motivation",
+    "section": "Human-in-the-Loop Responsibility",
+    "text": "Human-in-the-Loop Responsibility\nCritical design choice:\n\nFully autonomous?\nHuman-supervised?\nHuman override capability?\n\nEthical principle:\n\nML should assist decision-making, not obscure it"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#automation-bias",
+    "href": "week01_introduction_motivation/week01_presentation.html#automation-bias",
+    "title": "Introduction & Motivation",
+    "section": "Automation Bias",
+    "text": "Automation Bias\nRisk:\n\nHumans over-trust ML outputs\nOperators defer judgment to the algorithm\n\nMitigation:\n\nClear confidence measures\nTraining users to question outputs\nExplicit failure indicators"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#fault-detection-and-false-confidence",
+    "href": "week01_introduction_motivation/week01_presentation.html#fault-detection-and-false-confidence",
+    "title": "Introduction & Motivation",
+    "section": "Fault Detection and False Confidence",
+    "text": "Fault Detection and False Confidence\nIn aerospace:\n\nFalse negatives can be catastrophic\nFalse positives can cause mission aborts\n\nEthical tradeoff:\n\nConservative models vs operational efficiency\nTransparency about detection limits"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#responsibility-and-accountability",
+    "href": "week01_introduction_motivation/week01_presentation.html#responsibility-and-accountability",
+    "title": "Introduction & Motivation",
+    "section": "Responsibility and Accountability",
+    "text": "Responsibility and Accountability\nWhen ML fails, who is responsible?\n\nThe algorithm designer?\nThe system integrator?\nThe operator?\nThe organization?\n\nEthical engineering requires:\n\nClear responsibility chains\nDocumented assumptions"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#ml-in-autonomous-systems",
+    "href": "week01_introduction_motivation/week01_presentation.html#ml-in-autonomous-systems",
+    "title": "Introduction & Motivation",
+    "section": "ML in Autonomous Systems",
+    "text": "ML in Autonomous Systems\nAs machine learning becomes more deeply integrated into autonomous aerospace systems, several unique challenges and risks must be considered:\n\nEscalation of autonomy:\n\nSystems may transition from human-supervised to fully autonomous operation, sometimes without clear boundaries or sufficient oversight.\nIncreased autonomy can outpace regulatory frameworks and operator understanding, raising questions about control, intervention, and accountability.\nExample: An autopilot that adapts its own logic in flight, making decisions beyond its original certification.\n\n\n\nUnexpected emergent behavior:\n\nComplex ML models can exhibit behaviors not anticipated during design or testing, especially when exposed to novel situations or data distributions.\nThese emergent behaviors may be beneficial, neutral, or hazardous, and are often difficult to predict or diagnose.\nExample: Anomaly detection system that misclassifies rare but critical events, or a control system that exploits loopholes in its reward function.\n\n\n\nLimited real-time interpretability:\n\nMany ML models, especially deep neural networks, act as “black boxes,” making it hard for engineers and operators to understand or trust their decisions in real time.\nLack of interpretability can hinder rapid troubleshooting, regulatory approval, and safe human-machine teaming.\nExample: A flight control system issues a corrective action, but the rationale is opaque to the pilot and ground crew.\n\n\n\n\nDesign principle: Autonomy must degrade gracefully"
+  },
+  {
+    "objectID": "week01_introduction_motivation/week01_presentation.html#homework",
+    "href": "week01_introduction_motivation/week01_presentation.html#homework",
+    "title": "Introduction & Motivation",
+    "section": "Homework",
+    "text": "Homework\nWork on homework 1. See Canvas."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#slide-1-opening-hook---the-fuel-crisis-challenge-5-minutes",
+    "href": "week02_linear_regression/week02_presentation.html#slide-1-opening-hook---the-fuel-crisis-challenge-5-minutes",
+    "title": "",
+    "section": "Slide 1: Opening Hook - The Fuel Crisis Challenge (5 minutes)",
+    "text": "Slide 1: Opening Hook - The Fuel Crisis Challenge (5 minutes)\nThe $100 Million Question\nScenario: An airline operates 200 Boeing 737s - Fuel cost: $50M+ annually per aircraft type - Challenge: Predict fuel consumption for flight planning - Current method: Simplified performance charts - ML opportunity: Precise models using real flight data\nReal Impact\n\n1% fuel savings = $100M+ industry-wide annually\nBetter range predictions = route optimization\nAccurate payload calculations = safety + efficiency\n\nQuestion for class: What factors affect aircraft fuel consumption?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#slide-2-from-wind-tunnel-to-flight---the-data-challenge-8-minutes",
+    "href": "week02_linear_regression/week02_presentation.html#slide-2-from-wind-tunnel-to-flight---the-data-challenge-8-minutes",
+    "title": "Linear Regression",
+    "section": "Slide 2: From Wind Tunnel to Flight - The Data Challenge (8 minutes)",
+    "text": "Slide 2: From Wind Tunnel to Flight - The Data Challenge (8 minutes)\nTraditional Approach: Empirical Models\nCD = CD0 + K * CL²  (Parabolic drag polar)\n\nProblem: Assumes perfect conditions\nReality: Real flights have weather, weight variations, engine degradation\nSolution: ML to learn from actual operational data\n\nAvailable Data Sources\n\nWind Tunnel Data: Controlled, precise, limited conditions\nFlight Test Data: Real conditions, expensive to collect\nOperational Data: Massive scale, noisy, representative\n\nThe Linear Regression Framework\n\nGoal: Predict drag coefficient (CD) from flight parameters\nInput features: Angle of attack (α), Mach number (M), Reynolds number (Re)\nOutput: Drag coefficient for performance calculations"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#slides-3-10-continue-with-detailed-content",
+    "href": "week02_linear_regression/week02_presentation.html#slides-3-10-continue-with-detailed-content",
+    "title": "Linear Regression",
+    "section": "Slides 3-10: [Continue with detailed content…]",
+    "text": "Slides 3-10: [Continue with detailed content…]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#slide-1-the-fuel-crisis-challenge",
+    "href": "week02_linear_regression/week02_presentation.html#slide-1-the-fuel-crisis-challenge",
+    "title": "Linear Regression",
+    "section": "Slide 1: The Fuel Crisis Challenge",
+    "text": "Slide 1: The Fuel Crisis Challenge\nThe $100 Million Question\nScenario: An airline operates 200 Boeing 737s\n\nFuel cost: $50M+ annually per aircraft type\nChallenge: Predict fuel consumption for flight planning\nCurrent method: Simplified performance charts\nML opportunity: Precise models using real flight data\n\nReal Impact\n\n1% fuel savings = $100M+ industry-wide annually\nBetter range predictions = route optimization\nAccurate payload calculations = safety + efficiency\n\nQuestion for class: What factors affect aircraft fuel consumption?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#learning-objectives",
+    "href": "week02_linear_regression/week02_presentation.html#learning-objectives",
+    "title": "Linear Regression",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nApply linear regression to aerospace performance prediction\nUnderstand least squares method and gradient descent\nImplement drag coefficient prediction from wind tunnel data\nValidate models using aerospace-specific metrics"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#from-wind-tunnel-to-flight---the-data-challenge",
+    "href": "week02_linear_regression/week02_presentation.html#from-wind-tunnel-to-flight---the-data-challenge",
+    "title": "Linear Regression",
+    "section": "From Wind Tunnel to Flight - The Data Challenge",
+    "text": "From Wind Tunnel to Flight - The Data Challenge\nTraditional Approach: Empirical Models\nParabolic Drag Polar \\[\nC_D = C_{D_0} + KC_L^2  \n\\]\n\nProblem: Assumes perfect conditions\nReality: Real flights have weather, weight variations, engine degradation\nSolution: ML to learn from actual operational data\n\n\nAvailable Data Sources\n\nWind Tunnel Data: Controlled, precise, limited conditions\nFlight Test Data: Real conditions, expensive to collect\nOperational Data: Massive scale, noisy, representative\n\n\n\nThe Linear Regression Framework\n\nGoal: Predict drag coefficient (CD) from flight parameters\nInput features: Angle of attack (\\(\\alpha\\)), Mach number (M), Reynolds number (Re)\nOutput: Drag coefficient for performance calculations"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#the-fuel-crisis-challenge",
+    "href": "week02_linear_regression/week02_presentation.html#the-fuel-crisis-challenge",
+    "title": "Linear Regression",
+    "section": "The Fuel Crisis Challenge",
+    "text": "The Fuel Crisis Challenge\nThe $100 Million Question\nScenario: An airline operates 200 aircraft\n\nFuel cost: $50M+ annually per aircraft type\nChallenge: Predict fuel consumption for flight planning\nCurrent method: Simplified performance charts\nML opportunity: Precise models using real flight data\n\n\nReal Impact\n\n1% fuel savings = $100M+ industry-wide annually\nBetter range predictions = route optimization\nAccurate payload calculations = safety + efficiency\n\n\n\n\nQuestion for class: What factors affect aircraft fuel consumption?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mathematical-foundation-the-linear-model",
+    "href": "week02_linear_regression/week02_presentation.html#mathematical-foundation-the-linear-model",
+    "title": "Linear Regression",
+    "section": "Mathematical Foundation: The Linear Model",
+    "text": "Mathematical Foundation: The Linear Model\nGeneral Form\nFor \\(n\\) samples and \\(d\\) features, the linear regression model is:\n\\[\ny_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_d x_{id} + \\epsilon_i\n\\]\nwhere:\n\n\\(y_i\\): response variable (e.g., drag coefficient)\n\\(x_{ij}\\): \\(j\\)-th feature of \\(i\\)-th sample (e.g., Mach, \\(\\alpha\\), Re)\n\\(\\beta_j\\): regression coefficients (parameters to learn)\n\\(\\epsilon_i\\): error term (noise, unmodeled physics)\n\n\nVector Notation\n\\[\n\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast + \\boldsymbol{\\epsilon}\n\\]\nwhere \\(\\boldsymbol{X} \\in \\mathbb{R}^{n \\times (d+1)}\\) is the design matrix with augmented 1’s for intercept"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#matrix-formulation",
+    "href": "week02_linear_regression/week02_presentation.html#matrix-formulation",
+    "title": "Linear Regression",
+    "section": "Matrix Formulation",
+    "text": "Matrix Formulation\nDesign Matrix Structure\n\\[\n\\boldsymbol{X} = \\begin{bmatrix}\n1 & x_{11} & x_{12} & \\cdots & x_{1d} \\\\\n1 & x_{21} & x_{22} & \\cdots & x_{2d} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n1 & x_{n1} & x_{n2} & \\cdots & x_{nd}\n\\end{bmatrix}, \\quad\n\\boldsymbol{\\beta} = \\begin{bmatrix}\n\\beta_0 \\\\ \\beta_1 \\\\ \\vdots \\\\ \\beta_d\n\\end{bmatrix}, \\quad\n\\boldsymbol{y} = \\begin{bmatrix}\ny_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n\n\\end{bmatrix}\n\\]\n\nAerospace Example: Drag Prediction\nDesign matrix: \\[\n\\boldsymbol{X} = \\begin{bmatrix}\n1 & \\alpha_1 & M_1 & \\text{Re}_1 & \\alpha_1^2 & \\alpha_1 M_1 & \\cdots \\\\\n1 & \\alpha_2 & M_2 & \\text{Re}_2 & \\alpha_2^2 & \\alpha_2 M_2 & \\cdots \\\\\n\\vdots & \\vdots & \\vdots & \\vdots & \\vdots & \\vdots & \\ddots\n\\end{bmatrix}\n\\]\nParameters: \\(\\boldsymbol{\\beta} = \\begin{bmatrix} C_{D_0} & k_\\alpha & k_M & k_{\\text{Re}} & k_{\\alpha^2} & k_{\\alpha M} & \\cdots \\end{bmatrix}^T\\)\nTargets: \\(\\boldsymbol{y} = \\begin{bmatrix} C_{D_1} & C_{D_2} & \\cdots & C_{D_n} \\end{bmatrix}^T\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#the-optimization-problem",
+    "href": "week02_linear_regression/week02_presentation.html#the-optimization-problem",
+    "title": "Linear Regression",
+    "section": "The Optimization Problem",
+    "text": "The Optimization Problem\nObjective: Minimize Squared Error\nResidual Sum of Squares (RSS): \\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^n (y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta})^2\n\\]\n\nMatrix form: \\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2 = (\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})\n\\]\n\n\nOptimization goal: \\[\n\\boldsymbol{\\beta}^\\ast = \\arg\\min_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta})\n\\]\n\n\n\nPhysical interpretation: Find aircraft model parameters that best match observed performance data"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#derivation-normal-equations",
+    "href": "week02_linear_regression/week02_presentation.html#derivation-normal-equations",
+    "title": "Linear Regression",
+    "section": "Derivation: Normal Equations",
+    "text": "Derivation: Normal Equations\nStep 1: Expand the objective function\n\\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\boldsymbol{y}^T\\boldsymbol{y} - 2\\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{y} + \\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}\n\\]\n\nStep 2: Take derivative with respect to \\(\\boldsymbol{\\beta}\\)\n\\[\n\\frac{\\partial \\text{RSS}}{\\partial \\boldsymbol{\\beta}} = -2\\boldsymbol{X}^T\\boldsymbol{y} + 2\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}\n\\]\n\n\nStep 3: Set to zero and solve\n\\[\n\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nNormal Equations\n\n\nStep 4: Solution (if \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is invertible)\n\\[\n\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#geometric-interpretation",
+    "href": "week02_linear_regression/week02_presentation.html#geometric-interpretation",
+    "title": "Linear Regression",
+    "section": "Geometric Interpretation",
+    "text": "Geometric Interpretation\nProjection onto Column Space\nThe solution \\(\\hat{\\mathbf{y}} = \\mathbf{X}\\hat{\\boldsymbol{\\beta}}\\) is the orthogonal projection of \\(\\mathbf{y}\\) onto \\(\\text{col}(\\mathbf{X})\\)\n\nResidual vector is orthogonal to column space: \\[\n\\mathbf{X}^T(\\mathbf{y} - \\mathbf{X}\\hat{\\boldsymbol{\\beta}}) = \\mathbf{0}\n\\]\n\n\nProjection matrix: \\[\n\\mathbf{P} = \\mathbf{X}(\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\n\\]\nProperties: \\(\\mathbf{P}^2 = \\mathbf{P}\\), \\(\\mathbf{P}^T = \\mathbf{P}\\) (idempotent and symmetric)\n\n\n\nAerospace insight: We’re finding the best linear combination of aerodynamic effects that explains observed drag"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#when-direct-solution-fails",
+    "href": "week02_linear_regression/week02_presentation.html#when-direct-solution-fails",
+    "title": "Linear Regression",
+    "section": "When Direct Solution Fails",
+    "text": "When Direct Solution Fails\nChallenges with \\((\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\)\nProblem 1: Singular Matrix\n\nOccurs when \\(n &lt; d+1\\) (more features than samples)\nMulticollinearity: highly correlated features\n\n\nProblem 2: Computational Cost\n\nMatrix inversion: \\(O(d^3)\\) operations\nFor large \\(d\\) (high-dimensional features), impractical\n\n\n\nProblem 3: Numerical Stability\n\nIll-conditioned matrices (high condition number)\nSmall perturbations → large changes in solution\n\n\n\nSolutions\n\nRegularization: Ridge, Lasso\nGradient descent: Iterative optimization\nQR decomposition: Numerically stable direct method\nSVD: Most stable, handles rank deficiency"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#gradient-descent-iterative-approach",
+    "href": "week02_linear_regression/week02_presentation.html#gradient-descent-iterative-approach",
+    "title": "Linear Regression",
+    "section": "Gradient Descent: Iterative Approach",
+    "text": "Gradient Descent: Iterative Approach\nAlgorithm\nInitialize: \\(\\boldsymbol{\\beta}^{(0)}\\) randomly or to zeros\nIterate: For \\(t = 0, 1, 2, \\ldots\\) until convergence:\n\\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\]\nwhere \\(\\eta &gt; 0\\) is the learning rate\n\nGradient Computation\n\\[\n\\nabla_{\\boldsymbol{\\beta}} \\text{RSS} = -2\\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})\n\\]\nUpdate rule: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} + 2\\eta \\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^{(t)})\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#gradient-descent-variants",
+    "href": "week02_linear_regression/week02_presentation.html#gradient-descent-variants",
+    "title": "Linear Regression",
+    "section": "Gradient Descent Variants",
+    "text": "Gradient Descent Variants\nBatch Gradient Descent\nUse all \\(n\\) samples in each iteration: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\]\n\n✓ Stable convergence\n✗ Slow for large \\(n\\)\n\n\nStochastic Gradient Descent (SGD)\nUse one random sample \\(i\\) per iteration: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} + 2\\eta \\boldsymbol{x}_i(y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta}^{(t)})\n\\]\n\n✓ Fast updates, scales to large data\n✗ Noisy, oscillates around minimum\n\n\n\nMini-Batch Gradient Descent\nUse subset of \\(b\\) samples per iteration (typical: \\(b = 32, 64, 128\\))\n\n✓ Balance between speed and stability\n✓ Vectorized operations (GPU-friendly)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#learning-rate-selection",
+    "href": "week02_linear_regression/week02_presentation.html#learning-rate-selection",
+    "title": "Linear Regression",
+    "section": "Learning Rate Selection",
+    "text": "Learning Rate Selection\nCritical Hyperparameter\n\\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\]\n\n\nToo small (\\(\\eta \\ll 1\\)):\n\nSlow convergence\nMany iterations needed\nComputationally expensive\n\n\nToo large (\\(\\eta \\gg 1\\)):\n\nOvershooting minimum\nOscillation or divergence\nNever converges\n\n\n\nAdaptive Learning Rates\n\nLearning rate decay: \\(\\eta_t = \\frac{\\eta_0}{1 + kt}\\)\nMomentum: Use exponentially weighted moving average of gradients\nAdam: Adaptive moment estimation (modern default)\nLine search: Optimize \\(\\eta\\) at each iteration"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#statistical-properties-assumptions",
+    "href": "week02_linear_regression/week02_presentation.html#statistical-properties-assumptions",
+    "title": "Linear Regression",
+    "section": "Statistical Properties: Assumptions",
+    "text": "Statistical Properties: Assumptions\nClassical Linear Regression Assumptions\n\n\nLinearity: True relationship is \\(\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta} + \\boldsymbol{\\epsilon}\\)\n\n\n\n\nIndependence: Samples \\((x_i, y_i)\\) are i.i.d.\n\n\n\n\nHomoscedasticity: Constant error variance \\(\\text{Var}(\\epsilon_i) = \\sigma^2\\)\n\nData collection context: Measurement error should be consistent across operating range\nExample violation: Wind tunnel balance accuracy degrades at low forces (high \\(\\alpha\\))\nReal-world impact: Sensor noise may increase with altitude, velocity, or dynamic pressure\n\n\n\n\n\nNormality: \\(\\epsilon_i \\sim \\mathcal{N}(0, \\sigma^2)\\)\n\n\n\n\nNo multicollinearity: \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is full rank\n\nAerospace context: Features should not be perfectly correlated\nCommon violations:\n\nAltitude and air density (directly related via ISA standard atmosphere)\nDynamic pressure and velocity (\\(q \\propto V^2\\) at fixed altitude)\nMach number and velocity at fixed altitude (\\(M = V/a\\), where \\(a\\) is constant)\nLift coefficient and angle of attack in linear regime (attached flow)\n\nConsequences: Unstable coefficient estimates, inflated standard errors, unreliable predictions\nDetection: Use VIF (Variance Inflation Factor) to identify problematic correlations\nSolutions: Regularization (Ridge/Lasso), dimensionality reduction (PCA), or remove redundant features"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#statistical-properties-distribution",
+    "href": "week02_linear_regression/week02_presentation.html#statistical-properties-distribution",
+    "title": "Linear Regression",
+    "section": "Statistical Properties: Distribution",
+    "text": "Statistical Properties: Distribution\nUnder Normality Assumption\nIf we assume \\(\\epsilon_i \\sim \\mathcal{N}(0, \\sigma^2)\\) independently, then our OLS estimator has a known distribution:\n\\[\n\\boldsymbol{\\beta}^\\ast \\sim \\mathcal{N}\\left(\\boldsymbol{\\beta}_\\text{true}, \\sigma^2(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\right)\n\\]\n\nWhat does this mean?\n\n\\(\\boldsymbol{\\beta}^\\ast\\) is unbiased: \\(E[\\boldsymbol{\\beta}^\\ast] = \\boldsymbol{\\beta}_\\text{true}\\)\nCovariance matrix: \\(\\text{Cov}(\\boldsymbol{\\beta}^\\ast) = \\sigma^2(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\)\nDiagonal elements give variances: \\(\\text{Var}(\\beta_j^\\ast) = \\sigma^2[(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}]_{jj}\\)\nOff-diagonal elements show correlations between coefficient estimates\n\n\n\nPractical implication: We can construct confidence intervals and perform hypothesis tests!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#hypothesis-testing",
+    "href": "week02_linear_regression/week02_presentation.html#hypothesis-testing",
+    "title": "Linear Regression",
+    "section": "Hypothesis Testing",
+    "text": "Hypothesis Testing\nTesting Individual Coefficients\nNull hypothesis: \\(H_0: \\beta_j = 0\\) (feature \\(j\\) has no effect)\nTest statistic: \\[\nt_j = \\frac{\\beta_j}{\\text{SE}(\\beta_j)} \\sim t_{n-d-1}\n\\]\n\nReject \\(H_0\\) if \\(|t_j| &gt; t_{\\alpha/2, n-d-1}\\) or p-value \\(&lt; \\alpha\\)\n\n\nTesting Overall Model\nNull hypothesis: \\(H_0: \\beta_1 = \\beta_2 = \\cdots = \\beta_d = 0\\) (no features matter)\nF-statistic: \\[\nF = \\frac{(\\text{TSS} - \\text{RSS})/d}{\\text{RSS}/(n-d-1)} \\sim F_{d, n-d-1}\n\\]\nwhere \\(\\text{TSS} = \\sum_{i=1}^n (y_i - \\bar{y})^2\\) (total sum of squares)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-evaluation-metrics",
+    "href": "week02_linear_regression/week02_presentation.html#model-evaluation-metrics",
+    "title": "Linear Regression",
+    "section": "Model Evaluation Metrics",
+    "text": "Model Evaluation Metrics\nR-squared (Coefficient of Determination)\n\\[\nR^2 = 1 - \\frac{\\text{RSS}}{\\text{TSS}} = 1 - \\frac{\\sum_{i=1}^n(y_i - \\hat{y}_i)^2}{\\sum_{i=1}^n(y_i - \\bar{y})^2}\n\\]\n\nInterpretation:\n\n\\(R^2 = 0\\): Model explains none of the variance (predictions = mean)\n\\(R^2 = 1\\): Model explains all of the variance (perfect fit)\n\\(R^2 = 0.85\\): Model explains 85% of the variance in the data\n\nRange: Typically \\([0, 1]\\), but can be negative for very poor models on test data\n\n\nProblem with \\(R^2\\):\n\nAlways increases (or stays same) when adding more features\nEven if features are pure noise!\nCan’t use raw \\(R^2\\) to compare models with different numbers of features\n\n\n\nAdjusted R-squared\n\\[\nR^2_{\\text{adj}} = 1 - \\frac{\\text{RSS}/(n-d-1)}{\\text{TSS}/(n-1)} = 1 - (1 - R^2)\\frac{n-1}{n-d-1}\n\\]\n\nPenalizes model complexity\nUse for model comparison"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#prediction-metrics",
+    "href": "week02_linear_regression/week02_presentation.html#prediction-metrics",
+    "title": "Linear Regression",
+    "section": "Prediction Metrics",
+    "text": "Prediction Metrics\nMean Squared Error (MSE)\n\\[\n\\text{MSE} = \\frac{1}{n}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2\n\\]\n\nInterpretation:\n\nAverage squared prediction error\nPenalizes large errors heavily (squaring effect)\nUnits: (units of \\(y\\))²\nSensitive to outliers\n\n\n\nRoot Mean Squared Error (RMSE)\n\\[\n\\text{RMSE} = \\sqrt{\\text{MSE}} = \\sqrt{\\frac{1}{n}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2}\n\\]\nWhy take the square root?\n\nSame units as \\(y\\) → directly interpretable\nCan compare RMSE to typical values of \\(y\\)\nAerospace example: If predicting range in km, RMSE is also in km\n\n\n\nTypical use: “Our model predicts fuel consumption with RMSE = 120 kg”\n→ On average, predictions are off by about 120 kg"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation",
+    "title": "Linear Regression",
+    "section": "Cross-Validation",
+    "text": "Cross-Validation\nWhy Cross-Validation?\nProblem: Training error ≠ Test error\n\nModel might overfit to training data\nNeed to estimate generalization performance\n\n\nk-Fold Cross-Validation\n\nSplit data into \\(k\\) equal folds\nFor each fold \\(i = 1, \\ldots, k\\):\n\nTrain on \\(k-1\\) folds\nTest on held-out fold \\(i\\)\nCompute error \\(e_i\\)\n\nAverage: \\(\\text{CV}_k = \\frac{1}{k}\\sum_{i=1}^k e_i\\)\n\n\n\nCommon choices: \\(k = 5\\) or \\(k = 10\\)\nLeave-One-Out CV (LOOCV): \\(k = n\\) (expensive but unbiased)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#aerospace-application-drag-prediction",
+    "href": "week02_linear_regression/week02_presentation.html#aerospace-application-drag-prediction",
+    "title": "Linear Regression",
+    "section": "Aerospace Application: Drag Prediction",
+    "text": "Aerospace Application: Drag Prediction\n\n\nProblem Setup\nGoal: Predict drag coefficient from wind tunnel data\nFeatures:\n\nAngle of attack: \\(\\alpha\\) (deg)\nMach number: \\(M\\)\nReynolds number: \\(\\text{Re}\\)\n\nTarget: Drag coefficient \\(C_D\\)\n\nFeature Selection Strategy\nSmall-scale problems (limited data):\n\nStart with physics-based features from domain knowledge\nInclude interaction terms guided by aerodynamic theory\nManual selection based on hypothesis testing (\\(t\\)-tests, \\(p\\)-values)\n\nLarge-scale problems with strong physics:\n\nPhysics-informed feature engineering (known functional forms)\nAdd polynomial/interaction terms systematically\nUse regularization to handle redundancy\n\nLarge-scale problems without strong physics:\n\nAutomated feature selection (forward/backward stepwise, Lasso)\nCross-validation to assess feature importance\nRely on data-driven patterns rather than domain knowledge"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#feature-engineering-for-aerodynamics",
+    "href": "week02_linear_regression/week02_presentation.html#feature-engineering-for-aerodynamics",
+    "title": "Linear Regression",
+    "section": "Feature Engineering for Aerodynamics",
+    "text": "Feature Engineering for Aerodynamics\nPolynomial Features\nAutomated feature expansion — Create new features from existing ones:\nfrom sklearn.preprocessing import PolynomialFeatures\n\n# X is your original data matrix (n samples × 3 features)\n# Shape: (n_samples, 3) where columns are [α, M, Re]\n\npoly = PolynomialFeatures(degree=2, include_bias=True)\nX_poly = poly.fit_transform(X)  # X_poly has shape (n_samples, 10)\n\n# Transformation: [f1, f2, f3] → [1, f1, f2, f3, f1², f1×f2, f1×f3, f2², f2×f3, f3²]\n# For our case:    [α, M, Re]  → [1, α,  M,  Re, α²,  α×M,   α×Re,  M²,  M×Re,  Re²]\nWhat this does: Automatically generates all combinations of features up to degree 2\n\nBias term: 1 (intercept, when include_bias=True)\nLinear terms: \\(\\alpha, M, \\text{Re}\\) (original features)\nInteraction terms: \\(\\alpha M, \\alpha \\text{Re}, M \\text{Re}\\) (captures coupling between variables)\nQuadratic terms: \\(\\alpha^2, M^2, \\text{Re}^2\\) (captures nonlinear effects)\n\n\nFor 3 input features, you get: 3 original + 3 interactions + 3 squares + 1 bias = 10 total features\n\n\nImportant clarification: This allows a linear model to fit nonlinear relationships\nThe model is still linear in the coefficients: \\(C_D = \\beta_0 + \\beta_1\\alpha + \\beta_2 M + \\beta_3\\alpha^2 + \\cdots\\)\nBut it’s nonlinear in the input features: \\(C_D\\) depends on \\(\\alpha^2\\), not just \\(\\alpha\\)\n\n–"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#scaling-and-normalization",
+    "href": "week02_linear_regression/week02_presentation.html#scaling-and-normalization",
+    "title": "Linear Regression",
+    "section": "Scaling and Normalization",
+    "text": "Scaling and Normalization\nWhy Scale Features?\nProblem: Features have different ranges\n\n\\(\\alpha \\in [0°, 20°]\\)\n\\(M \\in [0.3, 0.9]\\)\n\\(\\text{Re} \\in [10^6, 10^7]\\)\n\n\nIssues:\n\nGradient descent: Features with large scales dominate\nRegularization: Penalizes large-scale features unfairly\nNumerical stability: Condition number of \\(\\boldsymbol{X}^T\\boldsymbol{X}\\)\n\n\n\nStandardization\n\\[\nx_j^{\\text{scaled}} = \\frac{x_j - \\mu_j}{\\sigma_j}\n\\]\nfrom sklearn.preprocessing import StandardScaler\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#practical-implementation",
+    "href": "week02_linear_regression/week02_presentation.html#practical-implementation",
+    "title": "Linear Regression",
+    "section": "Practical Implementation",
+    "text": "Practical Implementation\nI am here\nScikit-learn Workflow\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# 1. Load and split data\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\n# 2. Create and train model\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)\n\n# 3. Make predictions\ny_pred = model.predict(X_test)\n\n# 4. Evaluate\nrmse = np.sqrt(mean_squared_error(y_test, y_pred))\nr2 = r2_score(y_test, y_pred)\n\nprint(f\"Coefficients: {model.coef_}\")\nprint(f\"Intercept: {model.intercept_}\")\nprint(f\"RMSE: {rmse:.4f}, R²: {r2:.4f}\")"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#case-study-boeing-737-drag-model",
+    "href": "week02_linear_regression/week02_presentation.html#case-study-boeing-737-drag-model",
+    "title": "Linear Regression",
+    "section": "Case Study: Boeing 737 Drag Model",
+    "text": "Case Study: Boeing 737 Drag Model\nDataset Description\n\nSource: Wind tunnel tests (hypothetical)\nSamples: 500 data points\nFeatures: \\(\\alpha, M, \\text{Re}\\)\nTarget: \\(C_D\\)\nRange: Cruise conditions (\\(\\alpha \\in [0°, 10°]\\), \\(M \\in [0.7, 0.85]\\))\n\n\nModel Comparison\n\n\n\nModel\nFeatures\nR²\nRMSE\n\n\n\n\nSimple\n\\(\\alpha, M\\)\n0.85\n0.0045\n\n\nPolynomial (deg=2)\n9 features\n0.94\n0.0028\n\n\n+ Reynolds\n10 features\n0.96\n0.0022\n\n\n\n\n\nInsight: Polynomial features capture drag polar curvature"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#residual-analysis",
+    "href": "week02_linear_regression/week02_presentation.html#residual-analysis",
+    "title": "Linear Regression",
+    "section": "Residual Analysis",
+    "text": "Residual Analysis\nDiagnostic Plots\n1. Residuals vs. Fitted Values\n\nCheck for patterns (should be random)\nFunnel shape → heteroscedasticity\n\n2. Q-Q Plot\n\nCheck normality assumption\nPoints should lie on diagonal\n\n3. Residuals vs. Features\n\nIdentify missing nonlinear terms\nDetect outliers\n\n\nimport matplotlib.pyplot as plt\n\nresiduals = y_test - y_pred\nplt.scatter(y_pred, residuals)\nplt.axhline(y=0, color='r', linestyle='--')\nplt.xlabel('Fitted Values')\nplt.ylabel('Residuals')\nplt.title('Residual Plot')"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#outliers-and-influential-points",
+    "href": "week02_linear_regression/week02_presentation.html#outliers-and-influential-points",
+    "title": "Linear Regression",
+    "section": "Outliers and Influential Points",
+    "text": "Outliers and Influential Points\nLeverage and Influence\nLeverage: How far is \\(\\boldsymbol{x}_i\\) from the center of the data?\n\\[\nh_i = \\boldsymbol{x}_i^T(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{x}_i\n\\]\n\nCook’s Distance: Combined effect of leverage and residual\n\\[\nD_i = \\frac{(y_i - \\hat{y}_i)^2}{(d+1)\\hat{\\sigma}^2} \\cdot \\frac{h_i}{(1-h_i)^2}\n\\]\nRule of thumb: \\(D_i &gt; 1\\) suggests influential point\n\n\nAerospace Context\nOutliers might be:\n\nSensor errors or calibration issues\nUnusual flight conditions (turbulence, icing)\nModel breakdown (post-stall, shock formation)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#limitations-of-linear-regression",
+    "href": "week02_linear_regression/week02_presentation.html#limitations-of-linear-regression",
+    "title": "Linear Regression",
+    "section": "Limitations of Linear Regression",
+    "text": "Limitations of Linear Regression\nWhen Linear Models Fail\n1. Nonlinear Relationships\n\nTransonic drag rise: Not well-captured by polynomials\nPost-stall aerodynamics: Requires different model class\n\n2. Extrapolation Issues\n\nDangerous in aerospace (safety-critical)\nModel may predict physically impossible values\n\n3. Model Assumptions\n\nHomoscedasticity rarely holds in real flight data\nErrors may be correlated (time-series flight data)\n\n\nSolutions\n\nNonlinear models: Neural networks (Weeks 7-9)\nTree-based methods: Random forests, gradient boosting\nPhysics-informed ML: Incorporate governing equations"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#extensions-and-variations",
+    "href": "week02_linear_regression/week02_presentation.html#extensions-and-variations",
+    "title": "Linear Regression",
+    "section": "Extensions and Variations",
+    "text": "Extensions and Variations\nWeighted Least Squares\nWhen: Heteroscedastic errors (variance varies with \\(x\\))\n\\[\n\\boldsymbol{\\beta}^\\ast = \\arg\\min_{\\boldsymbol{\\beta}} \\sum_{i=1}^n w_i(y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta})^2\n\\]\nSolution: \\(\\boldsymbol{\\beta} = (\\boldsymbol{X}^T\\boldsymbol{W}\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{W}\\boldsymbol{y}\\) where \\(\\boldsymbol{W} = \\text{diag}(w_1, \\ldots, w_n)\\)\n\nGeneralized Least Squares\nWhen: Correlated errors with known covariance \\(\\boldsymbol{\\Sigma}\\)\n\\[\n\\boldsymbol{\\beta} = (\\boldsymbol{X}^T\\boldsymbol{\\Sigma}^{-1}\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{\\Sigma}^{-1}\\boldsymbol{y}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#regularization-preview-week-3",
+    "href": "week02_linear_regression/week02_presentation.html#regularization-preview-week-3",
+    "title": "Linear Regression",
+    "section": "Regularization Preview (Week 3)",
+    "text": "Regularization Preview (Week 3)\nThe Overfitting Problem\nHigh-dimensional features (\\(d\\) large):\n\nPerfect fit on training data\nPoor generalization to test data\nCoefficients become unstable\n\n\nRidge Regression (L2 Regularization)\n\\[\n\\boldsymbol{\\beta}^{\\ast,\\text{ridge}} = \\arg\\min_{\\boldsymbol{\\beta}} \\left\\{\\sum_{i=1}^n(y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta})^2 + \\lambda\\sum_{j=1}^d\\beta_j^2\\right\\}\n\\]\nSolution: \\(\\boldsymbol{\\beta}^{\\ast,\\text{ridge}} = (\\boldsymbol{X}^T\\boldsymbol{X} + \\lambda\\boldsymbol{I})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\\)\nBenefit: Always invertible, even when \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is singular"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#flight-test-example-fuel-flow-prediction",
+    "href": "week02_linear_regression/week02_presentation.html#flight-test-example-fuel-flow-prediction",
+    "title": "Linear Regression",
+    "section": "Flight Test Example: Fuel Flow Prediction",
+    "text": "Flight Test Example: Fuel Flow Prediction\nProblem Statement\nGoal: Predict fuel flow rate for mission planning\nFeatures:\n\nAltitude: \\(h\\) (ft)\nTrue airspeed: \\(V\\) (kts)\nAircraft weight: \\(W\\) (lb)\nTemperature deviation: \\(\\Delta T\\) (°C)\n\nTarget: Fuel flow \\(\\dot{m}_f\\) (lb/hr)\n\nPhysical Model Basis\nThrust specific fuel consumption (TSFC): \\[\n\\text{TSFC} = \\frac{\\dot{m}_f}{T}\n\\]\nDrag = Thrust (cruise): \\[\nT = D = \\frac{1}{2}\\rho V^2 S C_D\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#implementation-fuel-flow-model",
+    "href": "week02_linear_regression/week02_presentation.html#implementation-fuel-flow-model",
+    "title": "Linear Regression",
+    "section": "Implementation: Fuel Flow Model",
+    "text": "Implementation: Fuel Flow Model\nimport pandas as pd\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.pipeline import Pipeline\n\n# Load flight test data\ndf = pd.read_csv('flight_test_data.csv')\nX = df[['altitude', 'velocity', 'weight', 'temp_dev']]\ny = df['fuel_flow']\n\n# Create pipeline with preprocessing and model\nmodel = Pipeline([\n    ('poly', PolynomialFeatures(degree=2, include_bias=True)),\n    ('scaler', StandardScaler()),\n    ('regressor', LinearRegression())\n])\n\n# Train model\nmodel.fit(X_train, y_train)\n\n# Predict for new flight condition\nnew_condition = [[35000, 450, 150000, -10]]  # Alt, V, W, ΔT\npredicted_fuel_flow = model.predict(new_condition)\nprint(f\"Predicted fuel flow: {predicted_fuel_flow[0]:.1f} lb/hr\")"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#gradient-descent-from-scratch",
+    "href": "week02_linear_regression/week02_presentation.html#gradient-descent-from-scratch",
+    "title": "Linear Regression",
+    "section": "Gradient Descent from Scratch",
+    "text": "Gradient Descent from Scratch\nManual Implementation\ndef gradient_descent(X, y, learning_rate=0.01, n_iterations=1000):\n    n, d = X.shape\n    beta = np.zeros(d)  # Initialize parameters\n    cost_history = []\n    \n    for iteration in range(n_iterations):\n        # Compute predictions\n        y_pred = X @ beta\n        \n        # Compute residuals\n        residuals = y_pred - y\n        \n        # Compute gradient\n        gradient = (2/n) * X.T @ residuals\n        \n        # Update parameters\n        beta = beta - learning_rate * gradient\n        \n        # Track cost\n        cost = np.mean(residuals**2)\n        cost_history.append(cost)\n        \n        if iteration % 100 == 0:\n            print(f\"Iteration {iteration}: Cost = {cost:.6f}\")\n    \n    return beta, cost_history"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#convergence-analysis",
+    "href": "week02_linear_regression/week02_presentation.html#convergence-analysis",
+    "title": "Linear Regression",
+    "section": "Convergence Analysis",
+    "text": "Convergence Analysis\nMonitoring Convergence\nimport matplotlib.pyplot as plt\n\n# Run gradient descent\nbeta_gd, cost_history = gradient_descent(X_train, y_train)\n\n# Compare with closed-form solution\nbeta_closed = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train\n\n# Plot convergence\nplt.figure(figsize=(10, 6))\nplt.plot(cost_history)\nplt.xlabel('Iteration')\nplt.ylabel('Mean Squared Error')\nplt.title('Gradient Descent Convergence')\nplt.yscale('log')\nplt.grid(True)\nplt.show()\n\nprint(f\"GD solution: {beta_gd}\")\nprint(f\"Closed-form solution: {beta_closed}\")\nprint(f\"Difference: {np.linalg.norm(beta_gd - beta_closed):.6e}\")"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#multicollinearity-detection",
+    "href": "week02_linear_regression/week02_presentation.html#multicollinearity-detection",
+    "title": "Linear Regression",
+    "section": "Multicollinearity Detection",
+    "text": "Multicollinearity Detection\nVariance Inflation Factor (VIF)\nDefinition: How much variance of \\(\\beta_j\\) is inflated due to correlation with other features\n\\[\n\\text{VIF}_j = \\frac{1}{1 - R_j^2}\n\\]\nwhere \\(R_j^2\\) is from regressing \\(x_j\\) on all other features\n\nRule of thumb:\n\nVIF &lt; 5: Low correlation\nVIF &gt; 10: Problematic multicollinearity\n\n\n\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\n\nvif_data = pd.DataFrame()\nvif_data[\"Feature\"] = X.columns\nvif_data[\"VIF\"] = [variance_inflation_factor(X.values, i) \n                   for i in range(X.shape[1])]\nprint(vif_data)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#confidence-and-prediction-intervals",
+    "href": "week02_linear_regression/week02_presentation.html#confidence-and-prediction-intervals",
+    "title": "Linear Regression",
+    "section": "Confidence and Prediction Intervals",
+    "text": "Confidence and Prediction Intervals\nTwo Types of Uncertainty\nConfidence Interval: Uncertainty in mean response \\(E[y|\\boldsymbol{x}]\\)\n\\[\n\\hat{y} \\pm t_{\\gamma/2, n-d-1} \\cdot \\hat{\\sigma}\\sqrt{\\boldsymbol{x}^T(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{x}}\n\\]\n\nPrediction Interval: Uncertainty in individual prediction \\(y\\)\n\\[\n\\hat{y} \\pm t_{\\gamma/2, n-d-1} \\cdot \\hat{\\sigma}\\sqrt{1 + \\boldsymbol{x}^T(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{x}}\n\\]\nNote the extra “1” accounting for irreducible error\n\n\nAerospace Application\nCritical for:\n\nFlight envelope certification\nFuel reserve calculations\nPerformance guarantees"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#practical-tips-for-aerospace-ml",
+    "href": "week02_linear_regression/week02_presentation.html#practical-tips-for-aerospace-ml",
+    "title": "Linear Regression",
+    "section": "Practical Tips for Aerospace ML",
+    "text": "Practical Tips for Aerospace ML\nData Quality Matters\n\nSensor calibration: Check for drift, bias\nData fusion: Combine multiple sources (INS, GPS, pitot-static)\nOutlier handling: Physics-based filtering (e.g., impossible speeds)\nMissing data: Interpolation vs. imputation\n\n\nFeature Selection Strategy\n\nStart with physical model (drag polar, Breguet range)\nAdd polynomial terms based on theory\nUse domain expertise to limit feature space\nCross-validate to prevent overfitting\n\n\n\nModel Validation\n\nTrain-test split: 80-20 or 70-30\nK-fold CV: For limited data\nHoldout by flight: Test on different aircraft/conditions\nPhysics checks: Verify positive drag, reasonable trends"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#software-ecosystem",
+    "href": "week02_linear_regression/week02_presentation.html#software-ecosystem",
+    "title": "Linear Regression",
+    "section": "Software Ecosystem",
+    "text": "Software Ecosystem\nEssential Libraries\n# Data manipulation\nimport numpy as np\nimport pandas as pd\n\n# Visualization\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Machine learning\nfrom sklearn.linear_model import LinearRegression, Ridge, Lasso\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# Statistical analysis\nimport scipy.stats as stats\nimport statsmodels.api as sm\n\n# Aerospace-specific (optional)\nfrom ambiance import Atmosphere  # ISA atmosphere model"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#homework-1-preview",
+    "href": "week02_linear_regression/week02_presentation.html#homework-1-preview",
+    "title": "Linear Regression",
+    "section": "Homework 1 Preview",
+    "text": "Homework 1 Preview\nAssignment Overview\nTask: Build linear regression model for aircraft drag prediction\n\nData exploration: Load and visualize wind tunnel data\nFeature engineering: Create polynomial and interaction terms\nModel training: Implement with scikit-learn and from scratch\nEvaluation: Cross-validation, residual analysis\nInterpretation: Relate coefficients to aerodynamics\n\n\nDeliverables\n\nJupyter notebook with analysis\nWritten report (max 5 pages)\nTrained model file (.pkl)\nPresentation slides (5 min)\n\nDue: Next week, before class"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#key-takeaways",
+    "href": "week02_linear_regression/week02_presentation.html#key-takeaways",
+    "title": "Linear Regression",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\nMathematical Foundations\n\nLinear regression minimizes squared error: \\(\\min \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast\\|^2\\)\nClosed-form solution: \\(\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\\)\nGradient descent for large-scale problems\nStatistical properties: BLUE under Gauss-Markov\n\n\nPractical Implementation\n\nFeature scaling essential for numerical stability\nCross-validation for generalization assessment\nResidual analysis for model diagnostics\nDomain knowledge guides feature engineering\n\n\n\nAerospace Applications\n\nDrag prediction, fuel flow modeling, performance estimation\nPhysics-informed features improve accuracy\nAlways validate against known aerodynamic principles"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#next-week-model-evaluation-regularization",
+    "href": "week02_linear_regression/week02_presentation.html#next-week-model-evaluation-regularization",
+    "title": "Linear Regression",
+    "section": "Next Week: Model Evaluation & Regularization",
+    "text": "Next Week: Model Evaluation & Regularization\nPreview of Week 3\nTopics:\n\nBias-variance tradeoff: Understanding generalization\nRidge regression: L2 regularization for stability\nLasso regression: L1 regularization for sparsity\nElastic net: Combined L1 + L2\nCross-validation: Hyperparameter tuning\n\nAerospace focus: Preventing overfitting in high-dimensional aerodynamic models"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#questions-discussion",
+    "href": "week02_linear_regression/week02_presentation.html#questions-discussion",
+    "title": "Linear Regression",
+    "section": "Questions & Discussion",
+    "text": "Questions & Discussion\nOffice Hours\n\nTime: Tuesdays 2-4 PM\nLocation: AERO Building, Room 123\nEmail: rbhattacharya@tamu.edu\n\nResources\n\nTextbook: Bishop - Pattern Recognition & ML (Chapter 3)\nCode examples: Course GitHub repository\nDatasets: Available on course website\nPiazza: For questions and discussions\n\nNext Class\n\nBring: Laptop with Python environment\nInstall: scikit-learn, matplotlib, pandas\nRead: Bishop Chapter 3.1-3.3"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#additional-practice-problems",
+    "href": "week02_linear_regression/week02_presentation.html#additional-practice-problems",
+    "title": "Linear Regression",
+    "section": "Additional Practice Problems",
+    "text": "Additional Practice Problems\nProblem 1: Lift Coefficient Prediction\nGiven wind tunnel data for a wing section, predict \\(C_L\\) from \\(\\alpha\\) and \\(M\\).\nProblem 2: Range Estimation\nUse Breguet range equation as basis for linear regression model.\nProblem 3: Gradient Descent Tuning\nImplement adaptive learning rate and compare convergence.\nProblem 4: Feature Selection\nUse statistical tests to identify significant features in drag model.\nProblem 5: Multi-Aircraft Model\nBuild single model that works for multiple aircraft types using categorical variables."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#references",
+    "href": "week02_linear_regression/week02_presentation.html#references",
+    "title": "Linear Regression",
+    "section": "References",
+    "text": "References\nTextbooks\n\nBishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.\nMurphy, K. P. (2012). Machine Learning: A Probabilistic Perspective. MIT Press.\nHastie, T., et al. (2009). The Elements of Statistical Learning. Springer.\n\nAerospace Applications\n\nRoskam, J. (1997). Airplane Design, Parts I-VIII.\nAnderson, J. D. (2016). Fundamentals of Aerodynamics. McGraw-Hill.\nTeukolsky, S. A. (2016). Numerical Recipes. Cambridge University Press.\n\nPapers\n\nSekar, V., et al. (2019). “Inverse design of airfoil using ML.” AIAA Journal.\nLing, J., et al. (2016). “Reynolds averaged turbulence modelling using deep neural networks.” Journal of Fluid Mechanics."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#thank-you",
+    "href": "week02_linear_regression/week02_presentation.html#thank-you",
+    "title": "Linear Regression",
+    "section": "Thank You!",
+    "text": "Thank You!\nNext Steps\n\nReview: Lecture notes and derivations\nPractice: Work through example problems\nImplement: Code gradient descent from scratch\nStart: Homework 1 (due next week)\n\nStay Connected\n\nCourse website: aero689.tamu.edu\nGitHub: github.com/aero689-ml\nSlack: aero689-ml.slack.com\n\nRemember: ML is a tool, physics is the foundation!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#gauss-markov-implications-for-practice",
+    "href": "week02_linear_regression/week02_presentation.html#gauss-markov-implications-for-practice",
+    "title": "Linear Regression",
+    "section": "Gauss-Markov: Implications for Practice",
+    "text": "Gauss-Markov: Implications for Practice\n\n\nGauss-Markov Theorem\nUnder assumptions 1-3: The OLS estimator \\(\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\\) is:\n\nBLUE: Best Linear Unbiased Estimator\nMinimum variance among all unbiased linear estimators\n\nWhat Does BLUE Mean?\n\nBest: Minimum variance (most precise estimates)\n\nAmong all linear unbiased estimators, OLS has smallest variance\nNo other linear unbiased method gives tighter confidence intervals\n\n\n\nLinear: Estimator is linear function of \\(\\boldsymbol{y}\\)\n\nForm: \\(\\boldsymbol{\\beta}^\\ast = \\boldsymbol{C}\\boldsymbol{y}\\) for some matrix \\(\\boldsymbol{C}\\)\nOLS: \\(\\boldsymbol{C} = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\)\n\n\n\nUnbiased: \\(E[\\boldsymbol{\\beta}^\\ast] = \\boldsymbol{\\beta}_\\text{true}\\)\n\nOn average, estimates equal true parameter values\nNo systematic over/under-estimation\n\n\n\n\nAerospace Context\nCritical for certification:\n\nFlight envelope must be determined with minimal uncertainty\nBLUE property ensures tightest bounds on performance predictions\nRegulatory compliance requires unbiased, minimum-variance estimates"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#real-data-noisy-measurements",
+    "href": "week02_linear_regression/week02_presentation.html#real-data-noisy-measurements",
+    "title": "Linear Regression",
+    "section": "Real Data: Noisy Measurements",
+    "text": "Real Data: Noisy Measurements\nWind Tunnel Data Example\n\n\nKey observations:\n\nData points scatter around true parabolic relationship\nNoise represents: sensor precision limits, flow unsteadiness, model simplification\nThis is why we need the error term \\(\\epsilon_i\\) in our model!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#key-insight-what-linear-means",
+    "href": "week02_linear_regression/week02_presentation.html#key-insight-what-linear-means",
+    "title": "Linear Regression",
+    "section": "Key Insight: What “Linear” Means",
+    "text": "Key Insight: What “Linear” Means\n\n\n“Linear Regression” = Linear in Parameters\nThe model: \\[y = \\beta_0 \\phi_0(\\boldsymbol{x}) + \\beta_1 \\phi_1(\\boldsymbol{x}) + \\cdots + \\beta_d \\phi_d(\\boldsymbol{x})\\]\nWhere:\n\n\\(\\phi_j(\\boldsymbol{x})\\) are basis functions or features (can be nonlinear!)\n\nEach \\(\\phi_j: \\mathbb{R}^p \\to \\mathbb{R}\\) maps input features to a scalar\nExamples: \\(\\phi_0(\\boldsymbol{x}) = 1\\), \\(\\phi_1(\\boldsymbol{x}) = \\alpha\\), \\(\\phi_2(\\boldsymbol{x}) = \\alpha^2\\), \\(\\phi_3(\\boldsymbol{x}) = \\sin(M)\\)\nOutput dimension matches \\(y\\) (scalar for scalar regression, vector for multi-output)\n\n\\(\\beta_j\\) are coefficients (what we solve for)\n\nScalars for single-output regression (predicting one quantity like \\(C_D\\))\nCould be matrices for multi-output regression (predicting multiple quantities simultaneously)\nNote: Design matrix \\(\\boldsymbol{X}\\) stays the same (n × (d+1)), only \\(\\boldsymbol{\\beta}\\) and \\(\\boldsymbol{y}\\) change dimensions\n\nModel is linear in \\(\\beta_j\\), not in \\(\\boldsymbol{x}\\)\n\n\nWhy it matters:\n\nLinearity in \\(\\boldsymbol{\\beta}\\) → closed-form solution exists\nCan model complex nonlinear phenomena\nOptimization remains convex (one global minimum)\n\n\n\n\nAerospace Example\nDrag coefficient model: \\[\nC_D = \\beta_0 + \\beta_1\\alpha + \\beta_2\\alpha^2 + \\beta_3 M^2 + \\beta_4(\\alpha M)\n\\]\nAnalysis:\n\nNonlinear function of \\(\\alpha\\) and \\(M\\) (parabola, interactions)\nLinear combination of terms: \\(\\beta_0 \\cdot 1 + \\beta_1 \\cdot \\alpha + \\beta_2 \\cdot \\alpha^2 + \\cdots\\)\nLinear in coefficients: doubling \\(\\beta_2\\) doubles the \\(\\alpha^2\\) contribution\n\nMatrix form: \\(\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast\\) where \\[\n\\boldsymbol{X} = \\begin{bmatrix}\n1 & \\alpha_1 & \\alpha_1^2 & M_1^2 & \\alpha_1 M_1 \\\\\n1 & \\alpha_2 & \\alpha_2^2 & M_2^2 & \\alpha_2 M_2 \\\\\n\\vdots & \\vdots & \\vdots & \\vdots & \\vdots\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#geometric-interpretation-the-big-picture",
+    "href": "week02_linear_regression/week02_presentation.html#geometric-interpretation-the-big-picture",
+    "title": "Linear Regression",
+    "section": "Geometric Interpretation: The Big Picture",
+    "text": "Geometric Interpretation: The Big Picture\nWhat is the Column Space?\nColumn space of \\(\\mathbf{X}\\): All possible linear combinations of feature columns\n\\[\n\\text{col}(\\mathbf{X}) = \\{\\mathbf{X}\\boldsymbol{\\beta} : \\boldsymbol{\\beta} \\in \\mathbb{R}^{d+1}\\}\n\\]\n\nThe Fundamental Problem\n\nData vector \\(\\mathbf{y}\\): Observed drag coefficients (lives in \\(\\mathbb{R}^n\\))\nColumn space: All predictions we can make with our model\nReality: \\(\\mathbf{y}\\) usually not in \\(\\text{col}(\\mathbf{X})\\) (data has noise!)\n\nQuestion: How to find the best approximation \\(\\hat{\\mathbf{y}} = \\mathbf{X}\\hat{\\boldsymbol{\\beta}}\\) in \\(\\text{col}(\\mathbf{X})\\)?\n\n\nGeometric View\n\n\n\n\n\n\n\n\n\n\n\nKey insight: \\(\\hat{\\mathbf{y}}\\) must be the closest point in \\(\\text{col}(\\mathbf{X})\\) to \\(\\mathbf{y}\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#why-orthogonality-the-pythagorean-connection",
+    "href": "week02_linear_regression/week02_presentation.html#why-orthogonality-the-pythagorean-connection",
+    "title": "Linear Regression",
+    "section": "Why Orthogonality? The Pythagorean Connection",
+    "text": "Why Orthogonality? The Pythagorean Connection\nThe Shortest Distance Principle\nGoal: Minimize \\(\\|\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}\\|^2\\) (find closest point in column space)\n\nGeometric Fact\nFor any vector \\(\\mathbf{v}\\) in a subspace and any point \\(\\mathbf{p}\\) not in the subspace:\n\nThe shortest distance from \\(\\mathbf{p}\\) to the subspace is achieved when the connecting line is perpendicular to the subspace\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMathematical statement: The optimal \\(\\hat{\\mathbf{y}}\\) satisfies \\((\\mathbf{y} - \\hat{\\mathbf{y}}) \\perp \\text{col}(\\mathbf{X})\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#from-orthogonality-to-normal-equations",
+    "href": "week02_linear_regression/week02_presentation.html#from-orthogonality-to-normal-equations",
+    "title": "Linear Regression",
+    "section": "From Orthogonality to Normal Equations",
+    "text": "From Orthogonality to Normal Equations\nThe Orthogonality Condition\nResidual must be perpendicular to column space:\n\\[\n\\mathbf{y} - \\mathbf{X}\\hat{\\boldsymbol{\\beta}} \\perp \\text{col}(\\mathbf{X})\n\\]\n\nWhat does this mean? The residual is orthogonal to every column of \\(\\mathbf{X}\\):\n\\[\n\\mathbf{X}^T(\\mathbf{y} - \\mathbf{X}\\hat{\\boldsymbol{\\beta}}) = \\mathbf{0}\n\\]\nThis is a vector equation: each column of \\(\\mathbf{X}\\) is perpendicular to the residual\n\n\nDeriving the Normal Equations\nExpand the orthogonality condition:\n\\[\n\\begin{align}\n\\mathbf{X}^T(\\mathbf{y} - \\mathbf{X}\\hat{\\boldsymbol{\\beta}}) &= \\mathbf{0} \\\\\n\\mathbf{X}^T\\mathbf{y} - \\mathbf{X}^T\\mathbf{X}\\hat{\\boldsymbol{\\beta}} &= \\mathbf{0} \\\\\n\\mathbf{X}^T\\mathbf{X}\\hat{\\boldsymbol{\\beta}} &= \\mathbf{X}^T\\mathbf{y}\n\\end{align}\n\\]\nNormal Equations (same result as calculus approach!)\n\n\nKey insight: Geometry (orthogonality) and calculus (setting gradient to zero) give the same answer"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#visualizing-the-orthogonality-condition",
+    "href": "week02_linear_regression/week02_presentation.html#visualizing-the-orthogonality-condition",
+    "title": "Linear Regression",
+    "section": "Visualizing the Orthogonality Condition",
+    "text": "Visualizing the Orthogonality Condition\n2D Example: Simple Linear Regression\n\n\nKey verification: \\(\\mathbf{X}^T(\\mathbf{y} - \\mathbf{X}\\hat{\\boldsymbol{\\beta}}) \\approx \\mathbf{0}\\) ✓\n\nLeft: Geometric view showing residual perpendicular (⊥) to the column space\nRight: Numerical confirmation that dot products with both columns ≈ 0"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#the-projection-matrix",
+    "href": "week02_linear_regression/week02_presentation.html#the-projection-matrix",
+    "title": "Linear Regression",
+    "section": "The Projection Matrix",
+    "text": "The Projection Matrix\nMathematical Form\nFrom the normal equations \\(\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}^T\\boldsymbol{y}\\), we get:\n\\[\n\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\n\\]\n\nPredicted values: \\[\n\\hat{\\boldsymbol{y}} = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y} = \\boldsymbol{P}\\boldsymbol{y}\n\\]\nwhere \\(\\boldsymbol{P} = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\) is the projection matrix\n\n\nKey Properties\n\nIdempotent: \\(\\boldsymbol{P}^2 = \\boldsymbol{P}\\) (projecting twice = projecting once)\nSymmetric: \\(\\boldsymbol{P}^T = \\boldsymbol{P}\\)\nProjects onto \\(\\text{col}(\\boldsymbol{X})\\): \\(\\boldsymbol{P}\\boldsymbol{X} = \\boldsymbol{X}\\)\nResidual matrix: \\(\\boldsymbol{I} - \\boldsymbol{P}\\) projects onto orthogonal complement\n\n\n\n\nAerospace insight: The projection matrix \\(\\boldsymbol{P}\\) extracts the component of observed drag that can be explained by our aerodynamic features, leaving unexplained variance in the residuals"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#geometric-interpretation-simple-intuition",
+    "href": "week02_linear_regression/week02_presentation.html#geometric-interpretation-simple-intuition",
+    "title": "Linear Regression",
+    "section": "Geometric Interpretation: Simple Intuition",
+    "text": "Geometric Interpretation: Simple Intuition\nFinding the Closest Point\nThe Core Idea: When data y is not in the column space, find the closest point in the column space.\n\n\nKey Takeaway: Among all points on col(X), the perpendicular projection ŷ has the minimum distance to y."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#why-perpendicular-optimal",
+    "href": "week02_linear_regression/week02_presentation.html#why-perpendicular-optimal",
+    "title": "Linear Regression",
+    "section": "Why Perpendicular = Optimal?",
+    "text": "Why Perpendicular = Optimal?\nComparing Two Approaches\n\n\nBottom line: Perpendicular drop gives minimum distance. That’s why ŷ - y ⊥ col(X) defines the optimal solution!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mathematical-statement",
+    "href": "week02_linear_regression/week02_presentation.html#mathematical-statement",
+    "title": "Linear Regression",
+    "section": "Mathematical Statement",
+    "text": "Mathematical Statement\nFrom Geometry to Algebra\nGeometric condition: Residual perpendicular to column space\n\\[\n(\\mathbf{y} - \\hat{\\mathbf{y}}) \\perp \\text{col}(\\mathbf{X})\n\\]\n\nWhat does ⊥ mean mathematically? Zero dot product with every column of X:\n\\[\n\\mathbf{X}^T(\\mathbf{y} - \\mathbf{X}\\hat{\\boldsymbol{\\beta}}) = \\mathbf{0}\n\\]\nThis is a vector of zeros (one equation per column of X)\n\n\nExpand and solve:\n\\[\n\\begin{align}\n\\mathbf{X}^T\\mathbf{y} - \\mathbf{X}^T\\mathbf{X}\\hat{\\boldsymbol{\\beta}} &= \\mathbf{0} \\\\\n\\mathbf{X}^T\\mathbf{X}\\hat{\\boldsymbol{\\beta}} &= \\mathbf{X}^T\\mathbf{y} \\quad \\text{(Normal Equations)}\\\\\n\\hat{\\boldsymbol{\\beta}} &= (\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\\mathbf{y}\n\\end{align}\n\\]\n\n\n\nKey insight: We derived the same formula using geometry (perpendicular = optimal) instead of calculus (derivative = zero). They’re equivalent!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#concrete-example-verify-orthogonality",
+    "href": "week02_linear_regression/week02_presentation.html#concrete-example-verify-orthogonality",
+    "title": "Linear Regression",
+    "section": "Concrete Example: Verify Orthogonality",
+    "text": "Concrete Example: Verify Orthogonality\nSimple Linear Regression: y = β₀ + β₁x\n\n\nX = [[1. 1.]\n [1. 2.]\n [1. 3.]]\nβ̂ = [-2.   3.5]\nResidual = [ 0.5 -1.   0.5]\n\n\n\n\nConfirmed: Both dot products ≈ 0, proving the residual is perpendicular to both columns of \\(\\boldsymbol{X}\\)!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#geometric-interpretation-understanding-the-error",
+    "href": "week02_linear_regression/week02_presentation.html#geometric-interpretation-understanding-the-error",
+    "title": "Linear Regression",
+    "section": "Geometric Interpretation: Understanding the Error",
+    "text": "Geometric Interpretation: Understanding the Error\nWhat is the Error?\nDefinition: The error (residual) is the difference between observed data and our prediction:\n\\[\n\\boldsymbol{r} = \\boldsymbol{y} - \\hat{\\boldsymbol{y}} = \\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\n\\]\n\nOur goal: Minimize the length of this error vector:\n\\[\n\\min_{\\boldsymbol{\\beta}} \\|\\boldsymbol{r}\\|^2 = \\min_{\\boldsymbol{\\beta}} \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2\n\\]\n\n\nKey Geometric Insight\n\nColumn space col(\\(\\boldsymbol{X}\\)): Space spanned by basis functions (all possible predictions \\(\\boldsymbol{X}\\boldsymbol{\\beta}\\))\nData y: Our actual observations (usually not in col(\\(\\boldsymbol{X}\\)) due to noise)\nQuestion: What is the best representation of \\(y\\) in the feature space?\n\n\nAnswer: Error is orthogonal to feature space \\(\\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{0}\\) (error is orthogonal to all basis functions)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#why-projection-minimizes-error",
+    "href": "week02_linear_regression/week02_presentation.html#why-projection-minimizes-error",
+    "title": "Linear Regression",
+    "section": "Why Projection Minimizes Error",
+    "text": "Why Projection Minimizes Error\nThe Fundamental Geometric Principle\nProjection Theorem: The shortest distance from a point to a subspace is achieved by the perpendicular projection.\n\n\nKey Insight:\n\nThe optimal \\(\\hat{\\boldsymbol{y}}\\) is found by projecting \\(\\boldsymbol{r}\\) onto col(\\(\\boldsymbol{X}\\)) and setting it to zero\nThis minimizes the error length: \\(||\\boldsymbol{r}|| = ||\\boldsymbol{y} - \\hat{\\boldsymbol{y}}||\\) is smallest\n\nMathematical statement: \\(\\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{X}^T(\\boldsymbol{y} - \\hat{\\boldsymbol{y}}) = \\boldsymbol{0}\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#visualizing-error-minimization",
+    "href": "week02_linear_regression/week02_presentation.html#visualizing-error-minimization",
+    "title": "Linear Regression",
+    "section": "Visualizing Error Minimization",
+    "text": "Visualizing Error Minimization\nComparing Different Predictions\nAll predictions must lie in col(X), but which one minimizes the error?\n\n\nBottom line: Perpendicular drop gives minimum distance. That’s why ŷ - y ⊥ col(X) defines the optimal solution!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection",
+    "href": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection",
+    "title": "Linear Regression",
+    "section": "Deriving the Optimal Solution via Projection",
+    "text": "Deriving the Optimal Solution via Projection\nStep 1: State the Orthogonality Condition\nFrom geometry: The error \\(\\boldsymbol{r} = \\boldsymbol{y} - \\hat{\\boldsymbol{y}}\\) must be perpendicular to col(\\(\\boldsymbol{X}\\))\n\\[\n\\boldsymbol{r} \\perp \\text{col}(\\boldsymbol{X}) \\quad \\Longrightarrow \\quad \\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{0}\n\\]\n\nThis is the fundamental condition for least squares optimality:\n\n\\(\\boldsymbol{X}^T \\boldsymbol{r}\\) is a vector of dot products between \\(\\boldsymbol{r}\\) and each column of \\(\\boldsymbol{X}\\)\nEach dot product = 0 means \\(\\boldsymbol{r}\\) is perpendicular to that column\nZero vector means \\(\\boldsymbol{r}\\) is perpendicular to all columns (entire col(\\(\\boldsymbol{X}\\)))"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection-1",
+    "href": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection-1",
+    "title": "Linear Regression",
+    "section": "Deriving the Optimal Solution via Projection",
+    "text": "Deriving the Optimal Solution via Projection\nStep 2: Express in Terms of β\nSince optimal \\(\\hat{\\boldsymbol{y}}^\\ast = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast\\) and \\(\\boldsymbol{r}^\\ast = \\boldsymbol{y} - \\hat{\\boldsymbol{y}}^\\ast\\), substitute into the orthogonality condition:\n\\[\n\\boldsymbol{X}^T\\boldsymbol{r}^\\ast = \\boldsymbol{0}\n\\]\n\n\\[\n\\boldsymbol{X}^T(\\boldsymbol{y} - \\hat{\\boldsymbol{y}}^\\ast) = \\boldsymbol{0}\n\\]\n\n\n\\[\n\\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast) = \\boldsymbol{0}\n\\]\nNow we have an equation for \\(\\boldsymbol{\\beta}^\\ast\\) that we can solve!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection-2",
+    "href": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection-2",
+    "title": "Linear Regression",
+    "section": "Deriving the Optimal Solution via Projection",
+    "text": "Deriving the Optimal Solution via Projection\nStep 3: Derive the Normal Equations\nExpand the orthogonality condition:\n\\[\n\\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast) = \\boldsymbol{0}\n\\]\n\n\\[\n\\boldsymbol{X}^T\\boldsymbol{y} - \\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{0}\n\\]\n\n\n\\[\n\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nThese are the Normal Equations – a linear system for \\(\\boldsymbol{\\beta}^\\ast\\)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection-3",
+    "href": "week02_linear_regression/week02_presentation.html#deriving-the-optimal-solution-via-projection-3",
+    "title": "Linear Regression",
+    "section": "Deriving the Optimal Solution via Projection",
+    "text": "Deriving the Optimal Solution via Projection\nStep 4: Solve for \\(\\boldsymbol{\\beta}^\\ast\\)\nStarting from the normal equations:\n\\[\n\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}^T\\boldsymbol{y}\n\\]\n\nAssuming \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is invertible (columns of \\(\\boldsymbol{X}\\) are linearly independent):\n\\[\n\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nThis is the closed-form solution for ordinary least squares!\n\n\n\nKey insight: We derived this using projection geometry (\\(\\boldsymbol{r}\\) ⊥ col(\\(\\boldsymbol{X}\\))) instead of calculus (∂J/∂β = 0). Both paths lead to the same solution!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#estimating-the-noise-variance",
+    "href": "week02_linear_regression/week02_presentation.html#estimating-the-noise-variance",
+    "title": "Linear Regression",
+    "section": "Estimating the Noise Variance",
+    "text": "Estimating the Noise Variance\nResidual Variance Estimator\nSince we don’t know the true noise variance \\(\\sigma^2\\), we estimate it from the residuals:\n\\[\n\\hat{\\sigma}^2 = \\frac{1}{n - d - 1}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\frac{\\text{RSS}}{n - d - 1}\n\\]\n\nWhy divide by \\(n - d - 1\\) instead of \\(n\\)?\n\nWe estimated \\(d + 1\\) parameters (\\(\\beta_0, \\beta_1, \\ldots, \\beta_d\\))\nThis uses up \\(d + 1\\) degrees of freedom\nRemaining degrees of freedom: \\(n - (d + 1) = n - d - 1\\)\nDivision by degrees of freedom makes \\(\\hat{\\sigma}^2\\) unbiased: \\(E[\\hat{\\sigma}^2] = \\sigma^2\\)\n\n\n\nAerospace example: If we fit drag as \\(C_D = \\beta_0 + \\beta_1 \\alpha + \\beta_2 \\alpha^2\\) using \\(n = 20\\) data points:\n\nWe have \\(d = 2\\) features (\\(\\alpha, \\alpha^2\\)) plus intercept\nDegrees of freedom: \\(20 - 2 - 1 = 17\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#confidence-intervals-for-coefficients",
+    "href": "week02_linear_regression/week02_presentation.html#confidence-intervals-for-coefficients",
+    "title": "Linear Regression",
+    "section": "Confidence Intervals for Coefficients",
+    "text": "Confidence Intervals for Coefficients\nUnderstanding Coefficient Uncertainty\n\nEach coefficient \\(\\beta_j^\\ast\\) is itself a random variable (depends on random data).\nWe want to quantify: How certain are we about \\(\\beta_j^\\ast\\)?\n\n\nStandard error of \\(\\beta_j^\\ast\\): \\[\n\\text{SE}(\\beta_j^\\ast) = \\sqrt{\\hat{\\sigma}^2 \\left[(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\right]_{jj}}\n\\]\nThis measures the sampling variability of our estimate.\n\n\nConfidence interval (at \\(100(1-\\gamma)\\%\\) confidence level): \\[\n\\beta_j^\\ast \\pm t_{\\gamma/2, n-d-1} \\cdot \\text{SE}(\\beta_j^\\ast)\n\\]\nwhere \\(t_{\\gamma/2, n-d-1}\\) is the critical value from the t-distribution with \\(n-d-1\\) degrees of freedom.\n\n\nInterpretation: We are \\(100(1-\\gamma)\\%\\) confident the true parameter \\(\\beta_j\\) lies in this interval.\nAerospace example: For \\(C_L = \\beta_0 + \\beta_1 \\alpha\\), if \\(\\beta_1^\\ast = 0.105 \\pm 0.008\\) (95% CI), we’re confident the true lift slope is between 0.097 and 0.113 per degree."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients",
+    "href": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients",
+    "title": "Linear Regression",
+    "section": "Hypothesis Testing for Individual Coefficients",
+    "text": "Hypothesis Testing for Individual Coefficients\nThe Question: Does This Feature Matter?\nScenario: We’ve estimated \\(\\beta_j^\\ast\\) from data. But is this coefficient significantly different from zero, or could it just be noise?\n\nNull hypothesis \\(H_0\\): \\(\\beta_j = 0\\)\n\nThe true coefficient is zero\nFeature \\(j\\) has no real effect on the response\nAny non-zero \\(\\beta_j^\\ast\\) we observed is just due to random sampling\n\n\n\nAlternative hypothesis \\(H_1\\): \\(\\beta_j \\neq 0\\)\n\nThe true coefficient is not zero\nFeature \\(j\\) does affect the response"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients-1",
+    "href": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients-1",
+    "title": "Linear Regression",
+    "section": "Hypothesis Testing for Individual Coefficients",
+    "text": "Hypothesis Testing for Individual Coefficients\nThe Test Statistic\nTest statistic (t-statistic): \\[\nt_j = \\frac{\\beta_j^\\ast}{\\text{SE}(\\beta_j^\\ast)} = \\frac{\\text{Estimated coefficient}}{\\text{Standard error of estimate}}\n\\]\n\nInterpretation:\n\nMeasures how many standard errors the estimate is away from zero\nIf \\(\\beta_j = 0\\) truly, we expect \\(\\beta_j^\\ast \\approx 0\\) (within sampling error)\nLarge \\(|t_j|\\) means estimate is far from zero → unlikely if \\(H_0\\) is true\n\n\n\nDistribution under \\(H_0\\): \\[\nt_j \\sim t_{n-d-1}\n\\]\nIf the null hypothesis is true, \\(t_j\\) follows a t-distribution with \\(n-d-1\\) degrees of freedom"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients-2",
+    "href": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients-2",
+    "title": "Linear Regression",
+    "section": "Hypothesis Testing for Individual Coefficients",
+    "text": "Hypothesis Testing for Individual Coefficients\nMaking the Decision\nTwo equivalent approaches:\n\n1. Critical value approach:\n\nReject \\(H_0\\) if \\(|t_j| &gt; t_{\\gamma/2, n-d-1}\\)\nCritical value \\(t_{\\gamma/2, n-d-1}\\) is the threshold from the t-distribution\nIf our test statistic \\(|t_j|\\) exceeds this threshold, reject \\(H_0\\)\nExample: For 95% confidence (\\(\\gamma = 0.05\\)), \\(n = 50\\), \\(d = 2\\): critical value ≈ 2.01\n\nIf \\(|t_j| = 3.5 &gt; 2.01\\), reject \\(H_0\\) (evidence against null)\nIf \\(|t_j| = 1.2 &lt; 2.01\\), fail to reject \\(H_0\\) (insufficient evidence)\n\n\n\n\n2. P-value approach:\n\nP-value = \\(P(|t| &gt; |t_j| \\mid H_0)\\) = probability of seeing \\(|t_j|\\) this large (or larger) if \\(H_0\\) were true\nReject \\(H_0\\) if p-value \\(&lt; \\alpha\\) (commonly \\(\\alpha = 0.05\\))\nSmaller p-value = stronger evidence against \\(H_0\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients-3",
+    "href": "week02_linear_regression/week02_presentation.html#hypothesis-testing-for-individual-coefficients-3",
+    "title": "Linear Regression",
+    "section": "Hypothesis Testing for Individual Coefficients",
+    "text": "Hypothesis Testing for Individual Coefficients\nAerospace Example\nTesting if Mach number affects drag coefficient\nModel: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 M^2 + \\epsilon\\)\nHypotheses:\n\n\\(H_0: \\beta_1 = 0\\) (Mach number has no linear effect on drag)\n\\(H_1: \\beta_1 \\neq 0\\) (Mach number does affect drag linearly)\n\n\nResults from data:\n\n\\(\\beta_1^\\ast = 0.042\\)\n\\(\\text{SE}(\\beta_1^\\ast) = 0.010\\)\n\\(t_1 = \\frac{0.042}{0.010} = 4.2\\)\n\\(p-\\text{value} = 0.0003\\)\n\n\n\nInterpretation:\n\nOur estimate is 4.2 standard errors away from zero\nIf \\(H_0\\) were true (\\(\\beta_1 = 0\\)), probability of seeing \\(|t| \\geq 4.2\\) is only 0.03%\nStrong evidence that Mach number affects drag\nDecision: Reject \\(H_0: \\beta_1 = 0\\) at \\(\\alpha = 0.05\\) level"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test",
+    "href": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test",
+    "title": "Linear Regression",
+    "section": "Testing the Overall Model: F-Test",
+    "text": "Testing the Overall Model: F-Test\nThe Big Picture Question\nIndividual t-tests ask: “Does this specific feature matter?”\nF-test asks: “Does any feature matter at all?”\n\nNull hypothesis \\(H_0\\): \\(\\beta_1 = \\beta_2 = \\cdots = \\beta_d = 0\\)\n\nAll feature coefficients are zero (only intercept \\(\\beta_0\\) matters)\nBest prediction is just the mean: \\(\\hat{y} = \\bar{y}\\)\nModel with features is no better than trivial baseline\n\n\n\nAlternative hypothesis \\(H_1\\): At least one \\(\\beta_j \\neq 0\\)\n\nAt least one feature has a real effect\nModel with features does better than just predicting the mean"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-1",
+    "href": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-1",
+    "title": "Linear Regression",
+    "section": "Testing the Overall Model: F-Test",
+    "text": "Testing the Overall Model: F-Test\nThe F-Statistic\n\\[\nF = \\frac{(\\text{TSS} - \\text{RSS})/d}{\\text{RSS}/(n-d-1)} \\sim F_{d, n-d-1} \\text{ under } H_0\n\\]\nwhere:\n\n\\(\\text{TSS} = \\sum_{i=1}^n (y_i - \\bar{y})^2\\) = total sum of squares (total variance in \\(y\\))\n\\(\\text{RSS} = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2\\) = residual sum of squares (unexplained variance)\n\\(\\bar{y} = \\frac{1}{n}\\sum_{i=1}^n y_i\\) = sample mean of observed values (just average the data)\n\\(\\hat{y}_i = \\boldsymbol{x}_i^T\\boldsymbol{\\beta}^*\\) = predicted value from regression model (uses features)\n\n\nWhat is this testing?\nThe F-test asks: “Is my regression model with features significantly better than just predicting the mean \\(\\bar{y}\\) every time?”\nIntuition: Imagine two competing strategies:\n\nNaive approach: Ignore all features, always guess \\(\\bar{y}\\) (e.g., always predict average drag coefficient)\nModel approach: Use features \\(\\boldsymbol{x}\\) to predict \\(\\hat{y}\\) (e.g., use angle of attack to predict drag)\n\nThe F-statistic measures how much better the model is compared to the naive baseline."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-2",
+    "href": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-2",
+    "title": "Linear Regression",
+    "section": "Testing the Overall Model: F-Test",
+    "text": "Testing the Overall Model: F-Test\nBreaking down the formula:\n\\[\nF = \\frac{\\text{Variance explained by features (per feature)}}{\\text{Unexplained variance (per degree of freedom)}}\n\\]\nNumerator \\((\\text{TSS} - \\text{RSS})/d\\):\n\n\\(\\text{TSS} - \\text{RSS}\\) = explained sum of squares (ESS) = how much variance the model captures\nThink of it as: “Total variance in data” minus “What’s left unexplained” = “What we successfully explained”\nDivided by \\(d\\) (number of features) = average explanation per feature\nThis normalization prevents unfair advantage to models with many features\n\nDenominator \\(\\text{RSS}/(n-d-1)\\):\n\nThis is \\(\\hat{\\sigma}^2\\) = mean squared error (MSE) = average squared residual\nDivided by \\((n-d-1)\\) degrees of freedom to get an unbiased estimate\nRepresents the typical prediction error your model makes\nThis is the “noise floor”—the baseline variance you can’t reduce"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#prediction-metrics-1",
+    "href": "week02_linear_regression/week02_presentation.html#prediction-metrics-1",
+    "title": "Linear Regression",
+    "section": "Prediction Metrics",
+    "text": "Prediction Metrics\nMean Absolute Error (MAE)\n\\[\n\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^n |y_i - \\hat{y}_i|\n\\]\n\nInterpretation:\n\nAverage absolute prediction error\nLinear penalty for errors (vs. quadratic for MSE)\nMore robust to outliers than MSE\nSame units as \\(y\\)\n\n\n\nComparison: MAE vs RMSE\n\nMAE: Treats all errors equally (outliers don’t dominate)\nRMSE: Penalizes large errors more (sensitive to outliers)\nWhen to use which?\n\nMAE: When outliers shouldn’t drive model selection\nRMSE: When large errors are particularly costly\n\n\n\n\nAerospace example: Predicting landing distance\n\nA 200m error is twice as bad as 100m → use MAE\nBut a 500m error could be catastrophic → maybe use RMSE to penalize large errors heavily"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation-the-gold-standard",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation-the-gold-standard",
+    "title": "Linear Regression",
+    "section": "Cross-Validation: The Gold Standard",
+    "text": "Cross-Validation: The Gold Standard\nWhy Cross-Validation?\nThe fundamental problem: Training error ≠ Test error\n\nTraining error (in-sample error):\n\nHow well model fits the data it was trained on\nAlways optimistically biased (model has “seen” this data)\nWill be artificially low, especially with complex models\n\n\n\nTest error (out-of-sample error):\n\nHow well model predicts new, unseen data\nWhat we actually care about for real-world performance\nTrue measure of generalization\n\n\n\nThe danger: Model might overfit to training data\n\nCaptures noise and idiosyncrasies, not true patterns\nTraining error looks great, but test error is terrible!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation-the-gold-standard-1",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation-the-gold-standard-1",
+    "title": "Linear Regression",
+    "section": "Cross-Validation: The Gold Standard",
+    "text": "Cross-Validation: The Gold Standard\nk-Fold Cross-Validation Process\nGoal: Estimate test error using only training data (no separate test set needed)\n\nAlgorithm:\n\nSplit data into \\(k\\) equal-sized folds (partitions)\nFor each fold \\(i = 1, \\ldots, k\\):\n\nTrain model on remaining \\(k-1\\) folds\nTest on held-out fold \\(i\\)\nCompute error \\(e_i\\) on fold \\(i\\)\n\nAverage the errors: \\(\\text{CV}_k = \\frac{1}{k}\\sum_{i=1}^k e_i\\)\n\n\n\nKey insight: Each data point is used for testing exactly once!\n\nEvery point gets to be “unseen” data\nGet k different train/test splits from same dataset\nMore robust estimate than single train/test split"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation-the-gold-standard-2",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation-the-gold-standard-2",
+    "title": "Linear Regression",
+    "section": "Cross-Validation: The Gold Standard",
+    "text": "Cross-Validation: The Gold Standard\nChoosing k\nCommon choices:\n\nk = 5 or k = 10 (most popular)\n\nGood bias-variance tradeoff\nComputationally efficient\nEach fold has enough data\n\n\n\nk = n (Leave-One-Out Cross-Validation, LOOCV)\n\nTrain on \\(n-1\\) points, test on 1 point\nRepeat \\(n\\) times\nPros: Nearly unbiased, uses maximum training data\nCons: Computationally expensive for large \\(n\\), high variance\n\n\n\nAerospace application:\n\nFor 100 wind tunnel test points with k=10:\n\nTrain 10 models, each on 90 points\nTest each model on held-out 10 points\nAverage performance across all 10 folds\nGet reliable estimate of how well model will predict future tests"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-evaluation-how-good-is-our-fit",
+    "href": "week02_linear_regression/week02_presentation.html#model-evaluation-how-good-is-our-fit",
+    "title": "Linear Regression",
+    "section": "Model Evaluation: How Good is Our Fit?",
+    "text": "Model Evaluation: How Good is Our Fit?\nR-squared: The “Goodness of Fit” Metric\nAerospace scenario: You’ve modeled lift coefficient vs angle of attack. How well does your model explain the data?\n\nR² tells you: What fraction of the variance is explained by your model?\n\\[\nR^2 = 1 - \\frac{\\text{Prediction errors}}{\\text{Total variance}} = 1 - \\frac{\\sum(y_i - \\hat{y}_i)^2}{\\sum(y_i - \\bar{y})^2}\n\\]\nThink of it as: How much better is my model than just using the average?\n\n\nExample: Drag polar modeling\n\nWithout model: “Drag is around 0.025 on average” (just use mean)\nWith model: \\(C_D = C_{D_0} + k C_L^2\\) captures induced drag physics\nIf \\(R^2 = 0.94\\): Model explains 94% of drag variation\nRemaining 6%: Measurement noise, unmodeled effects (Reynolds number, surface roughness)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-evaluation-r-squared-in-practice",
+    "href": "week02_linear_regression/week02_presentation.html#model-evaluation-r-squared-in-practice",
+    "title": "Linear Regression",
+    "section": "Model Evaluation: R-squared in Practice",
+    "text": "Model Evaluation: R-squared in Practice\nInterpreting R² Values\n\n\\(R^2 = 0.99\\) (Excellent fit)\n\nExample: Altitude vs atmospheric pressure\nPhysics-based relationship is very strong\nModel captures nearly all variation\nUseful for precise predictions\n\n\n\n\\(R^2 = 0.75\\) (Decent fit)\n\nExample: Fuel consumption vs flight parameters\nMultiple factors at play (weight, speed, wind, pilot technique)\nModel captures main trends but misses some complexity\nGood for general planning, not precise optimization\n\n\n\n\\(R^2 = 0.30\\) (Weak fit)\n\nExample: Turbulence severity vs weather variables\nMany unmeasured factors influence outcome\nModel has some predictive power but high uncertainty\nUse with caution, gather more features"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-evaluation-the-r²-trap",
+    "href": "week02_linear_regression/week02_presentation.html#model-evaluation-the-r²-trap",
+    "title": "Linear Regression",
+    "section": "Model Evaluation: The R² Trap",
+    "text": "Model Evaluation: The R² Trap\nProblem: R² Always Increases with More Features!\nWind tunnel experiment: Modeling drag coefficient\n\nModel 1: \\(C_D = \\beta_0 + \\beta_1 M\\) (just Mach number) - \\(R^2 = 0.78\\)\nModel 2: Add Reynolds number: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 Re\\) - \\(R^2 = 0.85\\) ✓ Better!\nModel 3: Add random noise feature: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 Re + \\beta_3(\\text{noise})\\) - \\(R^2 = 0.86\\) ← Still increased! Even though noise has no meaning!\n\n\nThe problem: R² rewards complexity even when features add no real value\nSolution: Use Adjusted R² which penalizes adding useless features\n\\[\nR^2_{\\text{adj}} = 1 - (1 - R^2)\\frac{n-1}{n-d-1}\n\\]\nOnly increases if new feature improves fit more than expected by chance"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#prediction-accuracy-rmse",
+    "href": "week02_linear_regression/week02_presentation.html#prediction-accuracy-rmse",
+    "title": "Linear Regression",
+    "section": "Prediction Accuracy: RMSE",
+    "text": "Prediction Accuracy: RMSE\nRoot Mean Squared Error: Speaking the Engineer’s Language\nRMSE = Average prediction error in the same units as your measurement\n\\[\n\\text{RMSE} = \\sqrt{\\frac{1}{n}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2}\n\\]\n\nAerospace Example 1: Range Prediction\n\nModel predicts aircraft range for different payloads\nActual range: 2,800 km, Predicted: 2,750 km → Error: 50 km\nAfter many flights: RMSE = 85 km\nInterpretation: “On average, range predictions are off by 85 km”\nDecision: Is ±85 km acceptable for mission planning? (Probably yes for long range, no for short hops)\n\n\n\nAerospace Example 2: Landing Distance\n\nModel predicts touchdown point on runway\nRMSE = 45 m\nInterpretation: Typical error is 45 meters from predicted spot\nDecision: With 2000m runway and 500m safety margin, this is acceptable"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#prediction-accuracy-mae-vs-rmse",
+    "href": "week02_linear_regression/week02_presentation.html#prediction-accuracy-mae-vs-rmse",
+    "title": "Linear Regression",
+    "section": "Prediction Accuracy: MAE vs RMSE",
+    "text": "Prediction Accuracy: MAE vs RMSE\nWhen Do Outliers Matter?\nMAE (Mean Absolute Error): Treats all errors equally\n\\[\n\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^n |y_i - \\hat{y}_i|\n\\]\nRMSE: Penalizes large errors heavily (squaring effect)\n\nScenario: Predicting Stall Speed\nYou have 20 test flights. 18 predictions are within 2 knots. 2 predictions are off by 10 knots.\n\nMAE ≈ 3 knots: Average error across all flights\nRMSE ≈ 5 knots: Higher due to those 2 large errors\n\nWhich to use?\n\nIf you care equally about all predictions → MAE\nIf large errors are dangerous (safety-critical) → RMSE (penalizes big misses)\n\n\n\nAviation rule of thumb:\n\nOperational planning (fuel, time estimates): MAE okay\nSafety limits (V-speeds, load factors): Use RMSE to be conservative"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#the-overfitting-problem",
+    "href": "week02_linear_regression/week02_presentation.html#the-overfitting-problem",
+    "title": "Linear Regression",
+    "section": "The Overfitting Problem",
+    "text": "The Overfitting Problem\nTraining vs Real-World Performance\nWind tunnel scenario: 50 data points of \\(C_L\\) vs \\(\\alpha\\)\n\nApproach 1: Simple linear model\n\n\\(C_L = \\beta_0 + \\beta_1 \\alpha\\)\nTraining RMSE: 0.08\nFits main trend, some scatter\n\n\n\nApproach 2: Complex polynomial\n\n\\(C_L = \\beta_0 + \\beta_1 \\alpha + \\beta_2 \\alpha^2 + \\cdots + \\beta_{10} \\alpha^{10}\\)\nTraining RMSE: 0.02 (Much better!)\nPasses through almost every point!\n\n\n\nThe test: New wind tunnel run with 10 fresh measurements\n\nSimple model: Test RMSE = 0.09 (Similar to training)\nComplex model: Test RMSE = 0.31 (Much worse! 15x larger than training!)\n\nWhat happened? Complex model overfit the noise in training data"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation-testing-without-a-test-set",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation-testing-without-a-test-set",
+    "title": "Linear Regression",
+    "section": "Cross-Validation: Testing Without a Test Set",
+    "text": "Cross-Validation: Testing Without a Test Set\nThe Problem with Single Train-Test Splits\nYou have 100 flight test data points. How to evaluate your model?\n\nOption 1: Single 80-20 split ❌\n\nTrain on 80 flights, test on 20 flights\nProblem: Performance depends heavily on which 20 you held out\nLucky split: high-performing model might just have easy test cases\nUnlucky split: good model might look bad with difficult test cases\n\n\n\nOption 2: Cross-validation ✓\n\nEveryone gets a chance to be test data\nSplit 100 flights into 10 groups of 10\nTrain 10 different models, each time holding out a different group\nAverage performance across all 10 test groups\nMore reliable estimate of real-world performance"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation-how-it-works",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation-how-it-works",
+    "title": "Linear Regression",
+    "section": "Cross-Validation: How It Works",
+    "text": "Cross-Validation: How It Works\n5-Fold Cross-Validation Example\nScenario: 100 flight tests, modeling fuel consumption\n\nSetup:\n\nRandomly divide 100 flights into 5 groups of 20 flights each\nGroups: A, B, C, D, E\n\n\n\nThe process:\n\nRound 1: Train on {A,B,C,D}, test on E → Error₁\nRound 2: Train on {A,B,C,E}, test on D → Error₂\nRound 3: Train on {A,B,D,E}, test on C → Error₃\nRound 4: Train on {A,C,D,E}, test on B → Error₄\nRound 5: Train on {B,C,D,E}, test on A → Error₅\n\nFinal estimate: \\(\\text{CV Error} = \\frac{1}{5}(\\text{Error}_1 + \\cdots + \\text{Error}_5)\\)\n\n\nResult: Every single flight was used for testing exactly once!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#cross-validation-practical-considerations",
+    "href": "week02_linear_regression/week02_presentation.html#cross-validation-practical-considerations",
+    "title": "Linear Regression",
+    "section": "Cross-Validation: Practical Considerations",
+    "text": "Cross-Validation: Practical Considerations\nHow Many Folds?\n\nk = 5 or k = 10 (Most common in aerospace)\n\nWhen: 50-500 data points (typical wind tunnel campaigns, flight tests)\nWhy: Good balance between computational cost and reliability\nEach fold: Still has enough data for training\nExample: 200 wind tunnel runs → 10 folds of 20 runs each\n\n\n\nk = 20 or Leave-One-Out (Expensive but thorough)\n\nWhen: Very limited data (&lt;50 points), expensive tests\nWhy: Use maximum data for training\nCost: Training many more models\nExample: 30 full-scale aircraft tests → Hold out 1 or 2 at a time\n\n\n\nAerospace best practice:\n\nResearch/development: k=10 standard\nCertification data (expensive): Consider leave-one-out or k=n\nLarge datasets (CFD, simulation): k=5 to save computation time"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-3",
+    "href": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-3",
+    "title": "Linear Regression",
+    "section": "Testing the Overall Model: F-Test",
+    "text": "Testing the Overall Model: F-Test\nThe F-ratio logic:\n\\[\nF = \\frac{\\text{Average variance explained per feature}}{\\text{Average variance of residuals}}\n\\]\n\nIf features are truly useless, explained variance ≈ residual variance → \\(F \\approx 1\\)\nIf features are useful, explained variance ≫ residual variance → \\(F \\gg 1\\)\nF-distribution tells us: “How likely is this F-value if features were truly useless?”\n\nInterpretation:\n\nLarge F (≫ 1): Model explains much more than noise → features are useful, reject \\(H_0\\)\nSmall F (≈ 1): Model barely better than just predicting \\(\\bar{y}\\) → features not useful, fail to reject \\(H_0\\)\nCritical threshold: Compare to \\(F_{d, n-d-1}\\) distribution at chosen significance level"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-4",
+    "href": "week02_linear_regression/week02_presentation.html#testing-the-overall-model-f-test-4",
+    "title": "Linear Regression",
+    "section": "Testing the Overall Model: F-Test",
+    "text": "Testing the Overall Model: F-Test\nAerospace Example\nModeling aircraft range as function of weight, speed, altitude\nModel: \\(\\text{Range} = \\beta_0 + \\beta_1(\\text{Weight}) + \\beta_2(\\text{Speed}) + \\beta_3(\\text{Altitude}) + \\epsilon\\)\n\nResults:\n\n\\(\\text{TSS} = 125,000\\) km² (total variance)\n\\(\\text{RSS} = 18,500\\) km² (residual variance after fitting)\n\\(d = 3\\) features, \\(n = 40\\) flights\n\\(F = \\frac{(125000 - 18500)/3}{18500/(40-3-1)} = \\frac{35500}{514} = 69.1\\)\np-value \\(&lt; 0.0001\\)\n\n\n\nInterpretation:\n\nFeatures explain variance 69 times better than residual noise\nIf all \\(\\beta_j = 0\\), probability of \\(F \\geq 69.1\\) is essentially zero\nStrong evidence that at least some features affect range\nThe full model is significantly better than predicting mean range"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-detailed-aerospace-example",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-detailed-aerospace-example",
+    "title": "Linear Regression",
+    "section": "F-Test: Detailed Aerospace Example",
+    "text": "F-Test: Detailed Aerospace Example\nScenario: Predicting Business Jet Range\nEngineering problem: Predict maximum range for a business jet based on mission parameters\nDataset: 40 flights from flight test program\nFeatures:\n\n\\(x_1\\) = Takeoff weight (1000s kg) — heavier aircraft burns more fuel\n\\(x_2\\) = Cruise speed (Mach number) — faster flight reduces range\n\\(x_3\\) = Cruise altitude (1000s ft) — higher altitude improves efficiency\n\nResponse:\n\n\\(y\\) = Maximum range (km)\n\n\nRegression model: \\[\n\\text{Range} = \\beta_0 + \\beta_1(\\text{Weight}) + \\beta_2(\\text{Speed}) + \\beta_3(\\text{Altitude}) + \\epsilon\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-example-the-data",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-example-the-data",
+    "title": "Linear Regression",
+    "section": "F-Test Example: The Data",
+    "text": "F-Test Example: The Data\nSummary Statistics from Flight Tests\nResponse variable (Range in km):\n\nMean: \\(\\bar{y} = 5250\\) km (average range across all flights)\nStandard deviation: 354 km\nMin: 4420 km, Max: 6100 km\n\nQuestion we’re asking:\nIs this regression model with 3 features significantly better than just predicting \\(\\bar{y} = 5250\\) km every time?\n\nCompeting approaches:\n\nNaive model \\(H_0\\): Ignore all features, always predict \\(\\bar{y} = 5250\\) km\n\nSimple, but doesn’t use any information about weight, speed, altitude\n\nRegression model \\(H_1\\): Use features to make informed predictions\n\nMore complex, but should predict better if features matter"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-example-computing-the-statistic",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-example-computing-the-statistic",
+    "title": "Linear Regression",
+    "section": "F-Test Example: Computing the Statistic",
+    "text": "F-Test Example: Computing the Statistic\nStep 1: Calculate Total Sum of Squares (TSS)\nTSS measures total variance in the data around the mean:\n\\[\n\\text{TSS} = \\sum_{i=1}^{40} (y_i - \\bar{y})^2 = 125{,}000 \\text{ km}^2\n\\]\nInterpretation: If we only predict \\(\\bar{y} = 5250\\) km, our total squared error is 125,000 km²\n\nStep 2: Fit Regression and Calculate Residual Sum of Squares (RSS)\nAfter fitting the model, we get predictions \\(\\hat{y}_i\\) for each flight:\n\\[\n\\text{RSS} = \\sum_{i=1}^{40} (y_i - \\hat{y}_i)^2 = 18{,}500 \\text{ km}^2\n\\]\nInterpretation: After using weight, speed, altitude in our model, squared error drops to 18,500 km²"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-example-understanding-the-improvement",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-example-understanding-the-improvement",
+    "title": "Linear Regression",
+    "section": "F-Test Example: Understanding the Improvement",
+    "text": "F-Test Example: Understanding the Improvement\nStep 3: Calculate Explained Sum of Squares\n\\[\n\\text{ESS} = \\text{TSS} - \\text{RSS} = 125{,}000 - 18{,}500 = 106{,}500 \\text{ km}^2\n\\]\nVisual interpretation:\nTotal variance:        ████████████████████████ 125,000 km²\nExplained by model:    ████████████████████      106,500 km² (85.2%)\nStill unexplained:     ████                       18,500 km² (14.8%)\n\nKey insight: The model reduced prediction error by 85% compared to just using the mean!\nBut is this reduction statistically significant, or could it happen by chance?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-example-computing-the-f-statistic",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-example-computing-the-f-statistic",
+    "title": "Linear Regression",
+    "section": "F-Test Example: Computing the F-Statistic",
+    "text": "F-Test Example: Computing the F-Statistic\nStep 4: Normalize by Degrees of Freedom\nNumerator — Average explained variance per feature: \\[\n\\frac{\\text{ESS}}{d} = \\frac{106{,}500}{3} = 35{,}500 \\text{ km}^2 \\text{ per feature}\n\\]\nDenominator — Mean squared error (MSE): \\[\n\\frac{\\text{RSS}}{n-d-1} = \\frac{18{,}500}{40-3-1} = \\frac{18{,}500}{36} = 514 \\text{ km}^2\n\\]\nThis is \\(\\hat{\\sigma}^2\\) — the estimated variance of residuals.\n\nStep 5: Calculate F-Statistic\n\\[\nF = \\frac{35{,}500}{514} = 69.1\n\\]\nInterpretation: On average, each feature explains variance 69 times larger than the typical residual variance!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-example-making-the-decision",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-example-making-the-decision",
+    "title": "Linear Regression",
+    "section": "F-Test Example: Making the Decision",
+    "text": "F-Test Example: Making the Decision\nStep 6: Compare to F-Distribution\nThe F-statistic follows an \\(F_{d, n-d-1} = F_{3, 36}\\) distribution under \\(H_0\\).\n\nCritical value approach (at \\(\\gamma = 0.05\\) significance):\n\nCritical value from F-distribution: \\(F_{\\text{crit}} \\approx 2.87\\)\n\nFound using statistical tables or software (e.g., Python’s scipy.stats.f.ppf(0.95, 3, 36))\nThis is the threshold: values above this are “unusual” if \\(H_0\\) is true\n\nOur F-statistic: \\(F = 69.1\\)\nSince \\(69.1 \\gg 2.87\\), reject \\(H_0\\)\n\n\n\np-value approach:\n\np-value = \\(P(F_{3,36} \\geq 69.1) &lt; 0.0001\\)\nThis is the probability of seeing such a large F if features were truly useless\nSince p-value \\(&lt; 0.05\\), reject \\(H_0\\)\n\n\n\n\nConclusion: We have overwhelming evidence that at least one of (weight, speed, altitude) significantly affects aircraft range. The regression model is far superior to just predicting the mean."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#f-test-example-practical-interpretation",
+    "href": "week02_linear_regression/week02_presentation.html#f-test-example-practical-interpretation",
+    "title": "Linear Regression",
+    "section": "F-Test Example: Practical Interpretation",
+    "text": "F-Test Example: Practical Interpretation\nWhat Does F = 69.1 Really Mean?\nFor the flight test engineer:\n\nStrong predictive value: The features (weight, speed, altitude) capture real physics of range\nNot random chance: The model’s performance is not due to overfitting or luck\nUse it with confidence: Safe to use this model for mission planning and performance predictions\n\n\nWhat it doesn’t tell you:\n\nWhich specific features are important? – need individual t-tests\nHow accurate individual predictions are? – need prediction intervals\nWhether the model form is correct? – could be nonlinear effects\nIf you have the “right” features? – maybe missing engine efficiency, wind, etc.\n\n\n\nNext step: Use individual coefficient t-tests to determine which of the three features contribute significantly."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-evaluation-metrics-complete-comparison",
+    "href": "week02_linear_regression/week02_presentation.html#model-evaluation-metrics-complete-comparison",
+    "title": "Linear Regression",
+    "section": "Model Evaluation Metrics: Complete Comparison",
+    "text": "Model Evaluation Metrics: Complete Comparison\nSummary of All Error Metrics\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nFormula\nUnits\nRange\nWhen to Use\nPros\nCons\n\n\n\n\nR²\n\\(1 - \\frac{\\text{RSS}}{\\text{TSS}}\\)\nNone\n[0, 1]\nComparing models on same data\nIntuitive (% variance explained)\nAlways increases with features\n\n\nAdj. R²\n\\(1 - (1-R^2)\\frac{n-1}{n-d-1}\\)\nNone\n[-∞, 1]\nModel selection (complexity)\nPenalizes useless features\nCan be negative\n\n\nMSE\n\\(\\frac{1}{n}\\sum(y_i-\\hat{y}_i)^2\\)\n\\(y^2\\)\n[0, ∞)\nTheoretical analysis\nEasy to derive\nSquared units, sensitive to outliers\n\n\nRMSE\n\\(\\sqrt{\\text{MSE}}\\)\nSame as \\(y\\)\n[0, ∞)\nGeneral aviation use\nInterpretable units\nSensitive to outliers\n\n\nMAE\n\\(\\frac{1}{n}\\sum\\|y_i-\\hat{y}_i\\|\\)\nSame as \\(y\\)\n[0, ∞)\nRobust performance\nLess sensitive to outliers\nHarder to optimize\n\n\nMAPE\n\\(\\frac{100}{n}\\sum\\frac{\\|y_i-\\hat{y}_i\\|}{y_i}\\)\n%\n[0, ∞)\nRelative comparison\nScale-independent\nUndefined if \\(y_i=0\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-r²-and-adjusted-r²",
+    "href": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-r²-and-adjusted-r²",
+    "title": "Linear Regression",
+    "section": "Detailed Metric Analysis: R² and Adjusted R²",
+    "text": "Detailed Metric Analysis: R² and Adjusted R²\nR² (Coefficient of Determination)\n\\[\nR^2 = 1 - \\frac{\\sum_{i=1}^n(y_i - \\hat{y}_i)^2}{\\sum_{i=1}^n(y_i - \\bar{y})^2} = 1 - \\frac{\\text{RSS}}{\\text{TSS}} = \\frac{\\text{ESS}}{\\text{TSS}}\n\\]\n\nPhysical interpretation:\n\nNumerator RSS: Sum of squared residuals (what model can’t explain)\nDenominator TSS: Total variance in data (if we only knew \\(\\bar{y}\\))\nR²: Fraction of variance explained by the model\n1 - R²: Fraction of variance not explained by the model\n\n\n\nAerospace example - Lift slope prediction:\n\nWind tunnel data: 50 measurements of \\(C_L\\) vs \\(\\alpha\\)\nSimple model: \\(C_L = \\beta_0 + \\beta_1\\alpha\\)\nTSS = 2.45 (total variance), RSS = 0.12 (residual variance)\n\\(R^2 = 1 - \\frac{0.12}{2.45} = 0.951\\) → Model explains 95.1% of lift variation\nRemaining 4.9%: Measurement noise, 3D effects, tunnel wall interference"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#r²-limitations-and-adjusted-r²",
+    "href": "week02_linear_regression/week02_presentation.html#r²-limitations-and-adjusted-r²",
+    "title": "Linear Regression",
+    "section": "R² Limitations and Adjusted R²",
+    "text": "R² Limitations and Adjusted R²\nWhy R² Can Be Misleading\n\nProblem 1: Always increases with more features\nAdding ANY feature (even random noise) will increase R² or keep it the same, never decrease it.\nExample:\n\nModel A: \\(C_D = \\beta_0 + \\beta_1\\alpha\\) → \\(R^2 = 0.82\\)\nModel B: \\(C_D = \\beta_0 + \\beta_1\\alpha + \\beta_2(\\text{random noise})\\) → \\(R^2 = 0.823\\)\n\nModel B appears “better” but the extra feature is meaningless!\n\n\nSolution: Adjusted R²\n\\[\nR^2_{\\text{adj}} = 1 - (1-R^2)\\frac{n-1}{n-d-1} = 1 - \\frac{\\text{RSS}/(n-d-1)}{\\text{TSS}/(n-1)}\n\\]\n\nPenalizes each additional feature by reducing degrees of freedom\nOnly increases if new feature improves fit more than expected by chance\nCan decrease or even be negative if model is worse than baseline"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#adjusted-r²-detailed-example",
+    "href": "week02_linear_regression/week02_presentation.html#adjusted-r²-detailed-example",
+    "title": "Linear Regression",
+    "section": "Adjusted R²: Detailed Example",
+    "text": "Adjusted R²: Detailed Example\nComparing Two Drag Models\nDataset: 60 wind tunnel runs at various \\(\\alpha\\) and \\(M\\)\n\nModel 1 (Simple): \\(C_D = \\beta_0 + \\beta_1\\alpha + \\beta_2\\alpha^2\\)\n\n\\(d = 2\\) features, \\(n = 60\\) data points\nRSS = 0.0045, TSS = 0.0520\n\\(R^2 = 1 - \\frac{0.0045}{0.0520} = 0.913\\)\n\\(R^2_{\\text{adj}} = 1 - (1-0.913)\\frac{60-1}{60-2-1} = 1 - 0.087 \\times \\frac{59}{57} = 0.910\\)\n\n\n\nModel 2 (Complex): \\(C_D = \\beta_0 + \\beta_1\\alpha + \\beta_2\\alpha^2 + \\beta_3 M + \\beta_4 M^2 + \\beta_5\\alpha M\\)\n\n\\(d = 5\\) features, \\(n = 60\\) data points\n\nRSS = 0.0042, TSS = 0.0520\n\\(R^2 = 1 - \\frac{0.0042}{0.0520} = 0.919\\) → Slightly higher!\n\\(R^2_{\\text{adj}} = 1 - (1-0.919)\\frac{60-1}{60-5-1} = 1 - 0.081 \\times \\frac{59}{54} = 0.911\\)\n\n\n\nDecision: Model 2 has slightly higher Adj. R² (0.911 vs 0.910), suggesting the Mach number terms add marginal value. But the improvement is small – consider Model 1 for simplicity unless transonic effects are critical."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-mse-and-rmse",
+    "href": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-mse-and-rmse",
+    "title": "Linear Regression",
+    "section": "Detailed Metric Analysis: MSE and RMSE",
+    "text": "Detailed Metric Analysis: MSE and RMSE\nMean Squared Error (MSE)\n\\[\n\\text{MSE} = \\frac{1}{n}\\sum_{i=1}^n(y_i - \\hat{y}_i)^2 = \\frac{\\text{RSS}}{n}\n\\]\n\nProperties:\n\nAlways positive (squared errors)\nPenalizes large errors heavily (quadratic penalty)\nUnits: Squared units of response variable\nOptimization: Differentiable, easy to minimize (used in least squares)\nStatistical connection: Unbiased estimator of \\(\\sigma^2\\) when using \\(n-d-1\\) denominator\n\n\n\nRoot Mean Squared Error (RMSE)\n\\[\n\\text{RMSE} = \\sqrt{\\text{MSE}} = \\sqrt{\\frac{1}{n}\\sum_{i=1}^n(y_i - \\hat{y}_i)^2}\n\\]\nWhy take the square root?\n\nReturns to original units of the response\nMakes interpretation intuitive: “Average prediction error in practical units”\nComparable to standard deviation"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#rmse-aerospace-applications",
+    "href": "week02_linear_regression/week02_presentation.html#rmse-aerospace-applications",
+    "title": "Linear Regression",
+    "section": "RMSE: Aerospace Applications",
+    "text": "RMSE: Aerospace Applications\nExample 1: Fuel Burn Prediction\nModel - Predict fuel consumption (kg) for commercial flights\nResults on test data:\n\nActual fuel: [12,500, 14,200, 13,800, 15,100, 12,900] kg\nPredicted: [12,300, 14,500, 13,700, 15,000, 13,200] kg\nErrors: [200, -300, 100, 100, -300] kg\nMSE = \\(\\frac{1}{5}(200^2 + 300^2 + 100^2 + 100^2 + 300^2) = \\frac{230000}{5} = 46000\\) kg²\nRMSE = 214 kg\n\n\nEngineering interpretation:\n\n“Fuel predictions are typically off by ±214 kg”\nFor a flight requiring ~13,500 kg, error is ~1.6%\nDecision: Acceptable for operational planning with safety margins"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-mae",
+    "href": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-mae",
+    "title": "Linear Regression",
+    "section": "Detailed Metric Analysis: MAE",
+    "text": "Detailed Metric Analysis: MAE\nMean Absolute Error\n\\[\n\\text{MAE} = \\frac{1}{n}\\sum_{i=1}^n|y_i - \\hat{y}_i|\n\\]\n\nProperties:\n\nLinear penalty: All errors treated equally (no squaring)\nRobust to outliers: Large errors don’t dominate as in RMSE\nUnits: Same as response variable (like RMSE)\nOptimization: Less smooth (absolute value not differentiable at 0)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mae-vs-rmse-side-by-side-comparison",
+    "href": "week02_linear_regression/week02_presentation.html#mae-vs-rmse-side-by-side-comparison",
+    "title": "Linear Regression",
+    "section": "MAE vs RMSE: Side-by-Side Comparison",
+    "text": "MAE vs RMSE: Side-by-Side Comparison\nSame Dataset, Different Stories\nScenario: Predicting landing rollout distance (10 test landings)\n\n\n\nLanding\nActual (m)\nPredicted (m)\nError (m)\nSquared Error\n\n\n\n\n1\n450\n445\n5\n25\n\n\n2\n430\n435\n-5\n25\n\n\n3\n460\n455\n5\n25\n\n\n4\n440\n448\n-8\n64\n\n\n5\n455\n450\n5\n25\n\n\n6\n445\n442\n3\n9\n\n\n7\n435\n438\n-3\n9\n\n\n8\n470\n460\n10\n100\n\n\n9\n442\n445\n-3\n9\n\n\n10\n450\n500\n-50\n2500\n\n\n\n\nCalculations:\n\n\\(\\text{MAE} = \\frac{5+5+5+8+5+3+3+10+3+50}{10} = \\frac{97}{10} = 9.7\\) m\n\\(\\text{MSE} = \\frac{25+25+25+64+25+9+9+100+9+2500}{10} = \\frac{2791}{10} = 279.1\\) m²\n\\(\\text{RMSE} = \\sqrt{279.1} = 16.7\\) m\n\nKey insight: One bad prediction (50 m error) dramatically inflates RMSE but has less effect on MAE. Ratio RMSE/MAE = 1.72 indicates presence of outliers."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mae-vs-rmse-decision-guide",
+    "href": "week02_linear_regression/week02_presentation.html#mae-vs-rmse-decision-guide",
+    "title": "Linear Regression",
+    "section": "MAE vs RMSE: Decision Guide",
+    "text": "MAE vs RMSE: Decision Guide\nWhich Metric Should You Use?\n\n\n\n\n\n\nSafety-Critical Applications → Use RMSE\n\n\nWhen: Aircraft performance limits, structural loads, V-speeds, obstacle clearance\nWhy: Large errors can be catastrophic. RMSE heavily penalizes outliers.\nExample: Predicting maximum load factor — if model occasionally predicts 20% low, structure could fail.\n\n\n\n\n\n\n\n\n\nOperational Planning → Consider MAE\n\n\nWhen: Fuel planning, schedule estimates, maintenance intervals\nWhy: Occasional outliers are acceptable; focus on typical performance.\nExample: Taxi-out time — usually 10-15 min, occasionally 45 min (traffic). MAE captures typical experience."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-mape",
+    "href": "week02_linear_regression/week02_presentation.html#detailed-metric-analysis-mape",
+    "title": "Linear Regression",
+    "section": "Detailed Metric Analysis: MAPE",
+    "text": "Detailed Metric Analysis: MAPE\nMean Absolute Percentage Error\n\\[\n\\text{MAPE} = \\frac{100\\%}{n}\\sum_{i=1}^n\\left|\\frac{y_i - \\hat{y}_i}{y_i}\\right|\n\\]\n\nProperties:\n\nScale-independent: Expressed as percentage, comparable across different problems\nIntuitive: Non-technical stakeholders understand “5% error”\nAsymmetric: Penalizes under-predictions more than over-predictions\nUndefined for \\(y_i = 0\\): Cannot divide by zero\n\n\n\nWhen to use: Comparing models across different scales (fuel kg vs distance km), reporting to non-technical audiences, when relative accuracy matters more than absolute."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mape-advantages-and-pitfalls",
+    "href": "week02_linear_regression/week02_presentation.html#mape-advantages-and-pitfalls",
+    "title": "Linear Regression",
+    "section": "MAPE: Advantages and Pitfalls",
+    "text": "MAPE: Advantages and Pitfalls\nAdvantage: Scale Independence\nExample: Comparing two models across different aircraft\n\nModel A - Small business jet fuel prediction:\n\nTypical fuel burn: 1,200 kg\nRMSE = 50 kg → MAPE ≈ 4.2%\n\nModel B - Heavy cargo aircraft fuel prediction:\n\nTypical fuel burn: 45,000 kg\n\nRMSE = 1,500 kg → MAPE ≈ 3.3%\n\nConclusion: Model B appears better in absolute terms (lower MAPE), even though RMSE is 30× larger. Both models achieve similar relative accuracy for their respective applications."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mape-pitfalls-and-warnings",
+    "href": "week02_linear_regression/week02_presentation.html#mape-pitfalls-and-warnings",
+    "title": "Linear Regression",
+    "section": "MAPE: Pitfalls and Warnings",
+    "text": "MAPE: Pitfalls and Warnings\nPitfall 1: Asymmetry\nMAPE penalizes under-predictions more than over-predictions of equal magnitude.\n\nExample: Predicting part cost of $100\n\nOver-predict by $50: Predicted = $150 → Error = \\(\\frac{|150-100|}{100} = 50\\%\\)\nUnder-predict by $50: Predicted = $50 → Error = \\(\\frac{|50-100|}{50} = 100\\%\\)\n\nSame absolute error ($50), but under-prediction contributes twice as much to MAPE!\n\n\nPitfall 2: Division by Zero or Near-Zero\nProblem: If true value \\(y_i \\approx 0\\), MAPE explodes\nExample: Predicting sideslip angle \\(\\beta\\) during wings-level flight\n\nTrue: \\(\\beta = 0.5°\\), Predicted: \\(\\beta = 1.5°\\) → Error = 1°\nMAPE = \\(\\frac{|1.5-0.5|}{0.5} \\times 100\\% = 200\\%\\) ❌ Misleading!\n\nSolution: Use absolute metrics (MAE, RMSE) when values can be near zero"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#summary-choosing-the-right-metric",
+    "href": "week02_linear_regression/week02_presentation.html#summary-choosing-the-right-metric",
+    "title": "Linear Regression",
+    "section": "Summary: Choosing the Right Metric",
+    "text": "Summary: Choosing the Right Metric\nDecision Tree for Aerospace Applications\n\n\n\n\n\n\nStep 1: What’s Your Goal?\n\n\nGoal: Compare model performance on same dataset\n\nUse R² or Adj. R² (intuitive variance explained)\n\nGoal: Interpretable error in engineering units\n\nUse RMSE (if safety-critical, penalize outliers) or MAE (if robust to outliers)\n\nGoal: Compare across different problems/scales\n\nUse MAPE (percentage, scale-independent)\n\nGoal: Model selection (avoid overfitting)\n\nUse Adj. R² (penalizes complexity) or Cross-validation RMSE/MAE\n\n\n\n\n\n\n\n\n\n\n\nStep 2: What’s Your Application Domain?\n\n\n\nAircraft performance certification → RMSE + Adj. R²\nOperational fuel/time planning → MAE + MAPE\n\nResearch model comparison → R², Adj. R², RMSE\nSafety-critical systems → RMSE (conservative)\n\n\n\n\n\n\n\nAlways use multiple metrics to give complete picture of model performance."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#step-2-whats-your-application-domain",
+    "href": "week02_linear_regression/week02_presentation.html#step-2-whats-your-application-domain",
+    "title": "Linear Regression",
+    "section": "Step 2: What’s Your Application Domain?",
+    "text": "Step 2: What’s Your Application Domain?\nAircraft performance certification → RMSE + Adj. R² Operational fuel/time planning → MAE + MAPE\nResearch model comparison → R², Adj. R², RMSE Safety-critical systems → RMSE (conservative)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#comprehensive-error-metrics-table",
+    "href": "week02_linear_regression/week02_presentation.html#comprehensive-error-metrics-table",
+    "title": "Linear Regression",
+    "section": "Comprehensive Error Metrics Table",
+    "text": "Comprehensive Error Metrics Table\nQuick Reference for Model Evaluation\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nFormula\nUnits\nInterpretation\nAdvantages\nDisadvantages\nAerospace Use Case\n\n\n\n\nR²\n\\(1 - \\frac{\\text{RSS}}{\\text{TSS}}\\)\nUnitless [0,1]\n% variance explained\nIntuitive, normalized\nAlways increases with features\nInitial model assessment\n\n\nAdj. R²\n\\(1 - (1-R^2)\\frac{n-1}{n-d-1}\\)\nUnitless\nR² with complexity penalty\nPrevents overfitting\nCan be negative\nModel selection/comparison\n\n\nMSE\n\\(\\frac{1}{n}\\sum(y_i-\\hat{y}_i)^2\\)\nSquared units\nAvg squared error\nEasy to optimize\nSquared units unintuitive\nTheoretical analysis\n\n\nRMSE\n\\(\\sqrt{\\text{MSE}}\\)\nSame as \\(y\\)\nTypical prediction error\nInterpretable units\nSensitive to outliers\nPrimary metric (safety)\n\n\nMAE\n\\(\\frac{1}{n}\\sum\\|y_i-\\hat{y}_i\\|\\)\nSame as \\(y\\)\nMedian absolute error\nRobust to outliers\nHarder to optimize\nOperational planning\n\n\nMAPE\n\\(\\frac{100}{n}\\sum\\frac{\\|y_i-\\hat{y}_i\\|}{y_i}\\)\nPercentage\nAvg % error\nScale-independent\nAsymmetric, fails at \\(y=0\\)\nComparing different scales\n\n\nMax Error\n\\(\\max_i\\|y_i-\\hat{y}_i\\|\\)\nSame as \\(y\\)\nWorst-case error\nIdentifies outliers\nSingle bad point\nSafety margins\n\n\nCV Score\nAvg metric across folds\nVarious\nOut-of-sample performance\nPrevents overfitting\nComputationally expensive\nModel validation\n\n\n\nRecommended reporting: R²/Adj. R² + RMSE + MAE (covers interpretability, safety, and robustness)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-evaluation-metrics-complete-comparison-1",
+    "href": "week02_linear_regression/week02_presentation.html#model-evaluation-metrics-complete-comparison-1",
+    "title": "Linear Regression",
+    "section": "Model Evaluation Metrics: Complete Comparison",
+    "text": "Model Evaluation Metrics: Complete Comparison\nAerospace recommendations\n\nDesign/certification: Use RMSE (penalizes large errors for safety)\nOperational planning: Use MAE (typical errors for fuel/time estimates)\n\nModel comparison: Use Adj. R² (accounts for model complexity)\nReporting results: Report multiple metrics for complete picture"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#rmse-aerospace-applications-1",
+    "href": "week02_linear_regression/week02_presentation.html#rmse-aerospace-applications-1",
+    "title": "Linear Regression",
+    "section": "RMSE: Aerospace Applications",
+    "text": "RMSE: Aerospace Applications\nExample 2: Takeoff Distance Prediction\nModel - Predict takeoff roll distance (m) given weight, temperature, pressure altitude\n\nRMSE = 35 m on validation set\n\nSafety assessment:\n\nRunway length: 2,400 m\nPredicted takeoff distance: 1,650 m\nWith RMSE = 35 m, roughly 95% of predictions within ±70 m\nSafety margin: 2,400 - 1,650 - 70 = 680 m ✓ Acceptable"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mape-scale-independence-example",
+    "href": "week02_linear_regression/week02_presentation.html#mape-scale-independence-example",
+    "title": "Linear Regression",
+    "section": "MAPE: Scale Independence Example",
+    "text": "MAPE: Scale Independence Example\nComparing Models Across Different Aircraft\nModel A - Small business jet fuel prediction:\n\nTypical fuel burn: 1,200 kg\nRMSE = 50 kg → MAPE ≈ 4.2%\n\nModel B - Heavy cargo aircraft fuel prediction:\n\nTypical fuel burn: 45,000 kg\n\nRMSE = 1,500 kg → MAPE ≈ 3.3%\n\n\nConclusion: Model B has 30× larger RMSE but lower MAPE. Both achieve similar relative accuracy for their respective applications. MAPE enables fair comparison across scales."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#mape-pitfalls-to-avoid",
+    "href": "week02_linear_regression/week02_presentation.html#mape-pitfalls-to-avoid",
+    "title": "Linear Regression",
+    "section": "MAPE: Pitfalls to Avoid",
+    "text": "MAPE: Pitfalls to Avoid\n\n\n\n\n\n\nPitfall 1: Asymmetry\n\n\nMAPE penalizes under-predictions more than over-predictions of equal magnitude.\n\nExample: Predicting part cost of $100\n\nOver-predict by $50: Error = \\(\\frac{|150-100|}{100} = 50\\%\\)\nUnder-predict by $50: Error = \\(\\frac{|50-100|}{50} = 100\\%\\)\n\nSame absolute error, but under-prediction contributes twice as much to MAPE!\n\n\n\n\n\n\n\n\n\n\n\nPitfall 2: Division by Zero or Near-Zero\n\n\nProblem: If true value \\(y_i \\approx 0\\), MAPE explodes\nExample: Sideslip angle \\(\\beta\\) during wings-level flight\n\nTrue: \\(\\beta = 0.5°\\), Predicted: \\(\\beta = 1.5°\\) → MAPE = 200%$ ❌ Misleading!\n\nSolution: Use absolute metrics (MAE, RMSE) when values can be near zero."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#linear-model-with-interaction-terms",
+    "href": "week02_linear_regression/week02_presentation.html#linear-model-with-interaction-terms",
+    "title": "Linear Regression",
+    "section": "Linear Model with Interaction Terms",
+    "text": "Linear Model with Interaction Terms\n\\[\nC_D = \\beta_0 + \\beta_1\\alpha + \\beta_2 M + \\beta_3\\text{Re} + \\beta_4\\alpha^2 + \\beta_5 M^2 + \\beta_6\\alpha M + \\epsilon\n\\]\nRationale:\n\nParabolic drag polar: \\(C_D \\propto \\alpha^2\\) (induced drag)\nWave drag: \\(C_D \\propto M^2\\) (transonic effects)\nCompressibility: \\(\\alpha M\\) interaction"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#use-domain-knowledge-for-feature-selection",
+    "href": "week02_linear_regression/week02_presentation.html#use-domain-knowledge-for-feature-selection",
+    "title": "Linear Regression",
+    "section": "Use Domain Knowledge For Feature Selection",
+    "text": "Use Domain Knowledge For Feature Selection\nRather than blindly creating all polynomials, use aerodynamic theory to guide feature selection:\n\nDynamic pressure: \\(q = \\frac{1}{2}\\rho V^2 \\propto M^2\\)\n\nHigher Mach → Higher dynamic pressure → Different flow physics\nCreate feature: \\(M^2\\) to capture compressibility effects\n\nLift-induced drag: \\(C_{D_i} = \\frac{C_L^2}{\\pi e AR}\\)\n\nInduced drag scales with square of lift coefficient\nIf predicting \\(C_D\\) and have \\(C_L\\) data, create feature: \\(C_L^2\\)\n\nPrandtl-Glauert correction: \\(C_p = \\frac{C_{p,0}}{\\sqrt{1-M^2}}\\) (subsonic compressibility)\n\nPressure coefficient correction for compressible flow\nCreate feature: \\(\\frac{1}{\\sqrt{1-M^2}}\\) for subsonic Mach numbers\n\n\n\nKey lesson: Physics-informed feature engineering beats blind polynomial expansion\n\nFewer features → Less overfitting\nBetter interpretability → Understand what model learned\nIncorporates domain expertise → Model learns physics, not just correlations"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#physics-based-features-structural-mechanics",
+    "href": "week02_linear_regression/week02_presentation.html#physics-based-features-structural-mechanics",
+    "title": "Linear Regression",
+    "section": "Physics-Based Features: Structural Mechanics",
+    "text": "Physics-Based Features: Structural Mechanics\nProblem: Predicting Fatigue Life of Aircraft Components\nGiven measurements: Applied load \\(P\\), component geometry (length \\(L\\), cross-section area \\(A\\), moment of inertia \\(I\\)), material properties (Young’s modulus \\(E\\), yield strength \\(\\sigma_y\\))\nGoal: Predict cycles to failure\nPhysics-Informed Features from Structural Theory\n\n\n\n\nAxial stress: \\(\\sigma = \\frac{P}{A}\\)\n\nFundamental stress measure, directly related to failure\nFeature: \\(\\sigma\\) or \\(\\frac{P}{A}\\)\n\nBending moment and stress: \\(\\sigma_{bend} = \\frac{M \\cdot c}{I}\\)\n\nIf component experiences bending, stress depends on moment \\(M\\) and distance from neutral axis \\(c\\)\nFeature: \\(\\frac{M \\cdot c}{I}\\)\n\nEuler buckling load: \\(P_{cr} = \\frac{\\pi^2 E I}{(KL)^2}\\)\n\nCritical load for column buckling (where \\(K\\) is effective length factor)\nFeature: Load ratio \\(\\frac{P}{P_{cr}}\\) indicates proximity to buckling instability\n\n\n\n\n\n\nStrain energy density: \\(U = \\frac{\\sigma^2}{2E}\\)\n\nEnergy stored in material under load, correlates with damage accumulation\nFeature: \\(\\frac{\\sigma^2}{2E}\\)\n\nStress concentration factor: \\(K_t = \\frac{\\sigma_{max}}{\\sigma_{nominal}}\\)\n\nAccounts for geometric discontinuities (holes, notches, fillets)\nFeature: \\(K_t \\cdot \\sigma\\) gives local peak stress where cracks initiate\n\n\n\n\n\n\nResult: Instead of raw measurements \\([P, L, A, I, E]\\), model uses physics-based features \\([\\sigma, \\frac{P}{P_{cr}}, U, K_t\\sigma]\\) that directly relate to failure mechanisms."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#physics-based-features-orbital-mechanics",
+    "href": "week02_linear_regression/week02_presentation.html#physics-based-features-orbital-mechanics",
+    "title": "Linear Regression",
+    "section": "Physics-Based Features: Orbital Mechanics",
+    "text": "Physics-Based Features: Orbital Mechanics\nProblem: Predicting Satellite Ground Track Position\nGiven measurements: Position vector \\(\\vec{r}\\), velocity vector \\(\\vec{v}\\), gravitational parameter \\(\\mu = GM\\)\nGoal: Predict future ground track latitude/longitude\nPhysics-Informed Features from Orbital Theory\n\n\n\n\nSpecific orbital energy: \\(\\mathcal{E} = \\frac{v^2}{2} - \\frac{\\mu}{r}\\)\n\nDetermines orbit shape (ellipse, parabola, hyperbola)\nConstant along orbit (conserved quantity)\nFeature: \\(\\mathcal{E}\\) classifies orbit type\n\nSemi-major axis: \\(a = -\\frac{\\mu}{2\\mathcal{E}}\\)\n\nDefines orbit size\nDirectly related to orbital period via Kepler’s 3rd law: \\(T = 2\\pi\\sqrt{\\frac{a^3}{\\mu}}\\)\nFeature: \\(a\\) predicts when satellite returns to same location\n\nSpecific angular momentum: \\(\\vec{h} = \\vec{r} \\times \\vec{v}\\), magnitude \\(h = |\\vec{h}|\\)\n\nPerpendicular to orbital plane, determines inclination\nConstant in magnitude and direction (conserved quantity)\nFeature: \\(h\\) and components \\((h_x, h_y, h_z)\\) define orbital plane orientation\n\n\n\n\n\n\nEccentricity: \\(e = \\sqrt{1 + \\frac{2\\mathcal{E}h^2}{\\mu^2}}\\)\n\nDescribes orbit shape: \\(e=0\\) (circular), \\(0&lt;e&lt;1\\) (elliptical)\nDetermines apogee and perigee altitudes\nFeature: \\(e\\) predicts altitude variation\n\nVis-viva equation: \\(v^2 = \\mu\\left(\\frac{2}{r} - \\frac{1}{a}\\right)\\)\n\nRelates velocity to position along orbit\nFeature: Velocity magnitude at any radius, useful for predicting ground speed\n\n\n\n\n\n\nResult: Instead of raw state vectors \\([\\vec{r}, \\vec{v}]\\) (6 numbers), model uses orbital elements \\([\\mathcal{E}, a, h, e, i, \\Omega, \\omega]\\) that are physically meaningful and some are conserved (reduce dimensionality)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#problem-predicting-fatigue-life-of-aircraft-components",
+    "href": "week02_linear_regression/week02_presentation.html#problem-predicting-fatigue-life-of-aircraft-components",
+    "title": "Linear Regression",
+    "section": "Problem: Predicting Fatigue Life of Aircraft Components",
+    "text": "Problem: Predicting Fatigue Life of Aircraft Components\nGiven measurements: Applied load \\(P\\), component geometry (length \\(L\\), cross-section area \\(A\\), moment of inertia \\(I\\)), material properties (Young’s modulus \\(E\\), yield strength \\(\\sigma_y\\))\nGoal: Predict cycles to failure\nPhysics-Informed Features from Structural Theory\n\n\n\n\nAxial stress: \\(\\sigma = \\frac{P}{A}\\)\n\nFundamental stress measure, directly related to failure\nFeature: \\(\\sigma\\) or \\(\\frac{P}{A}\\)\n\nBending moment and stress: \\(\\sigma_{bend} = \\frac{M \\cdot c}{I}\\)\n\nIf component experiences bending, stress depends on moment \\(M\\) and distance from neutral axis \\(c\\)\nFeature: \\(\\frac{M \\cdot c}{I}\\)\n\nEuler buckling load: \\(P_{cr} = \\frac{\\pi^2 E I}{(KL)^2}\\)\n\nCritical load for column buckling (where \\(K\\) is effective length factor)\nFeature: Load ratio \\(\\frac{P}{P_{cr}}\\) indicates proximity to buckling instability\n\n\n\n\n\n\nStrain energy density: \\(U = \\frac{\\sigma^2}{2E}\\)\n\nEnergy stored in material under load, correlates with damage accumulation\nFeature: \\(\\frac{\\sigma^2}{2E}\\)\n\nStress concentration factor: \\(K_t = \\frac{\\sigma_{max}}{\\sigma_{nominal}}\\)\n\nAccounts for geometric discontinuities (holes, notches, fillets)\nFeature: \\(K_t \\cdot \\sigma\\) gives local peak stress where cracks initiate\n\n\n\n\n\n\nResult: Instead of raw measurements \\([P, L, A, I, E]\\), model uses physics-based features \\([\\sigma, \\frac{P}{P_{cr}}, U, K_t\\sigma]\\) that directly relate to failure mechanisms."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#problem-predicting-satellite-ground-track-position",
+    "href": "week02_linear_regression/week02_presentation.html#problem-predicting-satellite-ground-track-position",
+    "title": "Linear Regression",
+    "section": "Problem: Predicting Satellite Ground Track Position",
+    "text": "Problem: Predicting Satellite Ground Track Position\nGiven measurements: Position vector \\(\\vec{r}\\), velocity vector \\(\\vec{v}\\), gravitational parameter \\(\\mu = GM\\)\nGoal: Predict future ground track latitude/longitude\nPhysics-Informed Features from Orbital Theory\n\n\n\n\nSpecific orbital energy: \\(\\mathcal{E} = \\frac{v^2}{2} - \\frac{\\mu}{r}\\)\n\nDetermines orbit shape (ellipse, parabola, hyperbola)\nConstant along orbit (conserved quantity)\nFeature: \\(\\mathcal{E}\\) classifies orbit type\n\nSemi-major axis: \\(a = -\\frac{\\mu}{2\\mathcal{E}}\\)\n\nDefines orbit size\nDirectly related to orbital period via Kepler’s 3rd law: \\(T = 2\\pi\\sqrt{\\frac{a^3}{\\mu}}\\)\nFeature: \\(a\\) predicts when satellite returns to same location\n\nSpecific angular momentum: \\(\\vec{h} = \\vec{r} \\times \\vec{v}\\), magnitude \\(h = |\\vec{h}|\\)\n\nPerpendicular to orbital plane, determines inclination\nConstant in magnitude and direction (conserved quantity)\nFeature: \\(h\\) and components \\((h_x, h_y, h_z)\\) define orbital plane orientation\n\n\n\n\n\n\nEccentricity: \\(e = \\sqrt{1 + \\frac{2\\mathcal{E}h^2}{\\mu^2}}\\)\n\nDescribes orbit shape: \\(e=0\\) (circular), \\(0&lt;e&lt;1\\) (elliptical)\nDetermines apogee and perigee altitudes\nFeature: \\(e\\) predicts altitude variation\n\nVis-viva equation (from energy conservation): \\(v^2 = \\mu\\left(\\frac{2}{r} - \\frac{1}{a}\\right)\\)\n\nLatin for “living force” — relates orbital speed \\(v\\) to position \\(r\\) and orbit size \\(a\\)\nDerived from conservation of energy: kinetic + potential = constant\nAt any point in orbit: faster when closer to Earth (smaller \\(r\\)), slower when farther\nFeature: Given position, predict velocity magnitude (useful for ground speed calculations)\n\n\n\n\n\n\nResult: Instead of raw state vectors \\([\\vec{r}, \\vec{v}]\\) (6 numbers), model uses orbital elements \\([\\mathcal{E}, a, h, e, i, \\Omega, \\omega]\\) that are physically meaningful and some are conserved (reduce dimensionality)."
+  }
+]

@@ -1,0 +1,55 @@
+/*-- scss:defaults --*/
+
+$body-bg: #191919 !default;
+$body-color: #fff !default;
+$link-color: #42affa !default;
+$input-panel-bg: rgba(233, 236, 239, 0.2) !default;
+
+/*-- scss:rules --*/
+
+/* AERO 689 Custom Aerospace Styling - Dark Theme */
+
+// Smaller fonts to fit more content
+.reveal {
+  font-size: 32px;
+}
+
+.reveal h1 {
+  font-size: 1.8em;
+  color: #A8D8FF;
+  border-bottom: 3px solid #4A9FD8;
+}
+
+.reveal h2 {
+  font-size: 1.4em;
+  color: #4A9FD8;
+}
+
+.reveal h3 {
+  font-size: 1.1em;
+  color: #7CB9E8;
+}
+
+// Better list spacing
+.reveal ul,
+.reveal ol {
+  font-size: 0.9em;
+}
+
+.reveal ul li,
+.reveal ol li {
+  margin-bottom: 0.3em;
+}
+
+// Code block improvements
+.reveal pre code {
+  font-size: 0.5em;
+  max-height: 400px;
+  padding: 0.5em;
+  overflow: auto;
+}
+
+// Slide padding
+.reveal .slides section {
+  padding: 20px;
+}

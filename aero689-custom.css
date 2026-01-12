@@ -1,0 +1,316 @@
+/* Custom environment for level-4 headings (####) */
+.env-heading {
+  background: linear-gradient(90deg, rgba(74,159,216,0.18) 0%, rgba(200,200,255,0.08) 100%);
+  color: #4A9FD8;
+  padding: 0.3em 0.8em;
+  border-left: 5px solid #4A9FD8;
+  border-radius: 6px;
+  font-size: 1.08em;
+  font-weight: 700;
+  margin: 0.7em 0 0.3em 0;
+  box-shadow: 0 1px 4px rgba(74,159,216,0.10);
+  display: inline-block;
+}
+/* Slightly brighter white for regular slide text, but not pure white */
+.reveal .slides section,
+.reveal .slide,
+.reveal .reveal {
+  color: #E8E8E8;
+}
+/* Inline or block text highlight with a contrasting gold/yellow from the palette */
+.highlight {
+  /* background: linear-gradient(90deg, rgba(255,223,120,0.85) 0%, rgba(255,159,90,0.60) 100%); */
+  color: #3cb371;
+  /* padding: 0.1em 0.35em; */
+  /* border-radius: 4px; */
+  font-weight: 700;
+  /* box-shadow: 0 1px 4px rgba(255,159,90,0.10); */
+  display: inline;
+}
+/* Custom styling for blockquotes in slides */
+.reveal blockquote, blockquote {
+  background: linear-gradient(90deg, rgba(74,159,216,0.10) 0%, rgba(200,200,255,0.05) 100%);
+  border-left: 6px solid #4A9FD8;
+  margin: 1em 0 1em 0;
+  padding: 1em 1em 1em 1em;
+  color: #A8D8FF;
+  font-size: 1.15em;
+  font-style: italic;
+  font-weight: 500;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(74,159,216,0.08);
+}
+
+/* Set Reveal.js footer color to dark gray */
+.reveal .footer, .reveal footer, .reveal .slide-footer {
+  color: #6c6c6c !important;
+}
+/* Alternating mildly contrasting lighter font colors for list items, starting with the brighter shade */
+ul li, ol li {
+  color: #9ba7b6;
+}
+ul li:nth-child(even), ol li:nth-child(even) {
+  color: #6d7b8a;
+}
+ul ul li, ol ol li, ul ol li, ol ul li {
+  color: #b7c3d0;
+}
+ul ul li:nth-child(even), ol ol li:nth-child(even), ul ol li:nth-child(even), ol ul li:nth-child(even) {
+  color: #8a98a8;
+}
+/* Make subheadings (###) more white for better contrast */
+.reveal h3 {
+  color: #A8D8FF !important; /* lighter blue */
+  font-weight: 600;
+}
+/* Indicator success styling - make it stand out */
+.indicator-success {
+  color: #3cb371 !important;
+  font-weight: 700;
+}
+/* Additional custom CSS for AERO 689 presentations - Dark Theme */
+
+/* Highlight box for important concepts */
+.highlight-box {
+  background: linear-gradient(135deg, rgba(74, 159, 216, 0.25) 0%, rgba(124, 185, 232, 0.15) 100%);
+  padding: 1em;
+  border-radius: 8px;
+  border: 2px solid #4A9FD8;
+  margin: 1em 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  color: #E8E8E8;
+  font-size: 0.9em;
+}
+
+/* Grid layout for multiple items */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 1em 0;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.8em;
+  margin: 1em 0;
+  font-size: 0.85em;
+}
+
+/* Card styling */
+.card {
+  background-color: #2C2C2E;
+  padding: 0.8em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-top: 3px solid #4A9FD8;
+  color: #E8E8E8;
+  font-size: 0.85em;
+  position: relative;
+  margin-top: 1.3em;
+}
+
+.card-title {
+  font-weight: 700;
+  color: #FFF !important;
+  background: #4A9FD8;
+  padding: 0.3em 0.7em;
+  border-radius: 4px;
+  font-size: 1em;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(74,159,216,0.10);
+  display: inline-block;
+  position: absolute;
+  top: -1.1em;
+  left: 1em;
+  z-index: 2;
+  margin-bottom: 0;
+}
+
+/* Large number display for statistics */
+.stat-number {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #7CB9E8;
+  line-height: 1;
+  margin: 0.2em 0;
+}
+
+.stat-label {
+  font-size: 0.7em;
+  color: #8E8E93;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.2em;
+}
+
+/* Better spacing */
+.smaller {
+  font-size: 0.85em;
+}
+
+.smaller ul li,
+.smaller ol li {
+  margin-bottom: 0.2em;
+}
+
+/* Learning objectives styling */
+.learning-objective {
+  background-color: rgba(74, 159, 216, 0.2);
+  color: #A8D8FF;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  border-left: 4px solid #4A9FD8;
+  display: inline-block;
+  margin: 0.3em 0;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+/* Badge styling */
+.badge {
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0 0.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-primary {
+  background-color: #4A9FD8;
+  color: #0A1628;
+}
+
+.badge-success {
+  background-color: #5AC18E;
+  color: #0A1628;
+}
+
+.badge-warning {
+  background-color: #FF9F5A;
+  color: #0A1628;
+}
+
+.badge-danger {
+  background-color: #FF6B6B;
+  color: #0A1628;
+}
+
+.badge-info {
+  background-color: #A8D8FF;
+  color: #0A1628;
+}
+
+/* Key takeaway box - prominent styling */
+.key-takeaway {
+  background: linear-gradient(135deg, rgba(255, 159, 90, 0.25) 0%, rgba(255, 107, 107, 0.15) 100%);
+  /* padding: 1em 1em; */
+  border-radius: 8px;
+  border: 3px solid #FF9F5A;
+  border-left: 8px solid #FF9F5A;
+  margin: 1em 1em;
+  box-shadow: 0 4px 12px rgba(255, 159, 90, 0.3);
+  color: #FFD8A8;
+  font-size: 1.05em;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Scrollable code blocks and output */
+.reveal pre {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.reveal pre code {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.reveal .cell-output,
+.reveal .cell-output-stdout,
+.reveal .cell-output-display {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Specific class for scrollable outputs */
+.scrollable-output .cell-output,
+.scrollable-output .cell-output-stdout {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: auto;
+  display: block;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+/* Scrollbar styling for code blocks */
+.reveal pre::-webkit-scrollbar,
+.reveal .cell-output::-webkit-scrollbar,
+.scrollable-output .cell-output::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.reveal pre::-webkit-scrollbar-track,
+.reveal .cell-output::-webkit-scrollbar-track,
+.scrollable-output .cell-output::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.reveal pre::-webkit-scrollbar-thumb,
+.reveal .cell-output::-webkit-scrollbar-thumb,
+.scrollable-output .cell-output::-webkit-scrollbar-thumb {
+  background: rgba(74, 159, 216, 0.5);
+  border-radius: 4px;
+}
+
+.reveal pre::-webkit-scrollbar-thumb:hover,
+.reveal .cell-output::-webkit-scrollbar-thumb:hover,
+.scrollable-output .cell-output::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 159, 216, 0.8);
+}
+
+/* Math styling - make math stand out with color */
+.reveal .katex,
+.reveal .MathJax,
+.reveal mjx-container,
+.reveal .katex-display,
+.reveal .MathJax_Display {
+  color: #C85A54 !important; /* Earthy red for math */
+}
+
+/* Inline math */
+.reveal .katex-html,
+.reveal mjx-math {
+  color: #C85A54 !important;
+}
+
+/* Display math (equations) - slightly lighter for emphasis */
+.reveal .katex-display .katex-html,
+.reveal mjx-container[display="true"] {
+  color: #D97A75 !important;
+}
+
+/* Math operators and symbols */
+.reveal .katex .mord,
+.reveal .katex .mop,
+.reveal .katex .mbin,
+.reveal .katex .mrel,
+.reveal .katex .mopen,
+.reveal .katex .mclose,
+.reveal .katex .mpunct {
+  color: inherit;
+}

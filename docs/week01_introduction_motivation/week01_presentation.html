@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1b3db88def35042d172274863c1cdcf0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="Dr.&nbsp;Raktim Bhattacharya">
+  <meta name="dcterms.date" content="2026-01-01">
+  <title>Introduction &amp; Motivation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2e3440; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #75715e; } /* Annotation */
+    code span.at { color: #f92672; } /* Attribute */
+    code span.bn { color: #ae81ff; } /* BaseN */
+    code span.bu { color: #66d9ef; } /* BuiltIn */
+    code span.cf { color: #f92672; } /* ControlFlow */
+    code span.ch { color: #e6db74; } /* Char */
+    code span.cn { color: #ae81ff; } /* Constant */
+    code span.co { color: #75715e; } /* Comment */
+    code span.cv { color: #75715e; } /* CommentVar */
+    code span.do { color: #75715e; } /* Documentation */
+    code span.dt { color: #66d9ef; font-style: italic; } /* DataType */
+    code span.dv { color: #ae81ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #a6e22e; font-weight: bold; } /* Extension */
+    code span.fl { color: #ae81ff; } /* Float */
+    code span.fu { color: #a6e22e; } /* Function */
+    code span.im { color: #f92672; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #f92672; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #a6e22e; } /* Other */
+    code span.pp { color: #f92672; } /* Preprocessor */
+    code span.re { color: #75715e; } /* RegionMarker */
+    code span.sc { color: #ae81ff; } /* SpecialChar */
+    code span.ss { color: #e6db74; } /* SpecialString */
+    code span.st { color: #e6db74; } /* String */
+    code span.va { color: #f8f8f2; } /* Variable */
+    code span.vs { color: #e6db74; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-072ed3e9f6ddee2d77a1b12ecb19b2ca.css">
+  <link rel="stylesheet" href="../aero689-custom.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introduction &amp; Motivation</h1>
+  <p class="subtitle">AERO 689: Introduction to Machine Learning for Aerospace Engineers</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Raktim Bhattacharya 
+</div>
+        <p class="quarto-title-affiliation">
+            Texas A&amp;M University - Aerospace Engineering
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-01-01</p>
+</section>
+<section id="welcome-to-aero-689" class="slide level2 center">
+<h2>Welcome to AERO 689</h2>
+<div class="highlight-box">
+<p><strong>The Intersection of Data Science and Aerospace Engineering</strong></p>
+<p>Where machine learning meets flight dynamics, aerodynamics, and space systems</p>
+</div>
+</section>
+<section id="course-logistics-resources" class="slide level2">
+<h2>Course Logistics &amp; Resources</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>How to Succeed:</strong></p>
+<ul>
+<li>Participate in class</li>
+<li>Practice coding</li>
+<li>Ask questions early</li>
+<li>Use office hours</li>
+</ul>
+<p><strong>Assessment Strategy</strong></p>
+<ul>
+<li>Homework: 30%</li>
+<li>Paper review: 10%</li>
+<li>Midterm: 30%</li>
+<li>Final Project: 30%</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Resources:</strong></p>
+<ul>
+<li>Canvas</li>
+<li>GitHub</li>
+<li>NASA, AIAA, and textbook links</li>
+</ul>
+</div></div>
+</section>
+<section id="why-this-course" class="slide level2">
+<h2>Why This Course?</h2>
+<p>Modern aerospace systems generate <strong>large volumes of data</strong>:</p>
+<ul>
+<li>Flight-test data</li>
+<li>Wind-tunnel experiments</li>
+<li>CFD and simulation databases</li>
+<li>Telemetry and health-monitoring data</li>
+</ul>
+<div class="fragment">
+<p>Traditional physics-based models alone are often:</p>
+<ul>
+<li>Expensive</li>
+<li>Incomplete</li>
+<li>Uncertain</li>
+</ul>
+<blockquote>
+<p>Machine learning provides tools to extract structure from data.</p>
+</blockquote>
+</div>
+</section>
+<section id="where-machine-learning-fits-in-aerospace" class="slide level2">
+<h2>Where Machine Learning Fits in Aerospace</h2>
+<h3 id="machine-learning-is-used-as">Machine learning is used as:</h3>
+<ul>
+<li><strong>Surrogate modeling</strong><br>
+(fast approximation of expensive simulations)</li>
+<li><strong>Residual modeling</strong><br>
+(physics model + data-driven correction)</li>
+<li><strong>Pattern recognition</strong><br>
+(classification, clustering, anomaly detection)</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>It does <strong>not replace physics</strong>. It complements it.</p>
+</blockquote>
+</div>
+</section>
+<section id="learning-objectives" class="slide level2">
+<h2>Learning Objectives</h2>
+<p><span class="learning-objective">LO 1: Understand ML in Aerospace</span></p>
+<ul>
+<li>Explain the fundamental concepts of machine learning and how they differ from traditional programming in aerospace contexts.</li>
+<li>Describe the historical evolution and motivation for ML in aerospace engineering.</li>
+<li>Recognize the benefits and limitations of ML for safety-critical aerospace systems.</li>
+<li>Discuss real-world examples where ML has impacted aerospace (e.g., anomaly detection, predictive maintenance, autonomous operations).</li>
+</ul>
+<div class="fragment">
+<p><span class="learning-objective">LO 2: Identify Key Applications</span></p>
+<ul>
+<li>Identify major aerospace domains where ML is applied, such as flight dynamics, aerodynamics, navigation, and space systems.</li>
+<li>Match ML techniques (supervised, unsupervised, reinforcement) to relevant aerospace problems.</li>
+<li>Summarize recent success stories and industry trends in aerospace ML.</li>
+</ul>
+</div>
+<div class="fragment">
+<p><span class="learning-objective">LO 3: Recognize Unique Challenges</span></p>
+<ul>
+<li>Understand the unique challenges of aerospace data: sparsity, noise, high dimensionality, and safety requirements.</li>
+<li>Explain the importance of physics-informed ML and regulatory considerations in aerospace.</li>
+<li>Appreciate the ethical responsibilities and safety implications of deploying ML in aerospace systems.</li>
+</ul>
+</div>
+</section>
+<section id="the-evolution-of-automation-in-aerospace" class="slide level2">
+<h2>The Evolution of Automation in Aerospace</h2>
+<ul>
+<li class="fragment">1960s: Early autopilots and control theory</li>
+<li class="fragment">1970s: Kalman filter revolutionizes navigation</li>
+<li class="fragment">1980s: NASA experiments with neural networks for fault detection</li>
+<li class="fragment">2000s: Data-driven methods in engine health monitoring</li>
+<li class="fragment">2010s–2020s: Deep learning, real-time ML, and autonomous systems (SpaceX, Boeing, Airbus)</li>
+</ul>
+</section>
+<section id="what-is-machine-learning" class="slide level2">
+<h2>What Is Machine Learning?</h2>
+<h3 id="working-definition">Working definition:</h3>
+<blockquote>
+<p>Machine learning is the study of algorithms that learn mappings from data by solving <span class="highlight">optimization</span> problems.</p>
+</blockquote>
+<h3 id="key-idea">Key idea:</h3>
+<ul>
+<li>Learn a function</li>
+<li>Evaluate its performance</li>
+<li>Ensure it generalizes beyond training data</li>
+</ul>
+</section>
+<section id="what-is-machine-learning-contd." class="slide level2">
+<h2>What is Machine Learning? (contd.)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="fragment">
+<p><strong>Traditional Programming:</strong></p>
+<ul>
+<li>Input (Data) + Program (Rules) → Output (Prediction)</li>
+<li>E.g.
+<ul>
+<li>Input: 1,2,3,4, ….</li>
+<li>Program: <span class="math inline">\(f(x) = 2x+1\)</span> <span class="highlight">We code this</span></li>
+<li>Output: 3,5,7,9, …</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Machine Learning:</strong></p>
+<ul>
+<li>Input (Data) + Output (Labels) → Program (Model)</li>
+<li>E.g.
+<ul>
+<li>Input: 1,2,3,4, …</li>
+<li>Output: 3,5,7,9, …</li>
+<li>Program: ML <span class="highlight">learns</span> <span class="math inline">\(f(x) = 2x+1\)</span> from the data</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment">
+<p><strong>A Generalized Function Approximation</strong></p>
+<ul>
+<li class="fragment">ML can be treated as a function approximation technique</li>
+<li class="fragment">Except input/output data can be of any data type
+<ul>
+<li class="fragment">Images</li>
+<li class="fragment">Sounds</li>
+<li class="fragment">etc.</li>
+</ul></li>
+<li class="fragment">ML <span class="highlight">learns</span> the relationship between input and output data
+<ul>
+<li class="fragment">can be used to <span class="highlight">predict/generate</span> outputs from other inputs</li>
+<li class="fragment">we may not capture the relation exactly
+<ul>
+<li class="fragment">prediction will have errors!</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="what-machine-learning-is-not" class="slide level2">
+<h2>What Machine Learning Is NOT</h2>
+<div class="fragment">
+<h3 id="machine-learning-is-not">Machine learning is not:</h3>
+<ul>
+<li>Magic</li>
+<li>A substitute for understanding physics</li>
+<li>Guaranteed to extrapolate correctly</li>
+<li>Automatically safe or robust</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="in-aerospace">In aerospace:</h3>
+<ul>
+<li>Validation is critical</li>
+<li>Extrapolation is dangerous</li>
+<li><span class="highlight">Guarantees matter</span></li>
+</ul>
+</div>
+</section>
+<section id="types-of-machine-learning" class="slide level2">
+<h2>Types of Machine Learning</h2>
+<h3 id="supervised-learning-learn-from-labeled-data">Supervised Learning: Learn from labeled data</h3>
+<ul>
+<li>Regression (continuous outputs)</li>
+<li>Classification (discrete labels)</li>
+</ul>
+<h3 id="unsupervised-learning-find-patterns-in-unlabeled-data">Unsupervised Learning: Find patterns in unlabeled data</h3>
+<ul>
+<li>Clustering</li>
+<li>Dimensionality reduction</li>
+</ul>
+<h3 id="reinforcement-learning-learn-by-trial-and-error">Reinforcement Learning: Learn by trial and error</h3>
+<ul>
+<li>Sequential decision making</li>
+</ul>
+</section>
+<section id="supervised-learning-examples" class="slide level2">
+<h2>Supervised Learning (Examples)</h2>
+<h3 id="labeled-inputs-outputs">Labeled Inputs → Outputs</h3>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>(Geometry, Mach number) → Lift coefficient</li>
+<li>Sensor measurements → Flight regime</li>
+<li>Telemetry → Fault / no-fault</li>
+</ul>
+<p><strong>You define:</strong></p>
+<ul>
+<li>Inputs</li>
+<li>Outputs</li>
+<li>Performance metric</li>
+</ul>
+</section>
+<section id="unsupervised-learning-examples" class="slide level2">
+<h2>Unsupervised Learning (Examples)</h2>
+<h3 id="no-labeled-outputs">No labeled outputs</h3>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Grouping flight trajectories</li>
+<li>Identifying maneuver types</li>
+<li>Discovering dominant flow structures</li>
+</ul>
+<p><strong>Goal:</strong></p>
+<ul>
+<li>Find structure in data</li>
+<li>Reduce dimensionality</li>
+</ul>
+</section>
+<section id="reinforcement-learning-examples" class="slide level2">
+<h2>Reinforcement Learning (Examples)</h2>
+<h3 id="learns-via-interaction">Learns via Interaction</h3>
+<p><strong>Basic Idea:</strong></p>
+<ul>
+<li>Agent interacts with a system</li>
+<li>Receives rewards</li>
+<li>Learns a policy – like a controller or guidance algorithm</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Autopilot tuning</li>
+<li>Trajectory optimization</li>
+</ul>
+</section>
+<section id="the-machine-learning-pipeline" class="slide level2">
+<h2>The Machine Learning Pipeline</h2>
+<div class="columns">
+<div class="column">
+<h3 id="a-typical-workflow">A typical workflow:</h3>
+<ol type="1">
+<li>Problem formulation</li>
+<li>Data collection</li>
+<li>Preprocessing</li>
+<li>Model selection</li>
+<li>Training</li>
+<li>Validation and testing</li>
+<li>Interpretation and deployment</li>
+</ol>
+</div><div class="column fragment">
+<h3 id="most-failures-occur-at">Most failures occur at:</h3>
+<ul>
+<li>Step 1 (wrong question)</li>
+<li>Step 6 (poor validation)</li>
+</ul>
+</div></div>
+</section>
+<section id="why-is-ml-hard-in-aerospace" class="slide level2">
+<h2>Why is ML Hard in Aerospace?</h2>
+<ul>
+<li>Data is expensive and sparse (flight tests, wind tunnels)</li>
+<li>Safety-critical: mistakes can cost lives</li>
+<li>Physics-based constraints: not all patterns are physically meaningful</li>
+<li>Certification and regulation (FAA, NASA)</li>
+<li>Real-time and embedded requirements</li>
+</ul>
+<div class="fragment">
+<h3 id="why-validation-matters-in-aerospace">Why Validation Matters in Aerospace</h3>
+<div class="columns">
+<div class="column">
+<p><strong>Aerospace systems are:</strong></p>
+<ul>
+<li>Safety-critical</li>
+<li>Operated outside training data</li>
+<li>Sensitive to uncertainty</li>
+</ul>
+</div><div class="column">
+<p><strong>Key questions:</strong></p>
+<ul>
+<li>Does the model generalize?</li>
+<li>How sensitive is it to noise?</li>
+<li>What happens outside the data range?</li>
+</ul>
+</div></div>
+</div>
+<div class="fragment">
+<blockquote>
+<p>A hybrid approach of <span class="highlight">physics + data</span> driven machine learning is likely to work better for aerospace systems.</p>
+</blockquote>
+</div>
+</section>
+<section id="ethics-and-responsibility-in-aerospace-ml" class="slide level2">
+<h2>Ethics and Responsibility in Aerospace ML</h2>
+<div class="fragment">
+<h3 id="machine-learning-can-influence">Machine learning can influence:</h3>
+<ul>
+<li>Control decisions</li>
+<li>Navigation and guidance</li>
+<li>Fault detection and isolation</li>
+<li>Autonomous behavior</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="errors-can-cost-lives-assets-or-strategic-stability">Errors can cost lives, assets, or strategic stability</h3>
+<ul>
+<li>Would you trust an ML autopilot? Why or why not?</li>
+<li>How do we ensure safety, transparency, and accountability?</li>
+<li>What are the risks of bias or overfitting in safety-critical systems?</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="what-makes-aerospace-ml-different-from-consumer-ml">What Makes Aerospace ML Different (from consumer ML)?</h3>
+<ul>
+<li>Smaller datasets</li>
+<li>Rare but catastrophic failure modes</li>
+<li>Operation outside training conditions</li>
+<li>Strong coupling with physical systems</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>Ethical responsibility is inseparable from engineering responsibility.</p>
+</blockquote>
+</div>
+</section>
+<section id="ethics-and-responsibility-in-aerospace-ml-contd." class="slide level2">
+<h2>Ethics and Responsibility in Aerospace ML (contd.)</h2>
+<div class="columns">
+<div class="column">
+<h3 id="core-ethical-questions">Core Ethical Questions</h3>
+<p>When deploying ML in aerospace, ask:</p>
+<ul>
+<li>Can this system fail safely?</li>
+<li>Do we understand when it will fail?</li>
+<li>Who is accountable for decisions?</li>
+<li>Can humans intervene?</li>
+<li>Are the assumptions documented?</li>
+</ul>
+<div class="fragment">
+<h3 id="data-ethics">Data Ethics</h3>
+<ul>
+<li>Data quality and representativeness</li>
+<li>Bias in training data</li>
+<li>Missing or censored failure cases</li>
+<li>Simulation vs real-world mismatch</li>
+</ul>
+<p>A model trained on biased data -&gt; produces biased decisions</p>
+</div>
+</div><div class="column">
+<div class="fragment">
+<h3 id="example-biased-flight-data">Example: Biased Flight Data</h3>
+<p>If training data includes:</p>
+<ul>
+<li>Only nominal flight conditions</li>
+<li>Few extreme maneuvers</li>
+<li>Limited environmental variation</li>
+</ul>
+<p>Then the model may:</p>
+<ul>
+<li>Perform well in tests</li>
+<li>Fail catastrophically in edge cases</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="model-transparency-and-interpretability">Model Transparency and Interpretability</h3>
+<p>Important questions:</p>
+<ul>
+<li>Can we explain model outputs?</li>
+<li>Do engineers understand failure modes?</li>
+<li>Is debugging possible?</li>
+</ul>
+<p>Black-box models:</p>
+<ul>
+<li>May be acceptable for analysis</li>
+<li>Are dangerous for closed-loop control</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="verification-and-validation-vv" class="slide level2">
+<h2>Verification and Validation (V&amp;V)</h2>
+<div class="columns">
+<div class="column">
+<div class="fragment">
+<h3 id="traditional-aerospace-vv">Traditional aerospace V&amp;V</h3>
+<ul>
+<li>Analytical guarantees</li>
+<li>Worst-case analysis</li>
+<li>Structured testing</li>
+</ul>
+<h3 id="ml-challenges">ML challenges</h3>
+<ul>
+<li>Statistical performance <span class="math inline">\(\neq\)</span> safety guarantee</li>
+<li>No universal stability guarantees</li>
+</ul>
+</div>
+</div><div class="column">
+<div class="fragment">
+<h3 id="validation-is-not-optional">Validation Is <span class="highlight">Not Optional</span></h3>
+<p>High test accuracy does NOT imply:</p>
+<ul>
+<li>Robustness</li>
+<li>Safety</li>
+<li>Reliability</li>
+</ul>
+<p>Ethical deployment requires:</p>
+<ul>
+<li>Stress testing</li>
+<li>Uncertainty analysis</li>
+<li>Out-of-distribution evaluation</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="human-in-the-loop-responsibility" class="slide level2">
+<h2>Human-in-the-Loop Responsibility</h2>
+<h3 id="critical-design-choice">Critical design choice:</h3>
+<ul>
+<li>Fully autonomous?</li>
+<li>Human-supervised?</li>
+<li>Human override capability?</li>
+</ul>
+<h3 id="ethical-principle">Ethical principle:</h3>
+<blockquote>
+<p>ML should assist decision-making, not obscure it</p>
+</blockquote>
+</section>
+<section id="automation-bias" class="slide level2">
+<h2>Automation Bias</h2>
+<h3 id="risk">Risk:</h3>
+<ul>
+<li>Humans over-trust ML outputs</li>
+<li>Operators defer judgment to the algorithm</li>
+</ul>
+<h3 id="mitigation">Mitigation:</h3>
+<ul>
+<li>Clear confidence measures</li>
+<li>Training users to question outputs</li>
+<li>Explicit failure indicators</li>
+</ul>
+</section>
+<section id="fault-detection-and-false-confidence" class="slide level2">
+<h2>Fault Detection and False Confidence</h2>
+<h3 id="in-aerospace-1">In aerospace:</h3>
+<ul>
+<li>False negatives can be catastrophic</li>
+<li>False positives can cause mission aborts</li>
+</ul>
+<h3 id="ethical-tradeoff">Ethical tradeoff:</h3>
+<ul>
+<li>Conservative models vs operational efficiency</li>
+<li>Transparency about detection limits</li>
+</ul>
+</section>
+<section id="responsibility-and-accountability" class="slide level2">
+<h2>Responsibility and Accountability</h2>
+<h3 id="when-ml-fails-who-is-responsible">When ML fails, who is responsible?</h3>
+<ul>
+<li>The algorithm designer?</li>
+<li>The system integrator?</li>
+<li>The operator?</li>
+<li>The organization?</li>
+</ul>
+<h3 id="ethical-engineering-requires">Ethical engineering requires:</h3>
+<ul>
+<li>Clear responsibility chains</li>
+<li>Documented assumptions</li>
+</ul>
+</section>
+<section id="ml-in-autonomous-systems" class="slide level2">
+<h2>ML in Autonomous Systems</h2>
+<p>As machine learning becomes more deeply integrated into autonomous aerospace systems, several unique challenges and risks must be considered:</p>
+<div class="fragment">
+<h3 id="escalation-of-autonomy">Escalation of autonomy:</h3>
+<ul>
+<li>Systems may transition from human-supervised to fully autonomous operation, sometimes without clear boundaries or sufficient oversight.</li>
+<li>Increased autonomy can outpace regulatory frameworks and operator understanding, raising questions about control, intervention, and accountability.</li>
+<li>Example: An autopilot that adapts its own logic in flight, making decisions beyond its original certification.</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="unexpected-emergent-behavior">Unexpected emergent behavior:</h3>
+<ul>
+<li>Complex ML models can exhibit behaviors not anticipated during design or testing, especially when exposed to novel situations or data distributions.</li>
+<li>These emergent behaviors may be beneficial, neutral, or hazardous, and are often difficult to predict or diagnose.</li>
+<li>Example: Anomaly detection system that misclassifies rare but critical events, or a control system that exploits loopholes in its reward function.</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="limited-real-time-interpretability">Limited real-time interpretability:</h3>
+<ul>
+<li>Many ML models, especially deep neural networks, act as “black boxes,” making it hard for engineers and operators to understand or trust their decisions in real time.</li>
+<li>Lack of interpretability can hinder rapid troubleshooting, regulatory approval, and safe human-machine teaming.</li>
+<li>Example: A flight control system issues a corrective action, but the rationale is opaque to the pilot and ground crew.</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>Design principle: Autonomy must degrade gracefully</p>
+</blockquote>
+</div>
+</section>
+<section id="the-hype-around-mlai" class="slide level2">
+<h2>The Hype Around ML/AI</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Why is everyone talking about AI?</strong></p>
+<ul>
+<li>Headlines: “AI will revolutionize everything!”
+<ul>
+<li>AI is the “magic wand” that will solve everything</li>
+</ul></li>
+<li>Startups and big tech racing to deploy ML/AI</li>
+<li>Media focus on ChatGPT, self-driving cars, and robots</li>
+<li>Massive investments and job growth in AI/ML</li>
+<li>Fear of “AI replacing humans” and ethical debates</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/hype-cycle-for-artificial-intelligence-2022.png" style="width:100.0%"></p>
+<figcaption>AI Hype Cycle</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="the-hype-around-mlai-contd." class="slide level2">
+<h2>The Hype Around ML/AI (contd.)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Reality Check</strong></p>
+<ul>
+<li>Not every problem needs ML/AI</li>
+<li>Many “AI” products are just automation or statistics</li>
+<li>Hype can lead to unrealistic expectations and failures</li>
+<li>Responsible engineers must separate fact from fiction</li>
+</ul>
+<div class="fragment">
+<p><strong>Potential Benefits of AI</strong></p>
+<ul>
+<li>Automates repetitive and complex tasks</li>
+<li>Enables data-driven decision making</li>
+<li>Improves accuracy and efficiency</li>
+<li>Unlocks new capabilities (e.g., perception, prediction)</li>
+<li>Accelerates scientific discovery and innovation</li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/hype-cycle-for-artificial-intelligence-2022.png" style="width:100.0%"></p>
+<figcaption>AI Hype Cycle</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="interactive-question" class="slide level2">
+<h2>Interactive Question 🤔</h2>
+<div class="interactive-question">
+<p>What aerospace systems around you could benefit from machine learning?</p>
+</div>
+<div class="fragment">
+<div class="grid-2">
+<div class="card">
+<div class="card-title">
+✈️ Flight Systems
+</div>
+<ul>
+<li>Autopilot</li>
+<li>Navigation</li>
+<li>Flight control</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">
+🔧 Maintenance
+</div>
+<ul>
+<li>Engine health</li>
+<li>Predictive maintenance</li>
+<li>Structural monitoring</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">
+🌦️ Environment
+</div>
+<ul>
+<li>Weather prediction</li>
+<li>Turbulence detection</li>
+<li>Ice detection</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">
+🛫 Operations
+</div>
+<ul>
+<li>Air traffic control</li>
+<li>Route optimization</li>
+<li>Fuel management</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="what-makes-aerospace-different" class="slide level2">
+<h2>What Makes Aerospace Different?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="unique-challenges">Unique Challenges</h3>
+<ul>
+<li>Safety-Critical – Lives depend on our algorithms</li>
+<li><span class="highlight">Physics-Informed</span> - Centuries of knowledge
+<ul>
+<li>fluid mechanics (e.g., Navier-Stokes equations for airflow)</li>
+<li>analytical dynamics (e.g., equations of motion for aircraft)</li>
+<li>material science (e.g., fatigue and failure models)</li>
+<li>flight stability theory, orbital mechanics (e.g., satellite trajectories)</li>
+<li>propulsion system modeling, etc.</li>
+</ul></li>
+<li>Multi-Scale – Molecular flows to orbital mechanics</li>
+<li>Regulatory – FAA/NASA certification</li>
+<li>Real-Time – Split-second decisions required</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<h3 id="aerospace-data-characteristics">Aerospace Data Characteristics</h3>
+<ul>
+<li><strong>Time-series</strong>: Continuous sensor streams (100+ Hz)</li>
+<li><strong>Multi-dimensional</strong>: Pressure, temperature, velocity, position, attitude</li>
+<li><strong>Noisy</strong>: Sensor failures, environmental interference</li>
+<li><strong>Sparse</strong>: Expensive flight tests, limited wind tunnel data</li>
+</ul>
+</div>
+</div></div>
+<div class="columns">
+<div class="column fragment">
+<h3 id="best-practices-for-responsible-aerospace-ml">Best Practices for Responsible Aerospace ML</h3>
+<ul>
+<li>Combine physics with learning</li>
+<li>Quantify uncertainty</li>
+<li>Validate beyond training data</li>
+<li>Keep humans informed</li>
+<li>Document assumptions</li>
+<li>Design for failure</li>
+</ul>
+</div><div class="column fragment">
+<h3 id="what-this-course-emphasizes">What This Course Emphasizes</h3>
+<ul>
+<li>Focus on interpretable models first</li>
+<li>Emphasize validation and uncertainty</li>
+<li>Avoid ML where physics is <span class="highlight">sufficient and tractable</span></li>
+<li>Treat ML as an engineering tool</li>
+</ul>
+</div></div>
+<!-- ## Aerospace ML Success Stories
+
+::: {.grid-2}
+<div class="card">
+  <div class="card-title">🚀 SpaceX: Autonomous Landing</div>
+  
+  **Challenge**: Land rocket boosters on floating platforms
+  
+  **ML Approach**: Computer vision + trajectory optimization
+  
+  **Result**: [90%+ success rate]{.highlight}
+  
+  Revolutionized space access costs
+</div>
+
+
+<div class="card">
+  <div class="card-title">🔧 Rolls-Royce: Engine Health</div>
+  
+  **Challenge**: Predict engine failures before they occur
+  
+  **ML Approach**: Time-series analysis of 25+ sensors
+  
+  **Result**: [Detect 97% of issues automatically -- Huge savings!]{.highlight}
+  
+  Predictive maintenance at scale
+</div>
+:::
+
+
+
+::: {.grid-2}
+<div class="card">
+  <div class="card-title">🪐 NASA: Mars Helicopter</div>
+
+  **Challenge**: Autonomous flight with 2.5-min communication delay  
+  
+  **Approach**: Vision-based navigation and classical control (not ML)
+
+  **Result**: [Successful autonomous flight]{.highlight}  
+  First powered flight on another planet
+</div>
+
+<div class="card">
+  <div class="card-title">✈️ Airbus: Fuel Optimization</div>
+
+  **Challenge**: Reduce fuel consumption across global fleet  
+  
+  **ML Approach**: Flight path optimization with weather/traffic  
+  
+  **Result**: [3-5% fuel savings]{.highlight}  
+  Millions in cost reduction + emissions
+</div>
+:::
+ -->
+</section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key Takeaways</h2>
+<div class="key-takeaway">
+<p>Machine learning can save lives in aerospace - but only if applied with domain knowledge and rigorous validation</p>
+</div>
+<ul>
+<li class="fragment"><strong>Safety First</strong>: Aerospace ML must handle failure gracefully
+<ul>
+<li class="fragment">Systems must be robust to faults and uncertainties</li>
+<li class="fragment">Safety and accountability always come first</li>
+</ul></li>
+<li class="fragment"><strong>Physics Informed</strong>: Combine data with centuries of knowledge
+<ul>
+<li class="fragment">Use physical laws (e.g., conservation of momentum, Navier-Stokes equations) to guide models</li>
+<li class="fragment">ML should complement, not replace, physics-based understanding</li>
+</ul></li>
+<li class="fragment"><strong>Responsibility</strong>: Engineers have ethical obligations
+<ul>
+<li class="fragment">Ethical responsibility is part of aerospace engineering</li>
+<li class="fragment">Validation and transparency are essential</li>
+<li class="fragment">ML is powerful but fragile – misuse can have serious consequences</li>
+</ul></li>
+</ul>
+</section>
+<section id="course-structure-your-learning-journey" class="slide level2">
+<h2>Course Structure: Your Learning Journey</h2>
+<div class="grid-3">
+<div class="card">
+<div class="card-title">
+Phase 1: Foundations
+</div>
+<p><strong>Weeks 1-6</strong></p>
+<ul>
+<li>Linear regression</li>
+<li>Classification</li>
+<li>Clustering &amp; PCA</li>
+<li>Dimensionality reduction</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">
+Phase 2: Advanced
+</div>
+<p><strong>Weeks 7-12</strong></p>
+<ul>
+<li>Neural networks</li>
+<li>Deep learning &amp; CNNs</li>
+<li>Sequence models</li>
+<li>Physics-informed ML</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">
+Phase 3: Application
+</div>
+<p><strong>Weeks 13-14</strong></p>
+<ul>
+<li>Project development</li>
+<li>Final presentations</li>
+<li>Real challenges</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="live-demo-flight-data-analysis" class="slide level2">
+<h2>Live Demo: Flight Data Analysis</h2>
+<h3 id="lets-explore-synthetic-flight-data">Let’s Explore (Synthetic) Flight Data</h3>
+<ul>
+<li><strong>Duration</strong>: 2-hour plus flight</li>
+<li><strong>Sampling</strong>: 1 Hz (typical for commercial aircraft)</li>
+<li><strong>Dataset columns</strong>: time, altitude (ft), airspeed (knots), angle of attack sensors (aoa_sensor_1, aoa_sensor_2), pitch attitude, elevator position, MCAS system status, pilot input, flight phase, sensor fault indicators, fault severity, flight ID, scenario type</li>
+<li><strong>Scenario types</strong>: Includes both normal and faulted flights (e.g., sustained AOA fault)</li>
+<li><strong>Use</strong>: Enables analysis of flight performance, sensor faults, and control system behavior for machine learning and safety studies</li>
+</ul>
+</section>
+<section id="demo-load-and-inspect-data" class="slide level2">
+<h2>Demo: Load and Inspect Data</h2>
+<div id="31bdc4b8" class="cell scrollable-output" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|6-8|11-12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a> <span class="co"># Load flight data - using sustained AOA fault scenario (synthetic transport aircraft data)</span></span>
+<span id="cb1-6"><a></a>full_data <span class="op">=</span> pd.read_csv(<span class="st">'../../data/transport_aircraft_synthetic_data.csv'</span>)</span>
+<span id="cb1-7"><a></a>flight_data <span class="op">=</span> full_data[full_data[<span class="st">'scenario_type'</span>] <span class="op">==</span> <span class="st">'sustained_aoa_fault'</span>].copy()</span>
+<span id="cb1-8"><a></a><span class="bu">print</span>(<span class="ss">f"Dataset shape: </span><span class="sc">{</span>flight_data<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a><span class="co"># Display first few rows</span></span>
+<span id="cb1-11"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 5 rows:"</span>)</span>
+<span id="cb1-12"><a></a><span class="bu">print</span>(flight_data.head())</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a><span class="co"># Basic statistics</span></span>
+<span id="cb1-15"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Basic statistics:"</span>)</span>
+<span id="cb1-16"><a></a><span class="bu">print</span>(flight_data[[<span class="st">'altitude'</span>, <span class="st">'airspeed'</span>, <span class="st">'aoa_sensor_1'</span>, <span class="st">'aoa_sensor_2'</span>]].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset shape: (9000, 14)
+
+First 5 rows:
+          time   altitude   airspeed  aoa_sensor_1  aoa_sensor_2  \
+9000  0.000000  59.390992  16.629223      0.311481      0.483187   
+9001  1.000111  46.111761  21.286478     -0.443923     -0.123747   
+9002  2.000222  55.298928  24.185278      0.354471      0.611968   
+9003  3.000333  52.451724  22.498386      0.580658      0.892831   
+9004  4.000444  40.315880  19.180119      0.186956      0.326070   
+
+      pitch_attitude  elevator_position  mcas_active  pilot_input  \
+9000        0.073735           0.062612          0.0     0.233508   
+9001       -0.078668          -0.214703          0.0    -0.165356   
+9002        0.005749           0.061149          0.0    -0.245460   
+9003        0.255690           0.271649          0.0    -0.001012   
+9004        0.038220           0.024430          0.0    -0.051055   
+
+     flight_phase  sensor_fault  fault_severity            flight_id  \
+9000         taxi           0.0             0.0  sustained_aoa_fault   
+9001         taxi           0.0             0.0  sustained_aoa_fault   
+9002         taxi           0.0             0.0  sustained_aoa_fault   
+9003         taxi           0.0             0.0  sustained_aoa_fault   
+9004         taxi           0.0             0.0  sustained_aoa_fault   
+
+            scenario_type  
+9000  sustained_aoa_fault  
+9001  sustained_aoa_fault  
+9002  sustained_aoa_fault  
+9003  sustained_aoa_fault  
+9004  sustained_aoa_fault  
+
+Basic statistics:
+           altitude     airspeed  aoa_sensor_1  aoa_sensor_2
+count   9000.000000  9000.000000   9000.000000   9000.000000
+mean   25745.427371   364.915889     22.027131      3.020272
+std    13430.843207   130.734456      4.490434      1.583290
+min       13.965779    10.987479     -1.359349     -1.255663
+25%    15122.692339   287.096882     22.130631      2.343682
+50%    34906.213756   440.922451     22.525524      2.732802
+75%    35020.933753   452.240103     23.000121      3.214375
+max    35343.366206   496.809818     31.172833     11.254712</code></pre>
+</div>
+</div>
+</section>
+<section id="demo-flight-profile-visualization" class="slide level2">
+<h2>Demo: Flight Profile Visualization</h2>
+<div id="3f85147b" class="cell" data-fig-height="2" data-fig-width="3" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">9</span>), facecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="co"># Altitude profile</span></span>
+<span id="cb3-4"><a></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].plot(flight_data[<span class="st">'time'</span>]<span class="op">/</span><span class="dv">60</span>, flight_data[<span class="st">'altitude'</span>], </span>
+<span id="cb3-5"><a></a>                color<span class="op">=</span><span class="st">'#2E7BB4'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-6"><a></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'Altitude Profile'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-7"><a></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'Time (minutes)'</span>)</span>
+<span id="cb3-8"><a></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'Altitude (feet)'</span>)</span>
+<span id="cb3-9"><a></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-10"><a></a></span>
+<span id="cb3-11"><a></a><span class="co"># Airspeed</span></span>
+<span id="cb3-12"><a></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].plot(flight_data[<span class="st">'time'</span>]<span class="op">/</span><span class="dv">60</span>, flight_data[<span class="st">'airspeed'</span>], </span>
+<span id="cb3-13"><a></a>                color<span class="op">=</span><span class="st">'#4A9FD8'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-14"><a></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">'Airspeed Profile'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-15"><a></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'Time (minutes)'</span>)</span>
+<span id="cb3-16"><a></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'Airspeed (knots)'</span>)</span>
+<span id="cb3-17"><a></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-18"><a></a></span>
+<span id="cb3-19"><a></a><span class="co"># AOA sensors comparison</span></span>
+<span id="cb3-20"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].plot(flight_data[<span class="st">'time'</span>]<span class="op">/</span><span class="dv">60</span>, flight_data[<span class="st">'aoa_sensor_1'</span>], </span>
+<span id="cb3-21"><a></a>                label<span class="op">=</span><span class="st">'AOA Sensor 1'</span>, color<span class="op">=</span><span class="st">'#C5912E'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-22"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].plot(flight_data[<span class="st">'time'</span>]<span class="op">/</span><span class="dv">60</span>, flight_data[<span class="st">'aoa_sensor_2'</span>], </span>
+<span id="cb3-23"><a></a>                label<span class="op">=</span><span class="st">'AOA Sensor 2'</span>, color<span class="op">=</span><span class="st">'#E87722'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-24"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'Angle of Attack - Dual Sensors'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-25"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'Time (minutes)'</span>)</span>
+<span id="cb3-26"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'AOA (degrees)'</span>)</span>
+<span id="cb3-27"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].legend()</span>
+<span id="cb3-28"><a></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-29"><a></a></span>
+<span id="cb3-30"><a></a><span class="co"># Flight phase scatter</span></span>
+<span id="cb3-31"><a></a>phase_colors <span class="op">=</span> {<span class="st">'takeoff'</span>: <span class="st">'#E87722'</span>, <span class="st">'climb'</span>: <span class="st">'#4A9FD8'</span>, </span>
+<span id="cb3-32"><a></a>                <span class="st">'cruise'</span>: <span class="st">'#2E7BB4'</span>, <span class="st">'descent'</span>: <span class="st">'#7CB9E8'</span>, <span class="st">'approach'</span>: <span class="st">'#C5912E'</span>}</span>
+<span id="cb3-33"><a></a><span class="cf">for</span> phase <span class="kw">in</span> flight_data[<span class="st">'flight_phase'</span>].unique():</span>
+<span id="cb3-34"><a></a>    mask <span class="op">=</span> flight_data[<span class="st">'flight_phase'</span>] <span class="op">==</span> phase</span>
+<span id="cb3-35"><a></a>    axes[<span class="dv">1</span>, <span class="dv">1</span>].scatter(flight_data.loc[mask, <span class="st">'altitude'</span>], </span>
+<span id="cb3-36"><a></a>                      flight_data.loc[mask, <span class="st">'airspeed'</span>],</span>
+<span id="cb3-37"><a></a>                      label<span class="op">=</span>phase, alpha<span class="op">=</span><span class="fl">0.6</span>, s<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb3-38"><a></a>                      color<span class="op">=</span>phase_colors.get(phase, <span class="st">'#556B7F'</span>))</span>
+<span id="cb3-39"><a></a></span>
+<span id="cb3-40"><a></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_title(<span class="st">'Flight Envelope'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-41"><a></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'Altitude (feet)'</span>)</span>
+<span id="cb3-42"><a></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'Airspeed (knots)'</span>)</span>
+<span id="cb3-43"><a></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].legend()</span>
+<span id="cb3-44"><a></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-45"><a></a></span>
+<span id="cb3-46"><a></a>plt.tight_layout()</span>
+<span id="cb3-47"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><a href="week01_presentation_files/figure-revealjs/cell-3-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="week01_presentation_files/figure-revealjs/cell-3-output-1.svg"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="homework" class="slide level2">
+<h2>Homework</h2>
+<p>Work on homework 1. See Canvas.</p>
+</section>
+<section id="questions-discussion" class="slide level2">
+<h2>Questions &amp; Discussion</h2>
+<h3 id="open-floor">Open Floor</h3>
+<ul>
+<li>Course logistics?</li>
+<li>Specific interests?</li>
+<li>Technical concerns?</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<!-- ## Transport Aircraft Safety Crisis 
+### Where ML (Data-Driven Approach) could have helped.
+
+::: {.columns}
+::: {.column width="50%"}
+<div class="stat-number">346</div>
+<div class="stat-label">Lives Lost</div>
+
+<div class="stat-number" style="font-size: 2em; margin-top: 0.5em;">2</div>
+<div class="stat-label">Fatal Crashes (2018-2019)</div>
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+**Root Cause**: System relied on **single sensor** input
+
+**The ML Perspective**: How could data-driven approaches have prevented this?
+:::
+:::
+:::
+
+----
+
+## What Went Wrong? 
+
+::: {.safety-critical}
+Single point of failure: One faulty Angle of Attack (AOA) sensor triggered catastrophic activation
+:::
+
+::: {.incremental}
+1. **Sensor Fault**: AOA sensor reported erroneous readings (20° error)
+2. **System Activation**: System automatically pushed nose down
+3. **No Redundancy**: Backup sensor data was ignored
+4. **Pilot Override Difficulty**: System repeatedly reactivated
+:::
+
+::: {.fragment}
+::: {.key-takeaway}
+Multiple sensor fusion and anomaly detection could have flagged the inconsistency
+
+- Techniques from control theory (fault-detection and isolation)
+- Advanced data-driven techniques
+:::
+:::
+
+----- -->
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AERO 689 - Week 1: Introduction &amp; Motivation</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"chalkWidth":3,"boardmarkerWidth":2,"chalkEffect":0.4,"show":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: false,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+
+        maxScale: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
+    
+
+</body></html>

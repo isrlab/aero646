@@ -1,0 +1,352 @@
+/*-- scss:defaults --*/
+
+// Aerospace-inspired color palette (Dark Theme)
+$navy-dark: #0A1628;
+$navy-primary: #1A2F4F;
+$navy-light: #2D4A6F;
+$blue-accent: #4A9FD8;
+$blue-bright: #7CB9E8;
+$sky-blue: #A8D8FF;
+$orange-accent: #FF9F5A;
+$gold-accent: #F4C430;
+$gray-dark: #1C1C1E;
+$gray-medium: #8E8E93;
+$gray-light: #48484A;
+$white-off: #F8F9FA;
+$text-light: #E8E8E8;
+
+// Typography
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-monospace: "Fira Code", "Source Code Pro", Consolas, Monaco, monospace !default;
+$presentation-font-size-root: 40px;
+$presentation-line-height: 1.4;
+
+// Color assignments (Dark Theme)
+$body-bg: $gray-dark;
+$body-color: $text-light;
+$link-color: $blue-accent;
+$link-color-hover: $sky-blue;
+
+// Headings
+$presentation-heading-font: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$presentation-heading-color: $sky-blue;
+$presentation-h1-font-size: 2.2em;
+$presentation-h2-font-size: 1.7em;
+$presentation-h3-font-size: 1.3em;
+$presentation-h4-font-size: 1.1em;
+
+// Code blocks
+$code-block-bg: #0D1117;
+$code-color: #C9D1D9;
+$code-block-border-color: $gray-light;
+
+/*-- scss:rules --*/
+
+// Slide backgrounds
+.reveal {
+  font-family: $font-family-sans-serif;
+  font-size: $presentation-font-size-root;
+  font-weight: normal;
+  color: $body-color;
+}
+
+// Main slide background
+.reveal .slides {
+  text-align: left;
+}
+
+// Title slide styling
+.reveal .slide.title-slide {
+  text-align: center;
+  background: linear-gradient(135deg, #0A1628 0%, #1A2F4F 100%);
+  
+  h1.title {
+    color: $sky-blue;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    text-transform: none;
+    border-bottom: 4px solid $blue-accent;
+    padding-bottom: 0.3em;
+    display: inline-block;
+  }
+  
+  p.subtitle {
+    color: $blue-accent;
+    font-size: 1.3em;
+    margin-top: 0.5em;
+    font-weight: 400;
+  }
+  
+  .author,
+  .institute {
+    color: $text-light;
+    font-size: 0.9em;
+    margin-top: 1.5em;
+  }
+  
+  .date {
+    color: $gray-medium;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+  }
+}
+
+// Section title slides
+.reveal h1sky-blue;
+  font-weight: 700;
+  text-transform: none;
+  border-bottom: 3px solid $blue-accent;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.5em;
+}
+
+.reveal h2 {
+  color: $blue-accent;
+  font-weight: 600;
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+}
+
+.reveal h3 {
+  color: $blue-bright;
+  font-weight: 600;
+  margin-top: 0.6em;
+}
+
+.reveal h4 {
+  color: $text-light
+  color: $gray-dark;
+  font-weight: 600;
+  font-style: italic;
+}
+
+// Links
+.reveal a {
+  color: $link-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: $link-color-hover;
+    text-decoration: underline;
+  }
+}
+
+// Lists
+.reveal ul, .reveal ol {
+  margin-left: 0;
+  
+  li {
+    margin-bottom: 0.4em;
+    line-height: $presentation-line-height;
+  }
+}
+
+.reveal ul ul,
+.reveal ol ol {
+  margin-top: 0.3em;
+  font-size: 0.9em;
+}
+
+// Emphasis
+.reveal strong,
+.reveal b sky-blue;
+  font-weight: 700;
+}
+
+.reveal em {
+  color: $blue-brigh
+  color: $blue-accent;
+  font-style: italic;
+}
+
+// Code blocks
+.reveal pre {
+  background-color: $gray-light;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  margin: 1em 0;
+  
+  code {
+    font-family: $font-family-monospace;
+    padding: 1em;
+    max-height: 500px;
+    font-size: 0.65em;
+    line-height: 1.4;
+    color: $code-color;
+  }
+}
+
+// Inline code
+.reveal code {
+  font-family: $font-family-monospace;
+  color: $blue-bright;
+  background-color: rgba(74, 159, 216, 0.2
+  background-color: rgba(46, 123, 180, 0.1);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.reveal pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+// Tables
+.reveal table {
+  border-collapse: collapse;
+  margin: 1em auto;
+  light;
+    color: $text-light;
+    font-weight: 600;
+    padding: 0.6em 1em;
+    border: none;
+  }
+  
+  td {
+    padding: 0.5em 1em;
+    border-bottom: 1px solid $gray-light;
+    color: $text-light;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgba(72, 72, 74, 0.3
+  tr:nth-child(even) {
+    background-color: rgba(189, 195, 199, 0.1);
+  }
+}
+
+// Blockquotes74, 159, 216, 0.15);
+  padding: 0.8em 1.2em;
+  margin: 1em 0;
+  font-style: italic;
+  color: $text-light;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3
+  font-style: italic;
+  color: $gray-dark;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+text-light;
+  background-color: rgba(72, 72, 74
+.reveal .slide-number {
+  color: $gray-medium;
+  background-color: rgba(248, 249, 250, 0.8);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.6em;
+}
+72, 72, 74, 0.5
+// Progress bar
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.1);
+  
+  span {
+    background: $blue-accent;
+    transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  }
+}
+
+// Controls
+.reveal .controls {
+  color: $blue-accent;
+}
+
+// Custom classes for special content
+.reveal .alert {
+  padding: 0.8em 1.2em;
+  margin: 1em 0;
+  border-radius: 5px;
+  border-left: 5px solid;
+}
+
+.reveal .alert-warning {
+  background-color: rgba(232, 119, 34, 0.1);
+  border-left-color: $orange-accent;
+  color: darken($orange-accent, 20%);
+}
+
+.reveal .alert-info {
+  background-color: rgba(46, 123, 180, 0.1);
+  border-left-color: $blue-accent;
+  color: darken($blue-accent, 20%);
+}
+
+.reveal .alert-success {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left-color: #4CAF50;
+  color: darken(#4CAF50, 20%);
+}
+4) 0%, rgba(46, 123, 180, 0.2) 100%);
+  padding: 1em;
+  border-radius: 8px;
+  border: 2px solid $blue-accent;
+  margin: 1em 0;
+}
+
+.reveal .key-equation {
+  background-color: rgba(244, 196, 48, 0.15);
+  padding: 1em;
+  border-left: 5px solid $gold-accent;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 1em 0;
+  color: $text-light5px solid $gold-accent;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 1em 0;
+}
+
+// Two-column layout helper
+.reveal .columns {
+  display: flex;
+  gap: 2em;
+  
+  .column {
+    flex: 1;
+  }
+}
+5
+// Image styling
+.reveal img {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+}
+
+// Fragment animation
+.reveal .fragment {
+  &.highlight-current-blue {
+    opacity: 1;
+    visibility: inherit;
+    
+    &.current-fragment {
+      color: $blue-bright;
+      font-weight: 600;
+    }
+  }
+}
+
+// Footer styling
+.reveal .footer {
+  color: $gray-medium;
+  font-size: 0.6em;
+  padding: 10px;
+}
+blue-bright
+// Math equations
+.reveal .math {
+  color: $navy-primary;
+}
+
+// Section divider
+.reveal .section-divider {
+  height: 3px;
+  background: linear-gradient(to right, $blue-accent, $sky-blue, $blue-accent);
+  margin: 2em 0;
+  border: none;
+}

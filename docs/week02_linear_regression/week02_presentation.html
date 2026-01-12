@@ -1,0 +1,3162 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1b3db88def35042d172274863c1cdcf0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="Dr.&nbsp;Raktim Bhattacharya">
+  <title>Linear Regression</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2e3440; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #75715e; } /* Annotation */
+    code span.at { color: #f92672; } /* Attribute */
+    code span.bn { color: #ae81ff; } /* BaseN */
+    code span.bu { color: #66d9ef; } /* BuiltIn */
+    code span.cf { color: #f92672; } /* ControlFlow */
+    code span.ch { color: #e6db74; } /* Char */
+    code span.cn { color: #ae81ff; } /* Constant */
+    code span.co { color: #75715e; } /* Comment */
+    code span.cv { color: #75715e; } /* CommentVar */
+    code span.do { color: #75715e; } /* Documentation */
+    code span.dt { color: #66d9ef; font-style: italic; } /* DataType */
+    code span.dv { color: #ae81ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #a6e22e; font-weight: bold; } /* Extension */
+    code span.fl { color: #ae81ff; } /* Float */
+    code span.fu { color: #a6e22e; } /* Function */
+    code span.im { color: #f92672; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #f92672; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #a6e22e; } /* Other */
+    code span.pp { color: #f92672; } /* Preprocessor */
+    code span.re { color: #75715e; } /* RegionMarker */
+    code span.sc { color: #ae81ff; } /* SpecialChar */
+    code span.ss { color: #e6db74; } /* SpecialString */
+    code span.st { color: #e6db74; } /* String */
+    code span.va { color: #f8f8f2; } /* Variable */
+    code span.vs { color: #e6db74; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-072ed3e9f6ddee2d77a1b12ecb19b2ca.css">
+  <link rel="stylesheet" href="../aero689-custom.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Linear Regression</h1>
+  <p class="subtitle">AERO 689: Introduction to Machine Learning for Aerospace Engineers</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Raktim Bhattacharya 
+</div>
+        <p class="quarto-title-affiliation">
+            Texas A&amp;M University - Aerospace Engineering
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="learning-objectives" class="slide level2">
+<h2>Learning Objectives</h2>
+<ul>
+<li>Apply linear regression to aerospace performance prediction</li>
+<li>Understand least squares method and gradient descent</li>
+<li>Implement drag coefficient prediction from wind tunnel data</li>
+<li>Validate models using aerospace-specific metrics</li>
+</ul>
+</section>
+<section id="the-fuel-crisis-challenge" class="slide level2">
+<h2>The Fuel Crisis Challenge</h2>
+<h3 id="the-100-million-question">The $100 Million Question</h3>
+<p><strong>Scenario</strong>: An airline operates 200 aircraft</p>
+<ul>
+<li><strong>Fuel cost</strong>: $50M+ annually per aircraft type</li>
+<li><strong>Challenge</strong>: Predict fuel consumption for flight planning</li>
+<li><strong>Current method</strong>: Simplified performance charts</li>
+<li><strong>ML opportunity</strong>: Precise models using real flight data</li>
+</ul>
+<div class="fragment">
+<h3 id="real-impact">Real Impact</h3>
+<ul>
+<li>1% fuel savings = $100M+ industry-wide annually</li>
+<li>Better range predictions = route optimization</li>
+<li>Accurate payload calculations = safety + efficiency</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p><strong>Question for class</strong>: <em>What factors affect aircraft fuel consumption?</em></p>
+</blockquote>
+</div>
+</section>
+<section id="from-wind-tunnel-to-flight---the-data-challenge" class="slide level2">
+<h2>From Wind Tunnel to Flight - The Data Challenge</h2>
+<h3 id="traditional-approach-empirical-models">Traditional Approach: Empirical Models</h3>
+<p><strong>Parabolic Drag Polar</strong> <span class="math display">\[
+C_D = C_{D_0} + KC_L^2  
+\]</span></p>
+<ul>
+<li><strong>Problem</strong>: Assumes perfect conditions</li>
+<li><strong>Reality</strong>: Real flights have weather, weight variations, engine degradation</li>
+<li><strong>Solution</strong>: ML to learn from actual operational data</li>
+</ul>
+<div class="fragment">
+<h3 id="available-data-sources">Available Data Sources</h3>
+<ol type="1">
+<li><strong>Wind Tunnel Data</strong>: Controlled, precise, limited conditions</li>
+<li><strong>Flight Test Data</strong>: Real conditions, expensive to collect</li>
+<li><strong>Operational Data</strong>: Massive scale, noisy, representative</li>
+</ol>
+</div>
+<div class="fragment">
+<h3 id="the-linear-regression-framework">The Linear Regression Framework</h3>
+<ul>
+<li><strong>Goal</strong>: Predict drag coefficient (CD) from flight parameters</li>
+<li><strong>Input features</strong>: Angle of attack (<span class="math inline">\(\alpha\)</span>), Mach number (M), Reynolds number (Re)</li>
+<li><strong>Output</strong>: Drag coefficient for performance calculations</li>
+</ul>
+</div>
+</section>
+<section id="mathematical-foundation-the-linear-model" class="slide level2">
+<h2>Mathematical Foundation: The Linear Model</h2>
+<h3 id="general-form">General Form</h3>
+<p>For <span class="math inline">\(n\)</span> samples and <span class="math inline">\(d\)</span> features, the linear regression model is:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_d x_{id} + \epsilon_i
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span>: response variable (e.g., drag coefficient)</li>
+<li><span class="math inline">\(x_{ij}\)</span>: <span class="math inline">\(j\)</span>-th feature of <span class="math inline">\(i\)</span>-th sample (e.g., Mach, <span class="math inline">\(\alpha\)</span>, Re)</li>
+<li><span class="math inline">\(\beta_j\)</span>: regression coefficients (parameters to learn)</li>
+<li><span class="math inline">\(\epsilon_i\)</span>: error term (noise, unmodeled physics)</li>
+</ul>
+<div class="fragment">
+<h3 id="vector-notation">Vector Notation</h3>
+<p><span class="math display">\[
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta}^\ast + \boldsymbol{\epsilon}
+\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{X} \in \mathbb{R}^{n \times (d+1)}\)</span> is the <strong>design matrix</strong> with augmented 1’s for intercept</p>
+</div>
+</section>
+<section id="matrix-formulation" class="slide level2">
+<h2>Matrix Formulation</h2>
+<h3 id="design-matrix-structure">Design Matrix Structure</h3>
+<p><span class="math display">\[
+\boldsymbol{X} = \begin{bmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1d} \\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2d} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nd}
+\end{bmatrix}, \quad
+\boldsymbol{\beta} = \begin{bmatrix}
+\beta_0 \\ \beta_1 \\ \vdots \\ \beta_d
+\end{bmatrix}, \quad
+\boldsymbol{y} = \begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix}
+\]</span></p>
+<div class="fragment">
+<h3 id="aerospace-example-drag-prediction">Aerospace Example: Drag Prediction</h3>
+<p><strong>Design matrix</strong>: <span class="math display">\[
+\boldsymbol{X} = \begin{bmatrix}
+1 &amp; \alpha_1 &amp; M_1 &amp; \text{Re}_1 &amp; \alpha_1^2 &amp; \alpha_1 M_1 &amp; \cdots \\
+1 &amp; \alpha_2 &amp; M_2 &amp; \text{Re}_2 &amp; \alpha_2^2 &amp; \alpha_2 M_2 &amp; \cdots \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots
+\end{bmatrix}
+\]</span></p>
+<p><strong>Parameters</strong>: <span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix} C_{D_0} &amp; k_\alpha &amp; k_M &amp; k_{\text{Re}} &amp; k_{\alpha^2} &amp; k_{\alpha M} &amp; \cdots \end{bmatrix}^T\)</span></p>
+<p><strong>Targets</strong>: <span class="math inline">\(\boldsymbol{y} = \begin{bmatrix} C_{D_1} &amp; C_{D_2} &amp; \cdots &amp; C_{D_n} \end{bmatrix}^T\)</span></p>
+</div>
+</section>
+<section id="key-insight-what-linear-means" class="slide level2">
+<h2>Key Insight: What “Linear” Means</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="linear-regression-linear-in-parameters">“Linear Regression” = Linear in <span class="highlight">Parameters</span></h3>
+<p><strong>The model</strong>: <span class="math display">\[y = \beta_0 \phi_0(\boldsymbol{x}) + \beta_1 \phi_1(\boldsymbol{x}) + \cdots + \beta_d \phi_d(\boldsymbol{x})\]</span></p>
+<p><strong>Where</strong>:</p>
+<ul>
+<li><span class="math inline">\(\phi_j(\boldsymbol{x})\)</span> are <strong>basis functions</strong> or <strong>features</strong> (can be nonlinear!)
+<ul>
+<li>Each <span class="math inline">\(\phi_j: \mathbb{R}^p \to \mathbb{R}\)</span> maps input features to a <strong>scalar</strong></li>
+<li>Examples: <span class="math inline">\(\phi_0(\boldsymbol{x}) = 1\)</span>, <span class="math inline">\(\phi_1(\boldsymbol{x}) = \alpha\)</span>, <span class="math inline">\(\phi_2(\boldsymbol{x}) = \alpha^2\)</span>, <span class="math inline">\(\phi_3(\boldsymbol{x}) = \sin(M)\)</span></li>
+<li>Output dimension matches <span class="math inline">\(y\)</span> (scalar for scalar regression, vector for multi-output)</li>
+</ul></li>
+<li><span class="math inline">\(\beta_j\)</span> are <strong>coefficients</strong> (what we solve for)
+<ul>
+<li>Scalars for single-output regression (predicting one quantity like <span class="math inline">\(C_D\)</span>)</li>
+<li>Could be matrices for multi-output regression (predicting multiple quantities simultaneously)</li>
+<li><strong>Note</strong>: Design matrix <span class="math inline">\(\boldsymbol{X}\)</span> stays the same (n × (d+1)), only <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\boldsymbol{y}\)</span> change dimensions</li>
+</ul></li>
+<li>Model is <strong>linear</strong> in <span class="math inline">\(\beta_j\)</span>, <strong>not</strong> in <span class="math inline">\(\boldsymbol{x}\)</span></li>
+</ul>
+<div class="fragment">
+<p><strong>Why it matters</strong>:</p>
+<ul>
+<li>Linearity in <span class="math inline">\(\boldsymbol{\beta}\)</span> → closed-form solution exists</li>
+<li>Can model complex nonlinear phenomena</li>
+<li>Optimization remains <span class="highlight">convex</span> (one global minimum)</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<h3 id="aerospace-example">Aerospace Example</h3>
+<p><strong>Drag coefficient model</strong>: <span class="math display">\[
+C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2 + \beta_3 M^2 + \beta_4(\alpha M)
+\]</span></p>
+<p><strong>Analysis</strong>:</p>
+<ul>
+<li><strong>Nonlinear function</strong> of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(M\)</span> (parabola, interactions)</li>
+<li><strong>Linear combination</strong> of terms: <span class="math inline">\(\beta_0 \cdot 1 + \beta_1 \cdot \alpha + \beta_2 \cdot \alpha^2 + \cdots\)</span></li>
+<li><strong>Linear in coefficients</strong>: doubling <span class="math inline">\(\beta_2\)</span> doubles the <span class="math inline">\(\alpha^2\)</span> contribution</li>
+</ul>
+<p><strong>Matrix form</strong>: <span class="math inline">\(\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta}^\ast\)</span> where <span class="math display">\[
+\boldsymbol{X} = \begin{bmatrix}
+1 &amp; \alpha_1 &amp; \alpha_1^2 &amp; M_1^2 &amp; \alpha_1 M_1 \\
+1 &amp; \alpha_2 &amp; \alpha_2^2 &amp; M_2^2 &amp; \alpha_2 M_2 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots
+\end{bmatrix}
+\]</span></p>
+</div>
+</div></div>
+</section>
+<section id="real-data-noisy-measurements" class="slide level2">
+<h2>Real Data: Noisy Measurements</h2>
+<h3 id="wind-tunnel-data-example">Wind Tunnel Data Example</h3>
+
+<img data-src="week02_presentation_files/figure-revealjs/cell-2-output-1.svg" class="quarto-figure quarto-figure-center r-stretch"><div class="fragment">
+<p><strong>Key observations</strong>:</p>
+<ul>
+<li>Data points scatter around true parabolic relationship</li>
+<li>Noise represents: sensor precision limits, flow unsteadiness, model simplification</li>
+<li><strong>This is why we need the error term</strong> <span class="math inline">\(\epsilon_i\)</span> in our model!</li>
+</ul>
+</div>
+</section>
+<section id="the-optimization-problem" class="slide level2">
+<h2>The Optimization Problem</h2>
+<h3 id="objective-minimize-squared-error">Objective: Minimize Squared Error</h3>
+<p><strong>Residual Sum of Squares (RSS)</strong>: <span class="math display">\[
+\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n (y_i - \boldsymbol{x}_i^T\boldsymbol{\beta})^2
+\]</span></p>
+<div class="fragment">
+<p><strong>Matrix form</strong>: <span class="math display">\[
+\text{RSS}(\boldsymbol{\beta}) = \|\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}\|^2 = (\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta})^T(\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta})
+\]</span></p>
+</div>
+<div class="fragment">
+<p><strong>Optimization goal</strong>: <span class="math display">\[
+\boldsymbol{\beta}^\ast = \arg\min_{\boldsymbol{\beta}} \text{RSS}(\boldsymbol{\beta})
+\]</span></p>
+</div>
+<div class="fragment">
+<blockquote>
+<p><strong>Physical interpretation</strong>: Find aircraft model parameters that best match observed performance data</p>
+</blockquote>
+</div>
+</section>
+<section id="derivation-normal-equations" class="slide level2">
+<h2>Derivation: Normal Equations</h2>
+<h3 id="step-1-expand-the-objective-function">Step 1: Expand the objective function</h3>
+<p><span class="math display">\[
+\text{RSS}(\boldsymbol{\beta}) = \boldsymbol{y}^T\boldsymbol{y} - 2\boldsymbol{\beta}^T\boldsymbol{X}^T\boldsymbol{y} + \boldsymbol{\beta}^T\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}
+\]</span></p>
+<div class="fragment">
+<h3 id="step-2-take-derivative-with-respect-to-boldsymbolbeta">Step 2: Take derivative with respect to <span class="math inline">\(\boldsymbol{\beta}\)</span></h3>
+<p><span class="math display">\[
+\frac{\partial \text{RSS}}{\partial \boldsymbol{\beta}} = -2\boldsymbol{X}^T\boldsymbol{y} + 2\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}
+\]</span></p>
+</div>
+<div class="fragment">
+<h3 id="step-3-set-to-zero-and-solve">Step 3: Set to zero and solve</h3>
+<p><span class="math display">\[
+\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}^\ast = \boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
+<p><strong>Normal Equations</strong></p>
+</div>
+<div class="fragment">
+<h3 id="step-4-solution-if-boldsymbolxtboldsymbolx-is-invertible">Step 4: Solution (if <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> is invertible)</h3>
+<p><span class="math display">\[
+\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
+</div>
+</section>
+<section id="geometric-interpretation-understanding-the-error" class="slide level2">
+<h2>Geometric Interpretation: Understanding the Error</h2>
+<h3 id="what-is-the-error">What is the Error?</h3>
+<p><strong>Definition</strong>: The error (residual) is the difference between observed data and our prediction:</p>
+<p><span class="math display">\[
+\boldsymbol{r} = \boldsymbol{y} - \hat{\boldsymbol{y}} = \boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}
+\]</span></p>
+<div class="fragment">
+<p><strong>Our goal</strong>: Minimize the <strong>length</strong> of this error vector:</p>
+<p><span class="math display">\[
+\min_{\boldsymbol{\beta}} \|\boldsymbol{r}\|^2 = \min_{\boldsymbol{\beta}} \|\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}\|^2
+\]</span></p>
+</div>
+<div class="fragment">
+<h3 id="key-geometric-insight">Key Geometric Insight</h3>
+<ul>
+<li><strong>Column space col(<span class="math inline">\(\boldsymbol{X}\)</span>)</strong>: Space spanned by basis functions (all possible predictions <span class="math inline">\(\boldsymbol{X}\boldsymbol{\beta}\)</span>)</li>
+<li><strong>Data y</strong>: Our actual observations (usually not in col(<span class="math inline">\(\boldsymbol{X}\)</span>) due to noise)</li>
+<li><strong>Question</strong>: What is the <strong>best</strong> representation of <span class="math inline">\(y\)</span> in the feature space?</li>
+</ul>
+<blockquote>
+<p><strong>Answer:</strong> Error is orthogonal to feature space <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{r} = \boldsymbol{0}\)</span> (error is orthogonal to all basis functions)</p>
+</blockquote>
+</div>
+</section>
+<section id="why-projection-minimizes-error" class="slide level2">
+<h2>Why Projection Minimizes Error</h2>
+<h3 id="the-fundamental-geometric-principle">The Fundamental Geometric Principle</h3>
+<p><strong>Projection Theorem</strong>: The shortest distance from a point to a subspace is achieved by the <strong>perpendicular projection</strong>.</p>
+
+<img data-src="week02_presentation_files/figure-revealjs/cell-3-output-1.svg" class="quarto-figure quarto-figure-center r-stretch"><div class="fragment">
+<p><strong>Key Insight</strong>:</p>
+<ul>
+<li>The optimal <span class="math inline">\(\hat{\boldsymbol{y}}\)</span> is found by projecting <span class="math inline">\(\boldsymbol{r}\)</span> onto col(<span class="math inline">\(\boldsymbol{X}\)</span>) and setting it to zero</li>
+<li>This minimizes the error length: <span class="math inline">\(||\boldsymbol{r}|| = ||\boldsymbol{y} - \hat{\boldsymbol{y}}||\)</span> is smallest</li>
+</ul>
+<p><strong>Mathematical statement</strong>: <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{r} = \boldsymbol{X}^T(\boldsymbol{y} - \hat{\boldsymbol{y}}) = \boldsymbol{0}\)</span></p>
+</div>
+</section>
+<section id="deriving-the-optimal-solution-via-projection" class="slide level2">
+<h2>Deriving the Optimal Solution via Projection</h2>
+<h3 id="step-1-state-the-orthogonality-condition">Step 1: State the Orthogonality Condition</h3>
+<p><strong>From geometry</strong>: The error <span class="math inline">\(\boldsymbol{r} = \boldsymbol{y} - \hat{\boldsymbol{y}}\)</span> must be perpendicular to col(<span class="math inline">\(\boldsymbol{X}\)</span>)</p>
+<p><span class="math display">\[
+\boldsymbol{r} \perp \text{col}(\boldsymbol{X}) \quad \Longrightarrow \quad \boldsymbol{X}^T\boldsymbol{r} = \boldsymbol{0}
+\]</span></p>
+<div class="fragment">
+<p>This is <strong>the fundamental condition</strong> for least squares optimality:</p>
+<ul>
+<li><span class="math inline">\(\boldsymbol{X}^T \boldsymbol{r}\)</span> is a vector of dot products between <span class="math inline">\(\boldsymbol{r}\)</span> and each column of <span class="math inline">\(\boldsymbol{X}\)</span></li>
+<li>Each dot product = 0 means <span class="math inline">\(\boldsymbol{r}\)</span> is perpendicular to that column</li>
+<li>Zero vector means <span class="math inline">\(\boldsymbol{r}\)</span> is perpendicular to <strong>all</strong> columns (entire col(<span class="math inline">\(\boldsymbol{X}\)</span>))</li>
+</ul>
+</div>
+</section>
+<section id="deriving-the-optimal-solution-via-projection-1" class="slide level2">
+<h2>Deriving the Optimal Solution via Projection</h2>
+<h3 id="step-2-express-in-terms-of-β">Step 2: Express in Terms of β</h3>
+<p>Since optimal <span class="math inline">\(\hat{\boldsymbol{y}}^\ast = \boldsymbol{X}\boldsymbol{\beta}^\ast\)</span> and <span class="math inline">\(\boldsymbol{r}^\ast = \boldsymbol{y} - \hat{\boldsymbol{y}}^\ast\)</span>, substitute into the orthogonality condition:</p>
+<p><span class="math display">\[
+\boldsymbol{X}^T\boldsymbol{r}^\ast = \boldsymbol{0}
+\]</span></p>
+<div class="fragment">
+<p><span class="math display">\[
+\boldsymbol{X}^T(\boldsymbol{y} - \hat{\boldsymbol{y}}^\ast) = \boldsymbol{0}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\boldsymbol{X}^T(\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}^\ast) = \boldsymbol{0}
+\]</span></p>
+<p>Now we have an equation for <span class="math inline">\(\boldsymbol{\beta}^\ast\)</span> that we can solve!</p>
+</div>
+</section>
+<section id="deriving-the-optimal-solution-via-projection-2" class="slide level2">
+<h2>Deriving the Optimal Solution via Projection</h2>
+<h3 id="step-3-derive-the-normal-equations">Step 3: Derive the Normal Equations</h3>
+<p>Expand the orthogonality condition:</p>
+<p><span class="math display">\[
+\boldsymbol{X}^T(\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}^\ast) = \boldsymbol{0}
+\]</span></p>
+<div class="fragment">
+<p><span class="math display">\[
+\boldsymbol{X}^T\boldsymbol{y} - \boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}^\ast = \boldsymbol{0}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}^\ast = \boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
+<p>These are the <strong>Normal Equations</strong> – a linear system for <span class="math inline">\(\boldsymbol{\beta}^\ast\)</span>.</p>
+</div>
+</section>
+<section id="deriving-the-optimal-solution-via-projection-3" class="slide level2">
+<h2>Deriving the Optimal Solution via Projection</h2>
+<h3 id="step-4-solve-for-boldsymbolbetaast">Step 4: Solve for <span class="math inline">\(\boldsymbol{\beta}^\ast\)</span></h3>
+<p>Starting from the normal equations:</p>
+<p><span class="math display">\[
+\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}^\ast = \boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
+<div class="fragment">
+<p>Assuming <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> is invertible (columns of <span class="math inline">\(\boldsymbol{X}\)</span> are linearly independent):</p>
+<p><span class="math display">\[
+\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
+<p>This is the <strong>closed-form solution</strong> for ordinary least squares!</p>
+</div>
+<div class="fragment">
+<blockquote>
+<p><strong>Key insight</strong>: We derived this using <strong>projection geometry</strong> (<span class="math inline">\(\boldsymbol{r}\)</span> ⊥ col(<span class="math inline">\(\boldsymbol{X}\)</span>)) instead of <strong>calculus</strong> (∂J/∂β = 0). Both paths lead to the same solution!</p>
+</blockquote>
+</div>
+</section>
+<section id="concrete-example-verify-orthogonality" class="slide level2">
+<h2>Concrete Example: Verify Orthogonality</h2>
+<h3 id="simple-linear-regression-y-β₀-β₁x">Simple Linear Regression: y = β₀ + β₁x</h3>
+<div id="85267a49" class="cell" data-fig-height="7" data-fig-width="13" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code>X = [[1. 1.]
+ [1. 2.]
+ [1. 3.]]
+β̂ = [-2.   3.5]
+Residual = [ 0.5 -1.   0.5]</code></pre>
+</div>
+
+</div>
+<img data-src="week02_presentation_files/figure-revealjs/cell-4-output-2.svg" class="quarto-figure quarto-figure-center r-stretch"><div class="fragment">
+<p><strong>Confirmed</strong>: Both dot products ≈ 0, proving the residual is perpendicular to <strong>both</strong> columns of <span class="math inline">\(\boldsymbol{X}\)</span>!</p>
+</div>
+</section>
+<section id="the-projection-matrix" class="slide level2">
+<h2>The Projection Matrix</h2>
+<h3 id="mathematical-form">Mathematical Form</h3>
+<p>From the normal equations <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}^\ast = \boldsymbol{X}^T\boldsymbol{y}\)</span>, we get:</p>
+<p><span class="math display">\[
+\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
+<div class="fragment">
+<p><strong>Predicted values</strong>: <span class="math display">\[
+\hat{\boldsymbol{y}} = \boldsymbol{X}\boldsymbol{\beta}^\ast = \boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y} = \boldsymbol{P}\boldsymbol{y}
+\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{P} = \boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\)</span> is the <strong>projection matrix</strong></p>
+</div>
+<div class="fragment">
+<h3 id="key-properties">Key Properties</h3>
+<ol type="1">
+<li><strong>Idempotent</strong>: <span class="math inline">\(\boldsymbol{P}^2 = \boldsymbol{P}\)</span> (projecting twice = projecting once)</li>
+<li><strong>Symmetric</strong>: <span class="math inline">\(\boldsymbol{P}^T = \boldsymbol{P}\)</span></li>
+<li><strong>Projects onto <span class="math inline">\(\text{col}(\boldsymbol{X})\)</span></strong>: <span class="math inline">\(\boldsymbol{P}\boldsymbol{X} = \boldsymbol{X}\)</span></li>
+<li><strong>Residual matrix</strong>: <span class="math inline">\(\boldsymbol{I} - \boldsymbol{P}\)</span> projects onto orthogonal complement</li>
+</ol>
+</div>
+<div class="fragment">
+<blockquote>
+<p><strong>Aerospace insight</strong>: The projection matrix <span class="math inline">\(\boldsymbol{P}\)</span> extracts the component of observed drag that can be explained by our aerodynamic features, leaving unexplained variance in the residuals</p>
+</blockquote>
+</div>
+</section>
+<section id="when-direct-solution-fails" class="slide level2">
+<h2>When Direct Solution Fails</h2>
+<h3 id="challenges-with-boldsymbolxtboldsymbolx-1">Challenges with <span class="math inline">\((\boldsymbol{X}^T\boldsymbol{X})^{-1}\)</span></h3>
+<p><strong>Problem 1: Singular Matrix</strong></p>
+<ul>
+<li>Occurs when <span class="math inline">\(n &lt; d+1\)</span> (more features than samples)</li>
+<li>Multicollinearity: highly correlated features</li>
+</ul>
+<div class="fragment">
+<p><strong>Problem 2: Computational Cost</strong></p>
+<ul>
+<li>Matrix inversion: <span class="math inline">\(O(d^3)\)</span> operations</li>
+<li>For large <span class="math inline">\(d\)</span> (high-dimensional features), impractical</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Problem 3: Numerical Stability</strong></p>
+<ul>
+<li>Ill-conditioned matrices (high condition number)</li>
+<li>Small perturbations → large changes in solution</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="solutions">Solutions</h3>
+<ol type="1">
+<li><strong>Regularization</strong>: Ridge, Lasso</li>
+<li><strong>Gradient descent</strong>: Iterative optimization</li>
+<li><strong>QR decomposition</strong>: Numerically stable direct method</li>
+<li><strong>SVD</strong>: Most stable, handles rank deficiency</li>
+</ol>
+</div>
+</section>
+<section id="gradient-descent-iterative-approach" class="slide level2">
+<h2>Gradient Descent: Iterative Approach</h2>
+<h3 id="algorithm">Algorithm</h3>
+<p><strong>Initialize</strong>: <span class="math inline">\(\boldsymbol{\beta}^{(0)}\)</span> randomly or to zeros</p>
+<p><strong>Iterate</strong>: For <span class="math inline">\(t = 0, 1, 2, \ldots\)</span> until convergence:</p>
+<p><span class="math display">\[
+\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} - \eta \nabla_{\boldsymbol{\beta}} \text{RSS}(\boldsymbol{\beta}^{(t)})
+\]</span></p>
+<p>where <span class="math inline">\(\eta &gt; 0\)</span> is the <strong>learning rate</strong></p>
+<div class="fragment">
+<h3 id="gradient-computation">Gradient Computation</h3>
+<p><span class="math display">\[
+\nabla_{\boldsymbol{\beta}} \text{RSS} = -2\boldsymbol{X}^T(\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta})
+\]</span></p>
+<p><strong>Update rule</strong>: <span class="math display">\[
+\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} + 2\eta \boldsymbol{X}^T(\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}^{(t)})
+\]</span></p>
+</div>
+</section>
+<section id="gradient-descent-variants" class="slide level2">
+<h2>Gradient Descent Variants</h2>
+<h3 id="batch-gradient-descent">Batch Gradient Descent</h3>
+<p><strong>Use all <span class="math inline">\(n\)</span> samples</strong> in each iteration: <span class="math display">\[
+\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} - \eta \nabla_{\boldsymbol{\beta}} \text{RSS}(\boldsymbol{\beta}^{(t)})
+\]</span></p>
+<ul>
+<li>✓ Stable convergence</li>
+<li>✗ Slow for large <span class="math inline">\(n\)</span></li>
+</ul>
+<div class="fragment">
+<h3 id="stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)</h3>
+<p><strong>Use one random sample</strong> <span class="math inline">\(i\)</span> per iteration: <span class="math display">\[
+\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} + 2\eta \boldsymbol{x}_i(y_i - \boldsymbol{x}_i^T\boldsymbol{\beta}^{(t)})
+\]</span></p>
+<ul>
+<li>✓ Fast updates, scales to large data</li>
+<li>✗ Noisy, oscillates around minimum</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="mini-batch-gradient-descent">Mini-Batch Gradient Descent</h3>
+<p><strong>Use subset of <span class="math inline">\(b\)</span> samples</strong> per iteration (typical: <span class="math inline">\(b = 32, 64, 128\)</span>)</p>
+<ul>
+<li>✓ Balance between speed and stability</li>
+<li>✓ Vectorized operations (GPU-friendly)</li>
+</ul>
+</div>
+</section>
+<section id="learning-rate-selection" class="slide level2">
+<h2>Learning Rate Selection</h2>
+<h3 id="critical-hyperparameter">Critical Hyperparameter</h3>
+<p><span class="math display">\[
+\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} - \eta \nabla_{\boldsymbol{\beta}} \text{RSS}(\boldsymbol{\beta}^{(t)})
+\]</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Too small</strong> (<span class="math inline">\(\eta \ll 1\)</span>):</p>
+<ul>
+<li>Slow convergence</li>
+<li>Many iterations needed</li>
+<li>Computationally expensive</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Too large</strong> (<span class="math inline">\(\eta \gg 1\)</span>):</p>
+<ul>
+<li>Overshooting minimum</li>
+<li>Oscillation or divergence</li>
+<li>Never converges</li>
+</ul>
+</div></div>
+<div class="fragment">
+<h3 id="adaptive-learning-rates">Adaptive Learning Rates</h3>
+<ol type="1">
+<li><strong>Learning rate decay</strong>: <span class="math inline">\(\eta_t = \frac{\eta_0}{1 + kt}\)</span></li>
+<li><strong>Momentum</strong>: Use exponentially weighted moving average of gradients</li>
+<li><strong>Adam</strong>: Adaptive moment estimation (modern default)</li>
+<li><strong>Line search</strong>: Optimize <span class="math inline">\(\eta\)</span> at each iteration</li>
+</ol>
+</div>
+</section>
+<section id="statistical-properties-assumptions" class="slide level2">
+<h2>Statistical Properties: Assumptions</h2>
+<h3 id="classical-linear-regression-assumptions">Classical Linear Regression Assumptions</h3>
+<div class="fragment">
+<ol type="1">
+<li><strong>Linearity</strong>: True relationship is <span class="math inline">\(\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}\)</span></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li><strong>Independence</strong>: Samples <span class="math inline">\((x_i, y_i)\)</span> are i.i.d.</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li><strong>Homoscedasticity</strong>: Constant error variance <span class="math inline">\(\text{Var}(\epsilon_i) = \sigma^2\)</span>
+<ul>
+<li><em>Data collection context</em>: Measurement error should be consistent across operating range</li>
+<li><em>Example violation</em>: Wind tunnel balance accuracy degrades at low forces (high <span class="math inline">\(\alpha\)</span>)</li>
+<li><em>Real-world impact</em>: Sensor noise may increase with altitude, velocity, or dynamic pressure</li>
+</ul></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li><strong>Normality</strong>: <span class="math inline">\(\epsilon_i \sim \mathcal{N}(0, \sigma^2)\)</span></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="5" type="1">
+<li><strong>No multicollinearity</strong>: <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> is full rank
+<ul>
+<li><em>Aerospace context</em>: Features should not be perfectly correlated</li>
+<li><em>Common violations</em>:
+<ul>
+<li>Altitude and air density (directly related via ISA standard atmosphere)</li>
+<li>Dynamic pressure and velocity (<span class="math inline">\(q \propto V^2\)</span> at fixed altitude)</li>
+<li>Mach number and velocity at fixed altitude (<span class="math inline">\(M = V/a\)</span>, where <span class="math inline">\(a\)</span> is constant)</li>
+<li>Lift coefficient and angle of attack in linear regime (attached flow)</li>
+</ul></li>
+<li><em>Consequences</em>: Unstable coefficient estimates, inflated standard errors, unreliable predictions</li>
+<li><em>Detection</em>: Use VIF (Variance Inflation Factor) to identify problematic correlations</li>
+<li><em>Solutions</em>: Regularization (Ridge/Lasso), dimensionality reduction (PCA), or remove redundant features</li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="gauss-markov-implications-for-practice" class="slide level2">
+<h2>Gauss-Markov: Implications for Practice</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="gauss-markov-theorem">Gauss-Markov Theorem</h3>
+<p><strong>Under assumptions 1-3</strong>: The OLS estimator <span class="math inline">\(\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span> is:</p>
+<ul>
+<li><strong>BLUE</strong>: Best Linear Unbiased Estimator</li>
+<li>Minimum variance among all unbiased linear estimators</li>
+</ul>
+<p><strong>What Does BLUE Mean?</strong></p>
+<div class="fragment">
+<p><strong>Best</strong>: Minimum variance (most precise estimates)</p>
+<ul>
+<li>Among all linear unbiased estimators, OLS has smallest variance</li>
+<li>No other linear unbiased method gives tighter confidence intervals</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Linear</strong>: Estimator is linear function of <span class="math inline">\(\boldsymbol{y}\)</span></p>
+<ul>
+<li>Form: <span class="math inline">\(\boldsymbol{\beta}^\ast = \boldsymbol{C}\boldsymbol{y}\)</span> for some matrix <span class="math inline">\(\boldsymbol{C}\)</span></li>
+<li>OLS: <span class="math inline">\(\boldsymbol{C} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Unbiased</strong>: <span class="math inline">\(E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_\text{true}\)</span></p>
+<ul>
+<li>On average, estimates equal true parameter values</li>
+<li>No systematic over/under-estimation</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<h3 id="aerospace-context">Aerospace Context</h3>
+<p><strong>Critical for certification</strong>:</p>
+<ul>
+<li>Flight envelope must be determined with minimal uncertainty</li>
+<li>BLUE property ensures tightest bounds on performance predictions</li>
+<li>Regulatory compliance requires unbiased, minimum-variance estimates</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="statistical-properties-distribution" class="slide level2">
+<h2>Statistical Properties: Distribution</h2>
+<h3 id="under-normality-assumption">Under Normality Assumption</h3>
+<p><strong>If we assume</strong> <span class="math inline">\(\epsilon_i \sim \mathcal{N}(0, \sigma^2)\)</span> independently, then our OLS estimator has a known distribution:</p>
+<p><span class="math display">\[
+\boldsymbol{\beta}^\ast \sim \mathcal{N}\left(\boldsymbol{\beta}_\text{true}, \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right)
+\]</span></p>
+<div class="fragment">
+<p><strong>What does this mean?</strong></p>
+<ul>
+<li><span class="math inline">\(\boldsymbol{\beta}^\ast\)</span> is <strong>unbiased</strong>: <span class="math inline">\(E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_\text{true}\)</span></li>
+<li><strong>Covariance matrix</strong>: <span class="math inline">\(\text{Cov}(\boldsymbol{\beta}^\ast) = \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\)</span></li>
+<li>Diagonal elements give variances: <span class="math inline">\(\text{Var}(\beta_j^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}\)</span></li>
+<li>Off-diagonal elements show correlations between coefficient estimates</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Practical implication</strong>: We can construct confidence intervals and perform hypothesis tests!</p>
+</div>
+</section>
+<section id="estimating-the-noise-variance" class="slide level2">
+<h2>Estimating the Noise Variance</h2>
+<h3 id="residual-variance-estimator">Residual Variance Estimator</h3>
+<p>Since we don’t know the true noise variance <span class="math inline">\(\sigma^2\)</span>, we estimate it from the residuals:</p>
+<p><span class="math display">\[
+\hat{\sigma}^2 = \frac{1}{n - d - 1}\sum_{i=1}^n (y_i - \hat{y}_i)^2 = \frac{\text{RSS}}{n - d - 1}
+\]</span></p>
+<div class="fragment">
+<p><strong>Why divide by <span class="math inline">\(n - d - 1\)</span> instead of <span class="math inline">\(n\)</span>?</strong></p>
+<ul>
+<li>We estimated <span class="math inline">\(d + 1\)</span> parameters (<span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_d\)</span>)</li>
+<li>This uses up <span class="math inline">\(d + 1\)</span> <strong>degrees of freedom</strong></li>
+<li>Remaining degrees of freedom: <span class="math inline">\(n - (d + 1) = n - d - 1\)</span></li>
+<li>Division by degrees of freedom makes <span class="math inline">\(\hat{\sigma}^2\)</span> <strong>unbiased</strong>: <span class="math inline">\(E[\hat{\sigma}^2] = \sigma^2\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Aerospace example</strong>: If we fit drag as <span class="math inline">\(C_D = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2\)</span> using <span class="math inline">\(n = 20\)</span> data points:</p>
+<ul>
+<li>We have <span class="math inline">\(d = 2\)</span> features (<span class="math inline">\(\alpha, \alpha^2\)</span>) plus intercept</li>
+<li>Degrees of freedom: <span class="math inline">\(20 - 2 - 1 = 17\)</span></li>
+</ul>
+</div>
+</section>
+<section id="confidence-intervals-for-coefficients" class="slide level2">
+<h2>Confidence Intervals for Coefficients</h2>
+<h3 id="understanding-coefficient-uncertainty">Understanding Coefficient Uncertainty</h3>
+<ul>
+<li><p>Each coefficient <span class="math inline">\(\beta_j^\ast\)</span> is itself a random variable (depends on random data).</p></li>
+<li><p>We want to quantify: <span class="highlight">How certain are we about <span class="math inline">\(\beta_j^\ast\)</span>?</span></p></li>
+</ul>
+<div class="fragment">
+<p><strong>Standard error of <span class="math inline">\(\beta_j^\ast\)</span></strong>: <span class="math display">\[
+\text{SE}(\beta_j^\ast) = \sqrt{\hat{\sigma}^2 \left[(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right]_{jj}}
+\]</span></p>
+<p>This measures the <strong>sampling variability</strong> of our estimate.</p>
+</div>
+<div class="fragment">
+<p><strong>Confidence interval</strong> (at <span class="math inline">\(100(1-\gamma)\%\)</span> confidence level): <span class="math display">\[
+\beta_j^\ast \pm t_{\gamma/2, n-d-1} \cdot \text{SE}(\beta_j^\ast)
+\]</span></p>
+<p>where <span class="math inline">\(t_{\gamma/2, n-d-1}\)</span> is the critical value from the t-distribution with <span class="math inline">\(n-d-1\)</span> degrees of freedom.</p>
+</div>
+<div class="fragment">
+<p><strong>Interpretation</strong>: We are <span class="math inline">\(100(1-\gamma)\%\)</span> confident the <strong>true</strong> parameter <span class="math inline">\(\beta_j\)</span> lies in this interval.</p>
+<p><strong>Aerospace example</strong>: For <span class="math inline">\(C_L = \beta_0 + \beta_1 \alpha\)</span>, if <span class="math inline">\(\beta_1^\ast = 0.105 \pm 0.008\)</span> (95% CI), we’re confident the true lift slope is between 0.097 and 0.113 per degree.</p>
+</div>
+</section>
+<section id="hypothesis-testing-for-individual-coefficients" class="slide level2">
+<h2>Hypothesis Testing for Individual Coefficients</h2>
+<h3 id="the-question-does-this-feature-matter">The Question: Does This Feature Matter?</h3>
+<p><strong>Scenario</strong>: We’ve estimated <span class="math inline">\(\beta_j^\ast\)</span> from data. But is this coefficient <strong>significantly different from zero</strong>, or could it just be noise?</p>
+<div class="fragment">
+<p><strong>Null hypothesis</strong> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_j = 0\)</span></p>
+<ul>
+<li>The true coefficient is zero</li>
+<li>Feature <span class="math inline">\(j\)</span> has <strong>no real effect</strong> on the response</li>
+<li>Any non-zero <span class="math inline">\(\beta_j^\ast\)</span> we observed is just due to random sampling</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\beta_j \neq 0\)</span></p>
+<ul>
+<li>The true coefficient is not zero</li>
+<li>Feature <span class="math inline">\(j\)</span> <strong>does</strong> affect the response</li>
+</ul>
+</div>
+</section>
+<section id="hypothesis-testing-for-individual-coefficients-1" class="slide level2">
+<h2>Hypothesis Testing for Individual Coefficients</h2>
+<h3 id="the-test-statistic">The Test Statistic</h3>
+<p><strong>Test statistic</strong> (t-statistic): <span class="math display">\[
+t_j = \frac{\beta_j^\ast}{\text{SE}(\beta_j^\ast)} = \frac{\text{Estimated coefficient}}{\text{Standard error of estimate}}
+\]</span></p>
+<div class="fragment">
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li>Measures <strong>how many standard errors</strong> the estimate is away from zero</li>
+<li>If <span class="math inline">\(\beta_j = 0\)</span> truly, we expect <span class="math inline">\(\beta_j^\ast \approx 0\)</span> (within sampling error)</li>
+<li>Large <span class="math inline">\(|t_j|\)</span> means estimate is far from zero → unlikely if <span class="math inline">\(H_0\)</span> is true</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Distribution under <span class="math inline">\(H_0\)</span></strong>: <span class="math display">\[
+t_j \sim t_{n-d-1}
+\]</span></p>
+<p>If the null hypothesis is true, <span class="math inline">\(t_j\)</span> follows a t-distribution with <span class="math inline">\(n-d-1\)</span> degrees of freedom</p>
+</div>
+</section>
+<section id="hypothesis-testing-for-individual-coefficients-2" class="slide level2">
+<h2>Hypothesis Testing for Individual Coefficients</h2>
+<h3 id="making-the-decision">Making the Decision</h3>
+<p><strong>Two equivalent approaches</strong>:</p>
+<div class="fragment">
+<p><strong>1. Critical value approach</strong>:</p>
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_j| &gt; t_{\gamma/2, n-d-1}\)</span></li>
+<li><strong>Critical value</strong> <span class="math inline">\(t_{\gamma/2, n-d-1}\)</span> is the threshold from the t-distribution</li>
+<li>If our test statistic <span class="math inline">\(|t_j|\)</span> <strong>exceeds</strong> this threshold, reject <span class="math inline">\(H_0\)</span></li>
+<li>Example: For 95% confidence (<span class="math inline">\(\gamma = 0.05\)</span>), <span class="math inline">\(n = 50\)</span>, <span class="math inline">\(d = 2\)</span>: critical value ≈ 2.01
+<ul>
+<li>If <span class="math inline">\(|t_j| = 3.5 &gt; 2.01\)</span>, reject <span class="math inline">\(H_0\)</span> (evidence against null)</li>
+<li>If <span class="math inline">\(|t_j| = 1.2 &lt; 2.01\)</span>, fail to reject <span class="math inline">\(H_0\)</span> (insufficient evidence)</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>2. P-value approach</strong>:</p>
+<ul>
+<li><strong>P-value</strong> = <span class="math inline">\(P(|t| &gt; |t_j| \mid H_0)\)</span> = probability of seeing <span class="math inline">\(|t_j|\)</span> this large (or larger) if <span class="math inline">\(H_0\)</span> were true</li>
+<li>Reject <span class="math inline">\(H_0\)</span> if <strong>p-value</strong> <span class="math inline">\(&lt; \alpha\)</span> (commonly <span class="math inline">\(\alpha = 0.05\)</span>)</li>
+<li>Smaller p-value = stronger evidence against <span class="math inline">\(H_0\)</span></li>
+</ul>
+</div>
+</section>
+<section id="hypothesis-testing-for-individual-coefficients-3" class="slide level2">
+<h2>Hypothesis Testing for Individual Coefficients</h2>
+<h3 id="aerospace-example-1">Aerospace Example</h3>
+<p><strong>Testing if Mach number affects drag coefficient</strong></p>
+<p>Model: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 M^2 + \epsilon\)</span></p>
+<p><strong>Hypotheses</strong>:</p>
+<ul>
+<li><span class="math inline">\(H_0: \beta_1 = 0\)</span> (Mach number has <strong>no linear effect</strong> on drag)</li>
+<li><span class="math inline">\(H_1: \beta_1 \neq 0\)</span> (Mach number <strong>does</strong> affect drag linearly)</li>
+</ul>
+<div class="fragment">
+<p><strong>Results from data</strong>:</p>
+<ul>
+<li><span class="math inline">\(\beta_1^\ast = 0.042\)</span></li>
+<li><span class="math inline">\(\text{SE}(\beta_1^\ast) = 0.010\)</span></li>
+<li><span class="math inline">\(t_1 = \frac{0.042}{0.010} = 4.2\)</span></li>
+<li><span class="math inline">\(p-\text{value} = 0.0003\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li>Our estimate is <strong>4.2 standard errors</strong> away from zero</li>
+<li>If <span class="math inline">\(H_0\)</span> were true (<span class="math inline">\(\beta_1 = 0\)</span>), probability of seeing <span class="math inline">\(|t| \geq 4.2\)</span> is only 0.03%</li>
+<li><strong>Strong evidence</strong> that Mach number affects drag</li>
+<li><strong>Decision</strong>: Reject <span class="math inline">\(H_0: \beta_1 = 0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> level</li>
+</ul>
+</div>
+</section>
+<section id="testing-the-overall-model-f-test" class="slide level2">
+<h2>Testing the Overall Model: F-Test</h2>
+<h3 id="the-big-picture-question">The Big Picture Question</h3>
+<p><strong>Individual t-tests</strong> ask: “Does <strong>this specific</strong> feature matter?”</p>
+<p><strong>F-test</strong> asks: “Does <strong>any</strong> feature matter at all?”</p>
+<div class="fragment">
+<p><strong>Null hypothesis</strong> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_d = 0\)</span></p>
+<ul>
+<li><strong>All</strong> feature coefficients are zero (only intercept <span class="math inline">\(\beta_0\)</span> matters)</li>
+<li>Best prediction is just the mean: <span class="math inline">\(\hat{y} = \bar{y}\)</span></li>
+<li>Model with features is no better than trivial baseline</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1\)</span>: At least one <span class="math inline">\(\beta_j \neq 0\)</span></p>
+<ul>
+<li><strong>At least one</strong> feature has a real effect</li>
+<li>Model with features does better than just predicting the mean</li>
+</ul>
+</div>
+</section>
+<section id="testing-the-overall-model-f-test-1" class="slide level2">
+<h2>Testing the Overall Model: F-Test</h2>
+<h3 id="the-f-statistic">The F-Statistic</h3>
+<p><span class="math display">\[
+F = \frac{(\text{TSS} - \text{RSS})/d}{\text{RSS}/(n-d-1)} \sim F_{d, n-d-1} \text{ under } H_0
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2\)</span> = <strong>total sum of squares</strong> (total variance in <span class="math inline">\(y\)</span>)</li>
+<li><span class="math inline">\(\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2\)</span> = <strong>residual sum of squares</strong> (unexplained variance)</li>
+<li><strong><span class="math inline">\(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)</span></strong> = <strong>sample mean</strong> of observed values (just average the data)</li>
+<li><strong><span class="math inline">\(\hat{y}_i = \boldsymbol{x}_i^T\boldsymbol{\beta}^*\)</span></strong> = <strong>predicted value</strong> from regression model (uses features)</li>
+</ul>
+<div class="fragment">
+<p><strong>What is this testing?</strong></p>
+<p>The F-test asks: <em>“Is my regression model with features significantly better than just predicting the mean <span class="math inline">\(\bar{y}\)</span> every time?”</em></p>
+<p><strong>Intuition</strong>: Imagine two competing strategies:</p>
+<ul>
+<li><strong>Naive approach</strong>: Ignore all features, always guess <span class="math inline">\(\bar{y}\)</span> (e.g., always predict average drag coefficient)</li>
+<li><strong>Model approach</strong>: Use features <span class="math inline">\(\boldsymbol{x}\)</span> to predict <span class="math inline">\(\hat{y}\)</span> (e.g., use angle of attack to predict drag)</li>
+</ul>
+<p>The F-statistic measures how much better the model is compared to the naive baseline.</p>
+</div>
+</section>
+<section id="testing-the-overall-model-f-test-2" class="slide level2">
+<h2>Testing the Overall Model: F-Test</h2>
+<p><strong>Breaking down the formula</strong>:</p>
+<p><span class="math display">\[
+F = \frac{\text{Variance explained by features (per feature)}}{\text{Unexplained variance (per degree of freedom)}}
+\]</span></p>
+<p><strong>Numerator</strong> <span class="math inline">\((\text{TSS} - \text{RSS})/d\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\text{TSS} - \text{RSS}\)</span> = <strong>explained sum of squares (ESS)</strong> = how much variance the model captures</li>
+<li>Think of it as: “Total variance in data” minus “What’s left unexplained” = “What we successfully explained”</li>
+<li>Divided by <span class="math inline">\(d\)</span> (number of features) = <strong>average explanation per feature</strong></li>
+<li>This normalization prevents unfair advantage to models with many features</li>
+</ul>
+<p><strong>Denominator</strong> <span class="math inline">\(\text{RSS}/(n-d-1)\)</span>:</p>
+<ul>
+<li>This is <span class="math inline">\(\hat{\sigma}^2\)</span> = <strong>mean squared error (MSE)</strong> = average squared residual</li>
+<li>Divided by <span class="math inline">\((n-d-1)\)</span> degrees of freedom to get an unbiased estimate</li>
+<li>Represents the <strong>typical prediction error</strong> your model makes</li>
+<li>This is the “noise floor”—the baseline variance you can’t reduce</li>
+</ul>
+</section>
+<section id="testing-the-overall-model-f-test-3" class="slide level2">
+<h2>Testing the Overall Model: F-Test</h2>
+<p><strong>The F-ratio logic</strong>:</p>
+<p><span class="math display">\[
+F = \frac{\text{Average variance explained per feature}}{\text{Average variance of residuals}}
+\]</span></p>
+<ul>
+<li>If features are <strong>truly useless</strong>, explained variance ≈ residual variance → <span class="math inline">\(F \approx 1\)</span></li>
+<li>If features are <strong>useful</strong>, explained variance ≫ residual variance → <span class="math inline">\(F \gg 1\)</span></li>
+<li>F-distribution tells us: “How likely is this F-value if features were truly useless?”</li>
+</ul>
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li><strong>Large F</strong> (≫ 1): Model explains much more than noise → features are useful, reject <span class="math inline">\(H_0\)</span></li>
+<li><strong>Small F</strong> (≈ 1): Model barely better than just predicting <span class="math inline">\(\bar{y}\)</span> → features not useful, fail to reject <span class="math inline">\(H_0\)</span></li>
+<li><strong>Critical threshold</strong>: Compare to <span class="math inline">\(F_{d, n-d-1}\)</span> distribution at chosen significance level</li>
+</ul>
+</section>
+<section id="f-test-detailed-aerospace-example" class="slide level2">
+<h2>F-Test: Detailed Aerospace Example</h2>
+<h3 id="scenario-predicting-business-jet-range">Scenario: Predicting Business Jet Range</h3>
+<p><strong>Engineering problem</strong>: Predict maximum range for a business jet based on mission parameters</p>
+<p><strong>Dataset</strong>: 40 flights from flight test program</p>
+<p><strong>Features</strong>:</p>
+<ul>
+<li><span class="math inline">\(x_1\)</span> = Takeoff weight (1000s kg) — heavier aircraft burns more fuel</li>
+<li><span class="math inline">\(x_2\)</span> = Cruise speed (Mach number) — faster flight reduces range</li>
+<li><span class="math inline">\(x_3\)</span> = Cruise altitude (1000s ft) — higher altitude improves efficiency</li>
+</ul>
+<p><strong>Response</strong>:</p>
+<ul>
+<li><span class="math inline">\(y\)</span> = Maximum range (km)</li>
+</ul>
+<div class="fragment">
+<p><strong>Regression model</strong>: <span class="math display">\[
+\text{Range} = \beta_0 + \beta_1(\text{Weight}) + \beta_2(\text{Speed}) + \beta_3(\text{Altitude}) + \epsilon
+\]</span></p>
+</div>
+</section>
+<section id="f-test-example-the-data" class="slide level2">
+<h2>F-Test Example: The Data</h2>
+<h3 id="summary-statistics-from-flight-tests">Summary Statistics from Flight Tests</h3>
+<p><strong>Response variable</strong> (Range in km):</p>
+<ul>
+<li>Mean: <span class="math inline">\(\bar{y} = 5250\)</span> km (average range across all flights)</li>
+<li>Standard deviation: 354 km</li>
+<li>Min: 4420 km, Max: 6100 km</li>
+</ul>
+<p><strong>Question we’re asking</strong>:</p>
+<p>Is this regression model with 3 features significantly better than just predicting <span class="math inline">\(\bar{y} = 5250\)</span> km every time?</p>
+<div class="fragment">
+<p><strong>Competing approaches</strong>:</p>
+<ol type="1">
+<li><strong>Naive model</strong> <span class="math inline">\(H_0\)</span>: Ignore all features, always predict <span class="math inline">\(\bar{y} = 5250\)</span> km
+<ul>
+<li>Simple, but doesn’t use any information about weight, speed, altitude</li>
+</ul></li>
+<li><strong>Regression model</strong> <span class="math inline">\(H_1\)</span>: Use features to make informed predictions
+<ul>
+<li>More complex, but should predict better if features matter</li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="f-test-example-computing-the-statistic" class="slide level2">
+<h2>F-Test Example: Computing the Statistic</h2>
+<h3 id="step-1-calculate-total-sum-of-squares-tss">Step 1: Calculate Total Sum of Squares (TSS)</h3>
+<p>TSS measures total variance in the data around the mean:</p>
+<p><span class="math display">\[
+\text{TSS} = \sum_{i=1}^{40} (y_i - \bar{y})^2 = 125{,}000 \text{ km}^2
+\]</span></p>
+<p><strong>Interpretation</strong>: If we only predict <span class="math inline">\(\bar{y} = 5250\)</span> km, our total squared error is 125,000 km²</p>
+<div class="fragment">
+<h3 id="step-2-fit-regression-and-calculate-residual-sum-of-squares-rss">Step 2: Fit Regression and Calculate Residual Sum of Squares (RSS)</h3>
+<p>After fitting the model, we get predictions <span class="math inline">\(\hat{y}_i\)</span> for each flight:</p>
+<p><span class="math display">\[
+\text{RSS} = \sum_{i=1}^{40} (y_i - \hat{y}_i)^2 = 18{,}500 \text{ km}^2
+\]</span></p>
+<p><strong>Interpretation</strong>: After using weight, speed, altitude in our model, squared error drops to 18,500 km²</p>
+</div>
+</section>
+<section id="f-test-example-understanding-the-improvement" class="slide level2">
+<h2>F-Test Example: Understanding the Improvement</h2>
+<h3 id="step-3-calculate-explained-sum-of-squares">Step 3: Calculate Explained Sum of Squares</h3>
+<p><span class="math display">\[
+\text{ESS} = \text{TSS} - \text{RSS} = 125{,}000 - 18{,}500 = 106{,}500 \text{ km}^2
+\]</span></p>
+<p><strong>Visual interpretation</strong>:</p>
+<pre><code>Total variance:        ████████████████████████ 125,000 km²
+Explained by model:    ████████████████████      106,500 km² (85.2%)
+Still unexplained:     ████                       18,500 km² (14.8%)</code></pre>
+<div class="fragment">
+<p><strong>Key insight</strong>: The model reduced prediction error by <strong>85%</strong> compared to just using the mean!</p>
+<p>But is this reduction statistically significant, or could it happen by chance?</p>
+</div>
+</section>
+<section id="f-test-example-computing-the-f-statistic" class="slide level2">
+<h2>F-Test Example: Computing the F-Statistic</h2>
+<h3 id="step-4-normalize-by-degrees-of-freedom">Step 4: Normalize by Degrees of Freedom</h3>
+<p><strong>Numerator</strong> — Average explained variance per feature: <span class="math display">\[
+\frac{\text{ESS}}{d} = \frac{106{,}500}{3} = 35{,}500 \text{ km}^2 \text{ per feature}
+\]</span></p>
+<p><strong>Denominator</strong> — Mean squared error (MSE): <span class="math display">\[
+\frac{\text{RSS}}{n-d-1} = \frac{18{,}500}{40-3-1} = \frac{18{,}500}{36} = 514 \text{ km}^2
+\]</span></p>
+<p>This is <span class="math inline">\(\hat{\sigma}^2\)</span> — the estimated variance of residuals.</p>
+<div class="fragment">
+<h3 id="step-5-calculate-f-statistic">Step 5: Calculate F-Statistic</h3>
+<p><span class="math display">\[
+F = \frac{35{,}500}{514} = 69.1
+\]</span></p>
+<p><strong>Interpretation</strong>: On average, each feature explains variance <strong>69 times larger</strong> than the typical residual variance!</p>
+</div>
+</section>
+<section id="f-test-example-making-the-decision" class="slide level2">
+<h2>F-Test Example: Making the Decision</h2>
+<h3 id="step-6-compare-to-f-distribution">Step 6: Compare to F-Distribution</h3>
+<p>The F-statistic follows an <span class="math inline">\(F_{d, n-d-1} = F_{3, 36}\)</span> distribution under <span class="math inline">\(H_0\)</span>.</p>
+<div class="fragment">
+<p><strong>Critical value approach</strong> (at <span class="math inline">\(\gamma = 0.05\)</span> significance):</p>
+<ul>
+<li>Critical value from F-distribution: <span class="math inline">\(F_{\text{crit}} \approx 2.87\)</span>
+<ul>
+<li>Found using statistical tables or software (e.g., Python’s <code>scipy.stats.f.ppf(0.95, 3, 36)</code>)</li>
+<li>This is the threshold: values above this are “unusual” if <span class="math inline">\(H_0\)</span> is true</li>
+</ul></li>
+<li>Our F-statistic: <span class="math inline">\(F = 69.1\)</span></li>
+<li>Since <span class="math inline">\(69.1 \gg 2.87\)</span>, <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>p-value approach</strong>:</p>
+<ul>
+<li>p-value = <span class="math inline">\(P(F_{3,36} \geq 69.1) &lt; 0.0001\)</span></li>
+<li>This is the probability of seeing such a large F if features were truly useless</li>
+<li>Since p-value <span class="math inline">\(&lt; 0.05\)</span>, <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p><strong>Conclusion</strong>: We have <strong>overwhelming evidence</strong> that at least one of (weight, speed, altitude) significantly affects aircraft range. The regression model is far superior to just predicting the mean.</p>
+</blockquote>
+</div>
+</section>
+<section id="f-test-example-practical-interpretation" class="slide level2">
+<h2>F-Test Example: Practical Interpretation</h2>
+<h3 id="what-does-f-69.1-really-mean">What Does F = 69.1 Really Mean?</h3>
+<p><strong>For the flight test engineer</strong>:</p>
+<ol type="1">
+<li><strong>Strong predictive value</strong>: The features (weight, speed, altitude) capture real physics of range</li>
+<li><strong>Not random chance</strong>: The model’s performance is not due to overfitting or luck</li>
+<li><strong>Use it with confidence</strong>: Safe to use this model for mission planning and performance predictions</li>
+</ol>
+<div class="fragment">
+<p><strong>What it doesn’t tell you</strong>:</p>
+<ul>
+<li>Which specific features are important? – need individual t-tests</li>
+<li>How accurate individual predictions are? – need prediction intervals</li>
+<li>Whether the model form is correct? – could be nonlinear effects</li>
+<li>If you have the “right” features? – maybe missing engine efficiency, wind, etc.</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Next step</strong>: Use individual coefficient t-tests to determine which of the three features contribute significantly.</p>
+</div>
+</section>
+<section id="model-evaluation-how-good-is-our-fit" class="slide level2">
+<h2>Model Evaluation: How Good is Our Fit?</h2>
+<h3 id="r-squared-the-goodness-of-fit-metric">R-squared: The “Goodness of Fit” Metric</h3>
+<p><strong>Aerospace scenario</strong>: You’ve modeled lift coefficient vs angle of attack. How well does your model explain the data?</p>
+<div class="fragment">
+<p><strong>R² tells you</strong>: What fraction of the variance is explained by your model?</p>
+<p><span class="math display">\[
+R^2 = 1 - \frac{\text{Prediction errors}}{\text{Total variance}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_i - \bar{y})^2}
+\]</span></p>
+<p>Think of it as: <em>How much better is my model than just using the average?</em></p>
+</div>
+<div class="fragment">
+<p><strong>Example: Drag polar modeling</strong></p>
+<ul>
+<li>Without model: “Drag is around 0.025 on average” (just use mean)</li>
+<li>With model: <span class="math inline">\(C_D = C_{D_0} + k C_L^2\)</span> captures induced drag physics</li>
+<li>If <span class="math inline">\(R^2 = 0.94\)</span>: Model explains 94% of drag variation</li>
+<li>Remaining 6%: Measurement noise, unmodeled effects (Reynolds number, surface roughness)</li>
+</ul>
+</div>
+</section>
+<section id="model-evaluation-r-squared-in-practice" class="slide level2">
+<h2>Model Evaluation: R-squared in Practice</h2>
+<h3 id="interpreting-r²-values">Interpreting R² Values</h3>
+<div class="fragment">
+<p><strong><span class="math inline">\(R^2 = 0.99\)</span></strong> (Excellent fit)</p>
+<ul>
+<li><strong>Example</strong>: Altitude vs atmospheric pressure</li>
+<li>Physics-based relationship is very strong</li>
+<li>Model captures nearly all variation</li>
+<li>Useful for precise predictions</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong><span class="math inline">\(R^2 = 0.75\)</span></strong> (Decent fit)</p>
+<ul>
+<li><strong>Example</strong>: Fuel consumption vs flight parameters</li>
+<li>Multiple factors at play (weight, speed, wind, pilot technique)</li>
+<li>Model captures main trends but misses some complexity</li>
+<li>Good for general planning, not precise optimization</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong><span class="math inline">\(R^2 = 0.30\)</span></strong> (Weak fit)</p>
+<ul>
+<li><strong>Example</strong>: Turbulence severity vs weather variables</li>
+<li>Many unmeasured factors influence outcome</li>
+<li>Model has some predictive power but high uncertainty</li>
+<li>Use with caution, gather more features</li>
+</ul>
+</div>
+</section>
+<section id="model-evaluation-the-r²-trap" class="slide level2">
+<h2>Model Evaluation: The R² Trap</h2>
+<h3 id="problem-r²-always-increases-with-more-features">Problem: R² Always Increases with More Features!</h3>
+<p><strong>Wind tunnel experiment</strong>: Modeling drag coefficient</p>
+<div class="fragment">
+<p><strong>Model 1</strong>: <span class="math inline">\(C_D = \beta_0 + \beta_1 M\)</span> (just Mach number) - <span class="math inline">\(R^2 = 0.78\)</span></p>
+<p><strong>Model 2</strong>: Add Reynolds number: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 Re\)</span> - <span class="math inline">\(R^2 = 0.85\)</span> ✓ Better!</p>
+<p><strong>Model 3</strong>: Add random noise feature: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 Re + \beta_3(\text{noise})\)</span> - <span class="math inline">\(R^2 = 0.86\)</span> ← Still increased! Even though noise has no meaning!</p>
+</div>
+<div class="fragment">
+<p><strong>The problem</strong>: R² rewards complexity even when features add no real value</p>
+<p><strong>Solution</strong>: Use <strong>Adjusted R²</strong> which penalizes adding useless features</p>
+<p><span class="math display">\[
+R^2_{\text{adj}} = 1 - (1 - R^2)\frac{n-1}{n-d-1}
+\]</span></p>
+<p>Only increases if new feature improves fit more than expected by chance</p>
+</div>
+</section>
+<section id="prediction-accuracy-rmse" class="slide level2">
+<h2>Prediction Accuracy: RMSE</h2>
+<h3 id="root-mean-squared-error-speaking-the-engineers-language">Root Mean Squared Error: Speaking the Engineer’s Language</h3>
+<p><strong>RMSE</strong> = Average prediction error <strong>in the same units as your measurement</strong></p>
+<p><span class="math display">\[
+\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2}
+\]</span></p>
+<div class="fragment">
+<p><strong>Aerospace Example 1: Range Prediction</strong></p>
+<ul>
+<li>Model predicts aircraft range for different payloads</li>
+<li>Actual range: 2,800 km, Predicted: 2,750 km → Error: 50 km</li>
+<li>After many flights: <strong>RMSE = 85 km</strong></li>
+<li><strong>Interpretation</strong>: “On average, range predictions are off by 85 km”</li>
+<li><strong>Decision</strong>: Is ±85 km acceptable for mission planning? (Probably yes for long range, no for short hops)</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Aerospace Example 2: Landing Distance</strong></p>
+<ul>
+<li>Model predicts touchdown point on runway</li>
+<li><strong>RMSE = 45 m</strong></li>
+<li><strong>Interpretation</strong>: Typical error is 45 meters from predicted spot</li>
+<li><strong>Decision</strong>: With 2000m runway and 500m safety margin, this is acceptable</li>
+</ul>
+</div>
+</section>
+<section id="prediction-accuracy-mae-vs-rmse" class="slide level2">
+<h2>Prediction Accuracy: MAE vs RMSE</h2>
+<h3 id="when-do-outliers-matter">When Do Outliers Matter?</h3>
+<p><strong>MAE (Mean Absolute Error)</strong>: Treats all errors equally</p>
+<p><span class="math display">\[
+\text{MAE} = \frac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|
+\]</span></p>
+<p><strong>RMSE</strong>: Penalizes large errors heavily (squaring effect)</p>
+<div class="fragment">
+<p><strong>Scenario: Predicting Stall Speed</strong></p>
+<p>You have 20 test flights. 18 predictions are within 2 knots. 2 predictions are off by 10 knots.</p>
+<ul>
+<li><strong>MAE ≈ 3 knots</strong>: Average error across all flights</li>
+<li><strong>RMSE ≈ 5 knots</strong>: Higher due to those 2 large errors</li>
+</ul>
+<p><strong>Which to use?</strong></p>
+<ul>
+<li>If you care equally about all predictions → <strong>MAE</strong></li>
+<li>If large errors are dangerous (safety-critical) → <strong>RMSE</strong> (penalizes big misses)</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Aviation rule of thumb</strong>:</p>
+<ul>
+<li><strong>Operational planning</strong> (fuel, time estimates): MAE okay</li>
+<li><strong>Safety limits</strong> (V-speeds, load factors): Use RMSE to be conservative</li>
+</ul>
+</div>
+</section>
+<section id="the-overfitting-problem" class="slide level2">
+<h2>The Overfitting Problem</h2>
+<h3 id="training-vs-real-world-performance">Training vs Real-World Performance</h3>
+<p><strong>Wind tunnel scenario</strong>: 50 data points of <span class="math inline">\(C_L\)</span> vs <span class="math inline">\(\alpha\)</span></p>
+<div class="fragment">
+<p><strong>Approach 1: Simple linear model</strong></p>
+<ul>
+<li><span class="math inline">\(C_L = \beta_0 + \beta_1 \alpha\)</span></li>
+<li>Training RMSE: 0.08</li>
+<li>Fits main trend, some scatter</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Approach 2: Complex polynomial</strong></p>
+<ul>
+<li><span class="math inline">\(C_L = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2 + \cdots + \beta_{10} \alpha^{10}\)</span></li>
+<li>Training RMSE: 0.02 (Much better!)</li>
+<li>Passes through almost every point!</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>The test</strong>: New wind tunnel run with 10 fresh measurements</p>
+<ul>
+<li><strong>Simple model</strong>: Test RMSE = 0.09 (Similar to training)</li>
+<li><strong>Complex model</strong>: Test RMSE = 0.31 (Much worse! 15x larger than training!)</li>
+</ul>
+<p><strong>What happened?</strong> Complex model <strong>overfit</strong> the noise in training data</p>
+</div>
+</section>
+<section id="cross-validation-testing-without-a-test-set" class="slide level2">
+<h2>Cross-Validation: Testing Without a Test Set</h2>
+<h3 id="the-problem-with-single-train-test-splits">The Problem with Single Train-Test Splits</h3>
+<p><strong>You have 100 flight test data points. How to evaluate your model?</strong></p>
+<div class="fragment">
+<p><strong>Option 1: Single 80-20 split</strong> ❌</p>
+<ul>
+<li>Train on 80 flights, test on 20 flights</li>
+<li>Problem: Performance depends heavily on which 20 you held out</li>
+<li>Lucky split: high-performing model might just have easy test cases</li>
+<li>Unlucky split: good model might look bad with difficult test cases</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Option 2: Cross-validation</strong> ✓</p>
+<ul>
+<li><strong>Everyone gets a chance to be test data</strong></li>
+<li>Split 100 flights into 10 groups of 10</li>
+<li>Train 10 different models, each time holding out a different group</li>
+<li>Average performance across all 10 test groups</li>
+<li>More reliable estimate of real-world performance</li>
+</ul>
+</div>
+</section>
+<section id="cross-validation-how-it-works" class="slide level2">
+<h2>Cross-Validation: How It Works</h2>
+<h3 id="fold-cross-validation-example">5-Fold Cross-Validation Example</h3>
+<p><strong>Scenario</strong>: 100 flight tests, modeling fuel consumption</p>
+<div class="fragment">
+<p><strong>Setup</strong>:</p>
+<ol type="1">
+<li>Randomly divide 100 flights into 5 groups of 20 flights each</li>
+<li>Groups: A, B, C, D, E</li>
+</ol>
+</div>
+<div class="fragment">
+<p><strong>The process</strong>:</p>
+<ul>
+<li><strong>Round 1</strong>: Train on {A,B,C,D}, test on E → Error₁</li>
+<li><strong>Round 2</strong>: Train on {A,B,C,E}, test on D → Error₂</li>
+<li><strong>Round 3</strong>: Train on {A,B,D,E}, test on C → Error₃</li>
+<li><strong>Round 4</strong>: Train on {A,C,D,E}, test on B → Error₄</li>
+<li><strong>Round 5</strong>: Train on {B,C,D,E}, test on A → Error₅</li>
+</ul>
+<p><strong>Final estimate</strong>: <span class="math inline">\(\text{CV Error} = \frac{1}{5}(\text{Error}_1 + \cdots + \text{Error}_5)\)</span></p>
+</div>
+<div class="fragment">
+<p><strong>Result</strong>: Every single flight was used for testing exactly once!</p>
+</div>
+</section>
+<section id="cross-validation-practical-considerations" class="slide level2">
+<h2>Cross-Validation: Practical Considerations</h2>
+<h3 id="how-many-folds">How Many Folds?</h3>
+<div class="fragment">
+<p><strong>k = 5 or k = 10</strong> (Most common in aerospace)</p>
+<ul>
+<li><strong>When</strong>: 50-500 data points (typical wind tunnel campaigns, flight tests)</li>
+<li><strong>Why</strong>: Good balance between computational cost and reliability</li>
+<li><strong>Each fold</strong>: Still has enough data for training</li>
+<li><strong>Example</strong>: 200 wind tunnel runs → 10 folds of 20 runs each</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>k = 20 or Leave-One-Out</strong> (Expensive but thorough)</p>
+<ul>
+<li><strong>When</strong>: Very limited data (&lt;50 points), expensive tests</li>
+<li><strong>Why</strong>: Use maximum data for training</li>
+<li><strong>Cost</strong>: Training many more models</li>
+<li><strong>Example</strong>: 30 full-scale aircraft tests → Hold out 1 or 2 at a time</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Aerospace best practice</strong>:</p>
+<ul>
+<li><strong>Research/development</strong>: k=10 standard</li>
+<li><strong>Certification data</strong> (expensive): Consider leave-one-out or k=n</li>
+<li><strong>Large datasets</strong> (CFD, simulation): k=5 to save computation time</li>
+</ul>
+</div>
+</section>
+<section id="model-evaluation-metrics-complete-comparison" class="slide level2">
+<h2>Model Evaluation Metrics: Complete Comparison</h2>
+<h3 id="summary-of-all-error-metrics">Summary of All Error Metrics</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Formula</th>
+<th>Units</th>
+<th>Range</th>
+<th>When to Use</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>R²</strong></td>
+<td><span class="math inline">\(1 - \frac{\text{RSS}}{\text{TSS}}\)</span></td>
+<td>None</td>
+<td>[0, 1]</td>
+<td>Comparing models on same data</td>
+<td>Intuitive (% variance explained)</td>
+<td>Always increases with features</td>
+</tr>
+<tr class="even">
+<td><strong>Adj. R²</strong></td>
+<td><span class="math inline">\(1 - (1-R^2)\frac{n-1}{n-d-1}\)</span></td>
+<td>None</td>
+<td>[-∞, 1]</td>
+<td>Model selection (complexity)</td>
+<td>Penalizes useless features</td>
+<td>Can be negative</td>
+</tr>
+<tr class="odd">
+<td><strong>MSE</strong></td>
+<td><span class="math inline">\(\frac{1}{n}\sum(y_i-\hat{y}_i)^2\)</span></td>
+<td><span class="math inline">\(y^2\)</span></td>
+<td>[0, ∞)</td>
+<td>Theoretical analysis</td>
+<td>Easy to derive</td>
+<td>Squared units, sensitive to outliers</td>
+</tr>
+<tr class="even">
+<td><strong>RMSE</strong></td>
+<td><span class="math inline">\(\sqrt{\text{MSE}}\)</span></td>
+<td>Same as <span class="math inline">\(y\)</span></td>
+<td>[0, ∞)</td>
+<td><strong>General aviation use</strong></td>
+<td><strong>Interpretable units</strong></td>
+<td>Sensitive to outliers</td>
+</tr>
+<tr class="odd">
+<td><strong>MAE</strong></td>
+<td><span class="math inline">\(\frac{1}{n}\sum\|y_i-\hat{y}_i\|\)</span></td>
+<td>Same as <span class="math inline">\(y\)</span></td>
+<td>[0, ∞)</td>
+<td>Robust performance</td>
+<td>Less sensitive to outliers</td>
+<td>Harder to optimize</td>
+</tr>
+<tr class="even">
+<td><strong>MAPE</strong></td>
+<td><span class="math inline">\(\frac{100}{n}\sum\frac{\|y_i-\hat{y}_i\|}{y_i}\)</span></td>
+<td>%</td>
+<td>[0, ∞)</td>
+<td>Relative comparison</td>
+<td>Scale-independent</td>
+<td>Undefined if <span class="math inline">\(y_i=0\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-evaluation-metrics-complete-comparison-1" class="slide level2">
+<h2>Model Evaluation Metrics: Complete Comparison</h2>
+<h3 id="aerospace-recommendations">Aerospace recommendations</h3>
+<ul>
+<li><strong>Design/certification</strong>: Use <strong>RMSE</strong> (penalizes large errors for safety)</li>
+<li><strong>Operational planning</strong>: Use <strong>MAE</strong> (typical errors for fuel/time estimates)<br>
+</li>
+<li><strong>Model comparison</strong>: Use <strong>Adj. R²</strong> (accounts for model complexity)</li>
+<li><strong>Reporting results</strong>: Report <strong>multiple metrics</strong> for complete picture</li>
+</ul>
+</section>
+<section id="detailed-metric-analysis-r²-and-adjusted-r²" class="slide level2">
+<h2>Detailed Metric Analysis: R² and Adjusted R²</h2>
+<h3 id="r²-coefficient-of-determination">R² (Coefficient of Determination)</h3>
+<p><span class="math display">\[
+R^2 = 1 - \frac{\sum_{i=1}^n(y_i - \hat{y}_i)^2}{\sum_{i=1}^n(y_i - \bar{y})^2} = 1 - \frac{\text{RSS}}{\text{TSS}} = \frac{\text{ESS}}{\text{TSS}}
+\]</span></p>
+<div class="fragment">
+<p><strong>Physical interpretation</strong>:</p>
+<ul>
+<li><strong>Numerator RSS</strong>: Sum of squared residuals (what model can’t explain)</li>
+<li><strong>Denominator TSS</strong>: Total variance in data (if we only knew <span class="math inline">\(\bar{y}\)</span>)</li>
+<li><strong>R²</strong>: Fraction of variance <strong>explained</strong> by the model</li>
+<li><strong>1 - R²</strong>: Fraction of variance <strong>not explained</strong> by the model</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Aerospace example - Lift slope prediction</strong>:</p>
+<ul>
+<li>Wind tunnel data: 50 measurements of <span class="math inline">\(C_L\)</span> vs <span class="math inline">\(\alpha\)</span></li>
+<li>Simple model: <span class="math inline">\(C_L = \beta_0 + \beta_1\alpha\)</span></li>
+<li>TSS = 2.45 (total variance), RSS = 0.12 (residual variance)</li>
+<li><span class="math inline">\(R^2 = 1 - \frac{0.12}{2.45} = 0.951\)</span> → Model explains <strong>95.1%</strong> of lift variation</li>
+<li>Remaining 4.9%: Measurement noise, 3D effects, tunnel wall interference</li>
+</ul>
+</div>
+</section>
+<section id="r²-limitations-and-adjusted-r²" class="slide level2">
+<h2>R² Limitations and Adjusted R²</h2>
+<h3 id="why-r²-can-be-misleading">Why R² Can Be Misleading</h3>
+<div class="fragment">
+<p><strong>Problem 1: Always increases with more features</strong></p>
+<p>Adding ANY feature (even random noise) will increase R² or keep it the same, never decrease it.</p>
+<p><strong>Example</strong>:</p>
+<ul>
+<li>Model A: <span class="math inline">\(C_D = \beta_0 + \beta_1\alpha\)</span> → <span class="math inline">\(R^2 = 0.82\)</span></li>
+<li>Model B: <span class="math inline">\(C_D = \beta_0 + \beta_1\alpha + \beta_2(\text{random noise})\)</span> → <span class="math inline">\(R^2 = 0.823\)</span></li>
+</ul>
+<p>Model B appears “better” but the extra feature is meaningless!</p>
+</div>
+<div class="fragment">
+<p><strong>Solution: Adjusted R²</strong></p>
+<p><span class="math display">\[
+R^2_{\text{adj}} = 1 - (1-R^2)\frac{n-1}{n-d-1} = 1 - \frac{\text{RSS}/(n-d-1)}{\text{TSS}/(n-1)}
+\]</span></p>
+<ul>
+<li><strong>Penalizes</strong> each additional feature by reducing degrees of freedom</li>
+<li>Only increases if new feature improves fit <strong>more than expected by chance</strong></li>
+<li>Can <strong>decrease</strong> or even be <strong>negative</strong> if model is worse than baseline</li>
+</ul>
+</div>
+</section>
+<section id="adjusted-r²-detailed-example" class="slide level2">
+<h2>Adjusted R²: Detailed Example</h2>
+<h3 id="comparing-two-drag-models">Comparing Two Drag Models</h3>
+<p><strong>Dataset</strong>: 60 wind tunnel runs at various <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(M\)</span></p>
+<div class="fragment">
+<p><strong>Model 1 (Simple)</strong>: <span class="math inline">\(C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2\)</span></p>
+<ul>
+<li><span class="math inline">\(d = 2\)</span> features, <span class="math inline">\(n = 60\)</span> data points</li>
+<li>RSS = 0.0045, TSS = 0.0520</li>
+<li><span class="math inline">\(R^2 = 1 - \frac{0.0045}{0.0520} = 0.913\)</span></li>
+<li><span class="math inline">\(R^2_{\text{adj}} = 1 - (1-0.913)\frac{60-1}{60-2-1} = 1 - 0.087 \times \frac{59}{57} = 0.910\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Model 2 (Complex)</strong>: <span class="math inline">\(C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2 + \beta_3 M + \beta_4 M^2 + \beta_5\alpha M\)</span></p>
+<ul>
+<li><span class="math inline">\(d = 5\)</span> features, <span class="math inline">\(n = 60\)</span> data points<br>
+</li>
+<li>RSS = 0.0042, TSS = 0.0520</li>
+<li><span class="math inline">\(R^2 = 1 - \frac{0.0042}{0.0520} = 0.919\)</span> → Slightly higher!</li>
+<li><span class="math inline">\(R^2_{\text{adj}} = 1 - (1-0.919)\frac{60-1}{60-5-1} = 1 - 0.081 \times \frac{59}{54} = 0.911\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Decision</strong>: Model 2 has slightly higher Adj. R² (0.911 vs 0.910), suggesting the Mach number terms add marginal value. But the improvement is small – consider Model 1 for simplicity unless transonic effects are critical.</p>
+</div>
+</section>
+<section id="detailed-metric-analysis-mse-and-rmse" class="slide level2">
+<h2>Detailed Metric Analysis: MSE and RMSE</h2>
+<h3 id="mean-squared-error-mse">Mean Squared Error (MSE)</h3>
+<p><span class="math display">\[
+\text{MSE} = \frac{1}{n}\sum_{i=1}^n(y_i - \hat{y}_i)^2 = \frac{\text{RSS}}{n}
+\]</span></p>
+<div class="fragment">
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><strong>Always positive</strong> (squared errors)</li>
+<li><strong>Penalizes large errors heavily</strong> (quadratic penalty)</li>
+<li><strong>Units</strong>: Squared units of response variable</li>
+<li><strong>Optimization</strong>: Differentiable, easy to minimize (used in least squares)</li>
+<li><strong>Statistical connection</strong>: Unbiased estimator of <span class="math inline">\(\sigma^2\)</span> when using <span class="math inline">\(n-d-1\)</span> denominator</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="root-mean-squared-error-rmse">Root Mean Squared Error (RMSE)</h3>
+<p><span class="math display">\[
+\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{\frac{1}{n}\sum_{i=1}^n(y_i - \hat{y}_i)^2}
+\]</span></p>
+<p><strong>Why take the square root?</strong></p>
+<ul>
+<li>Returns to <strong>original units</strong> of the response</li>
+<li>Makes interpretation intuitive: “Average prediction error in practical units”</li>
+<li>Comparable to standard deviation</li>
+</ul>
+</div>
+</section>
+<section id="rmse-aerospace-applications" class="slide level2">
+<h2>RMSE: Aerospace Applications</h2>
+<h3 id="example-1-fuel-burn-prediction">Example 1: Fuel Burn Prediction</h3>
+<p><strong>Model</strong> - Predict fuel consumption (kg) for commercial flights</p>
+<p><strong>Results on test data</strong>:</p>
+<ul>
+<li>Actual fuel: [12,500, 14,200, 13,800, 15,100, 12,900] kg</li>
+<li>Predicted: [12,300, 14,500, 13,700, 15,000, 13,200] kg</li>
+<li>Errors: [200, -300, 100, 100, -300] kg</li>
+<li>MSE = <span class="math inline">\(\frac{1}{5}(200^2 + 300^2 + 100^2 + 100^2 + 300^2) = \frac{230000}{5} = 46000\)</span> kg²</li>
+<li><strong>RMSE = 214 kg</strong></li>
+</ul>
+<div class="fragment">
+<p><strong>Engineering interpretation</strong>:</p>
+<ul>
+<li>“Fuel predictions are typically off by ±214 kg”</li>
+<li>For a flight requiring ~13,500 kg, error is ~1.6%</li>
+<li><strong>Decision</strong>: Acceptable for operational planning with safety margins</li>
+</ul>
+</div>
+</section>
+<section id="rmse-aerospace-applications-1" class="slide level2">
+<h2>RMSE: Aerospace Applications</h2>
+<h3 id="example-2-takeoff-distance-prediction">Example 2: Takeoff Distance Prediction</h3>
+<p><strong>Model</strong> - Predict takeoff roll distance (m) given weight, temperature, pressure altitude</p>
+<ul>
+<li><strong>RMSE = 35 m</strong> on validation set</li>
+</ul>
+<p><strong>Safety assessment</strong>:</p>
+<ul>
+<li>Runway length: 2,400 m</li>
+<li>Predicted takeoff distance: 1,650 m</li>
+<li>With RMSE = 35 m, roughly 95% of predictions within ±70 m</li>
+<li>Safety margin: 2,400 - 1,650 - 70 = 680 m ✓ Acceptable</li>
+</ul>
+</section>
+<section id="detailed-metric-analysis-mae" class="slide level2">
+<h2>Detailed Metric Analysis: MAE</h2>
+<h3 id="mean-absolute-error">Mean Absolute Error</h3>
+<p><span class="math display">\[
+\text{MAE} = \frac{1}{n}\sum_{i=1}^n|y_i - \hat{y}_i|
+\]</span></p>
+<div class="fragment">
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><strong>Linear penalty</strong>: All errors treated equally (no squaring)</li>
+<li><strong>Robust to outliers</strong>: Large errors don’t dominate as in RMSE</li>
+<li><strong>Units</strong>: Same as response variable (like RMSE)</li>
+<li><strong>Optimization</strong>: Less smooth (absolute value not differentiable at 0)</li>
+</ul>
+</div>
+</section>
+<section id="mae-vs-rmse-side-by-side-comparison" class="slide level2">
+<h2>MAE vs RMSE: Side-by-Side Comparison</h2>
+<h3 id="same-dataset-different-stories">Same Dataset, Different Stories</h3>
+<p><strong>Scenario</strong>: Predicting landing rollout distance (10 test landings)</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Landing</th>
+<th>Actual (m)</th>
+<th>Predicted (m)</th>
+<th>Error (m)</th>
+<th>Squared Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>450</td>
+<td>445</td>
+<td>5</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>430</td>
+<td>435</td>
+<td>-5</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>460</td>
+<td>455</td>
+<td>5</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>440</td>
+<td>448</td>
+<td>-8</td>
+<td>64</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>455</td>
+<td>450</td>
+<td>5</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>445</td>
+<td>442</td>
+<td>3</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>435</td>
+<td>438</td>
+<td>-3</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>470</td>
+<td>460</td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>442</td>
+<td>445</td>
+<td>-3</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>450</td>
+<td>500</td>
+<td><strong>-50</strong></td>
+<td><strong>2500</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>Calculations</strong>:</p>
+<ul>
+<li><span class="math inline">\(\text{MAE} = \frac{5+5+5+8+5+3+3+10+3+50}{10} = \frac{97}{10} = 9.7\)</span> m</li>
+<li><span class="math inline">\(\text{MSE} = \frac{25+25+25+64+25+9+9+100+9+2500}{10} = \frac{2791}{10} = 279.1\)</span> m²</li>
+<li><span class="math inline">\(\text{RMSE} = \sqrt{279.1} = 16.7\)</span> m</li>
+</ul>
+<p><strong>Key insight</strong>: One bad prediction (50 m error) dramatically inflates RMSE but has less effect on MAE. Ratio RMSE/MAE = 1.72 indicates presence of outliers.</p>
+</div>
+</section>
+<section id="mae-vs-rmse-decision-guide" class="slide level2">
+<h2>MAE vs RMSE: Decision Guide</h2>
+<h3 id="which-metric-should-you-use">Which Metric Should You Use?</h3>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Safety-Critical Applications → Use RMSE</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>When</strong>: Aircraft performance limits, structural loads, V-speeds, obstacle clearance</p>
+<p><strong>Why</strong>: Large errors can be catastrophic. RMSE heavily penalizes outliers.</p>
+<p><strong>Example</strong>: Predicting maximum load factor — if model occasionally predicts 20% low, structure could fail.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Operational Planning → Consider MAE</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>When</strong>: Fuel planning, schedule estimates, maintenance intervals</p>
+<p><strong>Why</strong>: Occasional outliers are acceptable; focus on typical performance.</p>
+<p><strong>Example</strong>: Taxi-out time — usually 10-15 min, occasionally 45 min (traffic). MAE captures typical experience.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="detailed-metric-analysis-mape" class="slide level2">
+<h2>Detailed Metric Analysis: MAPE</h2>
+<h3 id="mean-absolute-percentage-error">Mean Absolute Percentage Error</h3>
+<p><span class="math display">\[
+\text{MAPE} = \frac{100\%}{n}\sum_{i=1}^n\left|\frac{y_i - \hat{y}_i}{y_i}\right|
+\]</span></p>
+<div class="fragment">
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><strong>Scale-independent</strong>: Expressed as percentage, comparable across different problems</li>
+<li><strong>Intuitive</strong>: Non-technical stakeholders understand “5% error”</li>
+<li><strong>Asymmetric</strong>: Penalizes under-predictions more than over-predictions</li>
+<li><strong>Undefined for <span class="math inline">\(y_i = 0\)</span></strong>: Cannot divide by zero</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>When to use</strong>: Comparing models across different scales (fuel kg vs distance km), reporting to non-technical audiences, when relative accuracy matters more than absolute.</p>
+</div>
+</section>
+<section id="mape-scale-independence-example" class="slide level2">
+<h2>MAPE: Scale Independence Example</h2>
+<h3 id="comparing-models-across-different-aircraft">Comparing Models Across Different Aircraft</h3>
+<p><strong>Model A</strong> - Small business jet fuel prediction:</p>
+<ul>
+<li>Typical fuel burn: 1,200 kg</li>
+<li>RMSE = 50 kg → MAPE ≈ 4.2%</li>
+</ul>
+<p><strong>Model B</strong> - Heavy cargo aircraft fuel prediction:</p>
+<ul>
+<li>Typical fuel burn: 45,000 kg<br>
+</li>
+<li>RMSE = 1,500 kg → MAPE ≈ 3.3%</li>
+</ul>
+<div class="fragment">
+<p><strong>Conclusion</strong>: Model B has 30× larger RMSE but lower MAPE. Both achieve similar <strong>relative</strong> accuracy for their respective applications. MAPE enables fair comparison across scales.</p>
+</div>
+</section>
+<section id="mape-pitfalls-to-avoid" class="slide level2">
+<h2>MAPE: Pitfalls to Avoid</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pitfall 1: Asymmetry</strong></p>
+</div>
+<div class="callout-content">
+<p>MAPE penalizes under-predictions more than over-predictions of equal magnitude.</p>
+<div class="fragment">
+<p><strong>Example</strong>: Predicting part cost of $100</p>
+<ul>
+<li><strong>Over-predict</strong> by $50: Error = <span class="math inline">\(\frac{|150-100|}{100} = 50\%\)</span></li>
+<li><strong>Under-predict</strong> by $50: Error = <span class="math inline">\(\frac{|50-100|}{50} = 100\%\)</span></li>
+</ul>
+<p>Same absolute error, but under-prediction contributes <strong>twice as much</strong> to MAPE!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pitfall 2: Division by Zero or Near-Zero</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Problem</strong>: If true value <span class="math inline">\(y_i \approx 0\)</span>, MAPE explodes</p>
+<p><strong>Example</strong>: Sideslip angle <span class="math inline">\(\beta\)</span> during wings-level flight</p>
+<ul>
+<li>True: <span class="math inline">\(\beta = 0.5°\)</span>, Predicted: <span class="math inline">\(\beta = 1.5°\)</span> → MAPE = 200%$ ❌ Misleading!</li>
+</ul>
+<p><strong>Solution</strong>: Use absolute metrics (MAE, RMSE) when values can be near zero.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-choosing-the-right-metric" class="slide level2">
+<h2>Summary: Choosing the Right Metric</h2>
+<h3 id="decision-tree-for-aerospace-applications">Decision Tree for Aerospace Applications</h3>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Step 1: What’s Your Goal?</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Goal: Compare model performance on same dataset</strong></p>
+<ul>
+<li>Use <strong>R²</strong> or <strong>Adj. R²</strong> (intuitive variance explained)</li>
+</ul>
+<p><strong>Goal: Interpretable error in engineering units</strong></p>
+<ul>
+<li>Use <strong>RMSE</strong> (if safety-critical, penalize outliers) or <strong>MAE</strong> (if robust to outliers)</li>
+</ul>
+<p><strong>Goal: Compare across different problems/scales</strong></p>
+<ul>
+<li>Use <strong>MAPE</strong> (percentage, scale-independent)</li>
+</ul>
+<p><strong>Goal: Model selection (avoid overfitting)</strong></p>
+<ul>
+<li>Use <strong>Adj. R²</strong> (penalizes complexity) or <strong>Cross-validation RMSE/MAE</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Step 2: What’s Your Application Domain?</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong>Aircraft performance certification</strong> → RMSE + Adj. R²</li>
+<li><strong>Operational fuel/time planning</strong> → MAE + MAPE<br>
+</li>
+<li><strong>Research model comparison</strong> → R², Adj. R², RMSE</li>
+<li><strong>Safety-critical systems</strong> → RMSE (conservative)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<blockquote>
+<p>Always use <strong>multiple metrics</strong> to give complete picture of model performance.</p>
+</blockquote>
+</div>
+</section>
+<section id="comprehensive-error-metrics-table" class="slide level2">
+<h2>Comprehensive Error Metrics Table</h2>
+<h3 id="quick-reference-for-model-evaluation">Quick Reference for Model Evaluation</h3>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Metric</strong></th>
+<th><strong>Formula</strong></th>
+<th><strong>Units</strong></th>
+<th><strong>Interpretation</strong></th>
+<th><strong>Advantages</strong></th>
+<th><strong>Disadvantages</strong></th>
+<th><strong>Aerospace Use Case</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>R²</strong></td>
+<td><span class="math inline">\(1 - \frac{\text{RSS}}{\text{TSS}}\)</span></td>
+<td>Unitless [0,1]</td>
+<td>% variance explained</td>
+<td>Intuitive, normalized</td>
+<td>Always increases with features</td>
+<td>Initial model assessment</td>
+</tr>
+<tr class="even">
+<td><strong>Adj. R²</strong></td>
+<td><span class="math inline">\(1 - (1-R^2)\frac{n-1}{n-d-1}\)</span></td>
+<td>Unitless</td>
+<td>R² with complexity penalty</td>
+<td>Prevents overfitting</td>
+<td>Can be negative</td>
+<td>Model selection/comparison</td>
+</tr>
+<tr class="odd">
+<td><strong>MSE</strong></td>
+<td><span class="math inline">\(\frac{1}{n}\sum(y_i-\hat{y}_i)^2\)</span></td>
+<td>Squared units</td>
+<td>Avg squared error</td>
+<td>Easy to optimize</td>
+<td>Squared units unintuitive</td>
+<td>Theoretical analysis</td>
+</tr>
+<tr class="even">
+<td><strong>RMSE</strong></td>
+<td><span class="math inline">\(\sqrt{\text{MSE}}\)</span></td>
+<td>Same as <span class="math inline">\(y\)</span></td>
+<td>Typical prediction error</td>
+<td>Interpretable units</td>
+<td>Sensitive to outliers</td>
+<td><strong>Primary metric (safety)</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>MAE</strong></td>
+<td><span class="math inline">\(\frac{1}{n}\sum\|y_i-\hat{y}_i\|\)</span></td>
+<td>Same as <span class="math inline">\(y\)</span></td>
+<td>Median absolute error</td>
+<td>Robust to outliers</td>
+<td>Harder to optimize</td>
+<td>Operational planning</td>
+</tr>
+<tr class="even">
+<td><strong>MAPE</strong></td>
+<td><span class="math inline">\(\frac{100}{n}\sum\frac{\|y_i-\hat{y}_i\|}{y_i}\)</span></td>
+<td>Percentage</td>
+<td>Avg % error</td>
+<td>Scale-independent</td>
+<td>Asymmetric, fails at <span class="math inline">\(y=0\)</span></td>
+<td>Comparing different scales</td>
+</tr>
+<tr class="odd">
+<td><strong>Max Error</strong></td>
+<td><span class="math inline">\(\max_i\|y_i-\hat{y}_i\|\)</span></td>
+<td>Same as <span class="math inline">\(y\)</span></td>
+<td>Worst-case error</td>
+<td>Identifies outliers</td>
+<td>Single bad point</td>
+<td>Safety margins</td>
+</tr>
+<tr class="even">
+<td><strong>CV Score</strong></td>
+<td>Avg metric across folds</td>
+<td>Various</td>
+<td>Out-of-sample performance</td>
+<td>Prevents overfitting</td>
+<td>Computationally expensive</td>
+<td>Model validation</td>
+</tr>
+</tbody>
+</table>
+<p><span class="highlight"><strong>Recommended reporting</strong>: R²/Adj. R² + RMSE + MAE (covers interpretability, safety, and robustness)</span></p>
+</section>
+<section id="aerospace-application-drag-prediction" class="slide level2">
+<h2>Aerospace Application: Drag Prediction</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h3 id="problem-setup">Problem Setup</h3>
+<p><strong>Goal</strong>: Predict drag coefficient from wind tunnel data</p>
+<p><strong>Features</strong>:</p>
+<ul>
+<li>Angle of attack: <span class="math inline">\(\alpha\)</span> (deg)</li>
+<li>Mach number: <span class="math inline">\(M\)</span></li>
+<li>Reynolds number: <span class="math inline">\(\text{Re}\)</span></li>
+</ul>
+<p><strong>Target</strong>: Drag coefficient <span class="math inline">\(C_D\)</span></p>
+</div><div class="column" style="width:60%;">
+<h3 id="feature-selection-strategy">Feature Selection Strategy</h3>
+<p><strong>Small-scale problems</strong> (limited data):</p>
+<ul>
+<li>Start with physics-based features from domain knowledge</li>
+<li>Include interaction terms guided by aerodynamic theory</li>
+<li>Manual selection based on hypothesis testing (<span class="math inline">\(t\)</span>-tests, <span class="math inline">\(p\)</span>-values)</li>
+</ul>
+<p><strong>Large-scale problems</strong> with strong physics:</p>
+<ul>
+<li>Physics-informed feature engineering (known functional forms)</li>
+<li>Add polynomial/interaction terms systematically</li>
+<li>Use regularization to handle redundancy</li>
+</ul>
+<p><strong>Large-scale problems</strong> without strong physics:</p>
+<ul>
+<li>Automated feature selection (forward/backward stepwise, Lasso)</li>
+<li>Cross-validation to assess feature importance</li>
+<li>Rely on data-driven patterns rather than domain knowledge</li>
+</ul>
+</div></div>
+</section>
+<section id="linear-model-with-interaction-terms" class="slide level2">
+<h2>Linear Model with Interaction Terms</h2>
+<p><span class="math display">\[
+C_D = \beta_0 + \beta_1\alpha + \beta_2 M + \beta_3\text{Re} + \beta_4\alpha^2 + \beta_5 M^2 + \beta_6\alpha M + \epsilon
+\]</span></p>
+<p><strong>Rationale</strong>:</p>
+<ul>
+<li>Parabolic drag polar: <span class="math inline">\(C_D \propto \alpha^2\)</span> (induced drag)</li>
+<li>Wave drag: <span class="math inline">\(C_D \propto M^2\)</span> (transonic effects)</li>
+<li>Compressibility: <span class="math inline">\(\alpha M\)</span> interaction</li>
+</ul>
+</section>
+<section id="feature-engineering-for-aerodynamics" class="slide level2">
+<h2>Feature Engineering for Aerodynamics</h2>
+<h3 id="polynomial-features">Polynomial Features</h3>
+<p><strong>Automated feature expansion</strong> — Create new features from existing ones:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="co"># X is your original data matrix (n samples × 3 features)</span></span>
+<span id="cb3-4"><a></a><span class="co"># Shape: (n_samples, 3) where columns are [α, M, Re]</span></span>
+<span id="cb3-5"><a></a></span>
+<span id="cb3-6"><a></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>, include_bias<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-7"><a></a>X_poly <span class="op">=</span> poly.fit_transform(X)  <span class="co"># X_poly has shape (n_samples, 10)</span></span>
+<span id="cb3-8"><a></a></span>
+<span id="cb3-9"><a></a><span class="co"># Transformation: [f1, f2, f3] → [1, f1, f2, f3, f1², f1×f2, f1×f3, f2², f2×f3, f3²]</span></span>
+<span id="cb3-10"><a></a><span class="co"># For our case:    [α, M, Re]  → [1, α,  M,  Re, α²,  α×M,   α×Re,  M²,  M×Re,  Re²]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>What this does</strong>: Automatically generates all combinations of features up to degree 2</p>
+<ul>
+<li><strong>Bias term</strong>: 1 (intercept, when <code>include_bias=True</code>)</li>
+<li><strong>Linear terms</strong>: <span class="math inline">\(\alpha, M, \text{Re}\)</span> (original features)</li>
+<li><strong>Interaction terms</strong>: <span class="math inline">\(\alpha M, \alpha \text{Re}, M \text{Re}\)</span> (captures coupling between variables)</li>
+<li><strong>Quadratic terms</strong>: <span class="math inline">\(\alpha^2, M^2, \text{Re}^2\)</span> (captures nonlinear effects)</li>
+</ul>
+<blockquote>
+<p>For 3 input features, you get: 3 original + 3 interactions + 3 squares + 1 bias = <strong>10 total features</strong></p>
+</blockquote>
+<div class="fragment">
+<p><strong>Important clarification</strong>: This allows a <strong>linear model</strong> to fit <strong>nonlinear relationships</strong></p>
+<p>The model is still <strong>linear in the coefficients</strong>: <span class="math inline">\(C_D = \beta_0 + \beta_1\alpha + \beta_2 M + \beta_3\alpha^2 + \cdots\)</span></p>
+<p>But it’s <strong>nonlinear in the input features</strong>: <span class="math inline">\(C_D\)</span> depends on <span class="math inline">\(\alpha^2\)</span>, not just <span class="math inline">\(\alpha\)</span></p>
+</div>
+<p>–</p>
+</section>
+<section id="use-domain-knowledge-for-feature-selection" class="slide level2">
+<h2>Use Domain Knowledge For Feature Selection</h2>
+<p>Rather than blindly creating all polynomials, use <strong>aerodynamic theory</strong> to guide feature selection:</p>
+<ol type="1">
+<li><strong>Dynamic pressure</strong>: <span class="math inline">\(q = \frac{1}{2}\rho V^2 \propto M^2\)</span>
+<ul>
+<li>Higher Mach → Higher dynamic pressure → Different flow physics</li>
+<li>Create feature: <span class="math inline">\(M^2\)</span> to capture compressibility effects</li>
+</ul></li>
+<li><strong>Lift-induced drag</strong>: <span class="math inline">\(C_{D_i} = \frac{C_L^2}{\pi e AR}\)</span>
+<ul>
+<li>Induced drag scales with square of lift coefficient</li>
+<li>If predicting <span class="math inline">\(C_D\)</span> and have <span class="math inline">\(C_L\)</span> data, create feature: <span class="math inline">\(C_L^2\)</span></li>
+</ul></li>
+<li><strong>Prandtl-Glauert correction</strong>: <span class="math inline">\(C_p = \frac{C_{p,0}}{\sqrt{1-M^2}}\)</span> (subsonic compressibility)
+<ul>
+<li>Pressure coefficient correction for compressible flow</li>
+<li>Create feature: <span class="math inline">\(\frac{1}{\sqrt{1-M^2}}\)</span> for subsonic Mach numbers</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<p><strong>Key lesson</strong>: Physics-informed feature engineering beats blind polynomial expansion</p>
+<ul>
+<li>Fewer features → Less overfitting</li>
+<li>Better interpretability → Understand what model learned</li>
+<li>Incorporates domain expertise → Model learns physics, not just correlations</li>
+</ul>
+</div>
+</section>
+<section id="problem-predicting-fatigue-life-of-aircraft-components" class="slide level2">
+<h2>Problem: Predicting Fatigue Life of Aircraft Components</h2>
+<p><strong>Given measurements</strong>: Applied load <span class="math inline">\(P\)</span>, component geometry (length <span class="math inline">\(L\)</span>, cross-section area <span class="math inline">\(A\)</span>, moment of inertia <span class="math inline">\(I\)</span>), material properties (Young’s modulus <span class="math inline">\(E\)</span>, yield strength <span class="math inline">\(\sigma_y\)</span>)</p>
+<p><strong>Goal</strong>: Predict cycles to failure</p>
+<h3 id="physics-informed-features-from-structural-theory">Physics-Informed Features from Structural Theory</h3>
+<div class="columns">
+<div class="column">
+<div class="fragment">
+<ol type="1">
+<li><strong>Axial stress</strong>: <span class="math inline">\(\sigma = \frac{P}{A}\)</span>
+<ul>
+<li>Fundamental stress measure, directly related to failure</li>
+<li><strong>Feature</strong>: <span class="math inline">\(\sigma\)</span> or <span class="math inline">\(\frac{P}{A}\)</span></li>
+</ul></li>
+<li><strong>Bending moment and stress</strong>: <span class="math inline">\(\sigma_{bend} = \frac{M \cdot c}{I}\)</span>
+<ul>
+<li>If component experiences bending, stress depends on moment <span class="math inline">\(M\)</span> and distance from neutral axis <span class="math inline">\(c\)</span></li>
+<li><strong>Feature</strong>: <span class="math inline">\(\frac{M \cdot c}{I}\)</span></li>
+</ul></li>
+<li><strong>Euler buckling load</strong>: <span class="math inline">\(P_{cr} = \frac{\pi^2 E I}{(KL)^2}\)</span>
+<ul>
+<li>Critical load for column buckling (where <span class="math inline">\(K\)</span> is effective length factor)</li>
+<li><strong>Feature</strong>: Load ratio <span class="math inline">\(\frac{P}{P_{cr}}\)</span> indicates proximity to buckling instability</li>
+</ul></li>
+</ol>
+</div>
+</div><div class="column">
+<div class="fragment">
+<ol start="4" type="1">
+<li><strong>Strain energy density</strong>: <span class="math inline">\(U = \frac{\sigma^2}{2E}\)</span>
+<ul>
+<li>Energy stored in material under load, correlates with damage accumulation</li>
+<li><strong>Feature</strong>: <span class="math inline">\(\frac{\sigma^2}{2E}\)</span></li>
+</ul></li>
+<li><strong>Stress concentration factor</strong>: <span class="math inline">\(K_t = \frac{\sigma_{max}}{\sigma_{nominal}}\)</span>
+<ul>
+<li>Accounts for geometric discontinuities (holes, notches, fillets)</li>
+<li><strong>Feature</strong>: <span class="math inline">\(K_t \cdot \sigma\)</span> gives local peak stress where cracks initiate</li>
+</ul></li>
+</ol>
+</div>
+</div></div>
+<div class="fragment">
+<blockquote>
+<p><strong>Result</strong>: Instead of raw measurements <span class="math inline">\([P, L, A, I, E]\)</span>, model uses physics-based features <span class="math inline">\([\sigma, \frac{P}{P_{cr}}, U, K_t\sigma]\)</span> that directly relate to failure mechanisms.</p>
+</blockquote>
+</div>
+</section>
+<section id="problem-predicting-satellite-ground-track-position" class="slide level2">
+<h2>Problem: Predicting Satellite Ground Track Position</h2>
+<p><strong>Given measurements</strong>: Position vector <span class="math inline">\(\vec{r}\)</span>, velocity vector <span class="math inline">\(\vec{v}\)</span>, gravitational parameter <span class="math inline">\(\mu = GM\)</span></p>
+<p><strong>Goal</strong>: Predict future ground track latitude/longitude</p>
+<h3 id="physics-informed-features-from-orbital-theory">Physics-Informed Features from Orbital Theory</h3>
+<div class="columns">
+<div class="column">
+<div class="fragment">
+<ol type="1">
+<li><strong>Specific orbital energy</strong>: <span class="math inline">\(\mathcal{E} = \frac{v^2}{2} - \frac{\mu}{r}\)</span>
+<ul>
+<li>Determines orbit shape (ellipse, parabola, hyperbola)</li>
+<li>Constant along orbit (conserved quantity)</li>
+<li><strong>Feature</strong>: <span class="math inline">\(\mathcal{E}\)</span> classifies orbit type</li>
+</ul></li>
+<li><strong>Semi-major axis</strong>: <span class="math inline">\(a = -\frac{\mu}{2\mathcal{E}}\)</span>
+<ul>
+<li>Defines orbit size</li>
+<li>Directly related to orbital period via Kepler’s 3rd law: <span class="math inline">\(T = 2\pi\sqrt{\frac{a^3}{\mu}}\)</span></li>
+<li><strong>Feature</strong>: <span class="math inline">\(a\)</span> predicts when satellite returns to same location</li>
+</ul></li>
+<li><strong>Specific angular momentum</strong>: <span class="math inline">\(\vec{h} = \vec{r} \times \vec{v}\)</span>, magnitude <span class="math inline">\(h = |\vec{h}|\)</span>
+<ul>
+<li>Perpendicular to orbital plane, determines inclination</li>
+<li>Constant in magnitude and direction (conserved quantity)</li>
+<li><strong>Feature</strong>: <span class="math inline">\(h\)</span> and components <span class="math inline">\((h_x, h_y, h_z)\)</span> define orbital plane orientation</li>
+</ul></li>
+</ol>
+</div>
+</div><div class="column">
+<div class="fragment">
+<ol start="4" type="1">
+<li><strong>Eccentricity</strong>: <span class="math inline">\(e = \sqrt{1 + \frac{2\mathcal{E}h^2}{\mu^2}}\)</span>
+<ul>
+<li>Describes orbit shape: <span class="math inline">\(e=0\)</span> (circular), <span class="math inline">\(0&lt;e&lt;1\)</span> (elliptical)</li>
+<li>Determines apogee and perigee altitudes</li>
+<li><strong>Feature</strong>: <span class="math inline">\(e\)</span> predicts altitude variation</li>
+</ul></li>
+<li><strong>Vis-viva equation</strong> (from energy conservation): <span class="math inline">\(v^2 = \mu\left(\frac{2}{r} - \frac{1}{a}\right)\)</span>
+<ul>
+<li>Latin for “living force” — relates orbital speed <span class="math inline">\(v\)</span> to position <span class="math inline">\(r\)</span> and orbit size <span class="math inline">\(a\)</span></li>
+<li>Derived from conservation of energy: kinetic + potential = constant</li>
+<li>At any point in orbit: faster when closer to Earth (smaller <span class="math inline">\(r\)</span>), slower when farther</li>
+<li><strong>Feature</strong>: Given position, predict velocity magnitude (useful for ground speed calculations)</li>
+</ul></li>
+</ol>
+</div>
+</div></div>
+<div class="fragment">
+<blockquote>
+<p><strong>Result</strong>: Instead of raw state vectors <span class="math inline">\([\vec{r}, \vec{v}]\)</span> (6 numbers), model uses orbital elements <span class="math inline">\([\mathcal{E}, a, h, e, i, \Omega, \omega]\)</span> that are physically meaningful and some are conserved (reduce dimensionality).</p>
+</blockquote>
+</div>
+</section>
+<section id="scaling-and-normalization" class="slide level2">
+<h2>Scaling and Normalization</h2>
+<h3 id="why-scale-features">Why Scale Features?</h3>
+<p><strong>Problem</strong>: Features have different ranges</p>
+<ul>
+<li><span class="math inline">\(\alpha \in [0°, 20°]\)</span></li>
+<li><span class="math inline">\(M \in [0.3, 0.9]\)</span></li>
+<li><span class="math inline">\(\text{Re} \in [10^6, 10^7]\)</span></li>
+</ul>
+<div class="fragment">
+<p><strong>Issues</strong>:</p>
+<ol type="1">
+<li>Gradient descent: Features with large scales dominate</li>
+<li>Regularization: Penalizes large-scale features unfairly</li>
+<li>Numerical stability: Condition number of <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span></li>
+</ol>
+</div>
+<div class="fragment">
+<h3 id="standardization">Standardization</h3>
+<p><span class="math display">\[
+x_j^{\text{scaled}} = \frac{x_j - \mu_j}{\sigma_j}
+\]</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb4-2"><a></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb4-3"><a></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="practical-implementation" class="slide level2">
+<h2>Practical Implementation</h2>
+<p><span class="highlight">I am here</span></p>
+<h3 id="scikit-learn-workflow">Scikit-learn Workflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb5-3"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb5-4"><a></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span>
+<span id="cb5-5"><a></a></span>
+<span id="cb5-6"><a></a><span class="co"># 1. Load and split data</span></span>
+<span id="cb5-7"><a></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb5-8"><a></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb5-9"><a></a>)</span>
+<span id="cb5-10"><a></a></span>
+<span id="cb5-11"><a></a><span class="co"># 2. Create and train model</span></span>
+<span id="cb5-12"><a></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb5-13"><a></a>model.fit(X_train, y_train)</span>
+<span id="cb5-14"><a></a></span>
+<span id="cb5-15"><a></a><span class="co"># 3. Make predictions</span></span>
+<span id="cb5-16"><a></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb5-17"><a></a></span>
+<span id="cb5-18"><a></a><span class="co"># 4. Evaluate</span></span>
+<span id="cb5-19"><a></a>rmse <span class="op">=</span> np.sqrt(mean_squared_error(y_test, y_pred))</span>
+<span id="cb5-20"><a></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span>
+<span id="cb5-21"><a></a></span>
+<span id="cb5-22"><a></a><span class="bu">print</span>(<span class="ss">f"Coefficients: </span><span class="sc">{</span>model<span class="sc">.</span>coef_<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-23"><a></a><span class="bu">print</span>(<span class="ss">f"Intercept: </span><span class="sc">{</span>model<span class="sc">.</span>intercept_<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-24"><a></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.4f}</span><span class="ss">, R²: </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="case-study-boeing-737-drag-model" class="slide level2">
+<h2>Case Study: Boeing 737 Drag Model</h2>
+<h3 id="dataset-description">Dataset Description</h3>
+<ul>
+<li><strong>Source</strong>: Wind tunnel tests (hypothetical)</li>
+<li><strong>Samples</strong>: 500 data points</li>
+<li><strong>Features</strong>: <span class="math inline">\(\alpha, M, \text{Re}\)</span></li>
+<li><strong>Target</strong>: <span class="math inline">\(C_D\)</span></li>
+<li><strong>Range</strong>: Cruise conditions (<span class="math inline">\(\alpha \in [0°, 10°]\)</span>, <span class="math inline">\(M \in [0.7, 0.85]\)</span>)</li>
+</ul>
+<div class="fragment">
+<h3 id="model-comparison">Model Comparison</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Features</th>
+<th>R²</th>
+<th>RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Simple</td>
+<td><span class="math inline">\(\alpha, M\)</span></td>
+<td>0.85</td>
+<td>0.0045</td>
+</tr>
+<tr class="even">
+<td>Polynomial (deg=2)</td>
+<td>9 features</td>
+<td>0.94</td>
+<td>0.0028</td>
+</tr>
+<tr class="odd">
+<td>+ Reynolds</td>
+<td>10 features</td>
+<td>0.96</td>
+<td>0.0022</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p><strong>Insight</strong>: Polynomial features capture drag polar curvature</p>
+</div>
+</section>
+<section id="residual-analysis" class="slide level2">
+<h2>Residual Analysis</h2>
+<h3 id="diagnostic-plots">Diagnostic Plots</h3>
+<p><strong>1. Residuals vs.&nbsp;Fitted Values</strong></p>
+<ul>
+<li>Check for patterns (should be random)</li>
+<li>Funnel shape → heteroscedasticity</li>
+</ul>
+<p><strong>2. Q-Q Plot</strong></p>
+<ul>
+<li>Check normality assumption</li>
+<li>Points should lie on diagonal</li>
+</ul>
+<p><strong>3. Residuals vs.&nbsp;Features</strong></p>
+<ul>
+<li>Identify missing nonlinear terms</li>
+<li>Detect outliers</li>
+</ul>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>residuals <span class="op">=</span> y_test <span class="op">-</span> y_pred</span>
+<span id="cb6-4"><a></a>plt.scatter(y_pred, residuals)</span>
+<span id="cb6-5"><a></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb6-6"><a></a>plt.xlabel(<span class="st">'Fitted Values'</span>)</span>
+<span id="cb6-7"><a></a>plt.ylabel(<span class="st">'Residuals'</span>)</span>
+<span id="cb6-8"><a></a>plt.title(<span class="st">'Residual Plot'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="outliers-and-influential-points" class="slide level2">
+<h2>Outliers and Influential Points</h2>
+<h3 id="leverage-and-influence">Leverage and Influence</h3>
+<p><strong>Leverage</strong>: How far is <span class="math inline">\(\boldsymbol{x}_i\)</span> from the center of the data?</p>
+<p><span class="math display">\[
+h_i = \boldsymbol{x}_i^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_i
+\]</span></p>
+<div class="fragment">
+<p><strong>Cook’s Distance</strong>: Combined effect of leverage and residual</p>
+<p><span class="math display">\[
+D_i = \frac{(y_i - \hat{y}_i)^2}{(d+1)\hat{\sigma}^2} \cdot \frac{h_i}{(1-h_i)^2}
+\]</span></p>
+<p><strong>Rule of thumb</strong>: <span class="math inline">\(D_i &gt; 1\)</span> suggests influential point</p>
+</div>
+<div class="fragment">
+<h3 id="aerospace-context-1">Aerospace Context</h3>
+<p><strong>Outliers might be</strong>:</p>
+<ul>
+<li>Sensor errors or calibration issues</li>
+<li>Unusual flight conditions (turbulence, icing)</li>
+<li>Model breakdown (post-stall, shock formation)</li>
+</ul>
+</div>
+</section>
+<section id="limitations-of-linear-regression" class="slide level2">
+<h2>Limitations of Linear Regression</h2>
+<h3 id="when-linear-models-fail">When Linear Models Fail</h3>
+<p><strong>1. Nonlinear Relationships</strong></p>
+<ul>
+<li>Transonic drag rise: Not well-captured by polynomials</li>
+<li>Post-stall aerodynamics: Requires different model class</li>
+</ul>
+<p><strong>2. Extrapolation Issues</strong></p>
+<ul>
+<li>Dangerous in aerospace (safety-critical)</li>
+<li>Model may predict physically impossible values</li>
+</ul>
+<p><strong>3. Model Assumptions</strong></p>
+<ul>
+<li>Homoscedasticity rarely holds in real flight data</li>
+<li>Errors may be correlated (time-series flight data)</li>
+</ul>
+<div class="fragment">
+<h3 id="solutions-1">Solutions</h3>
+<ul>
+<li><strong>Nonlinear models</strong>: Neural networks (Weeks 7-9)</li>
+<li><strong>Tree-based methods</strong>: Random forests, gradient boosting</li>
+<li><strong>Physics-informed ML</strong>: Incorporate governing equations</li>
+</ul>
+</div>
+</section>
+<section id="extensions-and-variations" class="slide level2">
+<h2>Extensions and Variations</h2>
+<h3 id="weighted-least-squares">Weighted Least Squares</h3>
+<p><strong>When</strong>: Heteroscedastic errors (variance varies with <span class="math inline">\(x\)</span>)</p>
+<p><span class="math display">\[
+\boldsymbol{\beta}^\ast = \arg\min_{\boldsymbol{\beta}} \sum_{i=1}^n w_i(y_i - \boldsymbol{x}_i^T\boldsymbol{\beta})^2
+\]</span></p>
+<p><strong>Solution</strong>: <span class="math inline">\(\boldsymbol{\beta} = (\boldsymbol{X}^T\boldsymbol{W}\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{W}\boldsymbol{y}\)</span> where <span class="math inline">\(\boldsymbol{W} = \text{diag}(w_1, \ldots, w_n)\)</span></p>
+<div class="fragment">
+<h3 id="generalized-least-squares">Generalized Least Squares</h3>
+<p><strong>When</strong>: Correlated errors with known covariance <span class="math inline">\(\boldsymbol{\Sigma}\)</span></p>
+<p><span class="math display">\[
+\boldsymbol{\beta} = (\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{y}
+\]</span></p>
+</div>
+</section>
+<section id="regularization-preview-week-3" class="slide level2">
+<h2>Regularization Preview (Week 3)</h2>
+<h3 id="the-overfitting-problem-1">The Overfitting Problem</h3>
+<p><strong>High-dimensional features</strong> (<span class="math inline">\(d\)</span> large):</p>
+<ul>
+<li>Perfect fit on training data</li>
+<li>Poor generalization to test data</li>
+<li>Coefficients become unstable</li>
+</ul>
+<div class="fragment">
+<h3 id="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</h3>
+<p><span class="math display">\[
+\boldsymbol{\beta}^{\ast,\text{ridge}} = \arg\min_{\boldsymbol{\beta}} \left\{\sum_{i=1}^n(y_i - \boldsymbol{x}_i^T\boldsymbol{\beta})^2 + \lambda\sum_{j=1}^d\beta_j^2\right\}
+\]</span></p>
+<p><strong>Solution</strong>: <span class="math inline">\(\boldsymbol{\beta}^{\ast,\text{ridge}} = (\boldsymbol{X}^T\boldsymbol{X} + \lambda\boldsymbol{I})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span></p>
+<p><strong>Benefit</strong>: Always invertible, even when <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> is singular</p>
+</div>
+</section>
+<section id="flight-test-example-fuel-flow-prediction" class="slide level2">
+<h2>Flight Test Example: Fuel Flow Prediction</h2>
+<h3 id="problem-statement">Problem Statement</h3>
+<p><strong>Goal</strong>: Predict fuel flow rate for mission planning</p>
+<p><strong>Features</strong>:</p>
+<ul>
+<li>Altitude: <span class="math inline">\(h\)</span> (ft)</li>
+<li>True airspeed: <span class="math inline">\(V\)</span> (kts)</li>
+<li>Aircraft weight: <span class="math inline">\(W\)</span> (lb)</li>
+<li>Temperature deviation: <span class="math inline">\(\Delta T\)</span> (°C)</li>
+</ul>
+<p><strong>Target</strong>: Fuel flow <span class="math inline">\(\dot{m}_f\)</span> (lb/hr)</p>
+<div class="fragment">
+<h3 id="physical-model-basis">Physical Model Basis</h3>
+<p><strong>Thrust specific fuel consumption (TSFC)</strong>: <span class="math display">\[
+\text{TSFC} = \frac{\dot{m}_f}{T}
+\]</span></p>
+<p><strong>Drag = Thrust</strong> (cruise): <span class="math display">\[
+T = D = \frac{1}{2}\rho V^2 S C_D
+\]</span></p>
+</div>
+</section>
+<section id="implementation-fuel-flow-model" class="slide level2">
+<h2>Implementation: Fuel Flow Model</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, PolynomialFeatures</span>
+<span id="cb7-3"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb7-4"><a></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a><span class="co"># Load flight test data</span></span>
+<span id="cb7-7"><a></a>df <span class="op">=</span> pd.read_csv(<span class="st">'flight_test_data.csv'</span>)</span>
+<span id="cb7-8"><a></a>X <span class="op">=</span> df[[<span class="st">'altitude'</span>, <span class="st">'velocity'</span>, <span class="st">'weight'</span>, <span class="st">'temp_dev'</span>]]</span>
+<span id="cb7-9"><a></a>y <span class="op">=</span> df[<span class="st">'fuel_flow'</span>]</span>
+<span id="cb7-10"><a></a></span>
+<span id="cb7-11"><a></a><span class="co"># Create pipeline with preprocessing and model</span></span>
+<span id="cb7-12"><a></a>model <span class="op">=</span> Pipeline([</span>
+<span id="cb7-13"><a></a>    (<span class="st">'poly'</span>, PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>, include_bias<span class="op">=</span><span class="va">True</span>)),</span>
+<span id="cb7-14"><a></a>    (<span class="st">'scaler'</span>, StandardScaler()),</span>
+<span id="cb7-15"><a></a>    (<span class="st">'regressor'</span>, LinearRegression())</span>
+<span id="cb7-16"><a></a>])</span>
+<span id="cb7-17"><a></a></span>
+<span id="cb7-18"><a></a><span class="co"># Train model</span></span>
+<span id="cb7-19"><a></a>model.fit(X_train, y_train)</span>
+<span id="cb7-20"><a></a></span>
+<span id="cb7-21"><a></a><span class="co"># Predict for new flight condition</span></span>
+<span id="cb7-22"><a></a>new_condition <span class="op">=</span> [[<span class="dv">35000</span>, <span class="dv">450</span>, <span class="dv">150000</span>, <span class="op">-</span><span class="dv">10</span>]]  <span class="co"># Alt, V, W, ΔT</span></span>
+<span id="cb7-23"><a></a>predicted_fuel_flow <span class="op">=</span> model.predict(new_condition)</span>
+<span id="cb7-24"><a></a><span class="bu">print</span>(<span class="ss">f"Predicted fuel flow: </span><span class="sc">{</span>predicted_fuel_flow[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> lb/hr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="gradient-descent-from-scratch" class="slide level2">
+<h2>Gradient Descent from Scratch</h2>
+<h3 id="manual-implementation">Manual Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> gradient_descent(X, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, n_iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb8-2"><a></a>    n, d <span class="op">=</span> X.shape</span>
+<span id="cb8-3"><a></a>    beta <span class="op">=</span> np.zeros(d)  <span class="co"># Initialize parameters</span></span>
+<span id="cb8-4"><a></a>    cost_history <span class="op">=</span> []</span>
+<span id="cb8-5"><a></a>    </span>
+<span id="cb8-6"><a></a>    <span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(n_iterations):</span>
+<span id="cb8-7"><a></a>        <span class="co"># Compute predictions</span></span>
+<span id="cb8-8"><a></a>        y_pred <span class="op">=</span> X <span class="op">@</span> beta</span>
+<span id="cb8-9"><a></a>        </span>
+<span id="cb8-10"><a></a>        <span class="co"># Compute residuals</span></span>
+<span id="cb8-11"><a></a>        residuals <span class="op">=</span> y_pred <span class="op">-</span> y</span>
+<span id="cb8-12"><a></a>        </span>
+<span id="cb8-13"><a></a>        <span class="co"># Compute gradient</span></span>
+<span id="cb8-14"><a></a>        gradient <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span>n) <span class="op">*</span> X.T <span class="op">@</span> residuals</span>
+<span id="cb8-15"><a></a>        </span>
+<span id="cb8-16"><a></a>        <span class="co"># Update parameters</span></span>
+<span id="cb8-17"><a></a>        beta <span class="op">=</span> beta <span class="op">-</span> learning_rate <span class="op">*</span> gradient</span>
+<span id="cb8-18"><a></a>        </span>
+<span id="cb8-19"><a></a>        <span class="co"># Track cost</span></span>
+<span id="cb8-20"><a></a>        cost <span class="op">=</span> np.mean(residuals<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-21"><a></a>        cost_history.append(cost)</span>
+<span id="cb8-22"><a></a>        </span>
+<span id="cb8-23"><a></a>        <span class="cf">if</span> iteration <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-24"><a></a>            <span class="bu">print</span>(<span class="ss">f"Iteration </span><span class="sc">{</span>iteration<span class="sc">}</span><span class="ss">: Cost = </span><span class="sc">{</span>cost<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb8-25"><a></a>    </span>
+<span id="cb8-26"><a></a>    <span class="cf">return</span> beta, cost_history</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="convergence-analysis" class="slide level2">
+<h2>Convergence Analysis</h2>
+<h3 id="monitoring-convergence">Monitoring Convergence</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="co"># Run gradient descent</span></span>
+<span id="cb9-4"><a></a>beta_gd, cost_history <span class="op">=</span> gradient_descent(X_train, y_train)</span>
+<span id="cb9-5"><a></a></span>
+<span id="cb9-6"><a></a><span class="co"># Compare with closed-form solution</span></span>
+<span id="cb9-7"><a></a>beta_closed <span class="op">=</span> np.linalg.inv(X_train.T <span class="op">@</span> X_train) <span class="op">@</span> X_train.T <span class="op">@</span> y_train</span>
+<span id="cb9-8"><a></a></span>
+<span id="cb9-9"><a></a><span class="co"># Plot convergence</span></span>
+<span id="cb9-10"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb9-11"><a></a>plt.plot(cost_history)</span>
+<span id="cb9-12"><a></a>plt.xlabel(<span class="st">'Iteration'</span>)</span>
+<span id="cb9-13"><a></a>plt.ylabel(<span class="st">'Mean Squared Error'</span>)</span>
+<span id="cb9-14"><a></a>plt.title(<span class="st">'Gradient Descent Convergence'</span>)</span>
+<span id="cb9-15"><a></a>plt.yscale(<span class="st">'log'</span>)</span>
+<span id="cb9-16"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb9-17"><a></a>plt.show()</span>
+<span id="cb9-18"><a></a></span>
+<span id="cb9-19"><a></a><span class="bu">print</span>(<span class="ss">f"GD solution: </span><span class="sc">{</span>beta_gd<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-20"><a></a><span class="bu">print</span>(<span class="ss">f"Closed-form solution: </span><span class="sc">{</span>beta_closed<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-21"><a></a><span class="bu">print</span>(<span class="ss">f"Difference: </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(beta_gd <span class="op">-</span> beta_closed)<span class="sc">:.6e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="multicollinearity-detection" class="slide level2">
+<h2>Multicollinearity Detection</h2>
+<h3 id="variance-inflation-factor-vif">Variance Inflation Factor (VIF)</h3>
+<p><strong>Definition</strong>: How much variance of <span class="math inline">\(\beta_j\)</span> is inflated due to correlation with other features</p>
+<p><span class="math display">\[
+\text{VIF}_j = \frac{1}{1 - R_j^2}
+\]</span></p>
+<p>where <span class="math inline">\(R_j^2\)</span> is from regressing <span class="math inline">\(x_j\)</span> on all other features</p>
+<div class="fragment">
+<p><strong>Rule of thumb</strong>:</p>
+<ul>
+<li>VIF &lt; 5: Low correlation</li>
+<li>VIF &gt; 10: Problematic multicollinearity</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>vif_data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb10-4"><a></a>vif_data[<span class="st">"Feature"</span>] <span class="op">=</span> X.columns</span>
+<span id="cb10-5"><a></a>vif_data[<span class="st">"VIF"</span>] <span class="op">=</span> [variance_inflation_factor(X.values, i) </span>
+<span id="cb10-6"><a></a>                   <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])]</span>
+<span id="cb10-7"><a></a><span class="bu">print</span>(vif_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="confidence-and-prediction-intervals" class="slide level2">
+<h2>Confidence and Prediction Intervals</h2>
+<h3 id="two-types-of-uncertainty">Two Types of Uncertainty</h3>
+<p><strong>Confidence Interval</strong>: Uncertainty in mean response <span class="math inline">\(E[y|\boldsymbol{x}]\)</span></p>
+<p><span class="math display">\[
+\hat{y} \pm t_{\gamma/2, n-d-1} \cdot \hat{\sigma}\sqrt{\boldsymbol{x}^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}}
+\]</span></p>
+<div class="fragment">
+<p><strong>Prediction Interval</strong>: Uncertainty in individual prediction <span class="math inline">\(y\)</span></p>
+<p><span class="math display">\[
+\hat{y} \pm t_{\gamma/2, n-d-1} \cdot \hat{\sigma}\sqrt{1 + \boldsymbol{x}^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}}
+\]</span></p>
+<p>Note the extra “1” accounting for irreducible error</p>
+</div>
+<div class="fragment">
+<h3 id="aerospace-application">Aerospace Application</h3>
+<p><strong>Critical for</strong>:</p>
+<ul>
+<li>Flight envelope certification</li>
+<li>Fuel reserve calculations</li>
+<li>Performance guarantees</li>
+</ul>
+</div>
+</section>
+<section id="practical-tips-for-aerospace-ml" class="slide level2">
+<h2>Practical Tips for Aerospace ML</h2>
+<h3 id="data-quality-matters">Data Quality Matters</h3>
+<ol type="1">
+<li><strong>Sensor calibration</strong>: Check for drift, bias</li>
+<li><strong>Data fusion</strong>: Combine multiple sources (INS, GPS, pitot-static)</li>
+<li><strong>Outlier handling</strong>: Physics-based filtering (e.g., impossible speeds)</li>
+<li><strong>Missing data</strong>: Interpolation vs.&nbsp;imputation</li>
+</ol>
+<div class="fragment">
+<h3 id="feature-selection-strategy-1">Feature Selection Strategy</h3>
+<ol type="1">
+<li>Start with <strong>physical model</strong> (drag polar, Breguet range)</li>
+<li>Add <strong>polynomial terms</strong> based on theory</li>
+<li>Use <strong>domain expertise</strong> to limit feature space</li>
+<li><strong>Cross-validate</strong> to prevent overfitting</li>
+</ol>
+</div>
+<div class="fragment">
+<h3 id="model-validation">Model Validation</h3>
+<ul>
+<li><strong>Train-test split</strong>: 80-20 or 70-30</li>
+<li><strong>K-fold CV</strong>: For limited data</li>
+<li><strong>Holdout by flight</strong>: Test on different aircraft/conditions</li>
+<li><strong>Physics checks</strong>: Verify positive drag, reasonable trends</li>
+</ul>
+</div>
+</section>
+<section id="software-ecosystem" class="slide level2">
+<h2>Software Ecosystem</h2>
+<h3 id="essential-libraries">Essential Libraries</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="co"># Data manipulation</span></span>
+<span id="cb11-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-3"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a><span class="co"># Visualization</span></span>
+<span id="cb11-6"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-7"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb11-8"><a></a></span>
+<span id="cb11-9"><a></a><span class="co"># Machine learning</span></span>
+<span id="cb11-10"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression, Ridge, Lasso</span>
+<span id="cb11-11"><a></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, PolynomialFeatures</span>
+<span id="cb11-12"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb11-13"><a></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span>
+<span id="cb11-14"><a></a></span>
+<span id="cb11-15"><a></a><span class="co"># Statistical analysis</span></span>
+<span id="cb11-16"><a></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb11-17"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb11-18"><a></a></span>
+<span id="cb11-19"><a></a><span class="co"># Aerospace-specific (optional)</span></span>
+<span id="cb11-20"><a></a><span class="im">from</span> ambiance <span class="im">import</span> Atmosphere  <span class="co"># ISA atmosphere model</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="homework-1-preview" class="slide level2">
+<h2>Homework 1 Preview</h2>
+<h3 id="assignment-overview">Assignment Overview</h3>
+<p><strong>Task</strong>: Build linear regression model for aircraft drag prediction</p>
+<ol type="1">
+<li><strong>Data exploration</strong>: Load and visualize wind tunnel data</li>
+<li><strong>Feature engineering</strong>: Create polynomial and interaction terms</li>
+<li><strong>Model training</strong>: Implement with scikit-learn and from scratch</li>
+<li><strong>Evaluation</strong>: Cross-validation, residual analysis</li>
+<li><strong>Interpretation</strong>: Relate coefficients to aerodynamics</li>
+</ol>
+<div class="fragment">
+<h3 id="deliverables">Deliverables</h3>
+<ul>
+<li>Jupyter notebook with analysis</li>
+<li>Written report (max 5 pages)</li>
+<li>Trained model file (<code>.pkl</code>)</li>
+<li>Presentation slides (5 min)</li>
+</ul>
+<p><strong>Due</strong>: Next week, before class</p>
+</div>
+</section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key Takeaways</h2>
+<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<ol type="1">
+<li>Linear regression minimizes squared error: <span class="math inline">\(\min \|\boldsymbol{y} - \boldsymbol{X}\boldsymbol{\beta}^\ast\|^2\)</span></li>
+<li>Closed-form solution: <span class="math inline">\(\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span></li>
+<li>Gradient descent for large-scale problems</li>
+<li>Statistical properties: BLUE under Gauss-Markov</li>
+</ol>
+<div class="fragment">
+<h3 id="practical-implementation-1">Practical Implementation</h3>
+<ol type="1">
+<li>Feature scaling essential for numerical stability</li>
+<li>Cross-validation for generalization assessment</li>
+<li>Residual analysis for model diagnostics</li>
+<li>Domain knowledge guides feature engineering</li>
+</ol>
+</div>
+<div class="fragment">
+<h3 id="aerospace-applications">Aerospace Applications</h3>
+<ul>
+<li>Drag prediction, fuel flow modeling, performance estimation</li>
+<li>Physics-informed features improve accuracy</li>
+<li>Always validate against known aerodynamic principles</li>
+</ul>
+</div>
+</section>
+<section id="next-week-model-evaluation-regularization" class="slide level2">
+<h2>Next Week: Model Evaluation &amp; Regularization</h2>
+<h3 id="preview-of-week-3">Preview of Week 3</h3>
+<p><strong>Topics</strong>:</p>
+<ol type="1">
+<li><strong>Bias-variance tradeoff</strong>: Understanding generalization</li>
+<li><strong>Ridge regression</strong>: L2 regularization for stability</li>
+<li><strong>Lasso regression</strong>: L1 regularization for sparsity</li>
+<li><strong>Elastic net</strong>: Combined L1 + L2</li>
+<li><strong>Cross-validation</strong>: Hyperparameter tuning</li>
+</ol>
+<p><strong>Aerospace focus</strong>: Preventing overfitting in high-dimensional aerodynamic models</p>
+<!-- ---
+
+## Additional Practice Problems
+
+### Problem 1: Lift Coefficient Prediction
+Given wind tunnel data for a wing section, predict $C_L$ from $\alpha$ and $M$.
+
+### Problem 2: Range Estimation
+Use Breguet range equation as basis for linear regression model.
+
+### Problem 3: Gradient Descent Tuning
+Implement adaptive learning rate and compare convergence.
+
+### Problem 4: Feature Selection
+Use statistical tests to identify significant features in drag model.
+
+### Problem 5: Multi-Aircraft Model
+Build single model that works for multiple aircraft types using categorical variables.
+
+--- -->
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AERO 689 - Week 2: Linear Regression</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"chalkWidth":3,"boardmarkerWidth":2,"chalkEffect":0.4,"show":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: false,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+
+        maxScale: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
