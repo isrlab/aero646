@@ -25,9 +25,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render Quarto Project
-        run: |
-          cd presentations
-          quarto render
+        run: quarto render
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -35,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './presentations/docs'
+          path: './docs'
 
   deploy:
     environment:
