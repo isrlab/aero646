@@ -223,6 +223,7 @@ $$
 Let's make this concrete with a drag coefficient prediction problem.
 
 **Scenario**: We have wind tunnel data measuring drag coefficient at various angles of attack and Mach numbers. We want to build a model that includes:
+
 - Linear terms: $\alpha$, $M$, $Re$
 - Quadratic terms: $\alpha^2$, $M^2$
 - Interaction terms: $\alpha M$, $\alpha Re$, etc.
@@ -264,6 +265,7 @@ y = \beta_0 \phi_0(\boldsymbol{x}) + \beta_1 \phi_1(\boldsymbol{x}) + \cdots + \
 $$
 
 where $\phi_j(\boldsymbol{x})$ are **basis functions** that can be:
+
 - Linear: $\phi_1(x) = x$
 - Polynomial: $\phi_2(x) = x^2$, $\phi_3(x) = x^3$
 - Trigonometric: $\phi_4(x) = \sin(x)$, $\phi_5(x) = \cos(x)$
@@ -288,6 +290,7 @@ where $\phi_j(\boldsymbol{x})$ are **basis functions** that can be:
 - We can use **efficient linear algebra** algorithms
 
 **Practical Benefit**: We can model complex, nonlinear physical phenomena while maintaining:
+
 - Computational efficiency
 - Guaranteed convergence
 - Interpretable coefficients
@@ -478,6 +481,7 @@ $$
 $$
 
 This is the vector of differences between:
+
 - **Observed data** $\boldsymbol{y}$: What we actually measured
 - **Predictions** $\hat{\boldsymbol{y}} = \boldsymbol{X}\boldsymbol{\beta}$: What our model predicts
 
@@ -499,6 +503,7 @@ $$
 $$
 
 **Key Insight**: 
+
 - Every prediction $\hat{\boldsymbol{y}} = \boldsymbol{X}\boldsymbol{\beta}$ **must lie in** col($\boldsymbol{X}$)
 - The observed data $\boldsymbol{y}$ typically does **not** lie in col($\boldsymbol{X}$) (due to measurement noise)
 - We seek the **best approximation** to $\boldsymbol{y}$ within col($\boldsymbol{X}$)
@@ -697,6 +702,7 @@ In the context of drag coefficient prediction:
 - **$(\boldsymbol{I} - \boldsymbol{P})\boldsymbol{y}$**: The component that **cannot be explained** (residual variance due to unmodeled effects, measurement noise, etc.)
 
 The projection matrix decomposes the total variance into:
+
 - **Explained variance** (signal captured by the model)
 - **Unexplained variance** (noise or missing features)
 
@@ -728,12 +734,14 @@ While the closed-form solution $\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\bold
 **Matrix inversion complexity**: $O(d^3)$ operations
 
 For high-dimensional problems:
+
 - $d = 1000$ features: ~1 billion operations
 - $d = 10000$ features: ~1 trillion operations
 
 **Memory requirements**: Storing $\boldsymbol{X}^T\boldsymbol{X}$ requires $O(d^2)$ memory
 
 **When it matters**:
+
 - Large-scale machine learning (millions of features)
 - Online learning (real-time updates)
 - Embedded systems (limited computational resources)
@@ -767,6 +775,7 @@ $$
 ### 2. Gradient Descent
 
 Iteratively update parameters without matrix inversion:
+
 - Complexity per iteration: $O(nd)$ instead of $O(d^3)$
 - Can handle very large $d$
 - Works for any differentiable loss function
@@ -777,6 +786,7 @@ Numerically stable direct method:
 $$
 \boldsymbol{X} = \boldsymbol{Q}\boldsymbol{R}
 $$
+
 - More stable than normal equations
 - Still $O(nd^2)$ complexity
 
@@ -786,6 +796,7 @@ Most numerically stable method:
 $$
 \boldsymbol{X} = \boldsymbol{U}\boldsymbol{\Sigma}\boldsymbol{V}^T
 $$
+
 - Handles rank deficiency gracefully
 - Reveals multicollinearity
 - Gold standard for numerical stability
@@ -826,6 +837,7 @@ $$
 $$
 
 **Intuition**: 
+
 - The gradient $\nabla \text{RSS}$ points in the direction of steepest **increase**
 - We move in the **opposite direction** (negative gradient) to decrease the error
 - The learning rate $\eta$ controls how big a step we take
@@ -1069,6 +1081,7 @@ $$
 **Assumption**: Samples $(\boldsymbol{x}_i, y_i)$ are independent and identically distributed (i.i.d.).
 
 **What it means**: 
+
 - Each observation is drawn independently from the same distribution
 - Knowing one sample doesn't tell you about others
 
@@ -1223,6 +1236,7 @@ $$
 **Critical for certification**: 
 
 Flight envelopes must be determined with:
+
 - **Minimal uncertainty** (Best)
 - **No systematic bias** (Unbiased)
 
@@ -1230,7 +1244,7 @@ The BLUE property ensures:
 
 - Tightest possible bounds on performance predictions
 - Maximum confidence in safety margins
-- Regulatory compliance (FAA, EASA require unbiased, minimum-variance estimates)
+- Statistically rigorous methods required for regulatory compliance (FAA and EASA require demonstrated performance with appropriate confidence levels and uncertainty quantification)
 
 **Example**: When certifying maximum operating Mach number, we need the most precise drag predictions possible. Using OLS (under appropriate assumptions) guarantees we're using the optimal estimator.
 
@@ -1250,7 +1264,7 @@ Additionally, BLUE is restricted to **linear unbiased** estimators. In modern ma
 
 # Statistical Properties: Distribution
 
-Understanding the distribution of our parameter estimates allows us to quantify uncertainty and perform statistical inference.
+Understanding the distribution of our parameter estimates allows us to quantify uncertainty and perform statistical inference. This section provides a rigorous foundation for confidence intervals, hypothesis tests, and prediction intervals.
 
 ## Distribution of the OLS Estimator
 
@@ -1260,37 +1274,147 @@ $$
 \boldsymbol{\beta}^\ast \sim \mathcal{N}\left(\boldsymbol{\beta}_{\text{true}}, \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right)
 $$
 
-## Unpacking This Result
+## Proving Unbiasedness
 
-### Mean (Expected Value)
+Let's rigorously derive that $E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_{\text{true}}$.
 
+**Starting from the OLS formula**:
 $$
-E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_{\text{true}}
+\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}
 $$
 
-**Unbiasedness**: On average, our estimates equal the true parameters.
+**Substitute the true model** $\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta}_{\text{true}} + \boldsymbol{\epsilon}$:
+$$
+\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T(\boldsymbol{X}\boldsymbol{\beta}_{\text{true}} + \boldsymbol{\epsilon})
+$$
 
-### Covariance Matrix
+**Distribute**:
+$$
+\boldsymbol{\beta}^\ast = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\beta}_{\text{true}} + (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\epsilon}
+$$
+
+**Simplify** (since $(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{X} = \boldsymbol{I}$):
+$$
+\boldsymbol{\beta}^\ast = \boldsymbol{\beta}_{\text{true}} + (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\epsilon}
+$$
+
+**Take expectation** (noting that $\boldsymbol{X}$ is fixed and $E[\boldsymbol{\epsilon}] = \boldsymbol{0}$):
+$$
+E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_{\text{true}} + (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T E[\boldsymbol{\epsilon}] = \boldsymbol{\beta}_{\text{true}}
+$$
+
+**Conclusion**: OLS is unbiased—on average, it recovers the true parameters.
+
+**Key requirement**: This derivation only assumes $E[\boldsymbol{\epsilon}] = \boldsymbol{0}$ and that $\boldsymbol{X}$ is fixed (or independent of $\boldsymbol{\epsilon}$). **Normality is not required for unbiasedness**.
+
+## Deriving the Covariance Matrix
+
+Now let's derive the variance of the OLS estimator.
+
+**Starting from**:
+$$
+\boldsymbol{\beta}^\ast = \boldsymbol{\beta}_{\text{true}} + (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\epsilon}
+$$
+
+**The estimation error is**:
+$$
+\boldsymbol{\beta}^\ast - \boldsymbol{\beta}_{\text{true}} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\epsilon}
+$$
+
+**The covariance matrix is**:
+$$
+\text{Cov}(\boldsymbol{\beta}^\ast) = E[(\boldsymbol{\beta}^\ast - \boldsymbol{\beta}_{\text{true}})(\boldsymbol{\beta}^\ast - \boldsymbol{\beta}_{\text{true}})^T]
+$$
+
+**Substitute the error expression**:
+$$
+\text{Cov}(\boldsymbol{\beta}^\ast) = E\left[(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\epsilon}\boldsymbol{\epsilon}^T\boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right]
+$$
+
+**Factor out constants** (since $\boldsymbol{X}$ is non-random):
+$$
+\text{Cov}(\boldsymbol{\beta}^\ast) = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T E[\boldsymbol{\epsilon}\boldsymbol{\epsilon}^T] \boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{X})^{-1}
+$$
+
+**Under the assumption** $E[\boldsymbol{\epsilon}\boldsymbol{\epsilon}^T] = \sigma^2\boldsymbol{I}$ (independence and homoscedasticity):
+$$
+\text{Cov}(\boldsymbol{\beta}^\ast) = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T (\sigma^2\boldsymbol{I}) \boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{X})^{-1}
+$$
+
+**Simplify**:
+$$
+\text{Cov}(\boldsymbol{\beta}^\ast) = \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{X})^{-1} = \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}
+$$
+
+**Key insight**: The covariance depends on:
+
+1. **Error variance** $\sigma^2$: More noise → higher variance in estimates
+2. **Design matrix** $\boldsymbol{X}$: The choice of features and sample points affects precision
+
+## Unpacking the Covariance Matrix
 
 $$
 \text{Cov}(\boldsymbol{\beta}^\ast) = \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}
 $$
 
-**What this tells us**:
+### Diagonal Elements: Individual Coefficient Variance
 
-1. **Diagonal elements** give the variance of each coefficient:
-   $$
-   \text{Var}(\beta_j^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}
-   $$
+$$
+\text{Var}(\beta_j^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}
+$$
 
-2. **Off-diagonal elements** show correlations between coefficient estimates:
-   $$
-   \text{Cov}(\beta_j^\ast, \beta_k^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jk}
-   $$
+**What affects this variance?**
 
-3. **Depends on $\boldsymbol{X}$**: The design of our experiment (which features, which samples) affects estimation precision
+1. **Sample size**: As $n$ increases, $\boldsymbol{X}^T\boldsymbol{X}$ grows, so $(\boldsymbol{X}^T\boldsymbol{X})^{-1}$ shrinks → variance decreases
+   
+2. **Feature spread**: If feature $j$ has large variance across samples, the corresponding diagonal element of $(\boldsymbol{X}^T\boldsymbol{X})^{-1}$ is smaller → lower variance in $\beta_j^\ast$
 
-4. **Depends on $\sigma^2$**: More noise → more uncertainty
+3. **Multicollinearity**: If feature $j$ is correlated with other features, $[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}$ increases → higher variance (harder to distinguish the individual effect of feature $j$)
+
+### Off-Diagonal Elements: Correlation Between Coefficients
+
+$$
+\text{Cov}(\beta_j^\ast, \beta_k^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jk}
+$$
+
+**Physical interpretation**:
+
+- If features $j$ and $k$ are correlated, their coefficient estimates are also correlated
+- Positive covariance: Overestimating $\beta_j$ tends to coincide with overestimating $\beta_k$
+- Negative covariance: Overestimating $\beta_j$ tends to coincide with underestimating $\beta_k$
+
+**Aerospace example**: In a model with both Mach number $M$ and dynamic pressure $q = \frac{1}{2}\rho V^2$:
+
+- These features are highly correlated (both increase with velocity)
+- Their coefficient estimates will be negatively correlated
+- If we overestimate the Mach effect, we tend to underestimate the dynamic pressure effect (and vice versa)
+
+### Variance Inflation Factor (VIF)
+
+The **Variance Inflation Factor** quantifies how much multicollinearity increases the variance of a coefficient estimate:
+
+$$
+\text{VIF}_j = \frac{1}{1 - R_j^2}
+$$
+
+where $R_j^2$ is the coefficient of determination from regressing feature $j$ on all other features.
+
+**Interpretation**:
+
+- $\text{VIF}_j = 1$: No correlation with other features (ideal)
+- $\text{VIF}_j = 5$: Variance is 5× larger than if features were uncorrelated
+- $\text{VIF}_j > 10$: Severe multicollinearity (rule of thumb)
+
+**Relationship to covariance matrix**:
+$$
+\text{Var}(\beta_j^\ast) = \sigma^2 \text{VIF}_j \cdot \frac{1}{\sum_{i=1}^n (x_{ij} - \bar{x}_j)^2}
+$$
+
+**Engineering guidance**: High VIF suggests:
+
+- Remove redundant features
+- Use regularization (Ridge regression)
+- Collect more data with different feature combinations
 
 ## Practical Implications
 
@@ -1315,9 +1439,36 @@ This distribution allows us to:
 - Large samples ($n > 100$): approximate normality holds regardless
 - **Solution for small samples**: Use robust inference methods, bootstrap
 
+## The Role of the Central Limit Theorem
+
+The **Central Limit Theorem (CLT)** provides powerful justification for using normal-theory inference even when errors aren't normally distributed.
+
+**CLT statement** (simplified): For the OLS estimator,
+$$
+\frac{\boldsymbol{\beta}^\ast - \boldsymbol{\beta}_{\text{true}}}{\text{SE}(\boldsymbol{\beta}^\ast)} \xrightarrow{d} \mathcal{N}(\boldsymbol{0}, \boldsymbol{I}) \quad \text{as } n \to \infty
+$$
+
+**What this means**:
+
+1. Even if $\epsilon_i$ are not normal, the **distribution of $\boldsymbol{\beta}^\ast$ becomes approximately normal** for large $n$
+
+2. The approximation improves with sample size
+
+3. **Practical rule**: For $n > 30-50$, normal approximations are usually adequate
+
+**Why this happens**: 
+
+$\boldsymbol{\beta}^\ast$ depends on the sum $\boldsymbol{X}^T\boldsymbol{\epsilon} = \sum_{i=1}^n \boldsymbol{x}_i \epsilon_i$. The CLT says that sums of independent random variables (the $\epsilon_i$) approach a normal distribution regardless of the individual distributions.
+
+**Engineering implications**:
+
+- With large wind tunnel datasets ($n > 100$), we can trust confidence intervals and hypothesis tests even if measurement errors aren't perfectly Gaussian
+- For small samples (early flight tests with $n < 20$), normality of errors is more critical
+- Bootstrap methods can verify the adequacy of normal approximations
+
 # Estimating the Noise Variance
 
-In practice, we don't know the true noise variance $\sigma^2$. We must estimate it from the data.
+In practice, we don't know the true noise variance $\sigma^2$. We must estimate it from the data using the residuals.
 
 ## Residual Variance Estimator
 
@@ -1326,6 +1477,7 @@ $$
 $$
 
 where:
+
 - $\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$ is the residual sum of squares
 - $n$ is the number of samples
 - $d$ is the number of features (not counting intercept)
@@ -1338,10 +1490,15 @@ where:
 **Definition**: Degrees of freedom (df) = number of independent pieces of information available for estimating variance.
 
 **Calculation**:
+
 - Start with $n$ observations
 - Estimate $d + 1$ parameters ($\beta_0, \beta_1, \ldots, \beta_d$)
 - Each parameter estimate "uses up" one degree of freedom
 - Remaining df: $n - (d + 1) = n - d - 1$
+
+**Physical interpretation**: 
+
+The residuals $r_i = y_i - \hat{y}_i$ are not independent—they satisfy the normal equations, which impose $d+1$ linear constraints. Therefore, only $n - d - 1$ of the residuals are truly "free" to vary.
 
 ### Why Not Divide by $n$?
 
@@ -1352,12 +1509,47 @@ $$
 
 This **underestimates** the true variance because the residuals are constrained to satisfy the normal equations (they're not truly independent).
 
-Dividing by $n - d - 1$ corrects this bias:
+**Mathematical proof of bias**:
+
+The expected value of RSS is:
 $$
-E[\hat{\sigma}^2] = E\left[\frac{\text{RSS}}{n - d - 1}\right] = \sigma^2
+E[\text{RSS}] = E[\boldsymbol{r}^T\boldsymbol{r}] = E[(\boldsymbol{I} - \boldsymbol{P})^T\boldsymbol{y}]^T[(\boldsymbol{I} - \boldsymbol{P})\boldsymbol{y}]]
 $$
 
-This makes $\hat{\sigma}^2$ an **unbiased estimator** of $\sigma^2$.
+where $\boldsymbol{P}$ is the projection matrix. After considerable algebra:
+$$
+E[\text{RSS}] = (n - d - 1)\sigma^2
+$$
+
+Therefore:
+$$
+E\left[\frac{\text{RSS}}{n}\right] = \frac{n - d - 1}{n}\sigma^2 < \sigma^2
+$$
+
+But dividing by $n - d - 1$ gives an unbiased estimator:
+$$
+E\left[\frac{\text{RSS}}{n - d - 1}\right] = \sigma^2
+$$
+
+### Distribution of $\hat{\sigma}^2$
+
+Under normality of errors, the scaled RSS has a chi-squared distribution:
+$$
+\frac{\text{RSS}}{\sigma^2} \sim \chi^2_{n-d-1}
+$$
+
+This implies:
+$$
+\frac{(n-d-1)\hat{\sigma}^2}{\sigma^2} \sim \chi^2_{n-d-1}
+$$
+
+**Properties**:
+
+- **Mean**: $E[\hat{\sigma}^2] = \sigma^2$ (unbiased)
+- **Variance**: $\text{Var}(\hat{\sigma}^2) = \frac{2\sigma^4}{n-d-1}$
+- For large df, the distribution becomes approximately normal
+
+**Practical implication**: The variance estimate itself has uncertainty. With small samples, $\hat{\sigma}^2$ can be quite variable.
 
 ## Aerospace Example
 
@@ -1369,28 +1561,77 @@ $$
 using $n = 20$ wind tunnel data points.
 
 **Parameters**:
+
 - Number of features: $d = 2$ (we have $\alpha$ and $\alpha^2$)
 - Total parameters: $d + 1 = 3$ (including intercept $\beta_0$)
 - Degrees of freedom: $n - d - 1 = 20 - 2 - 1 = 17$
 
+**Calculation**:
+
+Suppose after fitting, we find:
+$$
+\text{RSS} = \sum_{i=1}^{20}(C_{D_i} - \hat{C}_{D_i})^2 = 0.0085
+$$
+
 **Variance estimate**:
 $$
-\hat{\sigma}^2 = \frac{\sum_{i=1}^{20}(C_{D_i} - \hat{C}_{D_i})^2}{17}
+\hat{\sigma}^2 = \frac{0.0085}{17} = 0.0005
 $$
+
+**Standard deviation** (root mean square error):
+$$
+\hat{\sigma} = \sqrt{0.0005} = 0.0224
+$$
+
+**Interpretation**: The typical prediction error for drag coefficient is about 0.022 (in $C_D$ units, typically in counts where 1 count = 0.0001).
 
 ## Relationship to Model Fit
 
 **Small $\hat{\sigma}^2$**: 
+
 - Residuals are small
 - Model fits data well
 - Low prediction uncertainty
+- May indicate good model or low measurement noise
 
 **Large $\hat{\sigma}^2$**:
+
 - Residuals are large
 - Model doesn't fit well or data is very noisy
 - High prediction uncertainty
+- May indicate:
+  - Missing important features
+  - Wrong functional form
+  - High measurement noise
+  - Outliers
+
+## Residual Standard Error vs. R-squared
+
+Two common measures of fit quality:
+
+**Residual Standard Error (RSE)**:
+$$
+\text{RSE} = \sqrt{\hat{\sigma}^2} = \sqrt{\frac{\text{RSS}}{n-d-1}}
+$$
+
+- Has same units as response variable
+- Absolute measure of fit quality
+- Useful for prediction intervals
+
+**R-squared**:
+$$
+R^2 = 1 - \frac{\text{RSS}}{\text{TSS}} = 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_i - \bar{y})^2}
+$$
+
+- Dimensionless (between 0 and 1)
+- Relative measure (fraction of variance explained)
+- Can be misleading with many features
+
+**Relationship**: Both measure fit quality but RSE is often more interpretable for prediction purposes.
 
 # Confidence Intervals for Coefficients
+
+Confidence intervals quantify the uncertainty in our parameter estimates, providing a range of plausible values for each coefficient.
 
 ## Understanding Coefficient Uncertainty
 
@@ -1406,16 +1647,67 @@ $$
 \text{SE}(\beta_j^\ast) = \sqrt{\hat{\sigma}^2 \left[(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right]_{jj}}
 $$
 
+**Breaking down the formula**:
+
+1. **$\hat{\sigma}^2$**: Estimated error variance (data noise level)
+2. **$[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}$**: Depends on experimental design
+3. **Square root**: Converts variance to standard deviation
+
 **Interpretation**:
+
 - Small SE → precise estimate (high confidence)
 - Large SE → imprecise estimate (low confidence)
 
-**Factors affecting SE**:
+### Factors Affecting Standard Error
 
-1. **Data noise** ($\hat{\sigma}^2$): More noise → larger SE
-2. **Sample size** ($n$): More data → smaller SE (typically $\text{SE} \propto 1/\sqrt{n}$)
-3. **Feature correlation**: Correlated features → larger SE
-4. **Feature variance**: Features with more spread → smaller SE
+**1. Data noise ($\hat{\sigma}^2$)**: 
+
+- More noise → larger SE
+- Better measurement quality → smaller SE
+- Controllable through experimental design
+
+**2. Sample size ($n$)**: 
+
+More data → smaller SE (typically $\text{SE} \propto 1/\sqrt{n}$)
+
+**Example**: To halve the SE, need 4× as much data
+
+**3. Feature spread**: 
+
+Features with more spread → smaller SE
+
+**Intuition**: If angle of attack varies from 0° to 20°, we can estimate its effect more precisely than if it only varies from 0° to 2°
+
+**Mathematically**: For simple linear regression,
+$$
+\text{SE}(\beta_1) \propto \frac{1}{\sqrt{\sum(x_i - \bar{x})^2}}
+$$
+
+**4. Feature correlation (multicollinearity)**: 
+
+Correlated features → larger SE
+
+**Why**: Hard to distinguish individual effects when features move together
+
+**Quantified by VIF**:
+$$
+\text{SE}(\beta_j) \propto \sqrt{\text{VIF}_j}
+$$
+
+### Computing Standard Errors in Practice
+
+**Step 1**: Compute $\boldsymbol{X}^T\boldsymbol{X}$ and invert it
+
+**Step 2**: Extract diagonal elements of $(\boldsymbol{X}^T\boldsymbol{X})^{-1}$
+
+**Step 3**: Estimate error variance $\hat{\sigma}^2 = \text{RSS}/(n-d-1)$
+
+**Step 4**: Compute SE for each coefficient:
+$$
+\text{SE}(\beta_j^\ast) = \sqrt{\hat{\sigma}^2 \cdot [(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}}
+$$
+
+Most statistical software (R, Python statsmodels, MATLAB) reports standard errors automatically.
 
 ## Confidence Interval Formula
 
@@ -1427,16 +1719,46 @@ $$
 
 where $t_{\gamma/2, n-d-1}$ is the critical value from the **t-distribution** with $n-d-1$ degrees of freedom.
 
-**Common confidence levels**:
+### Why Use the t-Distribution?
 
-- 95% confidence: $\gamma = 0.05$, so $t_{0.025, n-d-1}$
-- 90% confidence: $\gamma = 0.10$, so $t_{0.05, n-d-1}$
-- 99% confidence: $\gamma = 0.01$, so $t_{0.005, n-d-1}$
+**The issue**: We don't know $\sigma^2$, only $\hat{\sigma}^2$
 
-**For large $n$**: t-distribution approaches normal, $t_{\gamma/2, n-d-1} \approx z_{\gamma/2}$
+**The solution**: Account for uncertainty in $\hat{\sigma}^2$ by using the t-distribution instead of the normal distribution
 
-- 95% CI: $z_{0.025} \approx 1.96 \approx 2$
-- 90% CI: $z_{0.05} \approx 1.645$
+**The standardized coefficient**:
+$$
+\frac{\beta_j^\ast - \beta_j}{\text{SE}(\beta_j^\ast)} = \frac{\beta_j^\ast - \beta_j}{\sqrt{\hat{\sigma}^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}}}
+$$
+
+follows a **t-distribution with $n-d-1$ degrees of freedom**, not a standard normal.
+
+**Properties of t-distribution**:
+
+- Symmetric and bell-shaped like normal
+- Heavier tails than normal (more probability in extremes)
+- Approaches normal as df increases
+- Accounts for additional uncertainty from estimating $\sigma^2$
+
+### Common Confidence Levels
+
+**95% confidence**: Most common; $\gamma = 0.05$
+
+- Critical value: $t_{0.025, n-d-1}$
+- For large $n$: $t_{0.025, \infty} \approx 1.96 \approx 2$
+- For $n = 20$, $d = 2$: $t_{0.025, 17} \approx 2.11$
+- For $n = 10$, $d = 2$: $t_{0.025, 7} \approx 2.36$
+
+**90% confidence**: Narrower interval; $\gamma = 0.10$
+
+- Critical value: $t_{0.05, n-d-1}$
+- For large $n$: $t_{0.05, \infty} \approx 1.645$
+
+**99% confidence**: Wider interval; $\gamma = 0.01$
+
+- Critical value: $t_{0.005, n-d-1}$
+- For large $n$: $t_{0.005, \infty} \approx 2.576$
+
+**Tradeoff**: Higher confidence → wider interval → less precision
 
 ## Interpretation
 
@@ -1444,10 +1766,27 @@ where $t_{\gamma/2, n-d-1}$ is the critical value from the **t-distribution** wi
 
 > If we repeated the experiment many times and computed a 95% CI each time, approximately 95% of these intervals would contain the true parameter value $\beta_j$.
 
+**Frequentist interpretation**: 
+
+- The interval is random (varies with data)
+- The true parameter is fixed (not random)
+- In the long run, 95% of such intervals capture the truth
+
 **What it does NOT mean**:
 
-- The probability that $\beta_j$ is in this interval is 95% (Bayesian interpretation)
-- We are 95% sure our estimate is correct
+- ❌ "There's a 95% probability that $\beta_j$ is in this interval" (Bayesian interpretation)
+- ❌ "95% of the data falls in this interval" (confusing with prediction interval)
+- ❌ "We are 95% sure our estimate is correct" (certainty about a specific estimate)
+
+### Practical Interpretation for Engineers
+
+**What you CAN say**:
+
+✅ "We are 95% confident the lift slope is between 0.097 and 0.113 per degree"
+
+✅ "The data is consistent with lift slopes in the range [0.097, 0.113]"
+
+✅ "If the true lift slope were outside this range, we would be surprised (only 5% chance of observing our data)"
 
 ## Aerospace Example
 
@@ -1456,7 +1795,10 @@ $$
 C_L = \beta_0 + \beta_1 \alpha
 $$
 
+**Data**: $n = 30$ wind tunnel measurements
+
 **Results**:
+
 - $\beta_1^\ast = 0.105$ (per degree)
 - $\text{SE}(\beta_1^\ast) = 0.004$
 - $n = 30$, $d = 1$, so df $= 28$
@@ -1469,7 +1811,171 @@ $$
 
 **Interpretation**: We are 95% confident the true lift slope is between 0.097 and 0.113 per degree.
 
-**Engineering decision**: This precision allows us to set conservative performance bounds for flight envelope calculations.
+**Engineering decision**: 
+
+- For performance calculations, use $\beta_1^\ast = 0.105$ (best estimate)
+- For conservative safety margins, use lower bound $\beta_1 = 0.097$
+- The 95% CI ensures that performance predictions account for estimation uncertainty
+- Width of interval (0.016) indicates good precision
+
+### Impact of Sample Size
+
+**What if we had only $n = 10$ measurements?**
+
+- Same estimate: $\beta_1^\ast = 0.105$
+- Larger SE (less data): $\text{SE}(\beta_1^\ast) = 0.007$ (hypothetically)
+- Smaller df: $n - d - 1 = 8$
+- Larger critical value: $t_{0.025, 8} = 2.306$
+
+**New 95% CI**:
+$$
+0.105 \pm 2.306 \times 0.007 = 0.105 \pm 0.016 = [0.089, 0.121]
+$$
+
+**Comparison**:
+
+- Interval is twice as wide (0.032 vs. 0.016)
+- Less precision with smaller sample
+- Need more data for tighter bounds
+
+# Prediction Intervals vs. Confidence Intervals
+
+While confidence intervals quantify uncertainty in **parameter estimates**, prediction intervals quantify uncertainty in **future observations**. This distinction is critical for aerospace applications.
+
+## The Two Types of Uncertainty
+
+When making predictions, we face two sources of uncertainty:
+
+### 1. Parameter Uncertainty (Epistemic)
+
+**Source**: We estimated $\boldsymbol{\beta}$ from finite data, so $\boldsymbol{\beta}^\ast \neq \boldsymbol{\beta}_{\text{true}}$
+
+**Captured by**: Confidence intervals for $E[\boldsymbol{y} \mid \boldsymbol{x}]$
+
+**Behavior**: Decreases as $n$ increases (we learn the true parameters)
+
+**For the mean response** at a point $\boldsymbol{x}_0$:
+$$
+\hat{y}_0 = \boldsymbol{x}_0^T\boldsymbol{\beta}^\ast
+$$
+
+The variance of this prediction is:
+$$
+\text{Var}(\hat{y}_0) = \sigma^2 \boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0
+$$
+
+**95% Confidence Interval for the mean**:
+$$
+\boldsymbol{x}_0^T\boldsymbol{\beta}^\ast \pm t_{0.025, n-d-1} \cdot \sqrt{\hat{\sigma}^2 \boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0}
+$$
+
+### 2. Irreducible Noise (Aleatoric)
+
+**Source**: Even with perfect knowledge of $\boldsymbol{\beta}_{\text{true}}$, individual observations have noise $\epsilon$
+
+**Captured by**: Prediction intervals for $y \mid \boldsymbol{x}$
+
+**Behavior**: Does NOT decrease with $n$ (inherent randomness)
+
+**For a new observation** at $\boldsymbol{x}_0$:
+$$
+y_{\text{new}} = \boldsymbol{x}_0^T\boldsymbol{\beta}_{\text{true}} + \epsilon_{\text{new}}
+$$
+
+The prediction error is:
+$$
+y_{\text{new}} - \hat{y}_0 = (\boldsymbol{x}_0^T\boldsymbol{\beta}_{\text{true}} - \boldsymbol{x}_0^T\boldsymbol{\beta}^\ast) + \epsilon_{\text{new}}
+$$
+
+The variance combines both sources:
+$$
+\text{Var}(y_{\text{new}} - \hat{y}_0) = \sigma^2 \left(1 + \boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0\right)
+$$
+
+**95% Prediction Interval**:
+$$
+\boldsymbol{x}_0^T\boldsymbol{\beta}^\ast \pm t_{0.025, n-d-1} \cdot \sqrt{\hat{\sigma}^2\left(1 + \boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0\right)}
+$$
+
+## Key Differences
+
+**Confidence Interval** (for mean):
+
+- **Question**: Where is the **true regression line**?
+- **Uncertainty**: Only parameter estimation error
+- **Width**: $\propto 1/\sqrt{n}$ (shrinks to zero as $n \to \infty$)
+- **Formula**: $\sqrt{\hat{\sigma}^2 \boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0}$
+
+**Prediction Interval** (for individual observation):
+
+- **Question**: Where will a **new observation** fall?
+- **Uncertainty**: Parameter error PLUS inherent noise
+- **Width**: Has a minimum (set by $\sigma$) even as $n \to \infty$
+- **Formula**: $\sqrt{\hat{\sigma}^2(1 + \boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0)}$
+
+**Mathematical relationship**:
+$$
+\text{Prediction interval} > \text{Confidence interval}
+$$
+
+The extra "$1$" inside the square root accounts for irreducible noise.
+
+## Aerospace Example: Drag Prediction
+
+**Scenario**: Predict drag coefficient at $\alpha = 5°$ using our fitted model
+
+**Fitted model**: $C_D = 0.012 + 0.0003\alpha + 0.00002\alpha^2$
+
+**Given**:
+
+- $\hat{\sigma}^2 = 0.0001$ (from $n = 50$ points)
+- $\boldsymbol{x}_0 = [1, 5, 25]^T$ (for $\alpha = 5°$)
+- $\boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0 = 0.05$ (computed from data)
+- $t_{0.025, 47} \approx 2.01$
+
+**Point prediction**:
+$$
+\hat{C}_D = 0.012 + 0.0003(5) + 0.00002(25) = 0.0140
+$$
+
+**95% Confidence Interval** (for mean drag at $\alpha = 5°$):
+$$
+0.0140 \pm 2.01\sqrt{0.0001 \times 0.05} = 0.0140 \pm 0.0014 = [0.0126, 0.0154]
+$$
+
+**95% Prediction Interval** (for a new measurement at $\alpha = 5°$):
+$$
+0.0140 \pm 2.01\sqrt{0.0001 \times (1 + 0.05)} = 0.0140 \pm 0.0206 = [0.0120, 0.0346]
+$$
+
+**Interpretation**:
+
+- **CI**: We're 95% confident the **true mean** drag at $\alpha = 5°$ is between 0.0126 and 0.0154
+- **PI**: A **new measurement** at $\alpha = 5°$ will fall between 0.0120 and 0.0346 with 95% probability
+- **Width ratio**: PI is $\sqrt{1.05/0.05} \approx 4.6$ times wider than CI
+
+**Engineering use cases**:
+
+- **CI**: For performance calculations requiring mean behavior (cruise drag, range estimates)
+- **PI**: For safety margins accounting for measurement variability (test point acceptance criteria)
+
+## Extrapolation Warning
+
+Both intervals **widen** as $\boldsymbol{x}_0$ moves away from the center of the training data.
+
+**Why**: The term $\boldsymbol{x}_0^T(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{x}_0$ increases with distance from data centroid
+
+**Implications**:
+
+- Predictions are most reliable **within the range** of training data
+- **Extrapolation** (predicting outside data range) has much larger uncertainty
+- For aerospace: Don't predict drag at $\alpha = 30°$ if you only have data up to $\alpha = 15°$
+
+**Practical guideline**: 
+
+- ✅ **Interpolation**: Predicting within data range → reliable
+- ⚠️ **Modest extrapolation**: Slightly beyond data → use with caution
+- ❌ **Extreme extrapolation**: Far beyond data → unreliable and dangerous
 
 # Hypothesis Testing for Individual Coefficients
 
@@ -1605,6 +2111,199 @@ $$
 3. **Correlation**: In models with many correlated features, individual t-tests can be misleading
 
 4. **Model assumptions**: These tests assume normality, homoscedasticity, etc.
+
+# F-Test for Overall Model Significance
+
+While t-tests examine individual coefficients, the **F-test** assesses whether **any** of the features are useful for prediction. This is a test of the **overall model significance**.
+
+## The Hypotheses
+
+**Null hypothesis** $H_0$:
+$$
+\beta_1 = \beta_2 = \cdots = \beta_d = 0
+$$
+
+**Interpretation**: **None** of the features have predictive power. The best model is just the intercept $y_i = \beta_0 + \epsilon_i$.
+
+**Alternative hypothesis** $H_1$:
+
+At least one $\beta_j \neq 0$ for $j = 1, \ldots, d$
+
+**Interpretation**: **At least one** feature provides useful information.
+
+## Decomposing Variance
+
+The F-test is based on decomposing the total variance in the response:
+
+**Total Sum of Squares (TSS)**:
+$$
+\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2
+$$
+
+Measures total variability in $y$ around its mean.
+
+**Residual Sum of Squares (RSS)**:
+$$
+\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2
+$$
+
+Measures unexplained variability (what the model missed).
+
+**Model Sum of Squares (MSS)**:
+$$
+\text{MSS} = \sum_{i=1}^n (\hat{y}_i - \bar{y})^2 = \text{TSS} - \text{RSS}
+$$
+
+Measures explained variability (what the model captured).
+
+**Key identity**:
+$$
+\text{TSS} = \text{MSS} + \text{RSS}
+$$
+
+Total variance = Explained + Unexplained
+
+## The F-Statistic
+
+The test statistic compares explained variance per parameter to unexplained variance:
+
+$$
+F = \frac{\text{MSS}/d}{\text{RSS}/(n-d-1)} = \frac{\text{Mean Model Sum of Squares}}{\text{Mean Residual Sum of Squares}}
+$$
+
+**Intuition**:
+
+- **Numerator**: Average amount of variance explained per feature
+- **Denominator**: Average unexplained variance (noise estimate)
+- **Large F**: Features explain much more than noise → reject $H_0$
+- **Small F**: Features explain similar amount to noise → fail to reject $H_0$
+
+## Distribution Under the Null
+
+**If $H_0$ is true** (all $\beta_j = 0$ except intercept), then:
+
+$$
+F \sim F_{d, n-d-1}
+$$
+
+The test statistic follows an **F-distribution** with $d$ and $n-d-1$ degrees of freedom.
+
+**Properties of F-distribution**:
+
+- Always positive (ratio of squared quantities)
+- Right-skewed
+- Parameterized by two df: numerator df = $d$, denominator df = $n-d-1$
+- Mean $\approx 1$ under $H_0$ (for large df)
+
+## Making the Decision
+
+**P-value**:
+$$
+p\text{-value} = P(F_{d,n-d-1} \geq F_{\text{observed}} \mid H_0)
+$$
+
+**Decision rule** (at significance level $\alpha$, typically 0.05):
+
+- If $p < \alpha$: **Reject $H_0$** → model is useful
+- If $p \geq \alpha$: **Fail to reject $H_0$** → model has no explanatory power
+
+## Relationship to R-squared
+
+The F-statistic is closely related to $R^2$:
+
+$$
+R^2 = \frac{\text{MSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}
+$$
+
+We can rewrite the F-statistic as:
+$$
+F = \frac{R^2/d}{(1-R^2)/(n-d-1)}
+$$
+
+**Interpretation**: The F-test asks whether $R^2$ is significantly different from zero.
+
+## Aerospace Example
+
+**Scenario**: Testing overall significance of drag model
+
+$$
+C_D = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2 + \beta_3 M^2
+$$
+
+**Data**: $n = 100$ wind tunnel measurements, $d = 3$ features
+
+**Results**:
+
+- TSS = 0.050 (total drag variability)
+- RSS = 0.005 (residual variability)
+- MSS = 0.045 (explained by model)
+- $R^2 = 0.045/0.050 = 0.90$ (90% variance explained)
+
+**F-statistic**:
+$$
+F = \frac{0.045/3}{0.005/96} = \frac{0.015}{0.000052} = 288.5
+$$
+
+**Critical value**: $F_{0.05, 3, 96} \approx 2.70$
+
+**P-value**: $p < 0.001$ (highly significant)
+
+**Conclusion**: 
+
+- **Reject $H_0$**: The model is highly significant
+- At least one of $\{\alpha, \alpha^2, M^2\}$ provides predictive power
+- The model explains 90% of drag variability, far more than noise
+
+**Engineering interpretation**: The aerodynamic features (angle of attack and Mach number) are strong predictors of drag coefficient.
+
+## F-Test vs. Multiple t-Tests
+
+**Why not just look at individual t-tests?**
+
+1. **Joint significance**: Features may be individually weak but jointly strong
+
+2. **Multiple testing problem**: With many features, some t-tests will be significant by chance
+
+3. **Correlated features**: Individual t-tests can miss patterns when features are correlated
+
+**Complementary use**:
+
+- **F-test**: "Is the overall model useful?"
+- **t-tests**: "Which specific features matter?"
+
+**Typical workflow**:
+
+1. Check F-test: If not significant, stop (model is useless)
+2. If F-test is significant, examine individual t-tests
+3. Remove non-significant features and refit
+
+## F-Test for Model Comparison
+
+The F-test can also compare **nested models** (one model is a special case of another).
+
+**Example**: Compare simple vs. complex drag models
+
+**Model 1 (simple)**: $C_D = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2$
+
+**Model 2 (complex)**: $C_D = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2 + \beta_3 M + \beta_4 M^2 + \beta_5 \alpha M$
+
+**Question**: Do the additional terms ($M, M^2, \alpha M$) significantly improve fit?
+
+**F-statistic for model comparison**:
+$$
+F = \frac{(\text{RSS}_1 - \text{RSS}_2)/q}{\text{RSS}_2/(n - d_2 - 1)}
+$$
+
+where:
+
+- RSS$_1$ = residual sum of squares for simpler model
+- RSS$_2$ = residual sum of squares for complex model
+- $q$ = number of additional parameters in complex model
+- $d_2$ = number of features in complex model
+
+**Distribution**: $F \sim F_{q, n-d_2-1}$ under $H_0$ (simple model is adequate)
+
+**Decision**: If $p < \alpha$, the complex model provides significant improvement.
 
 # Summary
 
