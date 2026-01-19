@@ -241,14 +241,14 @@ $$
 $$
 \boldsymbol{\beta} = \begin{bmatrix} 
 C_{D_0} \\ k_\alpha \\ k_M \\ k_{\text{Re}} \\ k_{\alpha^2} \\ k_{M^2} \\ k_{\alpha M} \\ \cdots 
-\end{bmatrix}^T
+\end{bmatrix}
 $$
 
 **Target Vector**:
 $$
 \boldsymbol{y} = \begin{bmatrix} 
 C_{D_1} \\ C_{D_2} \\ \cdots \\ C_{D_n} 
-\end{bmatrix}^T
+\end{bmatrix}
 $$
 
 This formulation allows us to capture complex aerodynamic behavior while maintaining the linear regression framework.
@@ -908,7 +908,7 @@ $$
 
 **Use a random subset** of $b$ samples per iteration (typical: $b = 32, 64, 128, 256$):
 $$
-\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} - \eta \frac{1}{b}\sum_{i \in \mathcal{B}_t} -2\boldsymbol{x}_i(y_i - \boldsymbol{x}_i^T\boldsymbol{\beta}^{(t)})
+\boldsymbol{\beta}^{(t+1)} = \boldsymbol{\beta}^{(t)} + \frac{2\eta}{b}\sum_{i \in \mathcal{B}_t} \boldsymbol{x}_i(y_i - \boldsymbol{x}_i^T\boldsymbol{\beta}^{(t)})
 $$
 
 where $\mathcal{B}_t$ is a random mini-batch at iteration $t$.
@@ -1513,7 +1513,7 @@ This **underestimates** the true variance because the residuals are constrained 
 
 The expected value of RSS is:
 $$
-E[\text{RSS}] = E[\boldsymbol{r}^T\boldsymbol{r}] = E[(\boldsymbol{I} - \boldsymbol{P})^T\boldsymbol{y}]^T[(\boldsymbol{I} - \boldsymbol{P})\boldsymbol{y}]]
+E[\text{RSS}] = E[\boldsymbol{r}^T\boldsymbol{r}] = E[((\boldsymbol{I} - \boldsymbol{P})\boldsymbol{y})^T((\boldsymbol{I} - \boldsymbol{P})\boldsymbol{y})]
 $$
 
 where $\boldsymbol{P}$ is the projection matrix. After considerable algebra:
@@ -2241,7 +2241,7 @@ $$
 
 **F-statistic**:
 $$
-F = \frac{0.045/3}{0.005/96} = \frac{0.015}{0.000052} = 288.5
+F = \frac{0.045/3}{0.005/96} = \frac{0.015}{0.0000521} \approx 288
 $$
 
 **Critical value**: $F_{0.05, 3, 96} \approx 2.70$
