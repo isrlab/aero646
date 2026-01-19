@@ -466,7 +466,7 @@
     "href": "week02_linear_regression/week02_presentation.html#mathematical-foundation-the-linear-model",
     "title": "Linear Regression",
     "section": "Mathematical Foundation: The Linear Model",
-    "text": "Mathematical Foundation: The Linear Model\nGeneral Form\nFor \\(n\\) samples and \\(d\\) features, the linear regression model is:\n\\[\ny_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_d x_{id} + \\epsilon_i\n\\]\nwhere:\n\n\\(y_i\\): response variable (e.g., drag coefficient)\n\\(x_{ij}\\): \\(j\\)-th feature of \\(i\\)-th sample (e.g., Mach, \\(\\alpha\\), Re)\n\\(\\beta_j\\): regression coefficients (parameters to learn)\n\\(\\epsilon_i\\): error term (noise, unmodeled physics)\n\n\nVector Notation\n\\[\n\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast + \\boldsymbol{\\epsilon}\n\\]\nwhere \\(\\boldsymbol{X} \\in \\mathbb{R}^{n \\times (d+1)}\\) is the design matrix with augmented 1’s for intercept"
+    "text": "Mathematical Foundation: The Linear Model\nGeneral Form\nFor \\(n\\) samples and \\(d\\) features, the linear regression model is:\n\\[\ny_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_d x_{id} + \\epsilon_i\n\\]\nwhere:\n\n\\(y_i\\): response variable (e.g., drag coefficient)\n\\(x_{ij}\\): \\(j\\)-th feature of \\(i\\)-th sample (e.g., Mach, \\(\\alpha\\), Re)\n\\(\\beta_j\\): regression coefficients (parameters to learn)\n\\(\\epsilon_i\\): error term (noise, unmodeled physics)\n\n\nVector Notation\n\\[\n\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta} + \\boldsymbol{\\epsilon}\n\\]\nwhere \\(\\boldsymbol{X} \\in \\mathbb{R}^{n \\times (d+1)}\\) is the design matrix with augmented 1’s for intercept"
   },
   {
     "objectID": "week02_linear_regression/week02_presentation.html#matrix-formulation",
@@ -1272,5 +1272,614 @@
     "title": "AERO 689: Introduction to Machine Learning for Aerospace Engineers",
     "section": "Course Presentations",
     "text": "Course Presentations\n\n\n\nWeek\nTopic\nPresentation\n\n\n\n\n1\nIntroduction & Motivation\nView Slides\n\n\n2\nLinear Regression\nView Slides\n\n\n3\nModel Evaluation & Regularization\nComing Soon\n\n\n4\nClassification\nComing Soon\n\n\n5\nClustering & PCA\nComing Soon\n\n\n6\nDimensionality Reduction\nComing Soon\n\n\n7\nNeural Network Basics\nComing Soon\n\n\n8\nMidterm Review\nComing Soon\n\n\n9\nDeep Networks & CNNs\nComing Soon\n\n\n10\nSequence Models\nComing Soon\n\n\n11\nPhysics-Informed Models\nComing Soon\n\n\n12\nRobustness & Uncertainty\nComing Soon\n\n\n13\nProject Development\nComing Soon\n\n\n14\nFinal Presentations\nComing Soon"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html",
+    "href": "week02_linear_regression/week02_reading_material.html",
+    "title": "Linear Regression: Reading Material",
+    "section": "",
+    "text": "Linear regression is one of the most fundamental and widely used techniques in machine learning and statistical modeling. In aerospace engineering, it plays a crucial role in predicting aircraft performance, analyzing wind tunnel data, and optimizing flight operations. This reading material provides detailed explanations of the concepts presented in the lecture slides, with a focus on both mathematical rigor and practical aerospace applications.\n\n\nBy the end of this module, you should be able to:\n\nApply linear regression to aerospace performance prediction: Understand how to use linear regression to model relationships between flight parameters (e.g., angle of attack, Mach number) and performance metrics (e.g., drag coefficient, fuel consumption).\nUnderstand least squares method and gradient descent: Master both the analytical (closed-form) and iterative (gradient descent) approaches to solving linear regression problems.\nImplement drag coefficient prediction from wind tunnel data: Learn to process real experimental data and build predictive models that account for measurement noise and physical constraints.\nValidate models using aerospace-specific metrics: Understand how to assess model quality using appropriate statistical measures and ensure predictions meet safety and certification requirements."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#learning-objectives",
+    "href": "week02_linear_regression/week02_reading_material.html#learning-objectives",
+    "title": "Linear Regression: Reading Material",
+    "section": "",
+    "text": "By the end of this module, you should be able to:\n\nApply linear regression to aerospace performance prediction: Understand how to use linear regression to model relationships between flight parameters (e.g., angle of attack, Mach number) and performance metrics (e.g., drag coefficient, fuel consumption).\nUnderstand least squares method and gradient descent: Master both the analytical (closed-form) and iterative (gradient descent) approaches to solving linear regression problems.\nImplement drag coefficient prediction from wind tunnel data: Learn to process real experimental data and build predictive models that account for measurement noise and physical constraints.\nValidate models using aerospace-specific metrics: Understand how to assess model quality using appropriate statistical measures and ensure predictions meet safety and certification requirements."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-100-million-question",
+    "href": "week02_linear_regression/week02_reading_material.html#the-100-million-question",
+    "title": "Linear Regression: Reading Material",
+    "section": "2.1 The $100 Million Question",
+    "text": "2.1 The $100 Million Question\nConsider a real-world scenario that aerospace engineers face daily: an airline operates a fleet of 200 aircraft. The fuel cost alone exceeds $50 million annually per aircraft type. With such enormous operational costs, even small improvements in fuel efficiency can translate to massive savings.\nThe Challenge: Airlines need to accurately predict fuel consumption for flight planning. Currently, most operations rely on simplified performance charts that were developed under idealized conditions. These charts provide conservative estimates but may not capture the full complexity of real-world flight operations.\nThe Machine Learning Opportunity: By using actual flight data collected from thousands of flights, we can build precise models that account for:\n\nActual weather conditions encountered\nReal payload and weight variations\nEngine performance degradation over time\nPilot technique variations\nAir traffic control routing constraints"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#real-impact",
+    "href": "week02_linear_regression/week02_reading_material.html#real-impact",
+    "title": "Linear Regression: Reading Material",
+    "section": "2.2 Real Impact",
+    "text": "2.2 Real Impact\nThe potential benefits of improved fuel consumption models are substantial:\n\n1% fuel savings = Over $100 million annually across the industry\nBetter range predictions = More efficient route planning and optimization\nAccurate payload calculations = Improved safety margins while maximizing revenue cargo capacity\n\nDiscussion Question: What factors do you think affect aircraft fuel consumption? Consider environmental factors (weather, altitude, temperature), operational factors (weight, speed, routing), and mechanical factors (engine condition, aerodynamic efficiency)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#traditional-approach-empirical-models",
+    "href": "week02_linear_regression/week02_reading_material.html#traditional-approach-empirical-models",
+    "title": "Linear Regression: Reading Material",
+    "section": "3.1 Traditional Approach: Empirical Models",
+    "text": "3.1 Traditional Approach: Empirical Models\nAerospace engineers have long used empirical models to characterize aircraft performance. One classic example is the parabolic drag polar:\n\\[\nC_D = C_{D_0} + KC_L^2\n\\]\nwhere:\n\n\\(C_D\\) is the drag coefficient\n\\(C_{D_0}\\) is the zero-lift drag coefficient (parasitic drag)\n\\(K\\) is the induced drag factor\n\\(C_L\\) is the lift coefficient\n\nThe Problem: This model assumes perfectly controlled conditions—smooth flow, steady state, clean configuration. In reality:\n\nReal flights encounter turbulence, wind shear, and varying atmospheric conditions\nAircraft weight changes continuously as fuel is consumed\nEngines degrade over time, affecting performance\nManufacturing tolerances mean each aircraft is slightly different\n\nThe Solution: Machine learning allows us to learn patterns directly from operational data, capturing complexities that simplified analytical models may miss."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#available-data-sources",
+    "href": "week02_linear_regression/week02_reading_material.html#available-data-sources",
+    "title": "Linear Regression: Reading Material",
+    "section": "3.2 Available Data Sources",
+    "text": "3.2 Available Data Sources\nAerospace engineers can draw from three main sources of data:\n\n3.2.1 1. Wind Tunnel Data\nCharacteristics: - Highly controlled environment - Precise measurements - Limited range of conditions - Expensive to collect - May not capture full-scale Reynolds number effects\nBest for: Understanding fundamental aerodynamic behavior, validating CFD simulations\n\n\n3.2.2 2. Flight Test Data\nCharacteristics: - Real flight conditions - Instrumented aircraft - Very expensive to collect (dedicated test aircraft, crew, facilities) - Limited sample size - High quality, well-documented\nBest for: Aircraft certification, validating performance predictions, boundary exploration\n\n\n3.2.3 3. Operational Data\nCharacteristics: - Massive scale (thousands or millions of flights) - Representative of actual operations - Noisy (sensor errors, environmental variations) - May lack detailed instrumentation - Continuously collected\nBest for: Statistical modeling, fleet-wide trends, operational optimization"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-linear-regression-framework",
+    "href": "week02_linear_regression/week02_reading_material.html#the-linear-regression-framework",
+    "title": "Linear Regression: Reading Material",
+    "section": "3.3 The Linear Regression Framework",
+    "text": "3.3 The Linear Regression Framework\nFor this module, we’ll focus on a specific problem: predicting the drag coefficient from flight parameters.\nGoal: Predict \\(C_D\\) (drag coefficient) accurately\nInput Features: - \\(\\alpha\\) (angle of attack) - \\(M\\) (Mach number) - \\(Re\\) (Reynolds number) - Potentially interaction terms and polynomial features\nOutput: Drag coefficient value for performance calculations\nWhy is this important? Accurate drag prediction is essential for: - Fuel consumption estimation - Range calculations - Climb performance - Flight envelope determination - Control system design"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#general-form",
+    "href": "week02_linear_regression/week02_reading_material.html#general-form",
+    "title": "Linear Regression: Reading Material",
+    "section": "4.1 General Form",
+    "text": "4.1 General Form\nLinear regression models the relationship between input features and a continuous output variable. For a dataset with \\(n\\) samples and \\(d\\) features, the model is:\n\\[\ny_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_d x_{id} + \\epsilon_i\n\\]\nNotation Explained:\n\n\\(y_i\\): The response variable (dependent variable) for sample \\(i\\). In aerospace: this could be drag coefficient, fuel flow rate, or any measurable output.\n\\(x_{ij}\\): The \\(j\\)-th feature (independent variable) of the \\(i\\)-th sample. Examples: Mach number, angle of attack, altitude, etc.\n\\(\\beta_j\\): Regression coefficients (parameters) that we need to learn from data. These quantify how each feature affects the response.\n\\(\\beta_0\\): The intercept term. This represents the baseline value when all features are zero.\n\\(\\epsilon_i\\): The error term (residual). This captures:\n\nMeasurement noise\nUnmodeled physics\nRandom variations\nModel approximation errors"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#vector-notation",
+    "href": "week02_linear_regression/week02_reading_material.html#vector-notation",
+    "title": "Linear Regression: Reading Material",
+    "section": "4.2 Vector Notation",
+    "text": "4.2 Vector Notation\nTo work with all samples simultaneously, we use matrix-vector notation:\n\\[\n\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast + \\boldsymbol{\\epsilon}\n\\]\nwhere:\n\n\\(\\boldsymbol{y} \\in \\mathbb{R}^n\\): Vector of all \\(n\\) response values\n\\(\\boldsymbol{X} \\in \\mathbb{R}^{n \\times (d+1)}\\): Design matrix (also called feature matrix)\n\\(\\boldsymbol{\\beta}^\\ast \\in \\mathbb{R}^{d+1}\\): Vector of true parameters (including intercept)\n\\(\\boldsymbol{\\epsilon} \\in \\mathbb{R}^n\\): Vector of all error terms\n\nThe design matrix \\(\\boldsymbol{X}\\) is augmented with a column of ones to account for the intercept term."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#design-matrix-structure",
+    "href": "week02_linear_regression/week02_reading_material.html#design-matrix-structure",
+    "title": "Linear Regression: Reading Material",
+    "section": "5.1 Design Matrix Structure",
+    "text": "5.1 Design Matrix Structure\nThe design matrix organizes all our data into a structured format:\n\\[\n\\boldsymbol{X} = \\begin{bmatrix}\n1 & x_{11} & x_{12} & \\cdots & x_{1d} \\\\\n1 & x_{21} & x_{22} & \\cdots & x_{2d} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n1 & x_{n1} & x_{n2} & \\cdots & x_{nd}\n\\end{bmatrix}\n\\]\nUnderstanding the structure:\n\nEach row represents one data sample (one observation, one flight, one wind tunnel measurement)\nEach column (except the first) represents one feature across all samples\nThe first column of all ones corresponds to the intercept term \\(\\beta_0\\)\nDimensions: \\(n\\) rows × \\((d+1)\\) columns\n\nThe parameter vector and response vector are:\n\\[\n\\boldsymbol{\\beta} = \\begin{bmatrix}\n\\beta_0 \\\\ \\beta_1 \\\\ \\vdots \\\\ \\beta_d\n\\end{bmatrix}, \\quad\n\\boldsymbol{y} = \\begin{bmatrix}\ny_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-example-drag-prediction",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-example-drag-prediction",
+    "title": "Linear Regression: Reading Material",
+    "section": "5.2 Aerospace Example: Drag Prediction",
+    "text": "5.2 Aerospace Example: Drag Prediction\nLet’s make this concrete with a drag coefficient prediction problem.\nScenario: We have wind tunnel data measuring drag coefficient at various angles of attack and Mach numbers. We want to build a model that includes: - Linear terms: \\(\\alpha\\), \\(M\\), \\(Re\\) - Quadratic terms: \\(\\alpha^2\\), \\(M^2\\) - Interaction terms: \\(\\alpha M\\), \\(\\alpha Re\\), etc.\nDesign Matrix: \\[\n\\boldsymbol{X} = \\begin{bmatrix}\n1 & \\alpha_1 & M_1 & \\text{Re}_1 & \\alpha_1^2 & M_1^2 & \\alpha_1 M_1 & \\cdots \\\\\n1 & \\alpha_2 & M_2 & \\text{Re}_2 & \\alpha_2^2 & M_2^2 & \\alpha_2 M_2 & \\cdots \\\\\n\\vdots & \\vdots & \\vdots & \\vdots & \\vdots & \\vdots & \\vdots & \\ddots\n\\end{bmatrix}\n\\]\nParameter Vector: \\[\n\\boldsymbol{\\beta} = \\begin{bmatrix}\nC_{D_0} \\\\ k_\\alpha \\\\ k_M \\\\ k_{\\text{Re}} \\\\ k_{\\alpha^2} \\\\ k_{M^2} \\\\ k_{\\alpha M} \\\\ \\cdots\n\\end{bmatrix}^T\n\\]\nTarget Vector: \\[\n\\boldsymbol{y} = \\begin{bmatrix}\nC_{D_1} \\\\ C_{D_2} \\\\ \\cdots \\\\ C_{D_n}\n\\end{bmatrix}^T\n\\]\nThis formulation allows us to capture complex aerodynamic behavior while maintaining the linear regression framework."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#linear-in-parameters-not-features",
+    "href": "week02_linear_regression/week02_reading_material.html#linear-in-parameters-not-features",
+    "title": "Linear Regression: Reading Material",
+    "section": "6.1 Linear in Parameters, Not Features",
+    "text": "6.1 Linear in Parameters, Not Features\nA common source of confusion: “linear regression” refers to linearity in the parameters \\(\\boldsymbol{\\beta}\\), not in the input features \\(\\boldsymbol{x}\\).\nThe General Form: \\[\ny = \\beta_0 \\phi_0(\\boldsymbol{x}) + \\beta_1 \\phi_1(\\boldsymbol{x}) + \\cdots + \\beta_d \\phi_d(\\boldsymbol{x})\n\\]\nwhere \\(\\phi_j(\\boldsymbol{x})\\) are basis functions that can be: - Linear: \\(\\phi_1(x) = x\\) - Polynomial: \\(\\phi_2(x) = x^2\\), \\(\\phi_3(x) = x^3\\) - Trigonometric: \\(\\phi_4(x) = \\sin(x)\\), \\(\\phi_5(x) = \\cos(x)\\) - Exponential: \\(\\phi_6(x) = e^x\\) - Interactions: \\(\\phi_7(x_1, x_2) = x_1 x_2\\) - Any other nonlinear transformation\nKey Properties:\n\nBasis functions \\(\\phi_j(\\boldsymbol{x})\\) are fixed (you choose them before fitting)\nCoefficients \\(\\beta_j\\) are what we solve for (learned from data)\nThe model is linear in \\(\\beta_j\\) because each \\(\\beta_j\\) appears with power 1 and no products of different \\(\\beta_j\\) terms\nThe model can be nonlinear in \\(\\boldsymbol{x}\\) because the basis functions can transform inputs arbitrarily"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#why-linearity-in-parameters-matters",
+    "href": "week02_linear_regression/week02_reading_material.html#why-linearity-in-parameters-matters",
+    "title": "Linear Regression: Reading Material",
+    "section": "6.2 Why Linearity in Parameters Matters",
+    "text": "6.2 Why Linearity in Parameters Matters\nMathematical Benefit: Linearity in parameters means:\n\nThe optimization problem is convex (has exactly one global minimum, no local minima)\nA closed-form solution exists (we can write down the exact answer)\nThe solution is unique (if \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is invertible)\nWe can use efficient linear algebra algorithms\n\nPractical Benefit: We can model complex, nonlinear physical phenomena while maintaining: - Computational efficiency - Guaranteed convergence - Interpretable coefficients - Statistical properties (confidence intervals, hypothesis tests)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-example",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-example",
+    "title": "Linear Regression: Reading Material",
+    "section": "6.3 Aerospace Example",
+    "text": "6.3 Aerospace Example\nConsider modeling the drag coefficient with this equation:\n\\[\nC_D = \\beta_0 + \\beta_1\\alpha + \\beta_2\\alpha^2 + \\beta_3 M^2 + \\beta_4(\\alpha M)\n\\]\nAnalysis:\n\nNonlinear in physical variables: The relationship between \\(C_D\\) and \\((\\alpha, M)\\) is nonlinear due to the \\(\\alpha^2\\), \\(M^2\\), and \\(\\alpha M\\) terms. This is a parabolic surface in the \\((\\alpha, M)\\) space.\nLinear in parameters: The equation is a weighted sum of basis functions: \\[C_D = \\beta_0 \\cdot 1 + \\beta_1 \\cdot \\alpha + \\beta_2 \\cdot \\alpha^2 + \\beta_3 \\cdot M^2 + \\beta_4 \\cdot (\\alpha M)\\]\nEffect of doubling \\(\\beta_2\\): If we double \\(\\beta_2\\), the contribution of the \\(\\alpha^2\\) term exactly doubles. This linear relationship in the parameters is what makes the problem tractable.\n\nMatrix Representation: \\[\n\\boldsymbol{X} = \\begin{bmatrix}\n1 & \\alpha_1 & \\alpha_1^2 & M_1^2 & \\alpha_1 M_1 \\\\\n1 & \\alpha_2 & \\alpha_2^2 & M_2^2 & \\alpha_2 M_2 \\\\\n\\vdots & \\vdots & \\vdots & \\vdots & \\vdots\n\\end{bmatrix}\n\\]\nEach row processes one data point through all basis functions, creating a standard linear regression problem."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#understanding-measurement-noise",
+    "href": "week02_linear_regression/week02_reading_material.html#understanding-measurement-noise",
+    "title": "Linear Regression: Reading Material",
+    "section": "7.1 Understanding Measurement Noise",
+    "text": "7.1 Understanding Measurement Noise\nIn practice, all experimental data contains measurement errors. For aerospace applications, these errors arise from:\n\nSensor limitations: Finite precision, drift, calibration errors\nEnvironmental factors: Temperature variations, atmospheric turbulence\nFlow unsteadiness: Turbulent fluctuations, vortex shedding\nModel simplification: Real physics is more complex than our model\nHuman factors: Data recording errors, experimental setup variations"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#characteristics-of-real-wind-tunnel-data",
+    "href": "week02_linear_regression/week02_reading_material.html#characteristics-of-real-wind-tunnel-data",
+    "title": "Linear Regression: Reading Material",
+    "section": "7.2 Characteristics of Real Wind Tunnel Data",
+    "text": "7.2 Characteristics of Real Wind Tunnel Data\nWhen measuring drag coefficients in a wind tunnel, we typically observe:\n\nData scatter around the true relationship\nHeteroscedastic noise: Measurement uncertainty often increases with angle of attack (larger forces → larger absolute errors)\nSystematic biases: Wall effects, support interference\nOutliers: Occasionally anomalous measurements due to flow separation or experimental issues"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#why-the-error-term-epsilon_i-is-essential",
+    "href": "week02_linear_regression/week02_reading_material.html#why-the-error-term-epsilon_i-is-essential",
+    "title": "Linear Regression: Reading Material",
+    "section": "7.3 Why the Error Term \\(\\epsilon_i\\) is Essential",
+    "text": "7.3 Why the Error Term \\(\\epsilon_i\\) is Essential\nThe error term in our model \\(y_i = \\boldsymbol{x}_i^T\\boldsymbol{\\beta}^\\ast + \\epsilon_i\\) is not just a mathematical convenience—it’s a fundamental recognition that:\n\nNo model is perfect: Even the best physical model cannot capture every detail\nMeasurements are imperfect: Sensors have inherent limitations\nRandom variations exist: Physical processes have inherent stochasticity\nWe seek expected behavior: Our goal is to find the average relationship, not fit every noise fluctuation\n\nImportant: We want our model to capture the signal (true underlying relationship) without overfitting to the noise (random fluctuations). This is the essence of good statistical modeling."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#objective-minimize-squared-error",
+    "href": "week02_linear_regression/week02_reading_material.html#objective-minimize-squared-error",
+    "title": "Linear Regression: Reading Material",
+    "section": "8.1 Objective: Minimize Squared Error",
+    "text": "8.1 Objective: Minimize Squared Error\nGiven data \\(\\{(\\boldsymbol{x}_i, y_i)\\}_{i=1}^n\\), we want to find parameters \\(\\boldsymbol{\\beta}\\) that make our predictions \\(\\hat{y}_i = \\boldsymbol{x}_i^T\\boldsymbol{\\beta}\\) as close as possible to the observed values \\(y_i\\).\nResidual for sample \\(i\\): \\[\nr_i = y_i - \\hat{y}_i = y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta}\n\\]\nResidual Sum of Squares (RSS): \\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\sum_{i=1}^n r_i^2 = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^n (y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta})^2\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#why-square-the-errors",
+    "href": "week02_linear_regression/week02_reading_material.html#why-square-the-errors",
+    "title": "Linear Regression: Reading Material",
+    "section": "8.2 Why Square the Errors?",
+    "text": "8.2 Why Square the Errors?\nWe could use different error metrics. Why do we square the errors?\n\nPenalizes large errors more: An error of 2 contributes 4 to RSS, while two errors of 1 each contribute only 2. This makes the model sensitive to outliers.\nMathematical tractability: Squared errors lead to a smooth, differentiable objective function with a unique minimum.\nStatistical optimality: Under Gaussian noise, least squares is the maximum likelihood estimator.\nGeometric interpretation: Minimizing RSS is equivalent to finding the projection onto the column space of \\(\\boldsymbol{X}\\).\nNo sign cancellation: Unlike simple sum of errors (where positive and negative errors cancel), squaring ensures all errors contribute positively."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#matrix-form",
+    "href": "week02_linear_regression/week02_reading_material.html#matrix-form",
+    "title": "Linear Regression: Reading Material",
+    "section": "8.3 Matrix Form",
+    "text": "8.3 Matrix Form\nIn matrix-vector notation:\n\\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2 = (\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})\n\\]\nThis is the squared Euclidean norm of the residual vector \\(\\boldsymbol{r} = \\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-optimization-goal",
+    "href": "week02_linear_regression/week02_reading_material.html#the-optimization-goal",
+    "title": "Linear Regression: Reading Material",
+    "section": "8.4 The Optimization Goal",
+    "text": "8.4 The Optimization Goal\nOur objective is to find the parameters that minimize RSS:\n\\[\n\\boldsymbol{\\beta}^\\ast = \\arg\\min_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}) = \\arg\\min_{\\boldsymbol{\\beta}} \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2\n\\]\nPhysical Interpretation: In the context of aircraft performance modeling, we’re finding the model parameters that minimize the total squared difference between predicted and actual drag coefficients across all wind tunnel measurements. This gives us the “best fit” in a least-squares sense."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-1-expand-the-objective-function",
+    "href": "week02_linear_regression/week02_reading_material.html#step-1-expand-the-objective-function",
+    "title": "Linear Regression: Reading Material",
+    "section": "9.1 Step 1: Expand the Objective Function",
+    "text": "9.1 Step 1: Expand the Objective Function\nStarting with: \\[\n\\text{RSS}(\\boldsymbol{\\beta}) = (\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})\n\\]\nExpand: \\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\boldsymbol{y}^T\\boldsymbol{y} - \\boldsymbol{y}^T\\boldsymbol{X}\\boldsymbol{\\beta} - \\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{y} + \\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}\n\\]\nSince \\(\\boldsymbol{y}^T\\boldsymbol{X}\\boldsymbol{\\beta}\\) is a scalar, it equals its transpose: \\(\\boldsymbol{y}^T\\boldsymbol{X}\\boldsymbol{\\beta} = \\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{y}\\)\nTherefore: \\[\n\\text{RSS}(\\boldsymbol{\\beta}) = \\boldsymbol{y}^T\\boldsymbol{y} - 2\\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{y} + \\boldsymbol{\\beta}^T\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-2-take-derivative-with-respect-to-boldsymbolbeta",
+    "href": "week02_linear_regression/week02_reading_material.html#step-2-take-derivative-with-respect-to-boldsymbolbeta",
+    "title": "Linear Regression: Reading Material",
+    "section": "9.2 Step 2: Take Derivative with Respect to \\(\\boldsymbol{\\beta}\\)",
+    "text": "9.2 Step 2: Take Derivative with Respect to \\(\\boldsymbol{\\beta}\\)\nUsing matrix calculus identities: - \\(\\frac{\\partial}{\\partial \\boldsymbol{\\beta}}(\\boldsymbol{a}^T\\boldsymbol{\\beta}) = \\boldsymbol{a}\\) - \\(\\frac{\\partial}{\\partial \\boldsymbol{\\beta}}(\\boldsymbol{\\beta}^T\\boldsymbol{A}\\boldsymbol{\\beta}) = 2\\boldsymbol{A}\\boldsymbol{\\beta}\\) (when \\(\\boldsymbol{A}\\) is symmetric)\nWe get: \\[\n\\frac{\\partial \\text{RSS}}{\\partial \\boldsymbol{\\beta}} = -2\\boldsymbol{X}^T\\boldsymbol{y} + 2\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-3-set-to-zero-and-solve",
+    "href": "week02_linear_regression/week02_reading_material.html#step-3-set-to-zero-and-solve",
+    "title": "Linear Regression: Reading Material",
+    "section": "9.3 Step 3: Set to Zero and Solve",
+    "text": "9.3 Step 3: Set to Zero and Solve\nAt the minimum, the gradient must be zero: \\[\n-2\\boldsymbol{X}^T\\boldsymbol{y} + 2\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{0}\n\\]\nDividing by 2 and rearranging: \\[\n\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nThese are called the Normal Equations."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-4-closed-form-solution",
+    "href": "week02_linear_regression/week02_reading_material.html#step-4-closed-form-solution",
+    "title": "Linear Regression: Reading Material",
+    "section": "9.4 Step 4: Closed-Form Solution",
+    "text": "9.4 Step 4: Closed-Form Solution\nIf \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is invertible (which requires that the columns of \\(\\boldsymbol{X}\\) are linearly independent), we can solve for \\(\\boldsymbol{\\beta}^\\ast\\):\n\\[\n\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nThis is the ordinary least squares (OLS) solution.\nVerification that this is a minimum: The second derivative (Hessian matrix) is: \\[\n\\frac{\\partial^2 \\text{RSS}}{\\partial \\boldsymbol{\\beta}^2} = 2\\boldsymbol{X}^T\\boldsymbol{X}\n\\]\nThis is positive definite (assuming \\(\\boldsymbol{X}\\) has full column rank), confirming that we have found a minimum, not a maximum or saddle point."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#what-is-the-residual-vector",
+    "href": "week02_linear_regression/week02_reading_material.html#what-is-the-residual-vector",
+    "title": "Linear Regression: Reading Material",
+    "section": "10.1 What is the Residual Vector?",
+    "text": "10.1 What is the Residual Vector?\nThe residual (error) vector is defined as: \\[\n\\boldsymbol{r} = \\boldsymbol{y} - \\hat{\\boldsymbol{y}} = \\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\n\\]\nThis is the vector of differences between: - Observed data \\(\\boldsymbol{y}\\): What we actually measured - Predictions \\(\\hat{\\boldsymbol{y}} = \\boldsymbol{X}\\boldsymbol{\\beta}\\): What our model predicts"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#goal-minimize-the-length-of-the-error-vector",
+    "href": "week02_linear_regression/week02_reading_material.html#goal-minimize-the-length-of-the-error-vector",
+    "title": "Linear Regression: Reading Material",
+    "section": "10.2 Goal: Minimize the Length of the Error Vector",
+    "text": "10.2 Goal: Minimize the Length of the Error Vector\nOur optimization problem can be stated as: \\[\n\\min_{\\boldsymbol{\\beta}} \\|\\boldsymbol{r}\\|^2 = \\min_{\\boldsymbol{\\beta}} \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2\n\\]\nWe want to make the residual vector as short as possible."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#column-space-of-boldsymbolx",
+    "href": "week02_linear_regression/week02_reading_material.html#column-space-of-boldsymbolx",
+    "title": "Linear Regression: Reading Material",
+    "section": "10.3 Column Space of \\(\\boldsymbol{X}\\)",
+    "text": "10.3 Column Space of \\(\\boldsymbol{X}\\)\nDefinition: The column space of \\(\\boldsymbol{X}\\), denoted col(\\(\\boldsymbol{X}\\)), is the set of all possible linear combinations of the columns of \\(\\boldsymbol{X}\\):\n\\[\n\\text{col}(\\boldsymbol{X}) = \\{\\boldsymbol{X}\\boldsymbol{\\beta} : \\boldsymbol{\\beta} \\in \\mathbb{R}^{d+1}\\}\n\\]\nKey Insight: - Every prediction \\(\\hat{\\boldsymbol{y}} = \\boldsymbol{X}\\boldsymbol{\\beta}\\) must lie in col(\\(\\boldsymbol{X}\\)) - The observed data \\(\\boldsymbol{y}\\) typically does not lie in col(\\(\\boldsymbol{X}\\)) (due to measurement noise) - We seek the best approximation to \\(\\boldsymbol{y}\\) within col(\\(\\boldsymbol{X}\\))"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-fundamental-geometric-principle",
+    "href": "week02_linear_regression/week02_reading_material.html#the-fundamental-geometric-principle",
+    "title": "Linear Regression: Reading Material",
+    "section": "10.4 The Fundamental Geometric Principle",
+    "text": "10.4 The Fundamental Geometric Principle\nQuestion: What is the closest point in col(\\(\\boldsymbol{X}\\)) to \\(\\boldsymbol{y}\\)?\nAnswer: The orthogonal projection of \\(\\boldsymbol{y}\\) onto col(\\(\\boldsymbol{X}\\)).\nWhy? The Projection Theorem from linear algebra states: The shortest distance from a point to a subspace is achieved by the perpendicular projection onto that subspace.\nMathematical Statement: The error is minimized when it is orthogonal to the column space: \\[\n\\boldsymbol{r} \\perp \\text{col}(\\boldsymbol{X}) \\quad \\Longleftrightarrow \\quad \\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{0}\n\\]\nThis orthogonality condition is the geometric essence of least squares."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#visualizing-the-projection",
+    "href": "week02_linear_regression/week02_reading_material.html#visualizing-the-projection",
+    "title": "Linear Regression: Reading Material",
+    "section": "11.1 Visualizing the Projection",
+    "text": "11.1 Visualizing the Projection\nImagine a 2D plane (representing col(\\(\\boldsymbol{X}\\))) embedded in 3D space (representing \\(\\mathbb{R}^n\\)). The data vector \\(\\boldsymbol{y}\\) is a point not on this plane.\nKey Observations:\n\nAny prediction \\(\\hat{\\boldsymbol{y}}\\) must lie on the plane (in col(\\(\\boldsymbol{X}\\)))\nThe error \\(\\boldsymbol{r} = \\boldsymbol{y} - \\hat{\\boldsymbol{y}}\\) is the vector from \\(\\hat{\\boldsymbol{y}}\\) to \\(\\boldsymbol{y}\\)\nWe want to minimize \\(\\|\\boldsymbol{r}\\|\\) (the length of this vector)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#why-perpendicular-is-optimal",
+    "href": "week02_linear_regression/week02_reading_material.html#why-perpendicular-is-optimal",
+    "title": "Linear Regression: Reading Material",
+    "section": "11.2 Why Perpendicular is Optimal",
+    "text": "11.2 Why Perpendicular is Optimal\nConsider any two points in col(\\(\\boldsymbol{X}\\)): - \\(\\hat{\\boldsymbol{y}}_\\perp\\): The perpendicular projection - \\(\\hat{\\boldsymbol{y}}_{\\text{other}}\\): Any other point\nBy the Pythagorean theorem: \\[\n\\|\\boldsymbol{y} - \\hat{\\boldsymbol{y}}_{\\text{other}}\\|^2 = \\|\\boldsymbol{y} - \\hat{\\boldsymbol{y}}_\\perp\\|^2 + \\|\\hat{\\boldsymbol{y}}_\\perp - \\hat{\\boldsymbol{y}}_{\\text{other}}\\|^2\n\\]\nSince \\(\\|\\hat{\\boldsymbol{y}}_\\perp - \\hat{\\boldsymbol{y}}_{\\text{other}}\\|^2 \\geq 0\\), we have: \\[\n\\|\\boldsymbol{y} - \\hat{\\boldsymbol{y}}_{\\text{other}}\\|^2 \\geq \\|\\boldsymbol{y} - \\hat{\\boldsymbol{y}}_\\perp\\|^2\n\\]\nTherefore, the perpendicular projection gives the smallest error."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#mathematical-statement-of-orthogonality",
+    "href": "week02_linear_regression/week02_reading_material.html#mathematical-statement-of-orthogonality",
+    "title": "Linear Regression: Reading Material",
+    "section": "11.3 Mathematical Statement of Orthogonality",
+    "text": "11.3 Mathematical Statement of Orthogonality\nThe optimal prediction \\(\\hat{\\boldsymbol{y}}^\\ast\\) satisfies: \\[\n(\\boldsymbol{y} - \\hat{\\boldsymbol{y}}^\\ast) \\perp \\text{col}(\\boldsymbol{X})\n\\]\nIn matrix form: \\[\n\\boldsymbol{X}^T(\\boldsymbol{y} - \\hat{\\boldsymbol{y}}^\\ast) = \\boldsymbol{0}\n\\]\nUnderstanding \\(\\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{0}\\):\n\n\\(\\boldsymbol{X}^T\\boldsymbol{r}\\) is a vector of dot products: \\([\\boldsymbol{x}_1^T\\boldsymbol{r}, \\boldsymbol{x}_2^T\\boldsymbol{r}, \\ldots, \\boldsymbol{x}_{d+1}^T\\boldsymbol{r}]^T\\)\nEach dot product equals zero: \\(\\boldsymbol{x}_j^T\\boldsymbol{r} = 0\\)\nThis means \\(\\boldsymbol{r}\\) is perpendicular to every column of \\(\\boldsymbol{X}\\)\nTherefore, \\(\\boldsymbol{r}\\) is perpendicular to the entire column space"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-1-state-the-orthogonality-condition",
+    "href": "week02_linear_regression/week02_reading_material.html#step-1-state-the-orthogonality-condition",
+    "title": "Linear Regression: Reading Material",
+    "section": "12.1 Step 1: State the Orthogonality Condition",
+    "text": "12.1 Step 1: State the Orthogonality Condition\nFrom geometry, the error must be perpendicular to col(\\(\\boldsymbol{X}\\)): \\[\n\\boldsymbol{r} \\perp \\text{col}(\\boldsymbol{X}) \\quad \\Longrightarrow \\quad \\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{0}\n\\]\nThis is the fundamental condition for least squares optimality."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-2-express-in-terms-of-boldsymbolbeta",
+    "href": "week02_linear_regression/week02_reading_material.html#step-2-express-in-terms-of-boldsymbolbeta",
+    "title": "Linear Regression: Reading Material",
+    "section": "12.2 Step 2: Express in Terms of \\(\\boldsymbol{\\beta}\\)",
+    "text": "12.2 Step 2: Express in Terms of \\(\\boldsymbol{\\beta}\\)\nThe optimal prediction is \\(\\hat{\\boldsymbol{y}}^\\ast = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast\\) and the optimal residual is \\(\\boldsymbol{r}^\\ast = \\boldsymbol{y} - \\hat{\\boldsymbol{y}}^\\ast\\).\nSubstituting into the orthogonality condition: \\[\n\\boldsymbol{X}^T\\boldsymbol{r}^\\ast = \\boldsymbol{0}\n\\]\n\\[\n\\boldsymbol{X}^T(\\boldsymbol{y} - \\hat{\\boldsymbol{y}}^\\ast) = \\boldsymbol{0}\n\\]\n\\[\n\\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast) = \\boldsymbol{0}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-3-derive-the-normal-equations",
+    "href": "week02_linear_regression/week02_reading_material.html#step-3-derive-the-normal-equations",
+    "title": "Linear Regression: Reading Material",
+    "section": "12.3 Step 3: Derive the Normal Equations",
+    "text": "12.3 Step 3: Derive the Normal Equations\nExpanding: \\[\n\\boldsymbol{X}^T\\boldsymbol{y} - \\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{0}\n\\]\nRearranging: \\[\n\\boldsymbol{X}^T\\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nThese are the Normal Equations—exactly the same result we obtained using calculus!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#step-4-solve-for-boldsymbolbetaast",
+    "href": "week02_linear_regression/week02_reading_material.html#step-4-solve-for-boldsymbolbetaast",
+    "title": "Linear Regression: Reading Material",
+    "section": "12.4 Step 4: Solve for \\(\\boldsymbol{\\beta}^\\ast\\)",
+    "text": "12.4 Step 4: Solve for \\(\\boldsymbol{\\beta}^\\ast\\)\nAssuming \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is invertible: \\[\n\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nKey Insight: We derived the OLS solution using projection geometry (orthogonality condition) instead of calculus (setting derivative to zero). Both paths lead to the same answer, providing two complementary perspectives:\n\nCalculus view: \\(\\boldsymbol{\\beta}^\\ast\\) minimizes the cost function\nGeometric view: \\(\\boldsymbol{\\beta}^\\ast\\) gives the perpendicular projection"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#definition",
+    "href": "week02_linear_regression/week02_reading_material.html#definition",
+    "title": "Linear Regression: Reading Material",
+    "section": "13.1 Definition",
+    "text": "13.1 Definition\nThe projection matrix is defined as: \\[\n\\boldsymbol{P} = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\n\\]\nThis matrix projects any vector in \\(\\mathbb{R}^n\\) onto col(\\(\\boldsymbol{X}\\))."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#computing-predictions",
+    "href": "week02_linear_regression/week02_reading_material.html#computing-predictions",
+    "title": "Linear Regression: Reading Material",
+    "section": "13.2 Computing Predictions",
+    "text": "13.2 Computing Predictions\nUsing the projection matrix, we can write the predicted values as: \\[\n\\hat{\\boldsymbol{y}} = \\boldsymbol{X}\\boldsymbol{\\beta}^\\ast = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y} = \\boldsymbol{P}\\boldsymbol{y}\n\\]\nInterpretation: \\(\\boldsymbol{P}\\) directly maps observed data \\(\\boldsymbol{y}\\) to predictions \\(\\hat{\\boldsymbol{y}}\\), bypassing the need to explicitly compute \\(\\boldsymbol{\\beta}^\\ast\\)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#key-properties",
+    "href": "week02_linear_regression/week02_reading_material.html#key-properties",
+    "title": "Linear Regression: Reading Material",
+    "section": "13.3 Key Properties",
+    "text": "13.3 Key Properties\n\n13.3.1 1. Idempotent (Projecting Twice = Projecting Once)\n\\[\n\\boldsymbol{P}^2 = \\boldsymbol{P}\n\\]\nProof: \\[\n\\boldsymbol{P}^2 = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T = \\boldsymbol{P}\n\\]\nInterpretation: If a vector is already in col(\\(\\boldsymbol{X}\\)), projecting it again doesn’t change it.\n\n\n13.3.2 2. Symmetric\n\\[\n\\boldsymbol{P}^T = \\boldsymbol{P}\n\\]\nProof: Each factor is symmetric: \\[\n\\boldsymbol{P}^T = (\\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T)^T = \\boldsymbol{X}((\\boldsymbol{X}^T\\boldsymbol{X})^{-1})^T\\boldsymbol{X}^T = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T = \\boldsymbol{P}\n\\]\n\n\n13.3.3 3. Projects onto col(\\(\\boldsymbol{X}\\))\n\\[\n\\boldsymbol{P}\\boldsymbol{X} = \\boldsymbol{X}\n\\]\nProof: \\[\n\\boldsymbol{P}\\boldsymbol{X} = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{X} = \\boldsymbol{X}\n\\]\nInterpretation: Any vector in col(\\(\\boldsymbol{X}\\)) is unchanged by the projection.\n\n\n13.3.4 4. Residual Matrix\n\\[\n\\boldsymbol{I} - \\boldsymbol{P}\n\\]\nThis matrix projects onto the orthogonal complement of col(\\(\\boldsymbol{X}\\)), giving the residuals: \\[\n\\boldsymbol{r} = (\\boldsymbol{I} - \\boldsymbol{P})\\boldsymbol{y}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-interpretation",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-interpretation",
+    "title": "Linear Regression: Reading Material",
+    "section": "13.4 Aerospace Interpretation",
+    "text": "13.4 Aerospace Interpretation\nIn the context of drag coefficient prediction:\n\n\\(\\boldsymbol{P}\\boldsymbol{y}\\): The component of observed drag that can be explained by our aerodynamic features (angle of attack, Mach number, etc.)\n\\((\\boldsymbol{I} - \\boldsymbol{P})\\boldsymbol{y}\\): The component that cannot be explained (residual variance due to unmodeled effects, measurement noise, etc.)\n\nThe projection matrix decomposes the total variance into: - Explained variance (signal captured by the model) - Unexplained variance (noise or missing features)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#problem-1-singular-matrix-non-invertibility",
+    "href": "week02_linear_regression/week02_reading_material.html#problem-1-singular-matrix-non-invertibility",
+    "title": "Linear Regression: Reading Material",
+    "section": "14.1 Problem 1: Singular Matrix (Non-Invertibility)",
+    "text": "14.1 Problem 1: Singular Matrix (Non-Invertibility)\nWhen it occurs:\n\nMore features than samples: \\(n &lt; d+1\\)\n\nNot enough data to uniquely determine all parameters\nInfinitely many solutions exist\nExample: 50 wind tunnel measurements but 100 polynomial features\n\nMulticollinearity: Highly correlated features\n\nExample: Including both velocity and Mach number when temperature is constant (they’re perfectly correlated)\n\\(\\boldsymbol{X}^T\\boldsymbol{X}\\) becomes nearly singular (very small eigenvalues)\nSmall numerical errors can cause huge changes in solution\n\n\nConsequences: - Cannot compute \\((\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\) - Solution is non-unique or unstable"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#problem-2-computational-cost",
+    "href": "week02_linear_regression/week02_reading_material.html#problem-2-computational-cost",
+    "title": "Linear Regression: Reading Material",
+    "section": "14.2 Problem 2: Computational Cost",
+    "text": "14.2 Problem 2: Computational Cost\nMatrix inversion complexity: \\(O(d^3)\\) operations\nFor high-dimensional problems: - \\(d = 1000\\) features: ~1 billion operations - \\(d = 10000\\) features: ~1 trillion operations\nMemory requirements: Storing \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) requires \\(O(d^2)\\) memory\nWhen it matters: - Large-scale machine learning (millions of features) - Online learning (real-time updates) - Embedded systems (limited computational resources)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#problem-3-numerical-stability",
+    "href": "week02_linear_regression/week02_reading_material.html#problem-3-numerical-stability",
+    "title": "Linear Regression: Reading Material",
+    "section": "14.3 Problem 3: Numerical Stability",
+    "text": "14.3 Problem 3: Numerical Stability\nCondition number: \\(\\kappa(\\boldsymbol{X}^T\\boldsymbol{X}) = \\frac{\\sigma_{\\max}}{\\sigma_{\\min}}\\)\n\nLarge condition number → small perturbations in data cause large changes in solution\nFloating-point arithmetic errors accumulate\nResults become unreliable\n\nExample: If \\(\\kappa = 10^{10}\\) and we use 64-bit floating point (16 digits precision), we may lose all significant digits in the solution."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#solutions",
+    "href": "week02_linear_regression/week02_reading_material.html#solutions",
+    "title": "Linear Regression: Reading Material",
+    "section": "14.4 Solutions",
+    "text": "14.4 Solutions\n\n14.4.1 1. Regularization\nAdd a penalty term to prevent overfitting and improve conditioning:\nRidge Regression (L2): \\[\n\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X} + \\lambda \\boldsymbol{I})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\n\\]\nLasso (L1): \\[\n\\min_{\\boldsymbol{\\beta}} \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2 + \\lambda \\|\\boldsymbol{\\beta}\\|_1\n\\]\n\n\n14.4.2 2. Gradient Descent\nIteratively update parameters without matrix inversion: - Complexity per iteration: \\(O(nd)\\) instead of \\(O(d^3)\\) - Can handle very large \\(d\\) - Works for any differentiable loss function\n\n\n14.4.3 3. QR Decomposition\nNumerically stable direct method: \\[\n\\boldsymbol{X} = \\boldsymbol{Q}\\boldsymbol{R}\n\\] - More stable than normal equations - Still \\(O(nd^2)\\) complexity\n\n\n14.4.4 4. Singular Value Decomposition (SVD)\nMost numerically stable method: \\[\n\\boldsymbol{X} = \\boldsymbol{U}\\boldsymbol{\\Sigma}\\boldsymbol{V}^T\n\\] - Handles rank deficiency gracefully - Reveals multicollinearity - Gold standard for numerical stability"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-algorithm",
+    "href": "week02_linear_regression/week02_reading_material.html#the-algorithm",
+    "title": "Linear Regression: Reading Material",
+    "section": "15.1 The Algorithm",
+    "text": "15.1 The Algorithm\nGoal: Minimize \\(\\text{RSS}(\\boldsymbol{\\beta}) = \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2\\)\nStrategy: Start with an initial guess and repeatedly move in the direction of steepest descent.\n\n15.1.1 Steps\n\nInitialize: Choose starting parameters \\(\\boldsymbol{\\beta}^{(0)}\\) (typically random or zeros)\nIterate: For \\(t = 0, 1, 2, \\ldots\\) until convergence: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\]\nwhere \\(\\eta &gt; 0\\) is the learning rate (step size)\nStop: When change is small enough or maximum iterations reached"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#computing-the-gradient",
+    "href": "week02_linear_regression/week02_reading_material.html#computing-the-gradient",
+    "title": "Linear Regression: Reading Material",
+    "section": "15.2 Computing the Gradient",
+    "text": "15.2 Computing the Gradient\nThe gradient of RSS is: \\[\n\\nabla_{\\boldsymbol{\\beta}} \\text{RSS} = \\frac{\\partial}{\\partial \\boldsymbol{\\beta}} \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2 = -2\\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta})\n\\]\nUpdate Rule: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} + 2\\eta \\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^{(t)})\n\\]\nIntuition: - The gradient \\(\\nabla \\text{RSS}\\) points in the direction of steepest increase - We move in the opposite direction (negative gradient) to decrease the error - The learning rate \\(\\eta\\) controls how big a step we take"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#convergence",
+    "href": "week02_linear_regression/week02_reading_material.html#convergence",
+    "title": "Linear Regression: Reading Material",
+    "section": "15.3 Convergence",
+    "text": "15.3 Convergence\nUnder appropriate conditions (convexity, suitable learning rate): \\[\n\\boldsymbol{\\beta}^{(t)} \\to \\boldsymbol{\\beta}^\\ast \\quad \\text{as} \\quad t \\to \\infty\n\\]\nThe method converges to the same solution as the direct method, but arrives there iteratively."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#batch-gradient-descent",
+    "href": "week02_linear_regression/week02_reading_material.html#batch-gradient-descent",
+    "title": "Linear Regression: Reading Material",
+    "section": "16.1 Batch Gradient Descent",
+    "text": "16.1 Batch Gradient Descent\nUse all \\(n\\) samples in each iteration: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\]\nwhere the gradient uses all data: \\[\n\\nabla_{\\boldsymbol{\\beta}} \\text{RSS} = -2\\boldsymbol{X}^T(\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}^{(t)}) = -2\\sum_{i=1}^n \\boldsymbol{x}_i(y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta}^{(t)})\n\\]\nAdvantages: - Stable, smooth convergence - Gradient is exact (no sampling noise) - Can use optimized linear algebra libraries\nDisadvantages: - Each iteration costs \\(O(nd)\\) - Slow for very large datasets (\\(n\\) in millions) - Entire dataset must fit in memory\nWhen to use: Small to medium datasets, when you need stable convergence"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#stochastic-gradient-descent-sgd",
+    "href": "week02_linear_regression/week02_reading_material.html#stochastic-gradient-descent-sgd",
+    "title": "Linear Regression: Reading Material",
+    "section": "16.2 Stochastic Gradient Descent (SGD)",
+    "text": "16.2 Stochastic Gradient Descent (SGD)\nUse one random sample \\(i\\) per iteration: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} + 2\\eta \\boldsymbol{x}_i(y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta}^{(t)})\n\\]\nAdvantages: - Very fast updates: \\(O(d)\\) per iteration - Can process data online (streaming) - May escape shallow local minima (for non-convex problems) - Naturally handles huge datasets\nDisadvantages: - Noisy updates (high variance) - Oscillates around minimum (never truly converges) - Requires careful learning rate tuning - May need learning rate decay\nWhen to use: Very large datasets, online learning, when fast iteration is more important than stable convergence"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#mini-batch-gradient-descent",
+    "href": "week02_linear_regression/week02_reading_material.html#mini-batch-gradient-descent",
+    "title": "Linear Regression: Reading Material",
+    "section": "16.3 Mini-Batch Gradient Descent",
+    "text": "16.3 Mini-Batch Gradient Descent\nUse a random subset of \\(b\\) samples per iteration (typical: \\(b = 32, 64, 128, 256\\)): \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\frac{1}{b}\\sum_{i \\in \\mathcal{B}_t} -2\\boldsymbol{x}_i(y_i - \\boldsymbol{x}_i^T\\boldsymbol{\\beta}^{(t)})\n\\]\nwhere \\(\\mathcal{B}_t\\) is a random mini-batch at iteration \\(t\\).\nAdvantages: - Best balance between speed and stability - Vectorized operations (GPU-friendly) - Reduced variance compared to SGD - Faster than batch for large \\(n\\)\nDisadvantages: - One more hyperparameter (batch size) - Still some oscillation\nWhen to use: Default choice for modern machine learning—combines benefits of both batch and stochastic methods"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#comparison-summary",
+    "href": "week02_linear_regression/week02_reading_material.html#comparison-summary",
+    "title": "Linear Regression: Reading Material",
+    "section": "16.4 Comparison Summary",
+    "text": "16.4 Comparison Summary\n\n\n\n\n\n\n\n\n\n\nMethod\nSamples per Iteration\nCost per Iteration\nConvergence\nBest For\n\n\n\n\nBatch\nAll (\\(n\\))\n\\(O(nd)\\)\nSmooth, stable\nSmall datasets\n\n\nStochastic\n1\n\\(O(d)\\)\nNoisy, fast\nHuge datasets, online\n\n\nMini-batch\n\\(b\\) (32-256)\n\\(O(bd)\\)\nBalanced\nMost applications"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-role-of-learning-rate",
+    "href": "week02_linear_regression/week02_reading_material.html#the-role-of-learning-rate",
+    "title": "Linear Regression: Reading Material",
+    "section": "17.1 The Role of Learning Rate",
+    "text": "17.1 The Role of Learning Rate\nIn the update rule: \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\]\n\\(\\eta\\) controls how far we move in the direction of the negative gradient."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#too-small-learning-rate-eta-ll-1",
+    "href": "week02_linear_regression/week02_reading_material.html#too-small-learning-rate-eta-ll-1",
+    "title": "Linear Regression: Reading Material",
+    "section": "17.2 Too Small Learning Rate (\\(\\eta \\ll 1\\))",
+    "text": "17.2 Too Small Learning Rate (\\(\\eta \\ll 1\\))\nSymptoms: - Very slow progress toward minimum - Requires many iterations to converge - May time out before reaching optimum\nCost: Wasted computation time\nExample: If optimal \\(\\eta = 0.01\\) but we use \\(\\eta = 0.0001\\), we need 100× more iterations."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#too-large-learning-rate-eta-gg-1",
+    "href": "week02_linear_regression/week02_reading_material.html#too-large-learning-rate-eta-gg-1",
+    "title": "Linear Regression: Reading Material",
+    "section": "17.3 Too Large Learning Rate (\\(\\eta \\gg 1\\))",
+    "text": "17.3 Too Large Learning Rate (\\(\\eta \\gg 1\\))\nSymptoms: - Overshooting the minimum - Oscillation around optimum - Divergence (error increases instead of decreasing) - Instability\nCost: Never converges, wasted effort\nExample: Parameters “bounce” past the minimum on each side, never settling down."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#finding-the-right-learning-rate",
+    "href": "week02_linear_regression/week02_reading_material.html#finding-the-right-learning-rate",
+    "title": "Linear Regression: Reading Material",
+    "section": "17.4 Finding the Right Learning Rate",
+    "text": "17.4 Finding the Right Learning Rate\nRule of thumb: Start with \\(\\eta \\in \\{0.001, 0.01, 0.1, 1.0\\}\\) and tune based on training curves.\nGrid search: Try multiple values, plot RSS vs. iteration, choose the largest \\(\\eta\\) that converges smoothly.\nDiagnostic: Plot \\(\\text{RSS}^{(t)}\\) vs. \\(t\\): - Decreasing smoothly → good - Decreasing then oscillating → too large - Flat or barely decreasing → too small - Increasing → way too large"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#adaptive-learning-rates",
+    "href": "week02_linear_regression/week02_reading_material.html#adaptive-learning-rates",
+    "title": "Linear Regression: Reading Material",
+    "section": "17.5 Adaptive Learning Rates",
+    "text": "17.5 Adaptive Learning Rates\nModern optimization uses sophisticated learning rate strategies:\n\n17.5.1 1. Learning Rate Decay\nDecrease \\(\\eta\\) over time: \\[\n\\eta_t = \\frac{\\eta_0}{1 + kt}\n\\]\nor exponential decay: \\[\n\\eta_t = \\eta_0 e^{-kt}\n\\]\nRationale: Start with large steps (fast progress), then small steps (fine-tuning near minimum)\n\n\n17.5.2 2. Momentum\nUse exponentially weighted moving average of gradients: \\[\n\\boldsymbol{v}^{(t)} = \\gamma \\boldsymbol{v}^{(t-1)} + \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\n\\] \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\boldsymbol{v}^{(t)}\n\\]\nBenefits: - Accelerates convergence in relevant directions - Dampens oscillations - Helps escape plateaus\n\n\n17.5.3 3. Adam (Adaptive Moment Estimation)\nMost popular modern optimizer. Combines: - Momentum (first moment) - Adaptive learning rates per parameter (second moment)\nUpdate rule (simplified): \\[\n\\boldsymbol{m}^{(t)} = \\beta_1 \\boldsymbol{m}^{(t-1)} + (1-\\beta_1)\\boldsymbol{g}^{(t)}\n\\] \\[\n\\boldsymbol{v}^{(t)} = \\beta_2 \\boldsymbol{v}^{(t-1)} + (1-\\beta_2)(\\boldsymbol{g}^{(t)})^2\n\\] \\[\n\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\frac{\\boldsymbol{m}^{(t)}}{\\sqrt{\\boldsymbol{v}^{(t)}} + \\epsilon}\n\\]\nwhere \\(\\boldsymbol{g}^{(t)} = \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)})\\)\nAdvantages: - Works well with default parameters (\\(\\beta_1 = 0.9\\), \\(\\beta_2 = 0.999\\), \\(\\eta = 0.001\\)) - Adapts learning rate for each parameter - Widely used in deep learning\n\n\n17.5.4 4. Line Search\nAt each iteration, optimize the learning rate: \\[\n\\eta_t = \\arg\\min_{\\eta} \\text{RSS}(\\boldsymbol{\\beta}^{(t)} - \\eta \\nabla_{\\boldsymbol{\\beta}} \\text{RSS}(\\boldsymbol{\\beta}^{(t)}))\n\\]\nBenefits: Guaranteed improvement at each step\nCost: Additional computation per iteration"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#classical-linear-regression-assumptions",
+    "href": "week02_linear_regression/week02_reading_material.html#classical-linear-regression-assumptions",
+    "title": "Linear Regression: Reading Material",
+    "section": "18.1 Classical Linear Regression Assumptions",
+    "text": "18.1 Classical Linear Regression Assumptions\n\n18.1.1 1. Linearity\nAssumption: The true relationship is linear in parameters: \\[\n\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta}_{\\text{true}} + \\boldsymbol{\\epsilon}\n\\]\nWhat it means: There exist true parameters \\(\\boldsymbol{\\beta}_{\\text{true}}\\) such that the data-generating process follows this form.\nIf violated: - OLS estimates are biased - Predictions may be systematically wrong - Solution: Transform features, add polynomial or interaction terms, use nonlinear models\n\n\n18.1.2 2. Independence\nAssumption: Samples \\((\\boldsymbol{x}_i, y_i)\\) are independent and identically distributed (i.i.d.).\nWhat it means: - Each observation is drawn independently from the same distribution - Knowing one sample doesn’t tell you about others\nIf violated: - Time series data (autocorrelation) - Spatial data (neighboring points are similar) - Clustered data (measurements from same aircraft)\nConsequences: - Standard errors are wrong - Confidence intervals unreliable - Solution: Use time series models, spatial models, clustered standard errors\n\n\n18.1.3 3. Homoscedasticity (Constant Variance)\nAssumption: Error variance is constant across all observations: \\[\n\\text{Var}(\\epsilon_i) = \\sigma^2 \\quad \\text{for all } i\n\\]\nWhat it means: The “noise level” is the same regardless of feature values.\nHeteroscedasticity (violation): Variance depends on features \\[\n\\text{Var}(\\epsilon_i) = \\sigma_i^2 \\quad \\text{(different for each } i \\text{)}\n\\]\nAerospace example: - Sensor noise may increase with dynamic pressure - Measurement error in drag coefficient may depend on angle of attack - Flow unsteadiness increases near stall\nIf violated: - OLS is still unbiased but not optimal (not minimum variance) - Standard errors are wrong - Solution: Weighted least squares, robust standard errors, transform the response\n\n\n18.1.4 4. Normality\nAssumption: Errors are normally distributed: \\[\n\\epsilon_i \\sim \\mathcal{N}(0, \\sigma^2) \\quad \\text{independently}\n\\]\nWhat it means: Random fluctuations follow a bell curve (Gaussian distribution).\nImportance: - Required for exact hypothesis tests and confidence intervals - Not required for OLS estimation itself - By Central Limit Theorem, normality becomes less critical for large \\(n\\)\nIf violated: - OLS estimates still unbiased - Hypothesis tests may be unreliable (especially for small \\(n\\)) - Solution: Use robust inference, bootstrap, or transform data\n\n\n18.1.5 5. No Perfect Multicollinearity\nAssumption: Columns of \\(\\boldsymbol{X}\\) are linearly independent (full rank): \\[\n\\text{rank}(\\boldsymbol{X}) = d + 1\n\\]\nWhat it means: No feature can be perfectly predicted by other features.\nPerfect multicollinearity examples: - Including both Celsius and Fahrenheit temperature - Including velocity twice - Sum of dummy variables equals 1 (dummy variable trap)\nNear multicollinearity: Features are highly (but not perfectly) correlated - Mach number and true airspeed (at constant altitude/temperature) - Multiple polynomial terms of the same variable - Multiple similar wind tunnel configurations\nConsequences: - \\(\\boldsymbol{X}^T\\boldsymbol{X}\\) is singular or nearly singular - Cannot compute \\((\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\) or it’s numerically unstable - Coefficients have huge standard errors - Small data changes cause large coefficient changes\nSolutions: - Remove redundant features - Regularization (Ridge, Lasso) - Principal Component Analysis (PCA) - Domain knowledge to select meaningful features"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#statement-of-the-theorem",
+    "href": "week02_linear_regression/week02_reading_material.html#statement-of-the-theorem",
+    "title": "Linear Regression: Reading Material",
+    "section": "19.1 Statement of the Theorem",
+    "text": "19.1 Statement of the Theorem\nGauss-Markov Theorem: Under assumptions 1-3 (linearity, independence, homoscedasticity), the OLS estimator \\(\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\\) is BLUE (Best Linear Unbiased Estimator)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#what-does-blue-mean",
+    "href": "week02_linear_regression/week02_reading_material.html#what-does-blue-mean",
+    "title": "Linear Regression: Reading Material",
+    "section": "19.2 What Does BLUE Mean?",
+    "text": "19.2 What Does BLUE Mean?\n\n19.2.1 Best\nMinimum variance among all linear unbiased estimators.\nWhat it means: - OLS gives the most precise estimates possible (smallest uncertainty) - No other linear unbiased method produces tighter confidence intervals - In the space of linear unbiased estimators, OLS is optimal\nWhy it matters: For safety-critical aerospace applications, we want the most precise performance predictions possible.\n\n\n19.2.2 Linear\nEstimator is a linear function of the observations \\(\\boldsymbol{y}\\): \\[\n\\boldsymbol{\\beta}^\\ast = \\boldsymbol{C}\\boldsymbol{y}\n\\]\nfor some matrix \\(\\boldsymbol{C}\\) (that may depend on \\(\\boldsymbol{X}\\) but not on \\(\\boldsymbol{y}\\)).\nFor OLS: \\(\\boldsymbol{C} = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\)\nWhy restrict to linear estimators?: - Computationally tractable - Well-understood statistical properties - Note: Nonlinear estimators might have lower variance, but they’re typically biased\n\n\n19.2.3 Unbiased\nExpected value equals true parameter: \\[\nE[\\boldsymbol{\\beta}^\\ast] = \\boldsymbol{\\beta}_{\\text{true}}\n\\]\nWhat it means: - On average (over many datasets), estimates equal true values - No systematic over- or under-estimation - If we repeat the experiment many times, the average of our estimates converges to the truth\nWhy it matters: We want methods that are correct on average, not systematically biased."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-context",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-context",
+    "title": "Linear Regression: Reading Material",
+    "section": "19.3 Aerospace Context",
+    "text": "19.3 Aerospace Context\nCritical for certification:\nFlight envelopes must be determined with: - Minimal uncertainty (Best) - No systematic bias (Unbiased)\nThe BLUE property ensures: - Tightest possible bounds on performance predictions - Maximum confidence in safety margins - Regulatory compliance (FAA, EASA require unbiased, minimum-variance estimates)\nExample: When certifying maximum operating Mach number, we need the most precise drag predictions possible. Using OLS (under appropriate assumptions) guarantees we’re using the optimal estimator."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#when-blue-doesnt-apply",
+    "href": "week02_linear_regression/week02_reading_material.html#when-blue-doesnt-apply",
+    "title": "Linear Regression: Reading Material",
+    "section": "19.4 When BLUE Doesn’t Apply",
+    "text": "19.4 When BLUE Doesn’t Apply\nBLUE only applies under assumptions 1-3. If:\n\nNonlinearity: True relationship is nonlinear → OLS is biased\nHeteroscedasticity: Variance is not constant → OLS is unbiased but not minimum variance (use weighted least squares)\nDependence: Samples are correlated → Standard errors are wrong (use robust methods)\n\nAdditionally, BLUE is restricted to linear unbiased estimators. In modern machine learning: - We often accept bias for reduced variance (bias-variance tradeoff) - Regularization (Ridge, Lasso) introduces bias but reduces variance - For prediction, biased estimators can outperform OLS"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#distribution-of-the-ols-estimator",
+    "href": "week02_linear_regression/week02_reading_material.html#distribution-of-the-ols-estimator",
+    "title": "Linear Regression: Reading Material",
+    "section": "20.1 Distribution of the OLS Estimator",
+    "text": "20.1 Distribution of the OLS Estimator\nUnder the normality assumption (\\(\\epsilon_i \\sim \\mathcal{N}(0, \\sigma^2)\\) independently), the OLS estimator has a multivariate normal distribution:\n\\[\n\\boldsymbol{\\beta}^\\ast \\sim \\mathcal{N}\\left(\\boldsymbol{\\beta}_{\\text{true}}, \\sigma^2(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\right)\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#unpacking-this-result",
+    "href": "week02_linear_regression/week02_reading_material.html#unpacking-this-result",
+    "title": "Linear Regression: Reading Material",
+    "section": "20.2 Unpacking This Result",
+    "text": "20.2 Unpacking This Result\n\n20.2.1 Mean (Expected Value)\n\\[\nE[\\boldsymbol{\\beta}^\\ast] = \\boldsymbol{\\beta}_{\\text{true}}\n\\]\nUnbiasedness: On average, our estimates equal the true parameters.\n\n\n20.2.2 Covariance Matrix\n\\[\n\\text{Cov}(\\boldsymbol{\\beta}^\\ast) = \\sigma^2(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\n\\]\nWhat this tells us:\n\nDiagonal elements give the variance of each coefficient: \\[\n\\text{Var}(\\beta_j^\\ast) = \\sigma^2[(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}]_{jj}\n\\]\nOff-diagonal elements show correlations between coefficient estimates: \\[\n\\text{Cov}(\\beta_j^\\ast, \\beta_k^\\ast) = \\sigma^2[(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}]_{jk}\n\\]\nDepends on \\(\\boldsymbol{X}\\): The design of our experiment (which features, which samples) affects estimation precision\nDepends on \\(\\sigma^2\\): More noise → more uncertainty"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#practical-implications",
+    "href": "week02_linear_regression/week02_reading_material.html#practical-implications",
+    "title": "Linear Regression: Reading Material",
+    "section": "20.3 Practical Implications",
+    "text": "20.3 Practical Implications\nThis distribution allows us to:\n\nConstruct confidence intervals for each coefficient\nPerform hypothesis tests about parameters\nQuantify uncertainty in predictions\nDesign experiments to minimize variance (optimal experimental design)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#what-if-normality-doesnt-hold",
+    "href": "week02_linear_regression/week02_reading_material.html#what-if-normality-doesnt-hold",
+    "title": "Linear Regression: Reading Material",
+    "section": "20.4 What If Normality Doesn’t Hold?",
+    "text": "20.4 What If Normality Doesn’t Hold?\nGood news: Even without normality: - OLS estimates remain unbiased (under linearity, independence) - OLS is still BLUE (under homoscedasticity) - Asymptotically (large \\(n\\)), the Central Limit Theorem implies approximate normality\nWhen it matters: - Small samples (\\(n &lt; 30\\)): normality important for exact inference - Large samples (\\(n &gt; 100\\)): approximate normality holds regardless - Solution for small samples: Use robust inference methods, bootstrap"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#residual-variance-estimator",
+    "href": "week02_linear_regression/week02_reading_material.html#residual-variance-estimator",
+    "title": "Linear Regression: Reading Material",
+    "section": "21.1 Residual Variance Estimator",
+    "text": "21.1 Residual Variance Estimator\n\\[\n\\hat{\\sigma}^2 = \\frac{1}{n - d - 1}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\frac{\\text{RSS}}{n - d - 1}\n\\]\nwhere: - \\(\\text{RSS} = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2\\) is the residual sum of squares - \\(n\\) is the number of samples - \\(d\\) is the number of features (not counting intercept) - \\(d + 1\\) is the total number of parameters (including intercept)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#why-divide-by-n---d---1",
+    "href": "week02_linear_regression/week02_reading_material.html#why-divide-by-n---d---1",
+    "title": "Linear Regression: Reading Material",
+    "section": "21.2 Why Divide by \\(n - d - 1\\)?",
+    "text": "21.2 Why Divide by \\(n - d - 1\\)?\n\n21.2.1 Degrees of Freedom\nDefinition: Degrees of freedom (df) = number of independent pieces of information available for estimating variance.\nCalculation: - Start with \\(n\\) observations - Estimate \\(d + 1\\) parameters (\\(\\beta_0, \\beta_1, \\ldots, \\beta_d\\)) - Each parameter estimate “uses up” one degree of freedom - Remaining df: \\(n - (d + 1) = n - d - 1\\)\n\n\n21.2.2 Why Not Divide by \\(n\\)?\nIf we divided by \\(n\\), the estimator would be biased: \\[\nE\\left[\\frac{1}{n}\\sum_{i=1}^n r_i^2\\right] &lt; \\sigma^2\n\\]\nThis underestimates the true variance because the residuals are constrained to satisfy the normal equations (they’re not truly independent).\nDividing by \\(n - d - 1\\) corrects this bias: \\[\nE[\\hat{\\sigma}^2] = E\\left[\\frac{\\text{RSS}}{n - d - 1}\\right] = \\sigma^2\n\\]\nThis makes \\(\\hat{\\sigma}^2\\) an unbiased estimator of \\(\\sigma^2\\)."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-example-1",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-example-1",
+    "title": "Linear Regression: Reading Material",
+    "section": "21.3 Aerospace Example",
+    "text": "21.3 Aerospace Example\nScenario: Fit drag coefficient model: \\[\nC_D = \\beta_0 + \\beta_1 \\alpha + \\beta_2 \\alpha^2\n\\]\nusing \\(n = 20\\) wind tunnel data points.\nParameters: - Number of features: \\(d = 2\\) (we have \\(\\alpha\\) and \\(\\alpha^2\\)) - Total parameters: \\(d + 1 = 3\\) (including intercept \\(\\beta_0\\)) - Degrees of freedom: \\(n - d - 1 = 20 - 2 - 1 = 17\\)\nVariance estimate: \\[\n\\hat{\\sigma}^2 = \\frac{\\sum_{i=1}^{20}(C_{D_i} - \\hat{C}_{D_i})^2}{17}\n\\]"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#relationship-to-model-fit",
+    "href": "week02_linear_regression/week02_reading_material.html#relationship-to-model-fit",
+    "title": "Linear Regression: Reading Material",
+    "section": "21.4 Relationship to Model Fit",
+    "text": "21.4 Relationship to Model Fit\nSmall \\(\\hat{\\sigma}^2\\): - Residuals are small - Model fits data well - Low prediction uncertainty\nLarge \\(\\hat{\\sigma}^2\\): - Residuals are large - Model doesn’t fit well or data is very noisy - High prediction uncertainty"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#understanding-coefficient-uncertainty",
+    "href": "week02_linear_regression/week02_reading_material.html#understanding-coefficient-uncertainty",
+    "title": "Linear Regression: Reading Material",
+    "section": "22.1 Understanding Coefficient Uncertainty",
+    "text": "22.1 Understanding Coefficient Uncertainty\nEach estimated coefficient \\(\\beta_j^\\ast\\) is a random variable—it depends on the random sample we collected. If we repeated the experiment, we’d get different data and different estimates.\nKey question: How uncertain are we about each coefficient?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#standard-error",
+    "href": "week02_linear_regression/week02_reading_material.html#standard-error",
+    "title": "Linear Regression: Reading Material",
+    "section": "22.2 Standard Error",
+    "text": "22.2 Standard Error\nThe standard error of \\(\\beta_j^\\ast\\) measures its sampling variability:\n\\[\n\\text{SE}(\\beta_j^\\ast) = \\sqrt{\\hat{\\sigma}^2 \\left[(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\right]_{jj}}\n\\]\nInterpretation: - Small SE → precise estimate (high confidence) - Large SE → imprecise estimate (low confidence)\nFactors affecting SE: 1. Data noise (\\(\\hat{\\sigma}^2\\)): More noise → larger SE 2. Sample size (\\(n\\)): More data → smaller SE (typically \\(\\text{SE} \\propto 1/\\sqrt{n}\\)) 3. Feature correlation: Correlated features → larger SE 4. Feature variance: Features with more spread → smaller SE"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#confidence-interval-formula",
+    "href": "week02_linear_regression/week02_reading_material.html#confidence-interval-formula",
+    "title": "Linear Regression: Reading Material",
+    "section": "22.3 Confidence Interval Formula",
+    "text": "22.3 Confidence Interval Formula\nA \\(100(1-\\gamma)\\%\\) confidence interval for \\(\\beta_j\\) is:\n\\[\n\\beta_j^\\ast \\pm t_{\\gamma/2, n-d-1} \\cdot \\text{SE}(\\beta_j^\\ast)\n\\]\nwhere \\(t_{\\gamma/2, n-d-1}\\) is the critical value from the t-distribution with \\(n-d-1\\) degrees of freedom.\nCommon confidence levels: - 95% confidence: \\(\\gamma = 0.05\\), so \\(t_{0.025, n-d-1}\\) - 90% confidence: \\(\\gamma = 0.10\\), so \\(t_{0.05, n-d-1}\\) - 99% confidence: \\(\\gamma = 0.01\\), so \\(t_{0.005, n-d-1}\\)\nFor large \\(n\\): t-distribution approaches normal, \\(t_{\\gamma/2, n-d-1} \\approx z_{\\gamma/2}\\) - 95% CI: \\(z_{0.025} \\approx 1.96 \\approx 2\\) - 90% CI: \\(z_{0.05} \\approx 1.645\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#interpretation",
+    "href": "week02_linear_regression/week02_reading_material.html#interpretation",
+    "title": "Linear Regression: Reading Material",
+    "section": "22.4 Interpretation",
+    "text": "22.4 Interpretation\nWhat a 95% CI means:\n\nIf we repeated the experiment many times and computed a 95% CI each time, approximately 95% of these intervals would contain the true parameter value \\(\\beta_j\\).\n\nWhat it does NOT mean: - The probability that \\(\\beta_j\\) is in this interval is 95% (Bayesian interpretation) - We are 95% sure our estimate is correct"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-example-2",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-example-2",
+    "title": "Linear Regression: Reading Material",
+    "section": "22.5 Aerospace Example",
+    "text": "22.5 Aerospace Example\nScenario: Fitting lift coefficient model: \\[\nC_L = \\beta_0 + \\beta_1 \\alpha\n\\]\nResults: - \\(\\beta_1^\\ast = 0.105\\) (per degree) - \\(\\text{SE}(\\beta_1^\\ast) = 0.004\\) - \\(n = 30\\), \\(d = 1\\), so df \\(= 28\\) - \\(t_{0.025, 28} \\approx 2.048\\)\n95% Confidence Interval: \\[\n0.105 \\pm 2.048 \\times 0.004 = 0.105 \\pm 0.008 = [0.097, 0.113]\n\\]\nInterpretation: We are 95% confident the true lift slope is between 0.097 and 0.113 per degree.\nEngineering decision: This precision allows us to set conservative performance bounds for flight envelope calculations."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-central-question",
+    "href": "week02_linear_regression/week02_reading_material.html#the-central-question",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.1 The Central Question",
+    "text": "23.1 The Central Question\nAfter estimating coefficients from data, we ask: Is this coefficient significantly different from zero, or could it just be noise?\nThis is crucial for: - Feature selection: Which features actually matter? - Model simplification: Can we remove unimportant features? - Physical interpretation: Is this effect real or spurious?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#setting-up-the-test",
+    "href": "week02_linear_regression/week02_reading_material.html#setting-up-the-test",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.2 Setting Up the Test",
+    "text": "23.2 Setting Up the Test\n\n23.2.1 Hypotheses\nNull hypothesis \\(H_0\\): \\[\n\\beta_j = 0\n\\]\nInterpretation: Feature \\(j\\) has no true effect on the response. Any non-zero estimate we observed is just random sampling variation.\nAlternative hypothesis \\(H_1\\): \\[\n\\beta_j \\neq 0\n\\]\nInterpretation: Feature \\(j\\) does affect the response. The estimated effect is real, not just noise."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#the-test-statistic",
+    "href": "week02_linear_regression/week02_reading_material.html#the-test-statistic",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.3 The Test Statistic",
+    "text": "23.3 The Test Statistic\nWe construct a t-statistic:\n\\[\nt_j = \\frac{\\beta_j^\\ast}{\\text{SE}(\\beta_j^\\ast)} = \\frac{\\text{Estimated coefficient}}{\\text{Standard error of estimate}}\n\\]\nInterpretation: - Measures how many standard errors the estimate is away from zero - If \\(\\beta_j = 0\\) truly, we expect \\(\\beta_j^\\ast \\approx 0\\) (within sampling error) - Large \\(|t_j|\\) means the estimate is far from zero → unlikely if \\(H_0\\) is true"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#distribution-under-the-null",
+    "href": "week02_linear_regression/week02_reading_material.html#distribution-under-the-null",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.4 Distribution Under the Null",
+    "text": "23.4 Distribution Under the Null\nIf \\(H_0\\) is true (\\(\\beta_j = 0\\)), then:\n\\[\nt_j \\sim t_{n-d-1}\n\\]\nThe test statistic follows a t-distribution with \\(n - d - 1\\) degrees of freedom.\nThis allows us to compute p-values and make decisions."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#making-the-decision",
+    "href": "week02_linear_regression/week02_reading_material.html#making-the-decision",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.5 Making the Decision",
+    "text": "23.5 Making the Decision\n\n23.5.1 Approach 1: P-value\nP-value: The probability of observing a test statistic as extreme as (or more extreme than) what we got, if the null hypothesis were true.\n\\[\np\\text{-value} = P(|t| \\geq |t_j| \\mid H_0 \\text{ is true})\n\\]\nDecision rule: - If \\(p &lt; \\alpha\\) (significance level, typically 0.05): Reject \\(H_0\\) (coefficient is significant) - If \\(p \\geq \\alpha\\): Fail to reject \\(H_0\\) (insufficient evidence that coefficient differs from zero)\nInterpretation of p-values: - \\(p &lt; 0.001\\): Very strong evidence against \\(H_0\\) (highly significant) - \\(p &lt; 0.01\\): Strong evidence - \\(p &lt; 0.05\\): Moderate evidence (conventional cutoff) - \\(p &gt; 0.05\\): Weak or no evidence\n\n\n23.5.2 Approach 2: Critical Value\nCritical value: The threshold \\(t_{\\text{crit}} = t_{\\alpha/2, n-d-1}\\) such that:\n\\[\nP(|t| &gt; t_{\\text{crit}} \\mid H_0) = \\alpha\n\\]\nDecision rule: - If \\(|t_j| &gt; t_{\\text{crit}}\\): Reject \\(H_0\\) - If \\(|t_j| \\leq t_{\\text{crit}}\\): Fail to reject \\(H_0\\)\nEquivalence: Both approaches give the same conclusion. The p-value approach is more informative because it quantifies the strength of evidence."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-example-3",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-example-3",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.6 Aerospace Example",
+    "text": "23.6 Aerospace Example\nScenario: Testing whether Reynolds number affects drag coefficient in our model:\n\\[\nC_D = \\beta_0 + \\beta_1 \\alpha + \\beta_2 \\alpha^2 + \\beta_3 \\log(\\text{Re})\n\\]\nResults for \\(\\beta_3\\): - \\(\\beta_3^\\ast = -0.0015\\) - \\(\\text{SE}(\\beta_3^\\ast) = 0.0008\\) - \\(n = 50\\), \\(d = 3\\), df \\(= 46\\)\nTest statistic: \\[\nt_3 = \\frac{-0.0015}{0.0008} = -1.875\n\\]\nP-value (two-tailed, df = 46): \\[\np \\approx 0.067\n\\]\nDecision at \\(\\alpha = 0.05\\): - \\(p = 0.067 &gt; 0.05\\): Fail to reject \\(H_0\\) - Conclusion: Insufficient evidence that Reynolds number significantly affects drag (at 5% significance level)\nEngineering interpretation: - We might consider removing \\(\\log(\\text{Re})\\) from the model to simplify it - Or acknowledge that Reynolds number effects are weak in our data range - Or collect more data to increase statistical power"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#important-caveats",
+    "href": "week02_linear_regression/week02_reading_material.html#important-caveats",
+    "title": "Linear Regression: Reading Material",
+    "section": "23.7 Important Caveats",
+    "text": "23.7 Important Caveats\n\nStatistical significance ≠ practical significance: A tiny effect can be statistically significant with enough data\nMultiple testing: Testing many coefficients increases false positive rate (use Bonferroni correction or similar)\nCorrelation: In models with many correlated features, individual t-tests can be misleading\nModel assumptions: These tests assume normality, homoscedasticity, etc."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#mathematical-foundations",
+    "href": "week02_linear_regression/week02_reading_material.html#mathematical-foundations",
+    "title": "Linear Regression: Reading Material",
+    "section": "24.1 Mathematical Foundations",
+    "text": "24.1 Mathematical Foundations\n\nLinear regression models relationships as \\(\\boldsymbol{y} = \\boldsymbol{X}\\boldsymbol{\\beta} + \\boldsymbol{\\epsilon}\\)\n“Linear” refers to parameters, not features—we can model nonlinear relationships\nThe optimal solution minimizes squared error: \\(\\min \\|\\boldsymbol{y} - \\boldsymbol{X}\\boldsymbol{\\beta}\\|^2\\)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#two-solution-approaches",
+    "href": "week02_linear_regression/week02_reading_material.html#two-solution-approaches",
+    "title": "Linear Regression: Reading Material",
+    "section": "24.2 Two Solution Approaches",
+    "text": "24.2 Two Solution Approaches\n\nClosed-form (Normal Equations): \\(\\boldsymbol{\\beta}^\\ast = (\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\boldsymbol{y}\\)\n\nExact, one-step solution\nRequires matrix inversion\nCan fail for large \\(d\\) or singular \\(\\boldsymbol{X}^T\\boldsymbol{X}\\)\n\nGradient Descent: Iterative optimization\n\nWorks for any problem size\nRequires tuning (learning rate, iterations)\nFoundation of modern machine learning"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#geometric-insight",
+    "href": "week02_linear_regression/week02_reading_material.html#geometric-insight",
+    "title": "Linear Regression: Reading Material",
+    "section": "24.3 Geometric Insight",
+    "text": "24.3 Geometric Insight\n\nOLS finds the orthogonal projection of \\(\\boldsymbol{y}\\) onto col(\\(\\boldsymbol{X}\\))\nResiduals are perpendicular to feature space: \\(\\boldsymbol{X}^T\\boldsymbol{r} = \\boldsymbol{0}\\)\nProjection matrix \\(\\boldsymbol{P} = \\boldsymbol{X}(\\boldsymbol{X}^T\\boldsymbol{X})^{-1}\\boldsymbol{X}^T\\) separates signal from noise"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#statistical-properties",
+    "href": "week02_linear_regression/week02_reading_material.html#statistical-properties",
+    "title": "Linear Regression: Reading Material",
+    "section": "24.4 Statistical Properties",
+    "text": "24.4 Statistical Properties\n\nUnder standard assumptions, OLS is BLUE (Best Linear Unbiased Estimator)\nCoefficient distribution: \\(\\boldsymbol{\\beta}^\\ast \\sim \\mathcal{N}(\\boldsymbol{\\beta}_{\\text{true}}, \\sigma^2(\\boldsymbol{X}^T\\boldsymbol{X})^{-1})\\)\nEnables confidence intervals and hypothesis tests"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#practical-considerations",
+    "href": "week02_linear_regression/week02_reading_material.html#practical-considerations",
+    "title": "Linear Regression: Reading Material",
+    "section": "24.5 Practical Considerations",
+    "text": "24.5 Practical Considerations\n\nCheck assumptions (linearity, independence, homoscedasticity, normality)\nWatch for multicollinearity\nUse appropriate validation metrics\nConsider regularization for high-dimensional problems"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_reading_material.html#aerospace-applications",
+    "href": "week02_linear_regression/week02_reading_material.html#aerospace-applications",
+    "title": "Linear Regression: Reading Material",
+    "section": "24.6 Aerospace Applications",
+    "text": "24.6 Aerospace Applications\nLinear regression is essential for: - Performance prediction (drag, lift, fuel consumption) - Wind tunnel data analysis - Flight test analysis - System identification - Model validation and uncertainty quantification\nThe techniques you’ve learned form the foundation for more advanced machine learning methods used throughout aerospace engineering."
   }
 ]

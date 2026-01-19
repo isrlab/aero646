@@ -289,7 +289,7 @@ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_d x_{id} + \eps
 <div class="fragment">
 <h3 id="vector-notation">Vector Notation</h3>
 <p><span class="math display">\[
-\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta}^\ast + \boldsymbol{\epsilon}
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}
 \]</span></p>
 <p>where <span class="math inline">\(\boldsymbol{X} \in \mathbb{R}^{n \times (d+1)}\)</span> is the <strong>design matrix</strong> with augmented 1’s for intercept</p>
 </div>
@@ -553,7 +553,7 @@ C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2 + \beta_3 M^2 + \beta_4(\alpha M
 <section id="concrete-example-verify-orthogonality" class="slide level2">
 <h2>Concrete Example: Verify Orthogonality</h2>
 <h3 id="simple-linear-regression-y-β₀-β₁x">Simple Linear Regression: y = β₀ + β₁x</h3>
-<div id="85267a49" class="cell" data-fig-height="7" data-fig-width="13" data-execution_count="3">
+<div id="d97118a1" class="cell" data-fig-height="7" data-fig-width="13" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>X = [[1. 1.]
  [1. 2.]
@@ -2804,7 +2804,7 @@ Build single model that works for multiple aircraft types using categorical vari
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true,"chalkWidth":3,"boardmarkerWidth":2,"chalkEffect":0.4,"show":true},
+'chalkboard': {"buttons":true,"chalkWidth":2,"boardmarkerWidth":2,"chalkEffect":0.01,"show":true},
 'smaller': false,
  
         // Display controls in the bottom right corner

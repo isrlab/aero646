@@ -13,9 +13,9 @@ format:
     transition: fade
     chalkboard:
       buttons: true
-      chalk-width: 3
+      chalk-width: 2
       boardmarker-width: 2
-      chalk-effect: 0.4
+      chalk-effect: 0.01
       show: true
     preview-links: auto
     css: ../aero689-custom.css
@@ -101,7 +101,7 @@ where:
 :::{.fragment}
 ### Vector Notation
 $$
-\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta}^\ast + \boldsymbol{\epsilon}
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}
 $$
 
 where $\boldsymbol{X} \in \mathbb{R}^{n \times (d+1)}$ is the **design matrix** with augmented 1's for intercept
