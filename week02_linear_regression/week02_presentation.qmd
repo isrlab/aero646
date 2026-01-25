@@ -23,6 +23,7 @@ format:
 ---
 
 ## Learning Objectives
+
 - Apply linear regression to aerospace performance prediction
 - Understand least squares method and gradient descent
 - Implement drag coefficient prediction from wind tunnel data
@@ -42,6 +43,7 @@ format:
 
 :::{.fragment}
 ### Real Impact
+
 - 1% fuel savings = $100M+ industry-wide annually
 - Better range predictions = route optimization
 - Accurate payload calculations = safety + efficiency
@@ -75,6 +77,7 @@ $$
 
 :::{.fragment}
 ### The Linear Regression Framework
+
 - **Goal**: Predict drag coefficient (CD) from flight parameters
 - **Input features**: Angle of attack ($\alpha$), Mach number (M), Reynolds number (Re)
 - **Output**: Drag coefficient for performance calculations
@@ -1018,485 +1021,105 @@ $$
 
 ---
 
-## Statistical Properties: Distribution
+## Statistical Inference: Understanding Uncertainty
 
-### Under Normality Assumption
+### Why Do We Care About Uncertainty?
 
-**If we assume** $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$ independently, then our OLS estimator has a known distribution:
-
-$$
-\boldsymbol{\beta}^\ast \sim \mathcal{N}\left(\boldsymbol{\beta}_\text{true}, \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right)
-$$
+**Engineering Question**: After fitting $C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2$, how confident are we in the coefficients?
 
 :::{.fragment}
-**What does this mean?**
+**Key Concepts**:
 
-- $\boldsymbol{\beta}^\ast$ is **unbiased**: $E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_\text{true}$
-- **Covariance matrix**: $\text{Cov}(\boldsymbol{\beta}^\ast) = \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}$
-- Diagonal elements give variances: $\text{Var}(\beta_j^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}$
-- Off-diagonal elements show correlations between coefficient estimates
+1. **Standard Error (SE)**: Measures uncertainty in each coefficient
+   - Larger SE → less certain about coefficient value
+   - Computed from residuals and design matrix
+
+2. **Confidence Intervals**: Range of plausible values for each coefficient
+   - Example: $\beta_1 = 0.105 \pm 0.008$ means true value likely between 0.097 and 0.113
+
+3. **Statistical Significance**: Is a coefficient meaningfully different from zero?
+   - **p-value < 0.05**: Strong evidence the feature matters
+   - **p-value > 0.05**: Insufficient evidence (might just be noise)
 :::
 
 :::{.fragment}
-**Practical implication**: We can construct confidence intervals and perform hypothesis tests!
-:::
+**Practical Interpretation**:
 
----
+Most ML libraries (scikit-learn, statsmodels) report these automatically. Focus on:
 
-## Estimating the Noise Variance
-
-### Residual Variance Estimator
-
-Since we don't know the true noise variance $\sigma^2$, we estimate it from the residuals:
-
-$$
-\hat{\sigma}^2 = \frac{1}{n - d - 1}\sum_{i=1}^n (y_i - \hat{y}_i)^2 = \frac{\text{RSS}}{n - d - 1}
-$$
-
-:::{.fragment}
-**Why divide by $n - d - 1$ instead of $n$?**
-
-- We estimated $d + 1$ parameters ($\beta_0, \beta_1, \ldots, \beta_d$)
-- This uses up $d + 1$ **degrees of freedom**
-- Remaining degrees of freedom: $n - (d + 1) = n - d - 1$
-- Division by degrees of freedom makes $\hat{\sigma}^2$ **unbiased**: $E[\hat{\sigma}^2] = \sigma^2$
-:::
-
-:::{.fragment}
-**Aerospace example**: If we fit drag as $C_D = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2$ using $n = 20$ data points:
-
-- We have $d = 2$ features ($\alpha, \alpha^2$) plus intercept
-- Degrees of freedom: $20 - 2 - 1 = 17$
+- Are confidence intervals narrow enough for your application?
+- Which features have small p-values (statistically significant)?
 :::
 
 ---
 
-## Confidence Intervals for Coefficients
+## Model Significance: Does Your Model Work?
 
-### Understanding Coefficient Uncertainty
+### Overall Model Test
 
-* Each coefficient $\beta_j^\ast$ is itself a random variable (depends on random data). 
-
-* We want to quantify: [How certain are we about $\beta_j^\ast$?]{.highlight}
+**Question**: Is the entire model better than just predicting the average value?
 
 :::{.fragment}
-**Standard error of $\beta_j^\ast$**:
+**Simple Check - R² Statistic**:
+
 $$
-\text{SE}(\beta_j^\ast) = \sqrt{\hat{\sigma}^2 \left[(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right]_{jj}}
+R^2 = 1 - \frac{\text{RSS}}{\text{TSS}} = \frac{\text{Variance Explained}}{\text{Total Variance}}
 $$
 
-This measures the **sampling variability** of our estimate.
+- **R² ≈ 0**: Model is useless (no better than average)
+- **R² ≈ 1**: Model explains almost all variance (excellent fit)
+- **Rule of thumb for aerospace**: R² > 0.7 often acceptable for preliminary design
 :::
 
 :::{.fragment}
-**Confidence interval** (at $100(1-\gamma)\%$ confidence level):
-$$
-\beta_j^\ast \pm t_{\gamma/2, n-d-1} \cdot \text{SE}(\beta_j^\ast)
-$$
+**Statistical Test - F-statistic**:
 
-where $t_{\gamma/2, n-d-1}$ is the critical value from the t-distribution with $n-d-1$ degrees of freedom.
-:::
+Tests if **any** features are useful (reported by most software)
 
-:::{.fragment}
-**Interpretation**: We are $100(1-\gamma)\%$ confident the **true** parameter $\beta_j$ lies in this interval.
+- **Large F-value** (e.g., F > 10): Strong evidence model is useful
+- **Small p-value** (p < 0.05): Model significantly better than baseline
 
-**Aerospace example**: For $C_L = \beta_0 + \beta_1 \alpha$, if $\beta_1^\ast = 0.105 \pm 0.008$ (95% CI), we're confident the true lift slope is between 0.097 and 0.113 per degree.
+**Bottom line**: Check that your model's p-value is small (<< 0.05) before using it!
 :::
 
 ---
 
-## Hypothesis Testing for Individual Coefficients
+## Practical Example: Interpreting Regression Output
 
-### The Question: Does This Feature Matter?
+### Typical Software Output
 
-**Scenario**: We've estimated $\beta_j^\ast$ from data. But is this coefficient **significantly different from zero**, or could it just be noise?
+```python
+from sklearn.linear_model import LinearRegression
+import statsmodels.api as sm
 
-:::{.fragment}
-**Null hypothesis** $H_0$: $\beta_j = 0$ 
-
-- The true coefficient is zero
-- Feature $j$ has **no real effect** on the response
-- Any non-zero $\beta_j^\ast$ we observed is just due to random sampling
-:::
-
-:::{.fragment}
-**Alternative hypothesis** $H_1$: $\beta_j \neq 0$
-
-- The true coefficient is not zero
-- Feature $j$ **does** affect the response
-:::
-
----
-
-## Hypothesis Testing for Individual Coefficients
-
-### The Test Statistic
-
-**Test statistic** (t-statistic):
-$$
-t_j = \frac{\beta_j^\ast}{\text{SE}(\beta_j^\ast)} = \frac{\text{Estimated coefficient}}{\text{Standard error of estimate}}
-$$
-
-:::{.fragment}
-**Interpretation**: 
-
-- Measures **how many standard errors** the estimate is away from zero
-- If $\beta_j = 0$ truly, we expect $\beta_j^\ast \approx 0$ (within sampling error)
-- Large $|t_j|$ means estimate is far from zero → unlikely if $H_0$ is true
-:::
-
-:::{.fragment}
-**Distribution under $H_0$**: 
-$$
-t_j \sim t_{n-d-1}
-$$
-
-If the null hypothesis is true, $t_j$ follows a t-distribution with $n-d-1$ degrees of freedom
-:::
-
----
-
-## Hypothesis Testing for Individual Coefficients
-
-### Making the Decision
-
-**Two equivalent approaches**:
-
-:::{.fragment}
-**1. Critical value approach**: 
-
-- Reject $H_0$ if $|t_j| > t_{\gamma/2, n-d-1}$
-- **Critical value** $t_{\gamma/2, n-d-1}$ is the threshold from the t-distribution
-- If our test statistic $|t_j|$ **exceeds** this threshold, reject $H_0$
-- Example: For 95% confidence ($\gamma = 0.05$), $n = 50$, $d = 2$: critical value ≈ 2.01
-  - If $|t_j| = 3.5 > 2.01$, reject $H_0$ (evidence against null)
-  - If $|t_j| = 1.2 < 2.01$, fail to reject $H_0$ (insufficient evidence)
-:::
-
-:::{.fragment}
-**2. P-value approach**: 
-
-- **P-value** = $P(|t| > |t_j| \mid H_0)$ = probability of seeing $|t_j|$ this large (or larger) if $H_0$ were true
-- Reject $H_0$ if **p-value** $< \alpha$ (commonly $\alpha = 0.05$)
-- Smaller p-value = stronger evidence against $H_0$
-:::
-
----
-
-## Hypothesis Testing for Individual Coefficients
-
-### Aerospace Example
-
-**Testing if Mach number affects drag coefficient**
-
-Model: $C_D = \beta_0 + \beta_1 M + \beta_2 M^2 + \epsilon$
-
-**Hypotheses**:
-
-- $H_0: \beta_1 = 0$ (Mach number has **no linear effect** on drag)
-- $H_1: \beta_1 \neq 0$ (Mach number **does** affect drag linearly)
-
-:::{.fragment}
-**Results from data**:
-
-- $\beta_1^\ast = 0.042$
-- $\text{SE}(\beta_1^\ast) = 0.010$
-- $t_1 = \frac{0.042}{0.010} = 4.2$
-- $p-\text{value} = 0.0003$
-:::
-
-:::{.fragment}
-**Interpretation**:
-
-- Our estimate is **4.2 standard errors** away from zero
-- If $H_0$ were true ($\beta_1 = 0$), probability of seeing $|t| \geq 4.2$ is only 0.03%
-- **Strong evidence** that Mach number affects drag
-- **Decision**: Reject $H_0: \beta_1 = 0$ at $\alpha = 0.05$ level
-:::
-
----
-
-## Testing the Overall Model: F-Test
-
-### The Big Picture Question
-
-**Individual t-tests** ask: "Does **this specific** feature matter?"
-
-**F-test** asks: "Does **any** feature matter at all?"
-
-:::{.fragment}
-**Null hypothesis** $H_0$: $\beta_1 = \beta_2 = \cdots = \beta_d = 0$
-
-- **All** feature coefficients are zero (only intercept $\beta_0$ matters)
-- Best prediction is just the mean: $\hat{y} = \bar{y}$
-- Model with features is no better than trivial baseline
-:::
-
-:::{.fragment}
-**Alternative hypothesis** $H_1$: At least one $\beta_j \neq 0$
-
-- **At least one** feature has a real effect
-- Model with features does better than just predicting the mean
-:::
-
----
-
-## Testing the Overall Model: F-Test
-
-### The F-Statistic
-$$
-F = \frac{(\text{TSS} - \text{RSS})/d}{\text{RSS}/(n-d-1)} \sim F_{d, n-d-1} \text{ under } H_0
-$$
-
-where:
-
-- $\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2$ = **total sum of squares** (total variance in $y$)
-- $\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$ = **residual sum of squares** (unexplained variance)
-- **$\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i$** = **sample mean** of observed values (just average the data)
-- **$\hat{y}_i = \boldsymbol{x}_i^T\boldsymbol{\beta}^*$** = **predicted value** from regression model (uses features)
-
-:::{.fragment}
-**What is this testing?**
-
-The F-test asks: *"Is my regression model with features significantly better than just predicting the mean $\bar{y}$ every time?"*
-
-**Intuition**: Imagine two competing strategies:
-
-- **Naive approach**: Ignore all features, always guess $\bar{y}$ (e.g., always predict average drag coefficient)
-- **Model approach**: Use features $\boldsymbol{x}$ to predict $\hat{y}$ (e.g., use angle of attack to predict drag)
-
-The F-statistic measures how much better the model is compared to the naive baseline.
-:::
-
----
-
-## Testing the Overall Model: F-Test
-**Breaking down the formula**:
-
-$$
-F = \frac{\text{Variance explained by features (per feature)}}{\text{Unexplained variance (per degree of freedom)}}
-$$
-
-**Numerator** $(\text{TSS} - \text{RSS})/d$:
-
-- $\text{TSS} - \text{RSS}$ = **explained sum of squares (ESS)** = how much variance the model captures
-- Think of it as: "Total variance in data" minus "What's left unexplained" = "What we successfully explained"
-- Divided by $d$ (number of features) = **average explanation per feature**
-- This normalization prevents unfair advantage to models with many features
-
-**Denominator** $\text{RSS}/(n-d-1)$:
-
-- This is $\hat{\sigma}^2$ = **mean squared error (MSE)** = average squared residual
-- Divided by $(n-d-1)$ degrees of freedom to get an unbiased estimate
-- Represents the **typical prediction error** your model makes
-- This is the "noise floor"—the baseline variance you can't reduce
-
----
-
-## Testing the Overall Model: F-Test
-
-**The F-ratio logic**:
-
-$$
-F = \frac{\text{Average variance explained per feature}}{\text{Average variance of residuals}}
-$$
-
-- If features are **truly useless**, explained variance ≈ residual variance → $F \approx 1$
-- If features are **useful**, explained variance ≫ residual variance → $F \gg 1$
-- F-distribution tells us: "How likely is this F-value if features were truly useless?"
-
-
-
-**Interpretation**:
-
-- **Large F** (≫ 1): Model explains much more than noise → features are useful, reject $H_0$
-- **Small F** (≈ 1): Model barely better than just predicting $\bar{y}$ → features not useful, fail to reject $H_0$
-- **Critical threshold**: Compare to $F_{d, n-d-1}$ distribution at chosen significance level
-
----
-
-## F-Test: Detailed Aerospace Example
-
-### Scenario: Predicting Business Jet Range
-
-**Engineering problem**: Predict maximum range for a business jet based on mission parameters
-
-**Dataset**: 40 flights from flight test program
-
-**Features**:
-
-- $x_1$ = Takeoff weight (1000s kg) — heavier aircraft burns more fuel
-- $x_2$ = Cruise speed (Mach number) — faster flight reduces range
-- $x_3$ = Cruise altitude (1000s ft) — higher altitude improves efficiency
-
-**Response**: 
-
-- $y$ = Maximum range (km)
-
-:::{.fragment}
-**Regression model**:
-$$
-\text{Range} = \beta_0 + \beta_1(\text{Weight}) + \beta_2(\text{Speed}) + \beta_3(\text{Altitude}) + \epsilon
-$$
-:::
-
----
-
-## F-Test Example: The Data
-
-### Summary Statistics from Flight Tests
-
-**Response variable** (Range in km):
-
-- Mean: $\bar{y} = 5250$ km (average range across all flights)
-- Standard deviation: 354 km
-- Min: 4420 km, Max: 6100 km
-
-**Question we're asking**: 
-
-Is this regression model with 3 features significantly better than just predicting $\bar{y} = 5250$ km every time?
-
-:::{.fragment}
-**Competing approaches**:
-
-1. **Naive model** $H_0$: Ignore all features, always predict $\bar{y} = 5250$ km
-   - Simple, but doesn't use any information about weight, speed, altitude
-   
-2. **Regression model** $H_1$: Use features to make informed predictions
-   - More complex, but should predict better if features matter
-:::
-
----
-
-## F-Test Example: Computing the Statistic
-
-### Step 1: Calculate Total Sum of Squares (TSS)
-
-TSS measures total variance in the data around the mean:
-
-$$
-\text{TSS} = \sum_{i=1}^{40} (y_i - \bar{y})^2 = 125{,}000 \text{ km}^2
-$$
-
-**Interpretation**: If we only predict $\bar{y} = 5250$ km, our total squared error is 125,000 km²
-
-:::{.fragment}
-### Step 2: Fit Regression and Calculate Residual Sum of Squares (RSS)
-
-After fitting the model, we get predictions $\hat{y}_i$ for each flight:
-
-$$
-\text{RSS} = \sum_{i=1}^{40} (y_i - \hat{y}_i)^2 = 18{,}500 \text{ km}^2
-$$
-
-**Interpretation**: After using weight, speed, altitude in our model, squared error drops to 18,500 km²
-:::
-
----
-
-## F-Test Example: Understanding the Improvement
-
-### Step 3: Calculate Explained Sum of Squares
-
-$$
-\text{ESS} = \text{TSS} - \text{RSS} = 125{,}000 - 18{,}500 = 106{,}500 \text{ km}^2
-$$
-
-**Visual interpretation**:
-
-```
-Total variance:        ████████████████████████ 125,000 km²
-Explained by model:    ████████████████████      106,500 km² (85.2%)
-Still unexplained:     ████                       18,500 km² (14.8%)
+# Fit model
+model = sm.OLS(y, X).fit()
+print(model.summary())
 ```
 
-:::{.fragment}
-**Key insight**: The model reduced prediction error by **85%** compared to just using the mean!
-
-But is this reduction statistically significant, or could it happen by chance?
-:::
-
----
-
-## F-Test Example: Computing the F-Statistic
-
-### Step 4: Normalize by Degrees of Freedom
-
-**Numerator** — Average explained variance per feature:
-$$
-\frac{\text{ESS}}{d} = \frac{106{,}500}{3} = 35{,}500 \text{ km}^2 \text{ per feature}
-$$
-
-**Denominator** — Mean squared error (MSE):
-$$
-\frac{\text{RSS}}{n-d-1} = \frac{18{,}500}{40-3-1} = \frac{18{,}500}{36} = 514 \text{ km}^2
-$$
-
-This is $\hat{\sigma}^2$ — the estimated variance of residuals.
+**What to look for**:
 
 :::{.fragment}
-### Step 5: Calculate F-Statistic
+1. **Overall Model**:
+   - R²: Should be reasonably high (>0.7 for engineering)
+   - F-statistic p-value: Should be < 0.05 (model is significant)
 
-$$
-F = \frac{35{,}500}{514} = 69.1
-$$
-
-**Interpretation**: On average, each feature explains variance **69 times larger** than the typical residual variance!
-:::
-
----
-
-## F-Test Example: Making the Decision
-
-### Step 6: Compare to F-Distribution
-
-The F-statistic follows an $F_{d, n-d-1} = F_{3, 36}$ distribution under $H_0$.
-
-:::{.fragment}
-**Critical value approach** (at $\gamma = 0.05$ significance):
-
-- Critical value from F-distribution: $F_{\text{crit}} \approx 2.87$
-  - Found using statistical tables or software (e.g., Python's `scipy.stats.f.ppf(0.95, 3, 36)`)
-  - This is the threshold: values above this are "unusual" if $H_0$ is true
-- Our F-statistic: $F = 69.1$
-- Since $69.1 \gg 2.87$, **reject** $H_0$
+2. **Individual Coefficients**:
+   - **Coefficient values**: Do they make physical sense?
+   - **p-values** (P>|t|): Which features are significant?
+     - p < 0.05: Feature is important, keep it
+     - p > 0.05: Feature might not matter, consider removing
+   - **Confidence intervals**: Are they narrow enough for your needs?
 :::
 
 :::{.fragment}
-**p-value approach**:
+**Aerospace Example**:
 
-- p-value = $P(F_{3,36} \geq 69.1) < 0.0001$
-- This is the probability of seeing such a large F if features were truly useless
-- Since p-value $< 0.05$, **reject** $H_0$
-:::
+If predicting $C_D$ from $\alpha$ and $M$, check that:
 
-:::{.fragment}
-> **Conclusion**: We have **overwhelming evidence** that at least one of (weight, speed, altitude) significantly affects aircraft range. The regression model is far superior to just predicting the mean.
-:::
-
----
-
-## F-Test Example: Practical Interpretation
-
-### What Does F = 69.1 Really Mean?
-
-**For the flight test engineer**:
-
-1. **Strong predictive value**: The features (weight, speed, altitude) capture real physics of range
-2. **Not random chance**: The model's performance is not due to overfitting or luck
-3. **Use it with confidence**: Safe to use this model for mission planning and performance predictions
-
-:::{.fragment}
-**What it doesn't tell you**:
-
-- Which specific features are important? -- need individual t-tests
-- How accurate individual predictions are? -- need prediction intervals
-- Whether the model form is correct? --  could be nonlinear effects
-- If you have the "right" features? -- maybe missing engine efficiency, wind, etc.
-:::
-
-:::{.fragment}
-**Next step**: Use individual coefficient t-tests to determine which of the three features contribute significantly.
+- $\alpha$ coefficient is positive (drag increases with angle of attack)
+- Both p-values < 0.05 (both features matter)
+- R² > 0.85 (good fit for aerodynamic data)
 :::
 
 ---
@@ -1569,12 +1192,15 @@ Think of it as: *How much better is my model than just using the average?*
 
 :::{.fragment}
 **Model 1**: $C_D = \beta_0 + \beta_1 M$ (just Mach number)
+
 - $R^2 = 0.78$
 
 **Model 2**: Add Reynolds number: $C_D = \beta_0 + \beta_1 M + \beta_2 Re$
+
 - $R^2 = 0.85$ ✓ Better!
 
 **Model 3**: Add random noise feature: $C_D = \beta_0 + \beta_1 M + \beta_2 Re + \beta_3(\text{noise})$
+
 - $R^2 = 0.86$ ← Still increased! Even though noise has no meaning!
 :::
 
@@ -2436,7 +2062,6 @@ X_scaled = scaler.fit_transform(X)
 ---
 
 ## Practical Implementation
-[I am here]{.highlight}
 
 ### Scikit-learn Workflow
 

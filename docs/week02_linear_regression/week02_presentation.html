@@ -553,7 +553,7 @@ C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2 + \beta_3 M^2 + \beta_4(\alpha M
 <section id="concrete-example-verify-orthogonality" class="slide level2">
 <h2>Concrete Example: Verify Orthogonality</h2>
 <h3 id="simple-linear-regression-y-β₀-β₁x">Simple Linear Regression: y = β₀ + β₁x</h3>
-<div id="5ad71d4e" class="cell" data-fig-height="7" data-fig-width="13" data-execution_count="3">
+<div id="cbea92b1" class="cell" data-fig-height="7" data-fig-width="13" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>X = [[1. 1.]
  [1. 2.]
@@ -798,400 +798,100 @@ Residual = [ 0.5 -1.   0.5]</code></pre>
 </div>
 </div></div>
 </section>
-<section id="statistical-properties-distribution" class="slide level2">
-<h2>Statistical Properties: Distribution</h2>
-<h3 id="under-normality-assumption">Under Normality Assumption</h3>
-<p><strong>If we assume</strong> <span class="math inline">\(\epsilon_i \sim \mathcal{N}(0, \sigma^2)\)</span> independently, then our OLS estimator has a known distribution:</p>
-<p><span class="math display">\[
-\boldsymbol{\beta}^\ast \sim \mathcal{N}\left(\boldsymbol{\beta}_\text{true}, \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right)
-\]</span></p>
+<section id="statistical-inference-understanding-uncertainty" class="slide level2">
+<h2>Statistical Inference: Understanding Uncertainty</h2>
+<h3 id="why-do-we-care-about-uncertainty">Why Do We Care About Uncertainty?</h3>
+<p><strong>Engineering Question</strong>: After fitting <span class="math inline">\(C_D = \beta_0 + \beta_1\alpha + \beta_2\alpha^2\)</span>, how confident are we in the coefficients?</p>
 <div class="fragment">
-<p><strong>What does this mean?</strong></p>
-<ul>
-<li><span class="math inline">\(\boldsymbol{\beta}^\ast\)</span> is <strong>unbiased</strong>: <span class="math inline">\(E[\boldsymbol{\beta}^\ast] = \boldsymbol{\beta}_\text{true}\)</span></li>
-<li><strong>Covariance matrix</strong>: <span class="math inline">\(\text{Cov}(\boldsymbol{\beta}^\ast) = \sigma^2(\boldsymbol{X}^T\boldsymbol{X})^{-1}\)</span></li>
-<li>Diagonal elements give variances: <span class="math inline">\(\text{Var}(\beta_j^\ast) = \sigma^2[(\boldsymbol{X}^T\boldsymbol{X})^{-1}]_{jj}\)</span></li>
-<li>Off-diagonal elements show correlations between coefficient estimates</li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Practical implication</strong>: We can construct confidence intervals and perform hypothesis tests!</p>
-</div>
-</section>
-<section id="estimating-the-noise-variance" class="slide level2">
-<h2>Estimating the Noise Variance</h2>
-<h3 id="residual-variance-estimator">Residual Variance Estimator</h3>
-<p>Since we don’t know the true noise variance <span class="math inline">\(\sigma^2\)</span>, we estimate it from the residuals:</p>
-<p><span class="math display">\[
-\hat{\sigma}^2 = \frac{1}{n - d - 1}\sum_{i=1}^n (y_i - \hat{y}_i)^2 = \frac{\text{RSS}}{n - d - 1}
-\]</span></p>
-<div class="fragment">
-<p><strong>Why divide by <span class="math inline">\(n - d - 1\)</span> instead of <span class="math inline">\(n\)</span>?</strong></p>
-<ul>
-<li>We estimated <span class="math inline">\(d + 1\)</span> parameters (<span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_d\)</span>)</li>
-<li>This uses up <span class="math inline">\(d + 1\)</span> <strong>degrees of freedom</strong></li>
-<li>Remaining degrees of freedom: <span class="math inline">\(n - (d + 1) = n - d - 1\)</span></li>
-<li>Division by degrees of freedom makes <span class="math inline">\(\hat{\sigma}^2\)</span> <strong>unbiased</strong>: <span class="math inline">\(E[\hat{\sigma}^2] = \sigma^2\)</span></li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Aerospace example</strong>: If we fit drag as <span class="math inline">\(C_D = \beta_0 + \beta_1 \alpha + \beta_2 \alpha^2\)</span> using <span class="math inline">\(n = 20\)</span> data points:</p>
-<ul>
-<li>We have <span class="math inline">\(d = 2\)</span> features (<span class="math inline">\(\alpha, \alpha^2\)</span>) plus intercept</li>
-<li>Degrees of freedom: <span class="math inline">\(20 - 2 - 1 = 17\)</span></li>
-</ul>
-</div>
-</section>
-<section id="confidence-intervals-for-coefficients" class="slide level2">
-<h2>Confidence Intervals for Coefficients</h2>
-<h3 id="understanding-coefficient-uncertainty">Understanding Coefficient Uncertainty</h3>
-<ul>
-<li><p>Each coefficient <span class="math inline">\(\beta_j^\ast\)</span> is itself a random variable (depends on random data).</p></li>
-<li><p>We want to quantify: <span class="highlight">How certain are we about <span class="math inline">\(\beta_j^\ast\)</span>?</span></p></li>
-</ul>
-<div class="fragment">
-<p><strong>Standard error of <span class="math inline">\(\beta_j^\ast\)</span></strong>: <span class="math display">\[
-\text{SE}(\beta_j^\ast) = \sqrt{\hat{\sigma}^2 \left[(\boldsymbol{X}^T\boldsymbol{X})^{-1}\right]_{jj}}
-\]</span></p>
-<p>This measures the <strong>sampling variability</strong> of our estimate.</p>
-</div>
-<div class="fragment">
-<p><strong>Confidence interval</strong> (at <span class="math inline">\(100(1-\gamma)\%\)</span> confidence level): <span class="math display">\[
-\beta_j^\ast \pm t_{\gamma/2, n-d-1} \cdot \text{SE}(\beta_j^\ast)
-\]</span></p>
-<p>where <span class="math inline">\(t_{\gamma/2, n-d-1}\)</span> is the critical value from the t-distribution with <span class="math inline">\(n-d-1\)</span> degrees of freedom.</p>
-</div>
-<div class="fragment">
-<p><strong>Interpretation</strong>: We are <span class="math inline">\(100(1-\gamma)\%\)</span> confident the <strong>true</strong> parameter <span class="math inline">\(\beta_j\)</span> lies in this interval.</p>
-<p><strong>Aerospace example</strong>: For <span class="math inline">\(C_L = \beta_0 + \beta_1 \alpha\)</span>, if <span class="math inline">\(\beta_1^\ast = 0.105 \pm 0.008\)</span> (95% CI), we’re confident the true lift slope is between 0.097 and 0.113 per degree.</p>
-</div>
-</section>
-<section id="hypothesis-testing-for-individual-coefficients" class="slide level2">
-<h2>Hypothesis Testing for Individual Coefficients</h2>
-<h3 id="the-question-does-this-feature-matter">The Question: Does This Feature Matter?</h3>
-<p><strong>Scenario</strong>: We’ve estimated <span class="math inline">\(\beta_j^\ast\)</span> from data. But is this coefficient <strong>significantly different from zero</strong>, or could it just be noise?</p>
-<div class="fragment">
-<p><strong>Null hypothesis</strong> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_j = 0\)</span></p>
-<ul>
-<li>The true coefficient is zero</li>
-<li>Feature <span class="math inline">\(j\)</span> has <strong>no real effect</strong> on the response</li>
-<li>Any non-zero <span class="math inline">\(\beta_j^\ast\)</span> we observed is just due to random sampling</li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\beta_j \neq 0\)</span></p>
-<ul>
-<li>The true coefficient is not zero</li>
-<li>Feature <span class="math inline">\(j\)</span> <strong>does</strong> affect the response</li>
-</ul>
-</div>
-</section>
-<section id="hypothesis-testing-for-individual-coefficients-1" class="slide level2">
-<h2>Hypothesis Testing for Individual Coefficients</h2>
-<h3 id="the-test-statistic">The Test Statistic</h3>
-<p><strong>Test statistic</strong> (t-statistic): <span class="math display">\[
-t_j = \frac{\beta_j^\ast}{\text{SE}(\beta_j^\ast)} = \frac{\text{Estimated coefficient}}{\text{Standard error of estimate}}
-\]</span></p>
-<div class="fragment">
-<p><strong>Interpretation</strong>:</p>
-<ul>
-<li>Measures <strong>how many standard errors</strong> the estimate is away from zero</li>
-<li>If <span class="math inline">\(\beta_j = 0\)</span> truly, we expect <span class="math inline">\(\beta_j^\ast \approx 0\)</span> (within sampling error)</li>
-<li>Large <span class="math inline">\(|t_j|\)</span> means estimate is far from zero → unlikely if <span class="math inline">\(H_0\)</span> is true</li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Distribution under <span class="math inline">\(H_0\)</span></strong>: <span class="math display">\[
-t_j \sim t_{n-d-1}
-\]</span></p>
-<p>If the null hypothesis is true, <span class="math inline">\(t_j\)</span> follows a t-distribution with <span class="math inline">\(n-d-1\)</span> degrees of freedom</p>
-</div>
-</section>
-<section id="hypothesis-testing-for-individual-coefficients-2" class="slide level2">
-<h2>Hypothesis Testing for Individual Coefficients</h2>
-<h3 id="making-the-decision">Making the Decision</h3>
-<p><strong>Two equivalent approaches</strong>:</p>
-<div class="fragment">
-<p><strong>1. Critical value approach</strong>:</p>
-<ul>
-<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_j| &gt; t_{\gamma/2, n-d-1}\)</span></li>
-<li><strong>Critical value</strong> <span class="math inline">\(t_{\gamma/2, n-d-1}\)</span> is the threshold from the t-distribution</li>
-<li>If our test statistic <span class="math inline">\(|t_j|\)</span> <strong>exceeds</strong> this threshold, reject <span class="math inline">\(H_0\)</span></li>
-<li>Example: For 95% confidence (<span class="math inline">\(\gamma = 0.05\)</span>), <span class="math inline">\(n = 50\)</span>, <span class="math inline">\(d = 2\)</span>: critical value ≈ 2.01
-<ul>
-<li>If <span class="math inline">\(|t_j| = 3.5 &gt; 2.01\)</span>, reject <span class="math inline">\(H_0\)</span> (evidence against null)</li>
-<li>If <span class="math inline">\(|t_j| = 1.2 &lt; 2.01\)</span>, fail to reject <span class="math inline">\(H_0\)</span> (insufficient evidence)</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>2. P-value approach</strong>:</p>
-<ul>
-<li><strong>P-value</strong> = <span class="math inline">\(P(|t| &gt; |t_j| \mid H_0)\)</span> = probability of seeing <span class="math inline">\(|t_j|\)</span> this large (or larger) if <span class="math inline">\(H_0\)</span> were true</li>
-<li>Reject <span class="math inline">\(H_0\)</span> if <strong>p-value</strong> <span class="math inline">\(&lt; \alpha\)</span> (commonly <span class="math inline">\(\alpha = 0.05\)</span>)</li>
-<li>Smaller p-value = stronger evidence against <span class="math inline">\(H_0\)</span></li>
-</ul>
-</div>
-</section>
-<section id="hypothesis-testing-for-individual-coefficients-3" class="slide level2">
-<h2>Hypothesis Testing for Individual Coefficients</h2>
-<h3 id="aerospace-example-1">Aerospace Example</h3>
-<p><strong>Testing if Mach number affects drag coefficient</strong></p>
-<p>Model: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 M^2 + \epsilon\)</span></p>
-<p><strong>Hypotheses</strong>:</p>
-<ul>
-<li><span class="math inline">\(H_0: \beta_1 = 0\)</span> (Mach number has <strong>no linear effect</strong> on drag)</li>
-<li><span class="math inline">\(H_1: \beta_1 \neq 0\)</span> (Mach number <strong>does</strong> affect drag linearly)</li>
-</ul>
-<div class="fragment">
-<p><strong>Results from data</strong>:</p>
-<ul>
-<li><span class="math inline">\(\beta_1^\ast = 0.042\)</span></li>
-<li><span class="math inline">\(\text{SE}(\beta_1^\ast) = 0.010\)</span></li>
-<li><span class="math inline">\(t_1 = \frac{0.042}{0.010} = 4.2\)</span></li>
-<li><span class="math inline">\(p-\text{value} = 0.0003\)</span></li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Interpretation</strong>:</p>
-<ul>
-<li>Our estimate is <strong>4.2 standard errors</strong> away from zero</li>
-<li>If <span class="math inline">\(H_0\)</span> were true (<span class="math inline">\(\beta_1 = 0\)</span>), probability of seeing <span class="math inline">\(|t| \geq 4.2\)</span> is only 0.03%</li>
-<li><strong>Strong evidence</strong> that Mach number affects drag</li>
-<li><strong>Decision</strong>: Reject <span class="math inline">\(H_0: \beta_1 = 0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> level</li>
-</ul>
-</div>
-</section>
-<section id="testing-the-overall-model-f-test" class="slide level2">
-<h2>Testing the Overall Model: F-Test</h2>
-<h3 id="the-big-picture-question">The Big Picture Question</h3>
-<p><strong>Individual t-tests</strong> ask: “Does <strong>this specific</strong> feature matter?”</p>
-<p><strong>F-test</strong> asks: “Does <strong>any</strong> feature matter at all?”</p>
-<div class="fragment">
-<p><strong>Null hypothesis</strong> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_d = 0\)</span></p>
-<ul>
-<li><strong>All</strong> feature coefficients are zero (only intercept <span class="math inline">\(\beta_0\)</span> matters)</li>
-<li>Best prediction is just the mean: <span class="math inline">\(\hat{y} = \bar{y}\)</span></li>
-<li>Model with features is no better than trivial baseline</li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1\)</span>: At least one <span class="math inline">\(\beta_j \neq 0\)</span></p>
-<ul>
-<li><strong>At least one</strong> feature has a real effect</li>
-<li>Model with features does better than just predicting the mean</li>
-</ul>
-</div>
-</section>
-<section id="testing-the-overall-model-f-test-1" class="slide level2">
-<h2>Testing the Overall Model: F-Test</h2>
-<h3 id="the-f-statistic">The F-Statistic</h3>
-<p><span class="math display">\[
-F = \frac{(\text{TSS} - \text{RSS})/d}{\text{RSS}/(n-d-1)} \sim F_{d, n-d-1} \text{ under } H_0
-\]</span></p>
-<p>where:</p>
-<ul>
-<li><span class="math inline">\(\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2\)</span> = <strong>total sum of squares</strong> (total variance in <span class="math inline">\(y\)</span>)</li>
-<li><span class="math inline">\(\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2\)</span> = <strong>residual sum of squares</strong> (unexplained variance)</li>
-<li><strong><span class="math inline">\(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)</span></strong> = <strong>sample mean</strong> of observed values (just average the data)</li>
-<li><strong><span class="math inline">\(\hat{y}_i = \boldsymbol{x}_i^T\boldsymbol{\beta}^*\)</span></strong> = <strong>predicted value</strong> from regression model (uses features)</li>
-</ul>
-<div class="fragment">
-<p><strong>What is this testing?</strong></p>
-<p>The F-test asks: <em>“Is my regression model with features significantly better than just predicting the mean <span class="math inline">\(\bar{y}\)</span> every time?”</em></p>
-<p><strong>Intuition</strong>: Imagine two competing strategies:</p>
-<ul>
-<li><strong>Naive approach</strong>: Ignore all features, always guess <span class="math inline">\(\bar{y}\)</span> (e.g., always predict average drag coefficient)</li>
-<li><strong>Model approach</strong>: Use features <span class="math inline">\(\boldsymbol{x}\)</span> to predict <span class="math inline">\(\hat{y}\)</span> (e.g., use angle of attack to predict drag)</li>
-</ul>
-<p>The F-statistic measures how much better the model is compared to the naive baseline.</p>
-</div>
-</section>
-<section id="testing-the-overall-model-f-test-2" class="slide level2">
-<h2>Testing the Overall Model: F-Test</h2>
-<p><strong>Breaking down the formula</strong>:</p>
-<p><span class="math display">\[
-F = \frac{\text{Variance explained by features (per feature)}}{\text{Unexplained variance (per degree of freedom)}}
-\]</span></p>
-<p><strong>Numerator</strong> <span class="math inline">\((\text{TSS} - \text{RSS})/d\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\text{TSS} - \text{RSS}\)</span> = <strong>explained sum of squares (ESS)</strong> = how much variance the model captures</li>
-<li>Think of it as: “Total variance in data” minus “What’s left unexplained” = “What we successfully explained”</li>
-<li>Divided by <span class="math inline">\(d\)</span> (number of features) = <strong>average explanation per feature</strong></li>
-<li>This normalization prevents unfair advantage to models with many features</li>
-</ul>
-<p><strong>Denominator</strong> <span class="math inline">\(\text{RSS}/(n-d-1)\)</span>:</p>
-<ul>
-<li>This is <span class="math inline">\(\hat{\sigma}^2\)</span> = <strong>mean squared error (MSE)</strong> = average squared residual</li>
-<li>Divided by <span class="math inline">\((n-d-1)\)</span> degrees of freedom to get an unbiased estimate</li>
-<li>Represents the <strong>typical prediction error</strong> your model makes</li>
-<li>This is the “noise floor”—the baseline variance you can’t reduce</li>
-</ul>
-</section>
-<section id="testing-the-overall-model-f-test-3" class="slide level2">
-<h2>Testing the Overall Model: F-Test</h2>
-<p><strong>The F-ratio logic</strong>:</p>
-<p><span class="math display">\[
-F = \frac{\text{Average variance explained per feature}}{\text{Average variance of residuals}}
-\]</span></p>
-<ul>
-<li>If features are <strong>truly useless</strong>, explained variance ≈ residual variance → <span class="math inline">\(F \approx 1\)</span></li>
-<li>If features are <strong>useful</strong>, explained variance ≫ residual variance → <span class="math inline">\(F \gg 1\)</span></li>
-<li>F-distribution tells us: “How likely is this F-value if features were truly useless?”</li>
-</ul>
-<p><strong>Interpretation</strong>:</p>
-<ul>
-<li><strong>Large F</strong> (≫ 1): Model explains much more than noise → features are useful, reject <span class="math inline">\(H_0\)</span></li>
-<li><strong>Small F</strong> (≈ 1): Model barely better than just predicting <span class="math inline">\(\bar{y}\)</span> → features not useful, fail to reject <span class="math inline">\(H_0\)</span></li>
-<li><strong>Critical threshold</strong>: Compare to <span class="math inline">\(F_{d, n-d-1}\)</span> distribution at chosen significance level</li>
-</ul>
-</section>
-<section id="f-test-detailed-aerospace-example" class="slide level2">
-<h2>F-Test: Detailed Aerospace Example</h2>
-<h3 id="scenario-predicting-business-jet-range">Scenario: Predicting Business Jet Range</h3>
-<p><strong>Engineering problem</strong>: Predict maximum range for a business jet based on mission parameters</p>
-<p><strong>Dataset</strong>: 40 flights from flight test program</p>
-<p><strong>Features</strong>:</p>
-<ul>
-<li><span class="math inline">\(x_1\)</span> = Takeoff weight (1000s kg) — heavier aircraft burns more fuel</li>
-<li><span class="math inline">\(x_2\)</span> = Cruise speed (Mach number) — faster flight reduces range</li>
-<li><span class="math inline">\(x_3\)</span> = Cruise altitude (1000s ft) — higher altitude improves efficiency</li>
-</ul>
-<p><strong>Response</strong>:</p>
-<ul>
-<li><span class="math inline">\(y\)</span> = Maximum range (km)</li>
-</ul>
-<div class="fragment">
-<p><strong>Regression model</strong>: <span class="math display">\[
-\text{Range} = \beta_0 + \beta_1(\text{Weight}) + \beta_2(\text{Speed}) + \beta_3(\text{Altitude}) + \epsilon
-\]</span></p>
-</div>
-</section>
-<section id="f-test-example-the-data" class="slide level2">
-<h2>F-Test Example: The Data</h2>
-<h3 id="summary-statistics-from-flight-tests">Summary Statistics from Flight Tests</h3>
-<p><strong>Response variable</strong> (Range in km):</p>
-<ul>
-<li>Mean: <span class="math inline">\(\bar{y} = 5250\)</span> km (average range across all flights)</li>
-<li>Standard deviation: 354 km</li>
-<li>Min: 4420 km, Max: 6100 km</li>
-</ul>
-<p><strong>Question we’re asking</strong>:</p>
-<p>Is this regression model with 3 features significantly better than just predicting <span class="math inline">\(\bar{y} = 5250\)</span> km every time?</p>
-<div class="fragment">
-<p><strong>Competing approaches</strong>:</p>
+<p><strong>Key Concepts</strong>:</p>
 <ol type="1">
-<li><strong>Naive model</strong> <span class="math inline">\(H_0\)</span>: Ignore all features, always predict <span class="math inline">\(\bar{y} = 5250\)</span> km
+<li><strong>Standard Error (SE)</strong>: Measures uncertainty in each coefficient
 <ul>
-<li>Simple, but doesn’t use any information about weight, speed, altitude</li>
+<li>Larger SE → less certain about coefficient value</li>
+<li>Computed from residuals and design matrix</li>
 </ul></li>
-<li><strong>Regression model</strong> <span class="math inline">\(H_1\)</span>: Use features to make informed predictions
+<li><strong>Confidence Intervals</strong>: Range of plausible values for each coefficient
 <ul>
-<li>More complex, but should predict better if features matter</li>
+<li>Example: <span class="math inline">\(\beta_1 = 0.105 \pm 0.008\)</span> means true value likely between 0.097 and 0.113</li>
+</ul></li>
+<li><strong>Statistical Significance</strong>: Is a coefficient meaningfully different from zero?
+<ul>
+<li><strong>p-value &lt; 0.05</strong>: Strong evidence the feature matters</li>
+<li><strong>p-value &gt; 0.05</strong>: Insufficient evidence (might just be noise)</li>
 </ul></li>
 </ol>
 </div>
-</section>
-<section id="f-test-example-computing-the-statistic" class="slide level2">
-<h2>F-Test Example: Computing the Statistic</h2>
-<h3 id="step-1-calculate-total-sum-of-squares-tss">Step 1: Calculate Total Sum of Squares (TSS)</h3>
-<p>TSS measures total variance in the data around the mean:</p>
-<p><span class="math display">\[
-\text{TSS} = \sum_{i=1}^{40} (y_i - \bar{y})^2 = 125{,}000 \text{ km}^2
-\]</span></p>
-<p><strong>Interpretation</strong>: If we only predict <span class="math inline">\(\bar{y} = 5250\)</span> km, our total squared error is 125,000 km²</p>
 <div class="fragment">
-<h3 id="step-2-fit-regression-and-calculate-residual-sum-of-squares-rss">Step 2: Fit Regression and Calculate Residual Sum of Squares (RSS)</h3>
-<p>After fitting the model, we get predictions <span class="math inline">\(\hat{y}_i\)</span> for each flight:</p>
-<p><span class="math display">\[
-\text{RSS} = \sum_{i=1}^{40} (y_i - \hat{y}_i)^2 = 18{,}500 \text{ km}^2
-\]</span></p>
-<p><strong>Interpretation</strong>: After using weight, speed, altitude in our model, squared error drops to 18,500 km²</p>
-</div>
-</section>
-<section id="f-test-example-understanding-the-improvement" class="slide level2">
-<h2>F-Test Example: Understanding the Improvement</h2>
-<h3 id="step-3-calculate-explained-sum-of-squares">Step 3: Calculate Explained Sum of Squares</h3>
-<p><span class="math display">\[
-\text{ESS} = \text{TSS} - \text{RSS} = 125{,}000 - 18{,}500 = 106{,}500 \text{ km}^2
-\]</span></p>
-<p><strong>Visual interpretation</strong>:</p>
-<pre><code>Total variance:        ████████████████████████ 125,000 km²
-Explained by model:    ████████████████████      106,500 km² (85.2%)
-Still unexplained:     ████                       18,500 km² (14.8%)</code></pre>
-<div class="fragment">
-<p><strong>Key insight</strong>: The model reduced prediction error by <strong>85%</strong> compared to just using the mean!</p>
-<p>But is this reduction statistically significant, or could it happen by chance?</p>
-</div>
-</section>
-<section id="f-test-example-computing-the-f-statistic" class="slide level2">
-<h2>F-Test Example: Computing the F-Statistic</h2>
-<h3 id="step-4-normalize-by-degrees-of-freedom">Step 4: Normalize by Degrees of Freedom</h3>
-<p><strong>Numerator</strong> — Average explained variance per feature: <span class="math display">\[
-\frac{\text{ESS}}{d} = \frac{106{,}500}{3} = 35{,}500 \text{ km}^2 \text{ per feature}
-\]</span></p>
-<p><strong>Denominator</strong> — Mean squared error (MSE): <span class="math display">\[
-\frac{\text{RSS}}{n-d-1} = \frac{18{,}500}{40-3-1} = \frac{18{,}500}{36} = 514 \text{ km}^2
-\]</span></p>
-<p>This is <span class="math inline">\(\hat{\sigma}^2\)</span> — the estimated variance of residuals.</p>
-<div class="fragment">
-<h3 id="step-5-calculate-f-statistic">Step 5: Calculate F-Statistic</h3>
-<p><span class="math display">\[
-F = \frac{35{,}500}{514} = 69.1
-\]</span></p>
-<p><strong>Interpretation</strong>: On average, each feature explains variance <strong>69 times larger</strong> than the typical residual variance!</p>
-</div>
-</section>
-<section id="f-test-example-making-the-decision" class="slide level2">
-<h2>F-Test Example: Making the Decision</h2>
-<h3 id="step-6-compare-to-f-distribution">Step 6: Compare to F-Distribution</h3>
-<p>The F-statistic follows an <span class="math inline">\(F_{d, n-d-1} = F_{3, 36}\)</span> distribution under <span class="math inline">\(H_0\)</span>.</p>
-<div class="fragment">
-<p><strong>Critical value approach</strong> (at <span class="math inline">\(\gamma = 0.05\)</span> significance):</p>
+<p><strong>Practical Interpretation</strong>:</p>
+<p>Most ML libraries (scikit-learn, statsmodels) report these automatically. Focus on:</p>
 <ul>
-<li>Critical value from F-distribution: <span class="math inline">\(F_{\text{crit}} \approx 2.87\)</span>
+<li>Are confidence intervals narrow enough for your application?</li>
+<li>Which features have small p-values (statistically significant)?</li>
+</ul>
+</div>
+</section>
+<section id="model-significance-does-your-model-work" class="slide level2">
+<h2>Model Significance: Does Your Model Work?</h2>
+<h3 id="overall-model-test">Overall Model Test</h3>
+<p><strong>Question</strong>: Is the entire model better than just predicting the average value?</p>
+<div class="fragment">
+<p><strong>Simple Check - R² Statistic</strong>:</p>
+<p><span class="math display">\[
+R^2 = 1 - \frac{\text{RSS}}{\text{TSS}} = \frac{\text{Variance Explained}}{\text{Total Variance}}
+\]</span></p>
 <ul>
-<li>Found using statistical tables or software (e.g., Python’s <code>scipy.stats.f.ppf(0.95, 3, 36)</code>)</li>
-<li>This is the threshold: values above this are “unusual” if <span class="math inline">\(H_0\)</span> is true</li>
-</ul></li>
-<li>Our F-statistic: <span class="math inline">\(F = 69.1\)</span></li>
-<li>Since <span class="math inline">\(69.1 \gg 2.87\)</span>, <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
+<li><strong>R² ≈ 0</strong>: Model is useless (no better than average)</li>
+<li><strong>R² ≈ 1</strong>: Model explains almost all variance (excellent fit)</li>
+<li><strong>Rule of thumb for aerospace</strong>: R² &gt; 0.7 often acceptable for preliminary design</li>
 </ul>
 </div>
 <div class="fragment">
-<p><strong>p-value approach</strong>:</p>
+<p><strong>Statistical Test - F-statistic</strong>:</p>
+<p>Tests if <strong>any</strong> features are useful (reported by most software)</p>
 <ul>
-<li>p-value = <span class="math inline">\(P(F_{3,36} \geq 69.1) &lt; 0.0001\)</span></li>
-<li>This is the probability of seeing such a large F if features were truly useless</li>
-<li>Since p-value <span class="math inline">\(&lt; 0.05\)</span>, <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
+<li><strong>Large F-value</strong> (e.g., F &gt; 10): Strong evidence model is useful</li>
+<li><strong>Small p-value</strong> (p &lt; 0.05): Model significantly better than baseline</li>
 </ul>
-</div>
-<div class="fragment">
-<blockquote>
-<p><strong>Conclusion</strong>: We have <strong>overwhelming evidence</strong> that at least one of (weight, speed, altitude) significantly affects aircraft range. The regression model is far superior to just predicting the mean.</p>
-</blockquote>
+<p><strong>Bottom line</strong>: Check that your model’s p-value is small (&lt;&lt; 0.05) before using it!</p>
 </div>
 </section>
-<section id="f-test-example-practical-interpretation" class="slide level2">
-<h2>F-Test Example: Practical Interpretation</h2>
-<h3 id="what-does-f-69.1-really-mean">What Does F = 69.1 Really Mean?</h3>
-<p><strong>For the flight test engineer</strong>:</p>
+<section id="practical-example-interpreting-regression-output" class="slide level2">
+<h2>Practical Example: Interpreting Regression Output</h2>
+<h3 id="typical-software-output">Typical Software Output</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb2-2"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a><span class="co"># Fit model</span></span>
+<span id="cb2-5"><a></a>model <span class="op">=</span> sm.OLS(y, X).fit()</span>
+<span id="cb2-6"><a></a><span class="bu">print</span>(model.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>What to look for</strong>:</p>
+<div class="fragment">
 <ol type="1">
-<li><strong>Strong predictive value</strong>: The features (weight, speed, altitude) capture real physics of range</li>
-<li><strong>Not random chance</strong>: The model’s performance is not due to overfitting or luck</li>
-<li><strong>Use it with confidence</strong>: Safe to use this model for mission planning and performance predictions</li>
-</ol>
-<div class="fragment">
-<p><strong>What it doesn’t tell you</strong>:</p>
+<li><strong>Overall Model</strong>:
 <ul>
-<li>Which specific features are important? – need individual t-tests</li>
-<li>How accurate individual predictions are? – need prediction intervals</li>
-<li>Whether the model form is correct? – could be nonlinear effects</li>
-<li>If you have the “right” features? – maybe missing engine efficiency, wind, etc.</li>
-</ul>
+<li>R²: Should be reasonably high (&gt;0.7 for engineering)</li>
+<li>F-statistic p-value: Should be &lt; 0.05 (model is significant)</li>
+</ul></li>
+<li><strong>Individual Coefficients</strong>:
+<ul>
+<li><strong>Coefficient values</strong>: Do they make physical sense?</li>
+<li><strong>p-values</strong> (P&gt;|t|): Which features are significant?
+<ul>
+<li>p &lt; 0.05: Feature is important, keep it</li>
+<li>p &gt; 0.05: Feature might not matter, consider removing</li>
+</ul></li>
+<li><strong>Confidence intervals</strong>: Are they narrow enough for your needs?</li>
+</ul></li>
+</ol>
 </div>
 <div class="fragment">
-<p><strong>Next step</strong>: Use individual coefficient t-tests to determine which of the three features contribute significantly.</p>
+<p><strong>Aerospace Example</strong>:</p>
+<p>If predicting <span class="math inline">\(C_D\)</span> from <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(M\)</span>, check that:</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> coefficient is positive (drag increases with angle of attack)</li>
+<li>Both p-values &lt; 0.05 (both features matter)</li>
+<li>R² &gt; 0.85 (good fit for aerodynamic data)</li>
+</ul>
 </div>
 </section>
 <section id="model-evaluation-how-good-is-our-fit" class="slide level2">
@@ -1251,9 +951,18 @@ R^2 = 1 - \frac{\text{Prediction errors}}{\text{Total variance}} = 1 - \frac{\su
 <h3 id="problem-r²-always-increases-with-more-features">Problem: R² Always Increases with More Features!</h3>
 <p><strong>Wind tunnel experiment</strong>: Modeling drag coefficient</p>
 <div class="fragment">
-<p><strong>Model 1</strong>: <span class="math inline">\(C_D = \beta_0 + \beta_1 M\)</span> (just Mach number) - <span class="math inline">\(R^2 = 0.78\)</span></p>
-<p><strong>Model 2</strong>: Add Reynolds number: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 Re\)</span> - <span class="math inline">\(R^2 = 0.85\)</span> ✓ Better!</p>
-<p><strong>Model 3</strong>: Add random noise feature: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 Re + \beta_3(\text{noise})\)</span> - <span class="math inline">\(R^2 = 0.86\)</span> ← Still increased! Even though noise has no meaning!</p>
+<p><strong>Model 1</strong>: <span class="math inline">\(C_D = \beta_0 + \beta_1 M\)</span> (just Mach number)</p>
+<ul>
+<li><span class="math inline">\(R^2 = 0.78\)</span></li>
+</ul>
+<p><strong>Model 2</strong>: Add Reynolds number: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 Re\)</span></p>
+<ul>
+<li><span class="math inline">\(R^2 = 0.85\)</span> ✓ Better!</li>
+</ul>
+<p><strong>Model 3</strong>: Add random noise feature: <span class="math inline">\(C_D = \beta_0 + \beta_1 M + \beta_2 Re + \beta_3(\text{noise})\)</span></p>
+<ul>
+<li><span class="math inline">\(R^2 = 0.86\)</span> ← Still increased! Even though noise has no meaning!</li>
+</ul>
 </div>
 <div class="fragment">
 <p><strong>The problem</strong>: R² rewards complexity even when features add no real value</p>
@@ -2290,7 +1999,6 @@ x_j^{\text{scaled}} = \frac{x_j - \mu_j}{\sigma_j}
 </section>
 <section id="practical-implementation" class="slide level2">
 <h2>Practical Implementation</h2>
-<p><span class="highlight">I am here</span></p>
 <h3 id="scikit-learn-workflow">Scikit-learn Workflow</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>

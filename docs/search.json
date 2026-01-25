@@ -592,7 +592,7 @@
     "href": "week02_linear_regression/week02_presentation.html#practical-implementation",
     "title": "Linear Regression",
     "section": "Practical Implementation",
-    "text": "Practical Implementation\nI am here\nScikit-learn Workflow\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# 1. Load and split data\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\n# 2. Create and train model\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)\n\n# 3. Make predictions\ny_pred = model.predict(X_test)\n\n# 4. Evaluate\nrmse = np.sqrt(mean_squared_error(y_test, y_pred))\nr2 = r2_score(y_test, y_pred)\n\nprint(f\"Coefficients: {model.coef_}\")\nprint(f\"Intercept: {model.intercept_}\")\nprint(f\"RMSE: {rmse:.4f}, R²: {r2:.4f}\")"
+    "text": "Practical Implementation\nScikit-learn Workflow\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# 1. Load and split data\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\n# 2. Create and train model\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)\n\n# 3. Make predictions\ny_pred = model.predict(X_test)\n\n# 4. Evaluate\nrmse = np.sqrt(mean_squared_error(y_test, y_pred))\nr2 = r2_score(y_test, y_pred)\n\nprint(f\"Coefficients: {model.coef_}\")\nprint(f\"Intercept: {model.intercept_}\")\nprint(f\"RMSE: {rmse:.4f}, R²: {r2:.4f}\")"
   },
   {
     "objectID": "week02_linear_regression/week02_presentation.html#case-study-boeing-737-drag-model",
@@ -984,7 +984,7 @@
     "href": "week02_linear_regression/week02_presentation.html#model-evaluation-the-r²-trap",
     "title": "Linear Regression",
     "section": "Model Evaluation: The R² Trap",
-    "text": "Model Evaluation: The R² Trap\nProblem: R² Always Increases with More Features!\nWind tunnel experiment: Modeling drag coefficient\n\nModel 1: \\(C_D = \\beta_0 + \\beta_1 M\\) (just Mach number) - \\(R^2 = 0.78\\)\nModel 2: Add Reynolds number: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 Re\\) - \\(R^2 = 0.85\\) ✓ Better!\nModel 3: Add random noise feature: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 Re + \\beta_3(\\text{noise})\\) - \\(R^2 = 0.86\\) ← Still increased! Even though noise has no meaning!\n\n\nThe problem: R² rewards complexity even when features add no real value\nSolution: Use Adjusted R² which penalizes adding useless features\n\\[\nR^2_{\\text{adj}} = 1 - (1 - R^2)\\frac{n-1}{n-d-1}\n\\]\nOnly increases if new feature improves fit more than expected by chance"
+    "text": "Model Evaluation: The R² Trap\nProblem: R² Always Increases with More Features!\nWind tunnel experiment: Modeling drag coefficient\n\nModel 1: \\(C_D = \\beta_0 + \\beta_1 M\\) (just Mach number)\n\n\\(R^2 = 0.78\\)\n\nModel 2: Add Reynolds number: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 Re\\)\n\n\\(R^2 = 0.85\\) ✓ Better!\n\nModel 3: Add random noise feature: \\(C_D = \\beta_0 + \\beta_1 M + \\beta_2 Re + \\beta_3(\\text{noise})\\)\n\n\\(R^2 = 0.86\\) ← Still increased! Even though noise has no meaning!\n\n\n\nThe problem: R² rewards complexity even when features add no real value\nSolution: Use Adjusted R² which penalizes adding useless features\n\\[\nR^2_{\\text{adj}} = 1 - (1 - R^2)\\frac{n-1}{n-d-1}\n\\]\nOnly increases if new feature improves fit more than expected by chance"
   },
   {
     "objectID": "week02_linear_regression/week02_presentation.html#prediction-accuracy-rmse",
@@ -1881,5 +1881,33 @@
     "title": "Linear Regression: Reading Material",
     "section": "24.6 Aerospace Applications",
     "text": "24.6 Aerospace Applications\nLinear regression is essential for: - Performance prediction (drag, lift, fuel consumption) - Wind tunnel data analysis - Flight test analysis - System identification - Model validation and uncertainty quantification\nThe techniques you’ve learned form the foundation for more advanced machine learning methods used throughout aerospace engineering."
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#statistical-inference-understanding-uncertainty",
+    "href": "week02_linear_regression/week02_presentation.html#statistical-inference-understanding-uncertainty",
+    "title": "Linear Regression",
+    "section": "Statistical Inference: Understanding Uncertainty",
+    "text": "Statistical Inference: Understanding Uncertainty\nWhy Do We Care About Uncertainty?\nEngineering Question: After fitting \\(C_D = \\beta_0 + \\beta_1\\alpha + \\beta_2\\alpha^2\\), how confident are we in the coefficients?\n\nKey Concepts:\n\nStandard Error (SE): Measures uncertainty in each coefficient\n\nLarger SE → less certain about coefficient value\nComputed from residuals and design matrix\n\nConfidence Intervals: Range of plausible values for each coefficient\n\nExample: \\(\\beta_1 = 0.105 \\pm 0.008\\) means true value likely between 0.097 and 0.113\n\nStatistical Significance: Is a coefficient meaningfully different from zero?\n\np-value &lt; 0.05: Strong evidence the feature matters\np-value &gt; 0.05: Insufficient evidence (might just be noise)\n\n\n\n\nPractical Interpretation:\nMost ML libraries (scikit-learn, statsmodels) report these automatically. Focus on:\n\nAre confidence intervals narrow enough for your application?\nWhich features have small p-values (statistically significant)?"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#model-significance-does-your-model-work",
+    "href": "week02_linear_regression/week02_presentation.html#model-significance-does-your-model-work",
+    "title": "Linear Regression",
+    "section": "Model Significance: Does Your Model Work?",
+    "text": "Model Significance: Does Your Model Work?\nOverall Model Test\nQuestion: Is the entire model better than just predicting the average value?\n\nSimple Check - R² Statistic:\n\\[\nR^2 = 1 - \\frac{\\text{RSS}}{\\text{TSS}} = \\frac{\\text{Variance Explained}}{\\text{Total Variance}}\n\\]\n\nR² ≈ 0: Model is useless (no better than average)\nR² ≈ 1: Model explains almost all variance (excellent fit)\nRule of thumb for aerospace: R² &gt; 0.7 often acceptable for preliminary design\n\n\n\nStatistical Test - F-statistic:\nTests if any features are useful (reported by most software)\n\nLarge F-value (e.g., F &gt; 10): Strong evidence model is useful\nSmall p-value (p &lt; 0.05): Model significantly better than baseline\n\nBottom line: Check that your model’s p-value is small (&lt;&lt; 0.05) before using it!"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html#practical-example-interpreting-regression-output",
+    "href": "week02_linear_regression/week02_presentation.html#practical-example-interpreting-regression-output",
+    "title": "Linear Regression",
+    "section": "Practical Example: Interpreting Regression Output",
+    "text": "Practical Example: Interpreting Regression Output\nTypical Software Output\nfrom sklearn.linear_model import LinearRegression\nimport statsmodels.api as sm\n\n# Fit model\nmodel = sm.OLS(y, X).fit()\nprint(model.summary())\nWhat to look for:\n\n\nOverall Model:\n\nR²: Should be reasonably high (&gt;0.7 for engineering)\nF-statistic p-value: Should be &lt; 0.05 (model is significant)\n\nIndividual Coefficients:\n\nCoefficient values: Do they make physical sense?\np-values (P&gt;|t|): Which features are significant?\n\np &lt; 0.05: Feature is important, keep it\np &gt; 0.05: Feature might not matter, consider removing\n\nConfidence intervals: Are they narrow enough for your needs?\n\n\n\n\nAerospace Example:\nIf predicting \\(C_D\\) from \\(\\alpha\\) and \\(M\\), check that:\n\n\\(\\alpha\\) coefficient is positive (drag increases with angle of attack)\nBoth p-values &lt; 0.05 (both features matter)\nR² &gt; 0.85 (good fit for aerodynamic data)"
+  },
+  {
+    "objectID": "week02_linear_regression/week02_presentation.html",
+    "href": "week02_linear_regression/week02_presentation.html",
+    "title": "Linear Regression",
+    "section": "",
+    "text": "Apply linear regression to aerospace performance prediction\nUnderstand least squares method and gradient descent\nImplement drag coefficient prediction from wind tunnel data\nValidate models using aerospace-specific metrics"
   }
 ]
