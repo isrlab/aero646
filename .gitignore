@@ -1,41 +1,11 @@
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
+# Ignore everything at root
+/*
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-.venv/
-venv/
-ENV/
+# But track these essential files
+!/.gitignore
+!/docs/
 
-# Quarto
-.quarto/
-/.quarto/
-
-# Manim cache and outputs
-media/Tex/
-media/texts/
-**/animations/media/videos/
-**/animations/__pycache__/
-*.mp4
-*.mov
-*.avi
-
-# IDE
-.vscode/
-.idea/
-
-# Temporary files
-*.tmp
-*.temp
-*~
-
-# Jupyter
-.ipynb_checkpoints/
-
-**/*.quarto_ipynb
+# Still ignore these even in docs/
+**/.DS_Store
+**/__pycache__/
+**/*.pyc
